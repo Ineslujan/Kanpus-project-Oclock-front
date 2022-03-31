@@ -1,6 +1,10 @@
 import './App.css';
 import Connexion from './components/Connexion/Connexion';
-import useWindowDimensions from '../src/customHooks/getWindowDimensions'
+import Navbar from './components/Navbar/Navbar';
+import useWindowDimensions from '../src/customHooks/getWindowDimensions';
+
+
+import Organizer from './components/Organizer/Organizer';
 
 function App() {
 
@@ -10,7 +14,9 @@ function App() {
   return (
     <div className="App">
 
-      <Connexion width={width} />
+      {/* <Connexion width={width} /> */}
+      <Navbar />
+      <Organizer />
     </div>
   );
 }

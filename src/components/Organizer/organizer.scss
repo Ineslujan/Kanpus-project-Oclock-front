@@ -1,0 +1,23 @@
+@use '../../var.scss';
+
+.weeks-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.days {
+    border: 2px solid var.$primary-color;
+    display: inline-block;
+    border-right: none;
+    width: 200px;
+}
+
+.days:last-child {
+    border-right: 2px solid var.$primary-color; 
+}
+
+.days-container {
+    margin: 2%;
+    display: flex;
+}

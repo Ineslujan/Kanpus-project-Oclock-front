@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import './connexionForm.css'
+import './connexionForm.scss'
 
 export default function ConnexionForm() {
     const {register, handleSubmit, formState: { errors }, reset, watch} = useForm({});

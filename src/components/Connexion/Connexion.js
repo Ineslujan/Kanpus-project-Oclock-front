@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import ConnexionForm from '../ConnexionForm/ConnexionForm';
 
 
-import './connexion.css';
+import './connexion.scss';
 
 export default function Connexion({ width }) {
 
