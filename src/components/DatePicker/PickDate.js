@@ -23,13 +23,6 @@ export default function PickDate({ startDate, setStartDate, endDate, setEndDate 
       const [start, end] = dates;
       setStartDate(start);
       setEndDate(end);
-      // console.log("dataPicker",DateTime.fromObject(startDate) ,endDate)
-      // console.log(start.toLocaleDateString("fr-FR", options))
-      // console.log(DateTime.fromObject(end).setLocale('fr').toFormat('dd MMMM yyyy'))
-      // addSeven()
-      // console.log("end=>", endDate, "start=>", startDate);
-      // console.log("plus=>",DateTime.fromJSDate(start).plus({ days: 7 }));
-      // console.log("moins=>",DateTime.fromJSDate(start).minus({ days: 7 }));
   };
   return (
     <DatePicker

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import PickDate from '../ConnexionForm/DatePicker/PickDate';
+import PickDate from '../DatePicker/PickDate';
+import TimePicker from '../TimePicker/TimePicker';
 import { DateTime } from "luxon";
 
 export default function AddClasses() {
@@ -10,6 +11,11 @@ export default function AddClasses() {
     
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+
+    const [startTime, setStartTime] = useState(null);
+    const [endTime, setEndTime] = useState(null);
+    const [showStartTimePicker, setShowStartTimePicker]= useState(true)
+    const [showEndTimePicker, setShowEndTimePicker]= useState(true)
 
     const onSubmit = data =>  {
         let newStartDate = DateTime.fromJSDate(startDate);
@@ -29,6 +35,9 @@ export default function AddClasses() {
                 {errors.email && <span>Vous devez rentrer un nom pour ce cours</span>}
             </div>
             <PickDate startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} />
+            {showStartTimePicker && <TimePicker time={startTime} setTime={setStartTime} setShowPicker={setShowStartTimePicker} />}
+            {showEndTimePicker && <TimePicker  time={endTime} setTime={setEndTime} setShowPicker={setShowEndTimePicker} /> }
+            
             <button className="connexion-form-button">Valider</button>
         </form>
 
