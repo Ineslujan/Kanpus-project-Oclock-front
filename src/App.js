@@ -1,3 +1,4 @@
+import {Routes, Route} from 'react-router-dom';
 import './App.css';
 import Connexion from './components/Connexion/Connexion';
 import Navbar from './components/Navbar/Navbar';
@@ -15,8 +16,11 @@ function App() {
     <div className="App">
 
       {/* <Connexion width={width} /> */}
-      <Navbar />
-      <Organizer />
+      {width < 599 ? "":<Navbar />}
+      <Routes>
+        <Route path='/' element={<Connexion/>} />
+        <Route path='/organizer' element={<Organizer />} />
+      </Routes>
     </div>
   );
 }

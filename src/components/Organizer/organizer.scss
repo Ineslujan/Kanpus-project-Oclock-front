@@ -3,6 +3,7 @@
 .organizer-container{
     width: 100%;
     display: flex;
+    justify-content: flex-start;
     margin-left: 1%;
     height: 500px;
     position: relative;
@@ -11,7 +12,7 @@
 .weeks-container{
     display: flex;
     height: 6%;
-    width:80%;
+    width:86%;
     margin-top:1.5% ;
 }
 
@@ -19,7 +20,8 @@
     border: 2px solid var.$primary-color;
     display: inline-block;
     border-right: none;
-    width: 240px;
+    min-width: 150px;
+    width: 25%;
     background-color: var.$primary-color;
     color: var.$second-color;
 }
@@ -35,6 +37,7 @@
 
 .days-container {
     display: flex;
+    width: 100%;
 }
 
 .classroom-container{

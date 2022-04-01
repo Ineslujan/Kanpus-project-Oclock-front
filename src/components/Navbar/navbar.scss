@@ -3,4 +3,22 @@
 .navbar-container{
     border-bottom: 3px solid var.$primary-color ;
     height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activeStyle{
+    color: red;
+}
+
+.navlink{
+    margin-right: 10px;
+}
+
+.navbar-logo {
+    margin-left: 10px;
+}
+.navbar-user{
+    margin-right: 10px;
 }
