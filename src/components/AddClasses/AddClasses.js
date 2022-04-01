@@ -7,39 +7,54 @@ import { DateTime } from "luxon";
 export default function AddClasses() {
 
     const {register, handleSubmit, formState: { errors }, reset, watch} = useForm({});
-    const watchName = watch("name")
+    const watchName = watch("name");
+
+    const [closeFormPart1, setCloseFormPart1] = useState(false);
     
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-    const [startTime, setStartTime] = useState(null);
-    const [endTime, setEndTime] = useState(null);
-    const [showStartTimePicker, setShowStartTimePicker]= useState(true)
-    const [showEndTimePicker, setShowEndTimePicker]= useState(true)
+    const [startTime, setStartTime] = useState('9:00');
+    const [endTime, setEndTime] = useState('13:30');
+    const [showStartTimePicker, setShowStartTimePicker]= useState(false)
+    const [showEndTimePicker, setShowEndTimePicker]= useState(false)
+    
+    let newStartDate = DateTime.fromJSDate(startDate);
+    let newEndDate = DateTime.fromJSDate(endDate);
 
     const onSubmit = data =>  {
-        let newStartDate = DateTime.fromJSDate(startDate);
-        let newEndDate = DateTime.fromJSDate(endDate);
-        data.startDate = `${newStartDate.year}-${newStartDate.month}-${newStartDate.day} 15:30:00 ${newStartDate.offsetNameShort}`
-        data.endDate = `${newEndDate.year}-${newEndDate.month}-${newEndDate.day} 18:30:00 ${newEndDate.offsetNameShort}`
+        data.start_date = `${newStartDate.year}-${newStartDate.month}-${newStartDate.day} ${startTime}:00 ${newStartDate.offsetNameShort}`;
+        data.end_date = `${newEndDate.year}-${newEndDate.month}-${newEndDate.day} ${endTime}:00 ${newEndDate.offsetNameShort}`;
+        setCloseFormPart1(true);
         console.log(data);
+        console.log(newStartDate);
     }
 
   return (
 
     <div className="create-classes-container">
-        <form className="create-date-form" onSubmit={handleSubmit(onSubmit)}>
-            <div className="create-date-form-container">
-                <label htmlFor="create-date-name" className="create-date-name-label">Nom du cours</label> <br/>
-                <input type="text" className="create-date-form-input" {...register("name", { required: true })} /> <br/>
-                {errors.email && <span>Vous devez rentrer un nom pour ce cours</span>}
-            </div>
-            <PickDate startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} />
-            {showStartTimePicker && <TimePicker time={startTime} setTime={setStartTime} setShowPicker={setShowStartTimePicker} />}
-            {showEndTimePicker && <TimePicker  time={endTime} setTime={setEndTime} setShowPicker={setShowEndTimePicker} /> }
-            
-            <button className="connexion-form-button">Valider</button>
-        </form>
+        {closeFormPart1 ? 
+        <div className="data-open-container">
+            <button className="date-open" onClick={()=> setCloseFormPart1(false)}>{`${newStartDate.weekdayShort} ${newStartDate.day}  ${newStartDate.monthShort} ${newStartDate.year} ${startTime}`}</button>
+            <button className="date-open" onClick={()=> setCloseFormPart1(false)}>{`${newEndDate.weekdayShort} ${newEndDate.day} ${newEndDate.monthShort} ${newEndDate.year} ${endTime}`}</button>
+        </div>
+        :
+            <form className="create-date-form" onSubmit={handleSubmit(onSubmit)}>
+                <div className="create-date-form-container">
+                    <label htmlFor="create-date-name" className="create-date-name-label">Nom du cours</label> <br/>
+                    <input type="text" className="create-date-form-input" {...register("name", { required: true })} />
+                    {errors.email && <span>Vous devez rentrer un nom pour ce cours</span>}
+                </div>
+                
+                <PickDate startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} />
+                <div className="create-date-form-time-container">
+                    {showStartTimePicker ? <TimePicker time={startTime} setTime={setStartTime} setShowPicker={setShowStartTimePicker} /> : <button onClick={()=> setShowStartTimePicker(true)}>{startTime}</button>}
+                    {showEndTimePicker ? <TimePicker  time={endTime} setTime={setEndTime} setShowPicker={setShowEndTimePicker} /> : <button onClick={()=> setShowEndTimePicker(true)}>{endTime}</button>}
+                </div>
+                
+                <button className="connexion-form-button">Valider</button>
+            </form>
+        }
 
         {startDate && endDate && watchName ? <div>WOLOLOLOLO</div>:""}
     </div>

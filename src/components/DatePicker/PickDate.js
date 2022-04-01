@@ -17,8 +17,6 @@ export default function PickDate({ startDate, setStartDate, endDate, setEndDate 
   const options = { weekday: "long",year: "numeric", month: "long", day: "2-digit"};
 
 
-  const [newStartDate, setNewStartDate] = useState(DateTime.now())
-
   const onChange = (dates) => {
       const [start, end] = dates;
       setStartDate(start);

@@ -14,7 +14,8 @@ export default function TimePicker({ time, setTime, setShowPicker }) {
             onChange={(newTime) => setTime(newTime.formatted24)}
             hour24Mode
             switchToMinuteOnHourSelect
-            closeOnMinuteSelect={closeTimePicker} 
+            // closeOnMinuteSelect={() => setShowPicker(false)} 
+            onDoneClick={() => closeTimePicker()}
         />
     )
 }
