@@ -18,16 +18,32 @@ export default function Organizer() {
     }
 
   return (
-    <div className="weeks-container">
-        <button className="weeks-container-button" onClick={removeSevenDays}> ! </button>
-        <div className="days-container">
-            <div className="days"> {firstDayOfWeek.weekdayLong} {firstDayOfWeek.day} {firstDayOfWeek.monthLong}</div>
-            <div className="days"> {firstDayOfWeek.plus({days: 1}).weekdayLong} {firstDayOfWeek.plus({days: 1}).day} {firstDayOfWeek.plus({days: 1}).monthLong}</div>
-            <div className="days"> {firstDayOfWeek.plus({days: 2}).weekdayLong} {firstDayOfWeek.plus({days: 2}).day} {firstDayOfWeek.plus({days: 2}).monthLong}</div>
-            <div className="days"> {firstDayOfWeek.plus({days: 3}).weekdayLong} {firstDayOfWeek.plus({days: 3}).day} {firstDayOfWeek.plus({days: 3}).monthLong}</div>
-            <div className="days"> {firstDayOfWeek.plus({days: 4}).weekdayLong} {firstDayOfWeek.plus({days: 4}).day} {firstDayOfWeek.plus({days: 4}).monthLong}</div>  
+    <div className="organizer-container">
+
+        <div className="classroom-container">
+            <div className="classroom">Salle de cours</div>
+            <div className="classroom">Studio</div>
+            <div className="classroom">Salle info 1</div>
+            <div className="classroom">Salle info 2</div>
+            <div className="classroom">Box 1</div>
+            <div className="classroom">Box 2</div>
+            <div className="classroom">Box 3</div>
         </div>
-        <button className="weeks-container-button" onClick={addSevenDays}> ! </button>
+        <div className="weeks-container">
+            <div className="days-container">
+                <div className="days"> {firstDayOfWeek.weekdayLong} {firstDayOfWeek.day} {firstDayOfWeek.monthLong}</div>
+                <div className="days"> {firstDayOfWeek.plus({days: 1}).weekdayLong} {firstDayOfWeek.plus({days: 1}).day} {firstDayOfWeek.plus({days: 1}).monthLong}</div>
+                <div className="days"> {firstDayOfWeek.plus({days: 2}).weekdayLong} {firstDayOfWeek.plus({days: 2}).day} {firstDayOfWeek.plus({days: 2}).monthLong}</div>
+                <div className="days"> {firstDayOfWeek.plus({days: 3}).weekdayLong} {firstDayOfWeek.plus({days: 3}).day} {firstDayOfWeek.plus({days: 3}).monthLong}</div>
+                <div className="days"> {firstDayOfWeek.plus({days: 4}).weekdayLong} {firstDayOfWeek.plus({days: 4}).day} {firstDayOfWeek.plus({days: 4}).monthLong}</div>  
+            </div>
+        </div>
+        <div className="weeks-button">
+            <button className="weeks-button-left" onClick={removeSevenDays}> ! </button>
+            <button className="weeks-button-right" onClick={addSevenDays}> ! </button>
+        </div>
+        <div className="year">{firstDayOfWeek.year}</div>
+        
     </div>
   )
 }
