@@ -31,8 +31,7 @@ export default function AddClassesMenu() {
   return (
     <div className='menu-container'>
        <PromoMenu tabPromo={tabPromo} togglePromos={togglePromos} showPromos={showPromos} />
-       <GroupeMenu tabGroupe={tabGroupe} toggleGroupes={toggleGroupes} showGroupes={showGroupes}  />
-        
+       <GroupeMenu tabGroupe={tabGroupe} toggleGroupes={toggleGroupes} showGroupes={showGroupes}  />  
     </div>
   )
 }

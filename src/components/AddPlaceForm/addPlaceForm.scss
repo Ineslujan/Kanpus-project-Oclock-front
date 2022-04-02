@@ -1,0 +1,38 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+.place-form-container{
+    margin-top: 3%;
+    
+}
+
+.place-select-input-container {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+.place-select {
+    border: 2px solid var.$primary-color;
+    background-color: var.$primary-color;
+    color: var.$second-color ;
+    width: 18%;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 0.9em;
+    padding: 0.1%;
+    margin-right: 2%;
+}
+
+.place-select-option{
+    background-color: var.$primary-color ;
+    text-align: start;
+}
+
+.place-adress {
+    width: 27%;
+    border: 2px solid var.$primary-color;
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: var.$primary-color;
+}
