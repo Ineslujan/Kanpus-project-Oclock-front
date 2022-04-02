@@ -1,0 +1,78 @@
+@use '../../var.scss';
+
+.data-open-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-open{
+    width: 50%;
+    background-color: var.$primary-color ;
+    color: var.$second-color ;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8% 1.5%;
+    font-size: 2em;
+    margin-top: 1%;
+}
+
+.create-classes-container{
+    position: relative;
+}
+
+
+.create-date-form{
+    margin-top: 1%;
+}
+
+.create-date-form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-date-form-input{
+    margin: 0.5% 0 2%;
+    width: 25%;
+    padding: 0.5% 1%;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: 1px solid var.$primary-color ;
+}
+
+.create-date-name-label{
+    color: var.$primary-color;
+    font-size: 1.2em;
+}
+
+.date-time-button{
+    margin:1% 0.5% 0.5%;
+    background-color: var.$primary-color;
+    color: var.$second-color ;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5% 1.5%;
+    font-size: 2em;
+}
+
+.date-form-button{
+    margin-top: 1rem;
+    background-color: var.$primary-color;
+    padding: 0.7% 4%;
+    border-radius: 5px;
+    border: 1px solid rgb(173, 208, 221);
+    color: var.$second-color;
+    font-size: 1em;
+
+    &:disabled {
+        background-color: var.$disabled-primary-color;
+        border: 1px solid var.$disabled-border-color;
+    }
+}
+
+.container-form-part2{
+    width: 100%;
+}

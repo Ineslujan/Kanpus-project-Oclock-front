@@ -7,7 +7,7 @@ export default function Organizer() {
 
     const [today, setToday]=useState(new Date());
 
-    const [firstDayOfWeek, setFirstDayOfWeek] = useState(DateTime.fromJSDate(today).minus({ days: DateTime.fromJSDate(today).weekday -1}));
+    const [firstDayOfWeek, setFirstDayOfWeek] = useState(DateTime.fromJSDate(today).minus({ days: DateTime.fromJSDate(today).weekday -1 }));
 
     const removeSevenDays = () => {
         setFirstDayOfWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({days: 7}))

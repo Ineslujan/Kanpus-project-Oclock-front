@@ -5,6 +5,7 @@ import { registerLocale } from "react-datepicker";
 import fr from "date-fns/locale/fr";
 
 import "react-datepicker/dist/react-datepicker.css";
+import './pickDate.scss'
 
 
 

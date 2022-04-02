@@ -1,0 +1,10 @@
+@use '../../var.scss';
+
+.react-datepicker__header{
+    background-color: var.$primary-color ;
+    
+}
+
+.react-datepicker__day-name, .react-datepicker__current-month {
+    color: var.$second-color ;
+}
