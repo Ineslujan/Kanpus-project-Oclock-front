@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import PromoMenu from '../PromoMenu/PromoMenu';
+import GroupeMenu from '../GroupeMenu/GroupeMenu';
 
 import './addClassesMenu.scss'
 
@@ -28,18 +30,9 @@ export default function AddClassesMenu() {
 
   return (
     <div className='menu-container'>
-        <div className="promo-container">
-            <button className="promo-title" onClick={togglePromos}>Promos</button>
-            {showPromos && tabPromo.map((item, index)=> (
-                    <button key={index} className="promo">{item}</button>
-            ))}
-        </div>
-        <div className="groupe-container">
-            <button className="groupe-title" onClick={toggleGroupes}>Groupes</button>
-            {showGroupes && tabGroupe.map((item,index)=> (
-                    <button key={index} className="groupe">{item}</button>
-            ))}
-        </div>
+       <PromoMenu tabPromo={tabPromo} togglePromos={togglePromos} showPromos={showPromos} />
+       <GroupeMenu tabGroupe={tabGroupe} toggleGroupes={toggleGroupes} showGroupes={showGroupes}  />
+        
     </div>
   )
 }

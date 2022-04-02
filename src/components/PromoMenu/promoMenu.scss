@@ -1,0 +1,21 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+.promo-title{
+    width: 100%;
+    border: none;
+    background-color: var.$primary-color;
+    color: var.$second-color;
+    justify-content: center;
+    font-size: 1.5em;
+    padding: 4% 0 6%;
+}
+
+.promo {
+    width: 100%;
+    border: none;
+    background-color: var.$background-color;
+    border-bottom: 2px solid var.$primary-color;
+    padding: 4% 0 4%;
+    font-size: 1em;
+}

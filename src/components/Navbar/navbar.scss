@@ -1,4 +1,5 @@
 @use '../../var.scss';
+@use '../../reset.scss';
 
 .navbar-container{
     border-bottom: 3px solid var.$primary-color ;
