@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import PickDate from '../DatePicker/PickDate';
 import TimePicker from '../TimePicker/TimePicker';
 import { DateTime } from "luxon";
 import AddClassesMenu from '../AddClassesMenu/AddClassesMenu';
 import AddPlaceForm from '../AddPlaceForm/AddPlaceForm';
 import AddTeachersForm from '../AddTeachersForm/AddTeachersForm';
+import AddStudentsForm from '../AddStudentsForm/AddStudentsForm';
+import AddTextForm from '../AddTextForm/AddTextForm';
 
 import './addClasses.scss'
 
@@ -13,6 +15,8 @@ export default function AddClasses() {
 
     const {register, handleSubmit, formState: { errors }, reset, watch} = useForm({});
     const watchName = watch("name");
+
+    const [allDatasForm, setAllDatasForm] = useState({})
 
     const [closeFormPart1, setCloseFormPart1] = useState(false);
     
@@ -30,12 +34,23 @@ export default function AddClasses() {
     const [valideButton, setValidateButton] = useState(false);
     const [closeFormPart2, setCloseFormPart2] = useState(true);
 
+    const [classeRoom, setClasseRoom] = useState(null)
+
+    const [teacher, setTeacher]= useState(null);
+    const [tabTeachersAdded, setTabTeachersAdded] = useState([]);
+
+    const [role, setRole] = useState("");
+    const [equipment, setEquipment] = useState("");
+    const [note, setNote] = useState("");
+
+    const [validAllFormButton, setValidAllFormButton] = useState(false);
+
     const tabTeachers =[
         {name:"Emma Watson"}, {name:"Rémy Lazautaneur"}, {name:"Quention Fillon-Maillet"}, {name:"Romain Deldon"}, {name:"Julia Simon"}, {name:"Anaïs Bescond"}, {name:"Justine Braizas"}
     ]
 
     useEffect(() => {
-        if(!newStartDate.day || !newEndDate.day ||!watchName ){
+        if(!newStartDate.day || !newEndDate.day || !watchName ){
             setValidateButton(false);
         } else {
             setValidateButton(true);
@@ -50,18 +65,40 @@ export default function AddClasses() {
         }
     }, [closeFormPart1]);
 
-    const addTeacher = () => {
-        console.log("add teacher!")
-    }
+    useEffect(() => {
+        if(tabTeachersAdded.length < 1 || !classeRoom){
+            console.log(tabTeachersAdded)
+            setValidAllFormButton(false);
+        } else {
+            setValidAllFormButton(true);
+        }
+    }, [tabTeachersAdded, classeRoom])
     
     
-
     const onSubmit = data =>  {
         data.start_date = `${newStartDate.year}-${newStartDate.month}-${newStartDate.day} ${startTime}:00 ${newStartDate.offsetNameShort}`;
         data.end_date = `${newEndDate.year}-${newEndDate.month}-${newEndDate.day} ${endTime}:00 ${newEndDate.offsetNameShort}`;
         setCloseFormPart1(true);
-        console.log(data);
-        console.log(newStartDate);
+        setAllDatasForm({
+            name: data.name,
+            start_date: data.start_date,
+            end_date: data.start_date,
+        })
+    }
+
+    const submitForm = () => {
+        console.log("submit form =>")
+        setAllDatasForm({
+            ...allDatasForm,
+            place_id: classeRoom, // on envoie les id
+            adress: "",
+            former: [2, 15, 8], // on envoie les id
+            trainee: [5, 7, 9], // on envoie les id
+            role: role,
+            equipment: equipment,
+            note: note,
+        })
+        console.log(allDatasForm);
     }
 
   return (
@@ -95,9 +132,13 @@ export default function AddClasses() {
         {!closeFormPart2 && 
             <div className="container-form-part2">
                 <AddClassesMenu />
-                <AddPlaceForm />
-                <AddTeachersForm tabTeachers={tabTeachers} addTeacher={addTeacher}/>
-
+                <AddPlaceForm classeRoom={classeRoom} setClasseRoom={setClasseRoom} />
+                <AddTeachersForm tabTeachers={tabTeachers} teacher={teacher} setTeacher={setTeacher} tabTeachersAdded={tabTeachersAdded} setTabTeachersAdded={setTabTeachersAdded}  />
+                <AddStudentsForm />
+                <AddTextForm text={"Rôles"} set={setRole} />
+                <AddTextForm text={"Matériel"} set={setEquipment} />
+                <AddTextForm text={"Infos pratique"} set={setNote} />
+                {validAllFormButton ? <button className="date-form-button" onClick={submitForm}>Valider</button>: <button className="date-form-button" onClick={submitForm} disabled>Valider</button>}
             </div>
         }
     </div>

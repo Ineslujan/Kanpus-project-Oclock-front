@@ -2,11 +2,9 @@ import React, {useState} from 'react';
 
 import './addTeachersForm.scss'
 
-export default function AddTeachersForm({tabTeachers}) {
+export default function AddTeachersForm({tabTeachers, teacher, setTeacher, tabTeachersAdded, setTabTeachersAdded }) {
 
-    const [teacher, setTeacher]= useState(null)
-    const [seeTeachers, setSeeTeachers] = useState(false)
-    const [tabTeachersAdded, setTabTeachersAdded] = useState([])
+    const [seeTeachers, setSeeTeachers] = useState(false);
 
     const showAllTeachers = () => {
         setSeeTeachers(seeTeachers => !seeTeachers)
@@ -15,7 +13,7 @@ export default function AddTeachersForm({tabTeachers}) {
     const addTeacher = (item) => {
         console.log(item.name)
         if(tabTeachersAdded.find(el=> el.name === item.name)){
-            return;
+     
         } else {
             setTeacher(item.name)
             setTabTeachersAdded([
@@ -23,9 +21,9 @@ export default function AddTeachersForm({tabTeachers}) {
                     name: item.name,
                 }
             ])
-            setSeeTeachers(false)
             console.log(tabTeachersAdded);
         }
+        setSeeTeachers(false)
     }
 
     const removeTeacher = (value) => {

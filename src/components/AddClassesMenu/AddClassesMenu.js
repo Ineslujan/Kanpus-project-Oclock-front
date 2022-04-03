@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import PromoMenu from '../PromoMenu/PromoMenu';
-import GroupeMenu from '../GroupeMenu/GroupeMenu';
+
+import ItemMenu from '../ItemMenu/ItemMenu';
 
 import './addClassesMenu.scss'
 
@@ -30,8 +30,20 @@ export default function AddClassesMenu() {
 
   return (
     <div className='menu-container'>
-       <PromoMenu tabPromo={tabPromo} togglePromos={togglePromos} showPromos={showPromos} />
-       <GroupeMenu tabGroupe={tabGroupe} toggleGroupes={toggleGroupes} showGroupes={showGroupes}  />  
+        <ItemMenu 
+            text={"Promos"} 
+            classN={"promo-title"} 
+            tab={tabPromo} 
+            toggle={togglePromos} 
+            show={showPromos} 
+        />
+        <ItemMenu 
+            text={"Groupes"} 
+            classN={"groupe-title"} 
+            tab={tabGroupe} 
+            toggle={toggleGroupes} 
+            show={showGroupes}  
+        />  
     </div>
   )
 }

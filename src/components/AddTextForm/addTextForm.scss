@@ -1,0 +1,22 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+.text-form-container{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-form{
+    margin-top: 0.2%;
+    width: 50%;
+    min-height: 25px;
+    border: 2px solid var.$primary-color;
+    border-radius: 5px;
+
+    &:focus{
+        min-height: 150px;
+    }
+}
