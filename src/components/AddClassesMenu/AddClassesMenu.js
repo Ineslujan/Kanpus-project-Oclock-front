@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 
-import ItemMenu from '../ItemMenu/ItemMenu';
+import ItemMenu from '../../container/ItemMenu/ItemMenu';
 
 import './addClassesMenu.scss'
 
 export default function AddClassesMenu() {
 
     const [showPromos, setShowPromos] = useState(false);
-    const [showGroupes, setShowGroupes] = useState(false)
+    const [showGroupes, setShowGroupes] = useState(false);
 
     const tabPromo = ['Zagreus', 'Motus', 'Apollo','Currie'];
     const tabGroupe = ['Montage', 'Atelier1', 'Montage3','Scénario'];

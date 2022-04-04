@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import { DateTime } from "luxon";
+import React from 'react'
+
 import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 import fr from "date-fns/locale/fr";
@@ -11,12 +11,6 @@ import './pickDate.scss'
 
 export default function PickDate({ startDate, setStartDate, endDate, setEndDate }) {
   registerLocale("fr", fr);
-  const year = { year: "numeric"};
-  const dayOnly = {weekday: "long"}
-  const dayNumber = {day: "2-digit"}
-  const dayMonth = { month: "short"};
-  const options = { weekday: "long",year: "numeric", month: "long", day: "2-digit"};
-
 
   const onChange = (dates) => {
       const [start, end] = dates;
