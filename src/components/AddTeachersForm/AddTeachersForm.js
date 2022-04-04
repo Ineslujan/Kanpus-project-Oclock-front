@@ -1,24 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import { requestEvent } from '../../requests/AddClassesFormRequest';
+import React, {useState} from 'react';
+
 import './addTeachersForm.scss'
 
-export default function AddTeachersForm({event, teacher, setTeacher, tabTeachersAdded, setTabTeachersAdded }) {
+export default function AddTeachersForm({tabTeachers, teacher, setTeacher, tabTeachersAdded, setTabTeachersAdded }) {
 
     const [seeTeachers, setSeeTeachers] = useState(false);
-
-    const [tabTeachers, setTabTeachers] = useState(null);
-
-    useEffect(() => {
-        const getDatas = async () => {
-            const datas = await requestEvent(event);
-            if(datas.status === 200){
-                setTabTeachers(datas.data.former);
-                console.log("setTeachers", datas, tabTeachers);
-            }
-        } 
-        getDatas();
-    }, [])
-    
 
     const showAllTeachers = () => {
         setSeeTeachers(seeTeachers => !seeTeachers)
@@ -28,7 +14,10 @@ export default function AddTeachersForm({event, teacher, setTeacher, tabTeachers
         if(tabTeachersAdded.find(el=> el.user_id === item.user_id)){
      
         } else {
-            setTeacher(item.user_id)
+            setTeacher([
+                ...teacher,
+                item.user_id
+            ])
             console.log(item)
             setTabTeachersAdded([
                 ...tabTeachersAdded, 
@@ -44,6 +33,8 @@ export default function AddTeachersForm({event, teacher, setTeacher, tabTeachers
         console.log('removeTeacher');
         const teacherFiltered = tabTeachersAdded.filter(item => value.user_id !== item.user_id);
         setTabTeachersAdded(teacherFiltered);
+        const idFiltered = teacher.filter(item => value.user_id !== item);
+        setTeacher(idFiltered);
     }
 
   return (

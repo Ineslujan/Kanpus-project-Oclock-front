@@ -1,0 +1,31 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+
+.students-menu-container{
+    background-color: var.$second-color;
+    position: absolute;
+    top: 0;
+    left: 175px;
+    width: 230px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0.3% 1.5%;
+    border-right: 2px solid var.$primary-color;
+    border-bottom: 2px solid var.$primary-color;
+    
+}
+
+.studends-list{
+    background-color: var.$second-color;
+    border: none;
+    padding: 3% 0;
+}
+
+.studends-list-add-all{
+    color: rgb(253, 71, 71);
+    border: none;
+    background-color: var.$second-color;
+    padding: 3% 0;
+}

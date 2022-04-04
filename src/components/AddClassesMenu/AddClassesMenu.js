@@ -1,16 +1,34 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+
+import { requestStudents } from '../../requests/AddClassesFormRequest';
 
 import ItemMenu from '../../container/ItemMenu/ItemMenu';
+import ItemStudentsMenu from '../../container/ItemStudentsMenu/ItemStudentsMenu'
 
 import './addClassesMenu.scss'
 
-export default function AddClassesMenu() {
+export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStudents}) {
 
     const [showPromos, setShowPromos] = useState(false);
     const [showGroupes, setShowGroupes] = useState(false);
+    const [showStudents, setShowStudents] = useState(false);
 
-    const tabPromo = ['Zagreus', 'Motus', 'Apollo','Currie'];
-    const tabGroupe = ['Montage', 'Atelier1', 'Montage3','Scénario'];
+    const [tabPromos, setTabPromos] = useState([]);
+    const [tabGroupes, setTabGroupes] = useState([]);
+
+    const [selectedStudents, setSelectedStudents] = useState(false);
+
+    useEffect(() => {
+        const getStudents = async () => {
+            const students = await requestStudents();
+            if(students.status === 200){
+                setTabPromos(students.data.promos);
+                setTabGroupes(students.data.group)
+            }
+        }
+        getStudents()
+    }, [])
+    
 
     const togglePromos = () => {
         setShowPromos(showPromos => !showPromos);
@@ -29,22 +47,35 @@ export default function AddClassesMenu() {
 
 
   return (
-    <div className='menu-container'>
-        <ItemMenu 
-            text={"Promos"} 
-            classN={"promo-title"} 
-            tab={tabPromo} 
-            toggle={togglePromos} 
-            show={showPromos} 
-        />
-        <ItemMenu 
-            text={"Groupes"} 
-            classN={"groupe-title"} 
-            tab={tabGroupe} 
-            toggle={toggleGroupes} 
-            show={showGroupes}  
-        />  
+
+    <div className="menu">
+        <div className='menu-container'>
+            <div className="menu-items">
+                
+                <ItemMenu 
+                    text={"Promos"} 
+                    classN={"promo-title"} 
+                    tab={tabPromos} 
+                    toggle={togglePromos} 
+                    show={showPromos}
+                    setSelectedStudents={setSelectedStudents}
+                    setShowStudents={setShowStudents}  
+                />
+                <ItemMenu 
+                    text={"Groupes"} 
+                    classN={"groupe-title"} 
+                    tab={tabGroupes} 
+                    toggle={toggleGroupes} 
+                    show={showGroupes} 
+                    setSelectedStudents={setSelectedStudents}
+                    setShowStudents={setShowStudents} 
+                />
+            </div>  
+            {selectedStudents && <ItemStudentsMenu showStudents={showStudents} selectedStudents={selectedStudents} tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents}/>} 
+        </div>
+     
     </div>
+
   )
 }
 
