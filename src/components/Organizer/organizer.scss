@@ -1,86 +1,81 @@
 @use '../../var.scss';
 @use '../../reset.scss';
 
-.organizer-container{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 1%;
-    height: 500px;
-    position: relative;
-}
-
-.weeks-container{
-    display: flex;
-    height: 6%;
-    width:86%;
-    margin-top:1.5% ;
-}
-
-.days{
-    border: 2px solid var.$primary-color;
-    display: inline-block;
-    border-right: none;
-    min-width: 150px;
-    width: 25%;
+div[data-organizer-titles="column"]{
     background-color: var.$primary-color;
     color: var.$second-color;
 }
 
-.days:first-child{
+div[data-organizer-titles="column"]:first-child{
     border-radius: 10px 0 0 0;
 }
 
-.days:last-child {
+div[data-organizer-titles="column"]:last-child{
     border-radius: 0 10px 0 0;
-    border-right: 2px solid var.$primary-color; 
+    //border-right: 2px solid var.$primary-color; 
 }
 
-.days-container {
-    display: flex;
-    width: 100%;
-}
-
-.classroom-container{
-    width: 10%;
-    margin-top: 3.7%;
-}
-
-.classroom {
-    border: 2px solid var.$primary-color;
+div[data-organizer-titles="row"] {
     background-color: var.$primary-color;
     color: var.$second-color;
-    width: 125px;
-    padding: 25% 4.3%;
-    justify-content: center;
-    align-items: center;
-  
 }
-.classroom:first-child{
+
+div[data-organizer-titles="row"]:first-child{
     border-radius: 20px 0 0 0;
 }
 
-.classroom:last-child{
+div[data-organizer-titles="row"]:last-child{
     border-radius: 0 0 0 20px;
 }
 
-.weeks-button-right{
-    position: absolute;
-    top: 25px;
-    right:24px;
-}
-
-.weeks-button-left{
-    position: absolute;
-    top:25px;
-    left:117px;
+.blank-row{
+    display: flex;
+    justify-content: space-around;
+    column-gap: 40%;
 }
 
 .year{
-    position: absolute;
-    font-size: 2em;
-    left: 20px;
-    top: 10px;
     color: var.$primary-color;
 }
 
+// ------------------
+
+.layout div{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.layout div .row{
+    height: inherit;
+    width: 100vw;
+    position: absolute;
+    
+    left: -10px;
+    bottom: -5px;
+    z-index: -1;
+    border-bottom: 1px solid black;
+}
+
+.layout div .column{
+    width: inherit;
+    height: 100vh;
+    position: absolute;
+    
+    left: -5px;
+    top: -5px;
+    z-index: -1;
+    border-left: 1px solid black;
+}
+
+.layout div .column-middle{
+    width: 50%;
+    height: 100vh;
+    position: absolute;
+    
+    left: 50%;
+    top: 100%;
+    z-index: -1;
+    border-left: 1px dashed rgb(207, 207, 207);
+}
