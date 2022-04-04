@@ -1,4 +1,5 @@
 @use '../../var.scss';
+@use 'sass:color';
 @use '../../reset.scss';
 
 div[data-organizer-titles="column"]{
@@ -55,7 +56,7 @@ div[data-organizer-titles="row"]:last-child{
     left: -10px;
     bottom: -5px;
     z-index: -1;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var.$primary-color;
 }
 
 .layout div .column{
@@ -66,7 +67,7 @@ div[data-organizer-titles="row"]:last-child{
     left: -5px;
     top: -5px;
     z-index: -1;
-    border-left: 1px solid black;
+    border-left: 1px solid var.$primary-color;
 }
 
 .layout div .column-middle{
@@ -77,5 +78,5 @@ div[data-organizer-titles="row"]:last-child{
     left: 50%;
     top: 100%;
     z-index: -1;
-    border-left: 1px dashed rgb(207, 207, 207);
+    border-left: 1px dashed color.scale(var.$primary-color, $lightness: 70%);
 }

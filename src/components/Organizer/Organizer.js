@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { DateTime } from "luxon";
 import GridLayout from 'react-grid-layout';
 import useWindowDimensions from '../../customHooks/getWindowDimensions';
 
+import { getPlacesOrganizer } from '../Requests/getPlacesOrganizer'
 
 import '../../../node_modules/react-grid-layout/css/styles.css'
 import '../../../node_modules/react-resizable/css/styles.css'
@@ -25,11 +26,28 @@ export default function Organizer() {
         setFirstDayOfWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }))
     }
 
+    const [places, setPlaces] = useState();
+    const [lengthPlaces, setLengthPlaces] = useState(undefined);
+
+
+    useEffect(() => {
+        const getDatas = async () => {
+            const datas = await getPlacesOrganizer();
+            setLengthPlaces(datas.length)
+            setPlaces(datas);
+        }
+        getDatas();
+    }, [])
+
+
+
+    console.log(places);
+
     return (
 
-        <GridLayout className="layout" cols={11} rowHeight={30} rows={8} compactType={false} width={windowWidth}>
+        < GridLayout className="layout" cols={11} rowHeight={30} compactType={false} rows={8} width={windowWidth} maxRows={lengthPlaces && lengthPlaces + 1} >
 
-            <div data-grid={{ x: 1, y: 0, w: 2, h: 1, static: true }} data-organizer-titles="column" key="day 1"> {firstDayOfWeek.weekdayLong} {firstDayOfWeek.day} {firstDayOfWeek.monthLong}
+            <div data-grid={{ x: 1, y: 0, w: 2, h: 1, static: true }} data-organizer-titles="column" key="day 1"> {firstDayOfWeek.plus({ days: 0 }).weekdayLong} {firstDayOfWeek.plus({ days: 0 }).day} {firstDayOfWeek.plus({ days: 0 }).monthLong}
                 <div className="column"></div>
                 <div className="column-middle"></div>
             </div>
@@ -60,34 +78,16 @@ export default function Organizer() {
                 </div>
                 <div className="row"></div>
             </div>
-            <div data-grid={{ x: 0, y: 1, w: 1, h: 1, static: true }} data-organizer-titles="row" key="salle 1" >Salle de cours
-                <div className="row"></div>
-            </div>
-            <div data-grid={{ x: 0, y: 2, w: 1, h: 1, static: true }} data-organizer-titles="row" key="salle 2" >Studio
-                <div className="row"></div>
-            </div>
-            <div data-grid={{ x: 0, y: 3, w: 1, h: 1, static: true }} data-organizer-titles="row" key="salle 3" >Salle info 1
-                <div className="row"></div>
-            </div>
-            <div data-grid={{ x: 0, y: 4, w: 1, h: 1, static: true }} data-organizer-titles="row" key="salle 4" >Salle info 2
-                <div className="row"></div>
-            </div>
-            <div data-grid={{ x: 0, y: 5, w: 1, h: 1, static: true }} data-organizer-titles="row" key="salle 5" >Box 1
-                <div className="row"></div>
-            </div>
-            <div data-grid={{ x: 0, y: 6, w: 1, h: 1, static: true }} data-organizer-titles="row" key="salle 6" >Box 2
-                <div className="row"></div>
-            </div>
-            <div data-grid={{ x: 0, y: 7, w: 1, h: 1, static: true }} data-organizer-titles="row" key="salle 7" >Box 3
-                <div className="row"></div>
-            </div>
-            <div data-grid={{ x: 0, y: 8, w: 1, h: 1, static: true }} data-organizer-titles="row" key="salle 8" >Extérieur
-                <div className="row"></div>
-            </div>
 
-            {/** Exemple de carte drag & drop */}
-            <div data-grid={{ x: 3, y: 8, w: 1, h: 1 }} key="GG" >GGGGG</div>
+            {
+                places && places.map((item) => (
+                    <div data-grid={{ x: 0, y: (item.position + 1), w: 1, h: 1, static: true }} data-organizer-titles="row" key={item.id}>{item.name}
+                        <div className="row"></div>
+                    </div>
+                ))
+            }
 
-        </GridLayout>
+            <div data-grid={{ x: 3, y: 7, w: 1, h: 1, maxH: 1 }} key="GG" >GGGGG</div>
+        </ GridLayout >
     )
 }
