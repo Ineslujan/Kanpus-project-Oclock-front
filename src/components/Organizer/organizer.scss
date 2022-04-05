@@ -1,0 +1,82 @@
+@use '../../var.scss';
+@use 'sass:color';
+@use '../../reset.scss';
+
+div[data-organizer-titles="column"]{
+    background-color: var.$primary-color;
+    color: var.$second-color;
+}
+
+div[data-organizer-titles="column"]:first-child{
+    border-radius: 10px 0 0 0;
+}
+
+div[data-organizer-titles="column"]:last-child{
+    border-radius: 0 10px 0 0;
+    //border-right: 2px solid var.$primary-color; 
+}
+
+div[data-organizer-titles="row"] {
+    background-color: var.$primary-color;
+    color: var.$second-color;
+}
+
+div[data-organizer-titles="row"]:first-child{
+    border-radius: 20px 0 0 0;
+}
+
+div[data-organizer-titles="row"]:last-child{
+    border-radius: 0 0 0 20px;
+}
+
+.blank-row{
+    display: flex;
+    justify-content: space-around;
+    column-gap: 40%;
+}
+
+.year{
+    color: var.$primary-color;
+}
+
+// ------------------
+
+.layout div{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.layout div .row{
+    height: inherit;
+    width: 100vw;
+    position: absolute;
+    
+    left: -10px;
+    bottom: -5px;
+    z-index: -1;
+    border-bottom: 1px solid var.$primary-color;
+}
+
+.layout div .column{
+    width: inherit;
+    height: 100vh;
+    position: absolute;
+    
+    left: -5px;
+    top: -5px;
+    z-index: -1;
+    border-left: 1px solid var.$primary-color;
+}
+
+.layout div .column-middle{
+    width: 50%;
+    height: 100vh;
+    position: absolute;
+    
+    left: 50%;
+    top: 100%;
+    z-index: -1;
+    border-left: 1px dashed color.scale(var.$primary-color, $lightness: 70%);
+}
