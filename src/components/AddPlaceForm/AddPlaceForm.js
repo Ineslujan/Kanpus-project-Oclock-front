@@ -2,7 +2,7 @@ import React from 'react';
 
 import './addPlaceForm.scss'
 
-export default function PlaceForm({tabClasseRoom, classeRoom, setClasseRoom}) {
+export default function PlaceForm({tabClasseRoom, setClasseRoom}) {
 
 
 

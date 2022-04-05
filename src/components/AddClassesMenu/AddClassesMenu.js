@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { requestStudents } from '../../requests/AddClassesFormRequest';
 
 import ItemMenu from '../../container/ItemMenu/ItemMenu';
-import ItemStudentsMenu from '../../container/ItemStudentsMenu/ItemStudentsMenu'
+import ItemStudentsMenu from '../../container/itemStudentsMenu/ItemStudentsMenu'
 
 import './addClassesMenu.scss'
 

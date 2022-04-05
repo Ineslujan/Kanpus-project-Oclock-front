@@ -21,7 +21,7 @@ export default function AddClasses() {
     const [classeRoom, setClasseRoom] = useState(null);
 
     const [teacher, setTeacher]= useState([]);
-    const [tabTeachersAdded, setTabTeachersAdded] = useState([]);
+ 
     const [tabTeachers, setTabTeachers] = useState(null);
 
     const [tabSelectedStudents, setTabSelectedStudents] = useState([]);
@@ -41,12 +41,12 @@ export default function AddClasses() {
     }, [closeFormPart1]);
 
     useEffect(() => {
-        if(tabTeachersAdded.length < 1 || !classeRoom){
+        if(teacher.length < 1 || !classeRoom){
             setValidAllFormButton(false);
         } else {
             setValidAllFormButton(true);
         }
-    }, [tabTeachersAdded, classeRoom]);
+    }, [teacher, classeRoom]);
     
     const submitForm = () => {
         console.log("submit form =>")
@@ -55,10 +55,10 @@ export default function AddClasses() {
 
         setAllDatasForm({
             ...allDatasForm,
-            place_id: classeRoom, // on envoie les id
+            place_id: classeRoom, 
             adress: "",
-            former: teacher, // on envoie les id
-            trainee: tabTrainee, // on envoie les id
+            former: teacher, 
+            trainee: tabTrainee, 
             role: role,
             equipment: equipment,
             note: note,
@@ -72,8 +72,8 @@ export default function AddClasses() {
         {!closeFormPart2 && 
             <div className="container-form-part2">
                 <AddClassesMenu tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents} />
-                <AddPlaceForm  tabClasseRoom={tabClasseRoom} classeRoom={classeRoom} setClasseRoom={setClasseRoom} />
-                <AddTeachersForm tabTeachers={tabTeachers} teacher={teacher} setTeacher={setTeacher} tabTeachersAdded={tabTeachersAdded} setTabTeachersAdded={setTabTeachersAdded}  />
+                <AddPlaceForm  tabClasseRoom={tabClasseRoom} setClasseRoom={setClasseRoom} />
+                <AddTeachersForm tabTeachers={tabTeachers} teacher={teacher} setTeacher={setTeacher}  />
                 <AddStudentsForm tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents} />
                 <AddTextForm text={"Rôles"} set={setRole} value={role} />
                 <AddTextForm text={"Matériel"} set={setEquipment} value={equipment}/>

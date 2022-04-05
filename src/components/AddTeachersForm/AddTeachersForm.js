@@ -1,13 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import './addTeachersForm.scss'
 
-export default function AddTeachersForm({tabTeachers, teacher, setTeacher, tabTeachersAdded, setTabTeachersAdded }) {
+export default function AddTeachersForm({tabTeachers, teacher, setTeacher}) {
 
     const [seeTeachers, setSeeTeachers] = useState(false);
+    const [tabTeachersAdded, setTabTeachersAdded] = useState([]);
+
+    useEffect(() => {
+        const teacherNoEvent = tabTeachersAdded.filter(item => item.event[0] === null );
+        console.log(teacherNoEvent);
+        const teacherEvent = tabTeachersAdded.filter(item => item.event[0] !== null );
+        console.log("teacherEvent=>", teacherEvent);
+    }, [tabTeachers])
+    
 
     const showAllTeachers = () => {
         setSeeTeachers(seeTeachers => !seeTeachers)
+        console.log(tabTeachers);
     }
 
     const addTeacher = (item) => {
