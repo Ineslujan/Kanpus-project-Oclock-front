@@ -40,16 +40,37 @@ export default function Organizer() {
     }, [])
 
 
+    /**
+     * TESTS pour Drag actions
+     */
+    const onDragStopTest = () => {
+        console.log("onDragStop");
+    }
+    const onResizeStopTest = () => {
+        console.log("onResizeStop");
+    }
+
 
     console.log(places);
 
     return (
 
-        < GridLayout className="layout" cols={11} rowHeight={30} compactType={false} rows={8} width={windowWidth} maxRows={lengthPlaces && lengthPlaces + 1} >
+        < GridLayout className="layout" cols={11} onDragStop={onDragStopTest} onResizeStop={onResizeStopTest} rowHeight={60} compactType={false} preventCollision={true} rows={8} width={windowWidth} maxRows={lengthPlaces && lengthPlaces + 1} >
 
+            <div data-grid={{ x: 0, y: 0, w: 1, h: 1, static: true }} data-organizer-titles="blank" key="blank" >
+                <div className="blank-row">
+                    <div className="year">{firstDayOfWeek.year}</div>
+                    <div>
+                        <button className="weeks-button-left" onClick={removeSevenDays}>&lt;</button>
+                        <button className="weeks-button-right" onClick={addSevenDays}>&gt;</button>
+                    </div>
+                </div>
+                <div className="row"></div>
+            </div>
+            
             <div data-grid={{ x: 1, y: 0, w: 2, h: 1, static: true }} data-organizer-titles="column" key="day 1"> {firstDayOfWeek.plus({ days: 0 }).weekdayLong} {firstDayOfWeek.plus({ days: 0 }).day} {firstDayOfWeek.plus({ days: 0 }).monthLong}
-                <div className="column"></div>
-                <div className="column-middle"></div>
+                <div className="column"></div> {/** For drawing externals borders in CSS */}
+                <div className="column-middle"></div> {/** For drawing middle borders in CSS */}
             </div>
             <div data-grid={{ x: 3, y: 0, w: 2, h: 1, static: true }} data-organizer-titles="column" key="day 2"> {firstDayOfWeek.plus({ days: 1 }).weekdayLong} {firstDayOfWeek.plus({ days: 1 }).day} {firstDayOfWeek.plus({ days: 1 }).monthLong}
                 <div className="column"></div>
@@ -68,16 +89,6 @@ export default function Organizer() {
                 <div className="column-middle"></div>
             </div>
 
-            <div data-grid={{ x: 0, y: 0, w: 1, h: 1, static: true }} key="blank" >
-                <div className="blank-row">
-                    <div className="year">{firstDayOfWeek.year}</div>
-                    <div>
-                        <button className="weeks-button-left" onClick={removeSevenDays}>&lt;</button>
-                        <button className="weeks-button-right" onClick={addSevenDays}>&gt;</button>
-                    </div>
-                </div>
-                <div className="row"></div>
-            </div>
 
             {
                 places && places.map((item) => (
@@ -87,7 +98,10 @@ export default function Organizer() {
                 ))
             }
 
+            {/* Drag&drop cards examples 
             <div data-grid={{ x: 3, y: 7, w: 1, h: 1, maxH: 1 }} key="GG" >GGGGG</div>
+            <div data-grid={{ x: 3, y: 5, w: 1, h: 1, maxH: 1 }} key="GGvv" >SSssssS</div>
+            */}
         </ GridLayout >
     )
 }

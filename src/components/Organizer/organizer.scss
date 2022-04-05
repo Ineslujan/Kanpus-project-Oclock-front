@@ -2,9 +2,14 @@
 @use 'sass:color';
 @use '../../reset.scss';
 
+
 div[data-organizer-titles="column"]{
-    background-color: var.$primary-color;
+    // background-color: var.$primary-color;
     color: var.$second-color;
+}
+
+div[data-organizer-titles="blank"] .row{
+    background-color: var.$primary-color;
 }
 
 div[data-organizer-titles="column"]:first-child{
@@ -36,10 +41,12 @@ div[data-organizer-titles="row"]:last-child{
 }
 
 .year{
-    color: var.$primary-color;
+    color: var.$second-color;
 }
 
-// ------------------
+/*
+   BORDERS
+*/
 
 .layout div{
     position: relative;
