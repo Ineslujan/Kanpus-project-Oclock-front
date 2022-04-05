@@ -8,7 +8,7 @@ import AddTeachersForm from '../AddTeachersForm/AddTeachersForm';
 import AddStudentsForm from '../AddStudentsForm/AddStudentsForm';
 import AddTextForm from '../../container/AddTextForm/AddTextForm';
 
-import './addClasses.scss'
+import './addClasses.scss'; 
 
 export default function AddClasses() {
 
