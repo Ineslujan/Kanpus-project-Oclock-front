@@ -8,6 +8,8 @@ import AddTeachersForm from '../AddTeachersForm/AddTeachersForm';
 import AddStudentsForm from '../AddStudentsForm/AddStudentsForm';
 import AddTextForm from '../../container/AddTextForm/AddTextForm';
 
+import { postEvent } from '../../requests/AddClassesFormRequest';
+
 import './addClasses.scss'; 
 
 export default function AddClasses() {
@@ -19,9 +21,9 @@ export default function AddClasses() {
 
     const [tabClasseRoom, setTabClasseRoom]= useState(null);
     const [classeRoom, setClasseRoom] = useState(null);
+    const [adress, setAdress] = useState(null);
 
     const [teacher, setTeacher]= useState([]);
- 
     const [tabTeachers, setTabTeachers] = useState(null);
 
     const [tabSelectedStudents, setTabSelectedStudents] = useState([]);
@@ -34,9 +36,13 @@ export default function AddClasses() {
 
     useEffect(() => {
         if(!closeFormPart1){
-            setCloseFormPart2(true)
+            // console.log("classeroom",classeRoom);
+            setCloseFormPart2(true);
+            // reset teacher and place state when we back in first page form
+            setTeacher([]);
+            setClasseRoom(undefined);
         } else {
-            setCloseFormPart2(false)
+            setCloseFormPart2(false);
         }
     }, [closeFormPart1]);
 
@@ -53,16 +59,42 @@ export default function AddClasses() {
         const tabTrainee= [];
         tabSelectedStudents.forEach(item=> {tabTrainee.push(item.id)});
 
-        setAllDatasForm({
-            ...allDatasForm,
-            place_id: classeRoom, 
-            adress: "",
-            former: teacher, 
-            trainee: tabTrainee, 
-            role: role,
-            equipment: equipment,
-            note: note,
-        })
+        const getDatas = async () => {
+            const datas = await postEvent({
+                ...allDatasForm,
+                place_id: classeRoom, 
+                adress: adress,
+                former: teacher, 
+                trainee: tabTrainee, 
+                role: role,
+                equipment: equipment,
+                note: note,
+            });
+            if(datas.status === 200){
+                setAllDatasForm({
+                    ...allDatasForm,
+                    place_id: classeRoom, 
+                    adress: adress,
+                    former: teacher, 
+                    trainee: tabTrainee, 
+                    role: role,
+                    equipment: equipment,
+                    note: note,
+                })
+            }
+        } 
+        getDatas();
+        // setAllDatasForm({
+        //                 ...allDatasForm,
+        //                 place_id: classeRoom, 
+        //                 adress: adress,
+        //                 former: teacher, 
+        //                 trainee: tabTrainee, 
+        //                 role: role,
+        //                 equipment: equipment,
+        //                 note: note,
+        //             })
+       
         console.log(allDatasForm);
     }
 
@@ -72,7 +104,7 @@ export default function AddClasses() {
         {!closeFormPart2 && 
             <div className="container-form-part2">
                 <AddClassesMenu tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents} />
-                <AddPlaceForm  tabClasseRoom={tabClasseRoom} setClasseRoom={setClasseRoom} />
+                <AddPlaceForm  tabClasseRoom={tabClasseRoom} classeRoom={classeRoom} setClasseRoom={setClasseRoom} setAdress={setAdress} />
                 <AddTeachersForm tabTeachers={tabTeachers} teacher={teacher} setTeacher={setTeacher}  />
                 <AddStudentsForm tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents} />
                 <AddTextForm text={"Rôles"} set={setRole} value={role} />

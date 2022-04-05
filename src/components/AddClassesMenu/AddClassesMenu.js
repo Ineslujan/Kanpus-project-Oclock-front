@@ -32,7 +32,7 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
 
     const togglePromos = () => {
         setShowPromos(showPromos => !showPromos);
-        console.log(showGroupes)
+        // console.log(showGroupes)
         if (showGroupes){
             setShowGroupes(false);
         } 

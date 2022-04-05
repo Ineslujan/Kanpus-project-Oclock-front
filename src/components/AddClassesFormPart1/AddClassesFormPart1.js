@@ -35,18 +35,16 @@ export default function AddClassesFormPart1({ setAllDatasForm, setTabTeachers, s
     const onSubmit = data =>  {
         data.start_date = `${newStartDate.year}-${newStartDate.month}-${newStartDate.day} ${startTime}:00 ${newStartDate.offsetNameShort}`;
         data.end_date = `${newEndDate.year}-${newEndDate.month}-${newEndDate.day} ${endTime}:00 ${newEndDate.offsetNameShort}`;
-        setTabTeachers(null);
-        setTabClasseRoom(null);
         setAllDatasForm({
             name: data.name,
             start_date: data.start_date,
-            end_date: data.start_date,
+            end_date: data.end_date,
         })
         const getDatas = async () => {
             const datas = await requestEvent({
                 name: data.name,
                 start_date: data.start_date,
-                end_date: data.start_date,
+                end_date: data.end_date,
             });
             if(datas.status === 200){
                 setTabTeachers(datas.data.former);
