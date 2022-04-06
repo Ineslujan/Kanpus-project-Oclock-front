@@ -3,34 +3,32 @@
 @use '../../reset.scss';
 
 
-div[data-organizer-titles="column"]{
-    // background-color: var.$primary-color;
+div[data-organizer-type="column"]{
     color: var.$second-color;
 }
 
-div[data-organizer-titles="blank"] .row{
+div[data-organizer-type="blank"] .row{
     background-color: var.$primary-color;
 }
 
-div[data-organizer-titles="column"]:first-child{
+div[data-organizer-type="column"]:first-child{
     border-radius: 10px 0 0 0;
 }
 
-div[data-organizer-titles="column"]:last-child{
+div[data-organizer-type="column"]:last-child{
     border-radius: 0 10px 0 0;
-    //border-right: 2px solid var.$primary-color; 
 }
 
-div[data-organizer-titles="row"] {
+div[data-organizer-type="row"] {
     background-color: var.$primary-color;
     color: var.$second-color;
 }
 
-div[data-organizer-titles="row"]:first-child{
+div[data-organizer-type="row"]:first-child{
     border-radius: 20px 0 0 0;
 }
 
-div[data-organizer-titles="row"]:last-child{
+div[data-organizer-type="row"]:last-child{
     border-radius: 0 0 0 20px;
 }
 
