@@ -50,9 +50,11 @@ export default function MyCourse() {
 
     return (
         <div className="mycourse">
-            {seeCourse && allCourses.map((item) => (
-                <CourseCard key={item.event_id} datas={item} />
-            ))}
+            
+                {seeCourse && allCourses.map((item) => (
+                    <CourseCard key={item.event_id} datas={item} />
+                ))}
+           
             <button className="button" onClick={addCourse}>Voir la suite des cours</button>
             
         </div>

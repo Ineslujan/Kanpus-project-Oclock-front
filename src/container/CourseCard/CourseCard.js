@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { DateTime } from "luxon";
+import MycourseModal from '../../components/MyCourseModal/MyCourseModal'
 
 import './courseCard.scss'
 
@@ -7,6 +8,12 @@ export default function CourseCard({ datas }) {
 
     const startDate = DateTime.fromJSDate(new Date(datas.start_date));
     const endDate = DateTime.fromJSDate(new Date(datas.end_date));
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(!modalIsOpen);
+        console.log("modalOpen");
+    }
 
     return (
         <div className="mycourse-card">
@@ -15,7 +22,7 @@ export default function CourseCard({ datas }) {
             {/* {console.log("date=>", startDate)} */}
             </div>
             
-            <div className="mycourse-card-course">
+            <div className="mycourse-card-course" onClick={openModal}>
                 <div className="mycourse-card-name">
                     <p className="name">{datas.name}</p>
                 </div>
@@ -30,9 +37,9 @@ export default function CourseCard({ datas }) {
                 <div className="mycourse-card-date">
                     <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${startDate.weekdayLong}  ${startDate.day} à`}  {startDate.hour}h{startDate.minutes}</p>
                     <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${endDate.weekdayLong}  ${endDate.day} à`}  {endDate.hour}h{endDate.minutes}</p>
-                  
                 </div>
             </div>
+           <MycourseModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} openModal={openModal} datas={datas} />
         </div>
     )
 }
