@@ -1,5 +1,9 @@
 
-import { getPlacesOrganizer, getEventsOrganizer } from '../../requests/aboutOrganizer'
+import React, { useState, useEffect } from 'react';
+import { DateTime } from "luxon";
+import { getPlacesOrganizer, getEventsOrganizer } from '../../requests/aboutOrganizer';
+import  useWindowDimensions from '../../customHooks/getWindowDimensions';
+import GridLayout from "react-grid-layout";
 
 import '../../../node_modules/react-grid-layout/css/styles.css'
 import '../../../node_modules/react-resizable/css/styles.css'

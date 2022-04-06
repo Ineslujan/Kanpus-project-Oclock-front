@@ -1,4 +1,6 @@
-
+@use '../../var.scss';
+@use 'sass:color';
+@use '../../reset.scss';
 
 div[data-organizer-type="column"]{
     color: var.$second-color;
