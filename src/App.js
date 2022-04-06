@@ -7,6 +7,7 @@ import useWindowDimensions from '../src/customHooks/getWindowDimensions';
 import Connexion from './components/Connexion/Connexion';
 import AddClasses from './components/AddClasses/AddClasses'
 import Organizer from './components/Organizer/Organizer';
+import MyCourse from './components/MyCourse/MyCourse';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='/' element={<Connexion/>} />
         <Route path='/add' element={<AddClasses />} />
         <Route path='/organizer' element={<Organizer />} />
+        <Route path='/mycourse' element={<MyCourse />} />
       </Routes>
     </div>
   );

@@ -1,0 +1,22 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+.mycourse{
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+    width: 50%;
+    background-color: var.$primary-color ;
+    color: var.$second-color ;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8% 1.5%;
+    font-size: 1em;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}

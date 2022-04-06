@@ -26,7 +26,7 @@ export default function Navbar() {
 			>Organiseur</NavLink>
 			<NavLink
 				className="navlink"
-				to="/cours"
+				to="/mycourse"
 				style={({ isActive }) => isActive ? activeStyle: undefined}
 			>Mes cours</NavLink>
 			<NavLink
@@ -36,7 +36,7 @@ export default function Navbar() {
 			>Stagiaires</NavLink>
 			<NavLink
 				className="navlink"
-				to="/lieux"
+				to="/places"
 				style={({ isActive }) => isActive ? activeStyle: undefined}
 			>Lieux</NavLink>
 			<NavLink

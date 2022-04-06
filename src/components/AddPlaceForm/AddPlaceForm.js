@@ -8,7 +8,7 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress}) {
     const [placeNotAvailable, setPlaceNotAvailable] = useState([]);
     const [seePlace, setSeePlace] = useState(false);
 
-    const [seeClasse, setSeeClasse] = useState("")
+    const [seeClasse, setSeeClasse] = useState("");
 
     const [modaleInfoClasseRoom, setModaleInfoClasseRoom] = useState(false);
     const [modaleInfoItem, setModaleInfoItem] = useState();

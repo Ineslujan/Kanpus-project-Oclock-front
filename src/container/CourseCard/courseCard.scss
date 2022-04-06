@@ -1,0 +1,59 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+.mycourse-card{
+    margin-top: 5%;
+    width: 80%;
+
+    &-day {
+        color: var.$primary-color;
+        margin-bottom: 1%;
+        font-size: 1.2em;
+        text-align: start;
+    }
+
+    &-course {
+        padding: 2%;
+        padding-bottom: 4%;
+        background-color: var.$primary-color;
+        color: var.$second-color;
+        border-radius: 5px;
+    }
+
+}
+
+.mycourse-card-former, .mycourse-card-date{
+    display: flex;
+    justify-content: space-around;
+}
+.mycourse-card-former{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    // justify-content: space-between;
+    // padding: 0 5%;
+}
+
+.duration{
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    &-course{
+        font-style: italic;
+        font-weight: 0.3em;
+        padding-bottom: 0.5%;
+    }
+}
+.end{
+    // padding-right: 2%;
+}
+
+.mycourse-card-name{
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name{
+    
+}
