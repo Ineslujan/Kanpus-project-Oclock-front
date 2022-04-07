@@ -1,0 +1,123 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+
+.modal-course-info{
+    position: fixed;
+    background-color: var.$second-color;
+    max-height: 88%;
+    overflow-y: auto;
+    z-index: 3;
+    top: 60px;
+    border-radius: 5px;
+    margin: auto;
+    width: 90%;
+    min-height: 20%;
+    height: auto;
+}
+
+.modal-button-close{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close {
+color: var.$second-color;
+font-size: 1em;
+background-color: red;
+border-radius: 5px;
+border: none;
+}
+
+.course-info {
+    color: var.$primary-color;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+.modal-name-date,.modal-trainee{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.modal-adress-former {
+    margin-bottom: 2%;
+}
+
+.modal-place {
+    margin-bottom: 12%;
+}
+
+.modal-name {
+    margin-top: 3%;
+}
+
+.modal-start {
+    margin-top: 5%;
+}
+
+.modal-end {
+    margin-top: 2%;
+}
+
+.modal-all-trainee, .modal-roles-title-container{
+    display: flex;
+}
+
+.modal-all-trainee{
+    width: 200%;
+    display: flex;
+    justify-content: center;
+    
+    
+}
+
+.modal-trainee{
+    background-color: transparent;
+    border: none;
+    
+}
+
+.modal-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-textarea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    border: 2px solid var.$primary-color;
+    border-radius: 5px;
+}
+
+
+.modal-text-title-container{
+    display: flex;
+    justify-content: center;
+}
+
+.modal-text-content{
+    padding: 1% ;
+}
+.modal-arrow{
+    background-color: transparent;
+    border: none;
+}
+
+.modal-arrow>img{
+    width: 15px;
+    height: 15px;
+}

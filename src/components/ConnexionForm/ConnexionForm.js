@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { postConnexion } from '../../requests/connexionRequest';
 
 import './connexionForm.scss'
 
 export default function ConnexionForm() {
     const {register, handleSubmit, formState: { errors }, reset, watch} = useForm({});
+    const [state2, setState2]= useState()
 
     const onSubmit = data =>  {
-        console.log(data);
+        const getDatas = async () => {
+            const datas = await postConnexion({
+                data
+            });
+            if(datas.status === 200){
+                setState(datas);
+                setTabClasseRoom(datas.data.place);
+                setCloseFormPart1(true);
+            }
+        } 
+        getDatas();
+        console.log(state2);
     }
 
 

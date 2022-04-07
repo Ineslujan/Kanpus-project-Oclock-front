@@ -145,11 +145,11 @@ export default function Organizer() {
                 ))
             }
 
-{events.length > 0 && console.log(Number(UTCDate("2022-04-11T08:45:00.000Z", "E")))}
+{/* {events.length > 0 && console.log(Number(UTCDate("2022-04-11T08:45:00.000Z", "E")))}
 {events.length > 0 && console.log(Number(UTCDate("2022-04-12T08:45:00.000Z", "E")))}
 {events.length > 0 && console.log(Number(UTCDate("2022-04-13T08:45:00.000Z", "E")))}
 {events.length > 0 && console.log(Number(UTCDate("2022-04-14T08:45:00.000Z", "E")))}
-{events.length > 0 && console.log(Number(UTCDate("2022-04-15T08:45:00.000Z", "E")))}
+{events.length > 0 && console.log(Number(UTCDate("2022-04-15T08:45:00.000Z", "E")))} */}
             {
                 events.length > 0 && events.map((event) => (
                     <div data-grid={{
@@ -158,7 +158,7 @@ export default function Organizer() {
                                 : Number(UTCDate(event.start_date, "E")) === 3 ? 5
                                     : Number(UTCDate(event.start_date, "E")) === 4 ? 7
                                         : Number(UTCDate(event.start_date, "E")) === 5 ? 9 : 1,
-                        y: (places[event.place_position].position + 1),
+                        y: (Number(places[event.place_position].position + 1)),
                         w: 1,
                         h: 1,
                         maxH: 1

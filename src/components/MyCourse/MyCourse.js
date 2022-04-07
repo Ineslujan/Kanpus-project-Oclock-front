@@ -8,7 +8,16 @@ export default function MyCourse() {
 
     const [allCourses, setAllCourses] = useState();
     const [seeCourse, setSeeCourse] = useState(false);
-    const [paging, setPaging] = useState(1)
+    const [paging, setPaging] = useState(1);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+
+    const openModal = () => {
+        setModalIsOpen(!modalIsOpen);
+        console.log("modalOpen");
+    }
+
+
 
     useEffect(() => {
         const getDatas = async () => {
@@ -50,13 +59,13 @@ export default function MyCourse() {
 
     return (
         <div className="mycourse">
+          
+                    {seeCourse && allCourses.map((item) => (
+                        <CourseCard key={item.event_id} datas={item} openModal={openModal} modalIsOpen={modalIsOpen} />
+                    ))}
             
-                {seeCourse && allCourses.map((item) => (
-                    <CourseCard key={item.event_id} datas={item} />
-                ))}
-           
-            <button className="button" onClick={addCourse}>Voir la suite des cours</button>
-            
+                    <button className="button" onClick={addCourse}>Voir la suite des cours</button>
+          
         </div>
     )
 }

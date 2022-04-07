@@ -39,7 +39,10 @@ export default function CourseCard({ datas }) {
                     <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${endDate.weekdayLong}  ${endDate.day} à`}  {endDate.hour}h{endDate.minutes}</p>
                 </div>
             </div>
-           <MycourseModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} openModal={openModal} datas={datas} />
+            {modalIsOpen &&
+                <MycourseModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} openModal={openModal} datas={datas} />
+            }
+           
         </div>
     )
 }
