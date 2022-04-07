@@ -10,13 +10,9 @@ export default function ConnexionForm() {
 
     const onSubmit = data =>  {
         const getDatas = async () => {
-            const datas = await postConnexion({
-                data
-            });
+            const datas = await postConnexion(data);
             if(datas.status === 200){
-                setState(datas);
-                setTabClasseRoom(datas.data.place);
-                setCloseFormPart1(true);
+                setState2(datas);
             }
         } 
         getDatas();

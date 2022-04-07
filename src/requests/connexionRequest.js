@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export async function postConnexion (event) {
-    const response = await axios.post(`http://romain-deldon.vpnuser.lan:3000/signin`, event) 
+    const response = await axios.post(`https://kanpus-api.herokuapp.com/signin`, event) 
     return response;
 };
