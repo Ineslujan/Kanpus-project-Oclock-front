@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function getPlacesOrganizer() {
   try {
-    const response = await axios.get('https://kanpus-api.herokuapp.com/place/');
+    const response = await axios.get(`https://kanpus-api.herokuapp.com/place/`);
     console.log("request PLACES",response.data);
     return response.data;
   }
