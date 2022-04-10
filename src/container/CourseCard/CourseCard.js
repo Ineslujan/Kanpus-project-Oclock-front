@@ -4,7 +4,7 @@ import MycourseModal from '../../components/MyCourseModal/MyCourseModal'
 
 import './courseCard.scss'
 
-export default function CourseCard({ datas }) {
+export default function CourseCard({ datas, setAllCourses }) {
 
     const startDate = DateTime.fromJSDate(new Date(datas.start_date));
     const endDate = DateTime.fromJSDate(new Date(datas.end_date));
@@ -40,7 +40,7 @@ export default function CourseCard({ datas }) {
                 </div>
             </div>
             {modalIsOpen &&
-                <MycourseModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} openModal={openModal} datas={datas} />
+                <MycourseModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} openModal={openModal} datas={datas} setAllCourses={setAllCourses} />
             }
            
         </div>

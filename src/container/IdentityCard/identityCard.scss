@@ -1,0 +1,15 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+.identity{
+    width: 200px;
+    height: 250px;
+    border: 2px solid var.$primary-color;
+}
+
+.identity-picture{
+    background-color: gray;
+    padding: 10%;
+    width: 100%;
+    height: 90%;
+}

@@ -1,0 +1,13 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+.select-promo{
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    left: 35%;
+    top: 4%;
+    position: absolute;
+}

@@ -15,4 +15,9 @@ export async function postEvent (event) {
     return response;
 }
 
+export async function requestTrainee () {
+    const response = await axios.get(`https://kanpus-api.herokuapp.com/user/trainee`) 
+    return response;
+}                                                                                               
+
 // https://kanpus-api.herokuapp.com/user/event_form

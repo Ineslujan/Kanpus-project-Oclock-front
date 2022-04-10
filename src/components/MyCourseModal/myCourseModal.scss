@@ -136,3 +136,21 @@ border: none;
     width: 20px;
     height: 20px;
 }
+
+.modal-confirmation-delete-button{
+    width: 50%;
+    margin: auto;
+}
+
+.modal-confirmation-title{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3%;
+}
+
+.modal-confirmation-delete-response{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}

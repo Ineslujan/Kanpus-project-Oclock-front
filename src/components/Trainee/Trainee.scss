@@ -1,2 +1,26 @@
 @use '../../var.scss';
 @use '../../reset.scss';
+
+.trainee {
+    width: 90%;
+    margin: auto;
+    position: relative;
+}
+
+.trainee-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.trainee-content {
+    width: 80%;
+}
+
+.trainee-content-promo-students{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7%;
+}

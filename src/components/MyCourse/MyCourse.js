@@ -61,7 +61,7 @@ export default function MyCourse() {
         <div className="mycourse">
           
                     {seeCourse && allCourses.map((item) => (
-                        <CourseCard key={item.event_id} datas={item} openModal={openModal} modalIsOpen={modalIsOpen} />
+                        <CourseCard key={item.event_id} datas={item} openModal={openModal} modalIsOpen={modalIsOpen} setAllCourses={setAllCourses} />
                     ))}
             
                     <button className="button" onClick={addCourse}>Voir la suite des cours</button>

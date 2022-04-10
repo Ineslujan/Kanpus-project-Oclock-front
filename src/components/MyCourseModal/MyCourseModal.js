@@ -3,13 +3,16 @@ import Modal from 'react-modal';
 import { DateTime } from "luxon";
 import {Link} from 'react-router-dom';
 
+import { deleteCourse } from '../../requests/myCourseRequests';
+import { requestMyCourse } from '../../requests/myCourseRequests';
+
 import ArrowNext from '../../public/images/arrow-next.png';
 import Trash from '../../public/images/trash.png';
 import Pen from '../../public/images/pen.png'
 
 import './myCourseModal.scss';
 
-export default function MyCourseModal({ modalIsOpen, openModal, datas}) {
+export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCourses}) {
 
     Modal.setAppElement(document.getElementById('root'));
 
@@ -18,6 +21,8 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas}) {
     const [arrow2, setArrow2] = useState(false);
     const [arrow3, setArrow3] = useState(false);
     const [myData, setMyData] = useState(datas);
+
+    const [seeConfirmationModal, setSeeConfirmationModal] = useState(false);
 
     useEffect(() => {
         setMyData(datas);
@@ -42,6 +47,24 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas}) {
         value(arrow => !arrow)
     }
 
+    const confirmationModal = () => {
+        setSeeConfirmationModal(modal => !modal)
+    }
+
+    const deleteMyCourse = async (id) => {
+        await deleteCourse(id);
+        const getDatas = async () => {
+            const datas = await requestMyCourse(1);
+            if(datas.status === 200){
+                setAllCourses(datas.data)
+                console.log(datas.data)
+            }
+        } 
+        getDatas();
+        setSeeConfirmationModal(modal => !modal)
+        openModal()
+    }
+
   return (
     <Modal
         isOpen={modalIsOpen}
@@ -56,19 +79,29 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas}) {
                 <button className="close" onClick={openModal}>x</button>
             </div>
             <div className="modal-icones">
-                {/* {console.log('log link',myData)} */}
-            {/* <Link
-                to={{
-                    pathname: "/add",
-                    search: "?sort=name",
-                    hash: "#the-hash",
-                    state: { data: myData }
-                }}
-            > */}
+         
             <Link to="/add" state={{myData}}>
                     <button className="modal-icone"><img src={Pen} alt="pen"/></button> 
             </Link>
-               <button className="modal-icone"><img src={Trash} alt="trash" /></button>
+                <button className="modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
+
+                <Modal isOpen={seeConfirmationModal} >
+                    <div className="modal-button-close">
+                        <div className="modal-confirmation-delete">
+                            <button className="close" onClick={confirmationModal}>x</button>
+                        </div>
+                    </div>
+                    <div className="modal-confirmation-delete-button">
+                        <div className="modal-confirmation-title">
+                            <p>Voulez-vous vraiment supprimer ce cours ?</p>
+                        </div>
+                        <div className="modal-confirmation-delete-response">
+                            <button className="modal-confirmation-response" onClick={confirmationModal}>Non</button>
+                            <button className="modal-confirmation-response" onClick={()=> deleteMyCourse(datas.event_id) }>Oui</button>
+                        </div>
+                    </div>
+                </Modal>
+
             </div>
             <div className="course-info">
                 {/* {console.log(datas)}  */}
