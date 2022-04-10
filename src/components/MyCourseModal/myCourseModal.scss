@@ -112,12 +112,27 @@ border: none;
 .modal-text-content{
     padding: 1% ;
 }
-.modal-arrow{
+.modal-arrow, .modal-icone{
     background-color: transparent;
     border: none;
+}
+
+.modal-icones{
+    display: flex;
+    // justify-content: flex-end;
+    // margin-top: 5%;
+    // margin-right: 5%;
+    position: absolute;
+    top: 40px;
+    right: 20px;
 }
 
 .modal-arrow>img{
     width: 15px;
     height: 15px;
+}
+
+.modal-icone>img{
+    width: 20px;
+    height: 20px;
 }

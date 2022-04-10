@@ -9,3 +9,14 @@
 .react-datepicker__day-name, .react-datepicker__current-month {
     color: var.$second-color ;
 }
+
+
+.react-datepicker__day--keyboard-selected{
+} 
+
+.react-datepicker__day--today{
+    background-color: transparent;
+    color: black;
+    border-radius: 50%;
+    border: 2px solid var.$primary-color
+}

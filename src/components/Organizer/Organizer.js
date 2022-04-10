@@ -101,7 +101,7 @@ export default function Organizer() {
 
     return (
 
-        < GridLayout className="layout" cols={11} onDragStop={onDragStopTest} onResizeStop={onResizeStopTest} rowHeight={60} compactType={false} preventCollision={true} rows={8} width={windowWidth} maxRows={lengthPlaces && lengthPlaces + 1} >
+        < GridLayout className="layout" cols={11} onDragStop={onDragStopTest} onResizeStop={onResizeStopTest} rowHeight={60} compactType={null} preventCollision={true} rows={8} width={windowWidth} maxRows={lengthPlaces && lengthPlaces + 1} >
 
             <div data-grid={{ x: 0, y: 0, w: 1, h: 1, static: true }} data-organizer-type="blank" key="blank" >
                 <div className="blank-row">

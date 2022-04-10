@@ -31,7 +31,7 @@ export default function Navbar() {
 			>Mes cours</NavLink>
 			<NavLink
 				className="navlink"
-				to="/stagiaires"
+				to="/trainee"
 				style={({ isActive }) => isActive ? activeStyle: undefined}
 			>Stagiaires</NavLink>
 			<NavLink

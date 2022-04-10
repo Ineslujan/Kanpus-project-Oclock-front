@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import AddClassesFormPart1 from '../AddClassesFormPart1/AddClassesFormPart1';
-
 import AddClassesMenu from '../AddClassesMenu/AddClassesMenu';
 import AddPlaceForm from '../AddPlaceForm/AddPlaceForm';
 import AddTeachersForm from '../AddTeachersForm/AddTeachersForm';
@@ -9,7 +9,6 @@ import AddStudentsForm from '../AddStudentsForm/AddStudentsForm';
 import AddTextForm from '../../container/AddTextForm/AddTextForm';
 
 import { postEvent } from '../../requests/AddClassesFormRequest';
-
 import './addClasses.scss'; 
 
 export default function AddClasses() {
@@ -18,6 +17,14 @@ export default function AddClasses() {
 
     const [closeFormPart1, setCloseFormPart1] = useState(false);
     const [closeFormPart2, setCloseFormPart2] = useState(true);
+
+    const [courseName, setCourseName] = useState("");
+
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+
+    const [startTime, setStartTime] = useState('9:00');
+    const [endTime, setEndTime] = useState('17:30');
 
     const [tabClasseRoom, setTabClasseRoom]= useState(null);
     const [classeRoom, setClasseRoom] = useState(null);
@@ -33,6 +40,25 @@ export default function AddClasses() {
     const [note, setNote] = useState("");
 
     const [validAllFormButton, setValidAllFormButton] = useState(false);
+
+    const [editDatas, setEditDatas] = useState(null)
+
+    const location = useLocation()
+
+    useEffect(() => {
+        if(location.state){
+            const {myData} = location.state
+            console.log("addclasse=>",myData)
+            setEditDatas(myData)
+            setEquipment("ca passe")
+            console.log(new Date(myData.start_date));
+            setCourseName(myData.name)
+            setStartDate(new Date(myData.start_date));
+            setEndDate(new Date(myData.end_date))
+            setTeacher(myData.former);
+        }
+    }, [])
+
 
     useEffect(() => {
         if(!closeFormPart1){
@@ -53,6 +79,8 @@ export default function AddClasses() {
             setValidAllFormButton(true);
         }
     }, [teacher, classeRoom]);
+
+
     
     const submitForm = () => {
         console.log("submit form =>")
@@ -83,24 +111,29 @@ export default function AddClasses() {
                 })
             }
         } 
-        getDatas();
-        // setAllDatasForm({
-        //                 ...allDatasForm,
-        //                 place_id: classeRoom, 
-        //                 adress: adress,
-        //                 former: teacher, 
-        //                 trainee: tabTrainee, 
-        //                 role: role,
-        //                 equipment: equipment,
-        //                 note: note,
-        //             })
-       
-        console.log(allDatasForm);
+        getDatas();      
+        // console.log(allDatasForm);
     }
 
   return (
     <div className="create-classes-container">
-        <AddClassesFormPart1 setAllDatasForm={setAllDatasForm} setTabTeachers={setTabTeachers} setTabClasseRoom={setTabClasseRoom} closeFormPart1={closeFormPart1} setCloseFormPart1={setCloseFormPart1} />
+        <AddClassesFormPart1 
+            setAllDatasForm = {setAllDatasForm} 
+            setTabTeachers = {setTabTeachers} 
+            setTabClasseRoom = {setTabClasseRoom} 
+            closeFormPart1 = {closeFormPart1} 
+            setCloseFormPart1 = {setCloseFormPart1}
+            startDate = {startDate}
+            setStartDate = {setStartDate}
+            endDate = {endDate}
+            setEndDate = {setEndDate}
+            startTime = {startTime} 
+            setStartTime = {setStartTime}
+            endTime = {endTime}
+            setEndTime = {setEndTime}
+            courseName = {courseName}
+            setCourseName = {setCourseName}
+        />
         {!closeFormPart2 && 
             <div className="container-form-part2">
                 <AddClassesMenu tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents} />
