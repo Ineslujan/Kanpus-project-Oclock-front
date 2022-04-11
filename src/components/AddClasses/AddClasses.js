@@ -8,7 +8,7 @@ import AddTeachersForm from '../AddTeachersForm/AddTeachersForm';
 import AddStudentsForm from '../AddStudentsForm/AddStudentsForm';
 import AddTextForm from '../../container/AddTextForm/AddTextForm';
 
-import { postEvent } from '../../requests/AddClassesFormRequest';
+import { postEvent, updateEvent } from '../../requests/AddClassesFormRequest';
 import './addClasses.scss'; 
 
 export default function AddClasses() {
@@ -33,6 +33,8 @@ export default function AddClasses() {
     const [teacher, setTeacher]= useState([]);
     const [tabTeachers, setTabTeachers] = useState(null);
 
+    const [eventId, setEventId] = useState(null);
+
     const [tabSelectedStudents, setTabSelectedStudents] = useState([]);
 
     const [role, setRole] = useState("");
@@ -48,14 +50,15 @@ export default function AddClasses() {
     useEffect(() => {
         if(location.state){
             const {myData} = location.state
-            console.log("addclasse=>",myData)
-            setEditDatas(myData)
-            setEquipment("ca passe")
+            console.log("addclasse=>",myData);
+            setEventId(myData.event_id)
+            setEditDatas(myData);
+            setEquipment("ca passe");
             console.log(new Date(myData.start_date));
-            setCourseName(myData.name)
+            setCourseName(myData.name);
             setStartDate(new Date(myData.start_date));
-            setEndDate(new Date(myData.end_date))
-            setTeacher(myData.former);
+            setEndDate(new Date(myData.end_date));
+            setTeacher(myData.former.id);
         }
     }, [])
 
@@ -83,23 +86,14 @@ export default function AddClasses() {
 
     
     const submitForm = () => {
-        console.log("submit form =>")
+        
         const tabTrainee= [];
         tabSelectedStudents.forEach(item=> {tabTrainee.push(item.id)});
+        // console.log("submit form =>", tabSelectedStudents)
+        if(!eventId) {
 
-        const getDatas = async () => {
-            const datas = await postEvent({
-                ...allDatasForm,
-                place_id: classeRoom, 
-                adress: adress,
-                former: teacher, 
-                trainee: tabTrainee, 
-                role: role,
-                equipment: equipment,
-                note: note,
-            });
-            if(datas.status === 200){
-                setAllDatasForm({
+            const getDatas = async () => {
+                const datas = await postEvent({
                     ...allDatasForm,
                     place_id: classeRoom, 
                     adress: adress,
@@ -108,10 +102,48 @@ export default function AddClasses() {
                     role: role,
                     equipment: equipment,
                     note: note,
-                })
-            }
+                });
+                if(datas.status === 200){
+                    setAllDatasForm({
+                        ...allDatasForm,
+                        place_id: classeRoom, 
+                        address: adress,
+                        former: teacher, 
+                        trainee: tabTrainee, 
+                        role: role,
+                        equipment: equipment,
+                        note: note,
+                    })
+                }
+            } 
+            getDatas();  
+        }  else {
+            const getDatas = async () => {
+                const datas = await updateEvent(eventId,{
+                    ...allDatasForm,
+                    place_id: classeRoom, 
+                    adress: adress,
+                    former: teacher, 
+                    trainee: tabTrainee, 
+                    role: role,
+                    equipment: equipment,
+                    note: note,
+                });
+                if(datas.status === 200){
+                    setAllDatasForm({
+                        ...allDatasForm,
+                        place_id: classeRoom, 
+                        address: adress,
+                        former: teacher, 
+                        trainee: tabTrainee, 
+                        role: role,
+                        equipment: equipment,
+                        note: note,
+                    })
+                }
+            } 
+            getDatas();  
         } 
-        getDatas();      
         // console.log(allDatasForm);
     }
 
@@ -133,6 +165,7 @@ export default function AddClasses() {
             setEndTime = {setEndTime}
             courseName = {courseName}
             setCourseName = {setCourseName}
+            eventId = {eventId}
         />
         {!closeFormPart2 && 
             <div className="container-form-part2">

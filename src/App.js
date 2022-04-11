@@ -9,6 +9,7 @@ import AddClasses from './components/AddClasses/AddClasses'
 import Organizer from './components/Organizer/Organizer';
 import MyCourse from './components/MyCourse/MyCourse';
 import Trainee from'./components/Trainee/Trainee';
+import ClasseRoom from './components/ClasseRoom/ClasseRoom';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/organizer' element={<Organizer />} />
         <Route path='/mycourse' element={<MyCourse />} />
         <Route path='/trainee' element={<Trainee />} />
+        <Route path='/places' element={<ClasseRoom />} />
       </Routes>
     </div>
   );

@@ -16,11 +16,16 @@
 }
 
 .trainee-content {
-    width: 80%;
+    width: 100%;
 }
 
 .trainee-content-promo-students{
     display: flex;
     justify-content: space-between;
-    margin-top: 7%;
+    flex-wrap: wrap;
+    margin-top: 3%;
+}
+
+.trainee-create{
+    padding-top:5% ;
 }

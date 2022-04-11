@@ -3,9 +3,8 @@ import { requestTrainee } from '../../requests/AddClassesFormRequest';
 import { v4 as uuid } from 'uuid';
 import './selectedPromo.scss'
 
-export default function SelectedPromo({setSelectedPromo, selectedPromo}) {
+export default function SelectedPromo({setSelectedPromo, selectedPromo, allPromo, setAllPromo }) {
 
-    const [allPromo, setAllPromo] = useState(null);
     const [toggleSelectPromo, setToggleSelectPromo] = useState(false)
 
 
@@ -36,7 +35,7 @@ export default function SelectedPromo({setSelectedPromo, selectedPromo}) {
     <div className="select-promo">
            {selectedPromo && <button onClick={toggle}>{selectedPromo.promo}</button>}
             {toggleSelectPromo && allPromo && allPromo.map((item)=> (
-                <button  key={uuid()} onClick={()=>selectPromo(item)}>{item.promo}</button>
+               selectedPromo.promo !== item.promo && <button  key={uuid()} onClick={()=>selectPromo(item)}>{item.promo}</button>
             ))}
         
     </div>

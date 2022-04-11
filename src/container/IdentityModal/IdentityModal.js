@@ -2,16 +2,38 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import Pen from '../../public/images/pen.png';
 import Trash from '../../public/images/trash.png';
-import {Link} from 'react-router-dom';
+import { deleteUser } from '../../requests/traineeRequest';
+import { requestTrainee } from '../../requests/AddClassesFormRequest';
 
 import './identityModal.scss'
+import UserForm from '../UserForm/UserForm';
 
-export default function IdentityModal({item, modalIsOpen, closeIdentityModal}) {
+export default function IdentityModal({item, modalIsOpen, closeIdentityModal, setSelectedPromo, setAllPromo}) {
     Modal.setAppElement(document.getElementById('root'));
     const [seeConfirmationModal, setSeeConfirmationModal] = useState(false);
+    const [seeUpdateModal, setSeeUpdateModal] = useState(false);
+
+    const setUpdate = () => {
+        setSeeUpdateModal(seeUpdateModal => !seeUpdateModal);
+    }
 
     const confirmationModal = () => {
+        setSeeConfirmationModal(modal => !modal);
+    }
+
+    const deleteStudent = async (id) => {
+        // await deleteUser(id);
+        const getStudents = async () => {
+            const trainees = await requestTrainee();
+            if(trainees.status === 200){
+                setAllPromo(trainees.data)
+                setSelectedPromo(trainees.data[0])
+                // console.log('trainee=>',trainees.data)
+            }
+        }
+        getStudents()
         setSeeConfirmationModal(modal => !modal)
+        closeIdentityModal()
     }
 
   return (
@@ -24,10 +46,11 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal}) {
             </div>
             <div className="identity-modal-container">
             <div className="modal-icones">
-            
-            <Link to="/add" state={{item}}>
-                    <button className="modal-icone"><img src={Pen} alt="pen"/></button> 
-            </Link>
+    
+                    <button className="modal-icone" onClick={setUpdate}><img src={Pen} alt="pen"/></button> 
+
+            {seeUpdateModal && <UserForm data={item} seeUpdateModal={seeUpdateModal} setUpdate={setUpdate} /> }
+
              <button className="modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
 
              <Modal isOpen={seeConfirmationModal} >
@@ -48,7 +71,6 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal}) {
              </Modal>
 
          </div>
-
 
                 <div className="identity-modal-container-name">
                     <span className="identity-modal-name">{item.firstname}</span> <span className="identity-modal-name">{item.lastname}</span>

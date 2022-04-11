@@ -6,20 +6,21 @@ import './courseCard.scss'
 
 export default function CourseCard({ datas, setAllCourses }) {
 
-    const startDate = DateTime.fromJSDate(new Date(datas.start_date));
-    const endDate = DateTime.fromJSDate(new Date(datas.end_date));
+    const startDate = DateTime.fromJSDate(new Date(datas.start_date)).setLocale('fr');
+    const endDate = DateTime.fromJSDate(new Date(datas.end_date)).setLocale('fr');
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const openModal = () => {
         setModalIsOpen(!modalIsOpen);
         console.log("modalOpen");
+        console.log(endDate);
     }
 
     return (
         <div className="mycourse-card">
             <div className="mycourse-card-day">
             {startDate.weekdayLong} {startDate.day} {startDate.monthLong} {startDate.year} 
-            {/* {console.log("date=>", startDate)} */}
+            {/* {console.log("date=>", startDate )} */}
             </div>
             
             <div className="mycourse-card-course" onClick={openModal}>
@@ -35,8 +36,8 @@ export default function CourseCard({ datas, setAllCourses }) {
                     <span className="duration-course start">début</span><span className="duration-course end">fin</span>
                 </div>
                 <div className="mycourse-card-date">
-                    <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${startDate.weekdayLong}  ${startDate.day} à`}  {startDate.hour}h{startDate.minutes}</p>
-                    <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${endDate.weekdayLong}  ${endDate.day} à`}  {endDate.hour}h{endDate.minutes}</p>
+                    <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${startDate.weekdayLong}  ${startDate.day} à`}  {startDate.setLocale("fr").toUTC().hour} h {startDate.minute}</p>
+                    <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${endDate.weekdayLong}  ${endDate.day} à`}  {endDate.setLocale("fr").toUTC().hour} h {endDate.minute}</p>
                 </div>
             </div>
             {modalIsOpen &&

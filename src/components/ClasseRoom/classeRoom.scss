@@ -1,0 +1,14 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+.classeroom-title{
+    margin: 1% 0;
+    font-size: 2em;
+    color: var.$primary-color;
+}
+
+.classeroom-content{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}

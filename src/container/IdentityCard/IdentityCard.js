@@ -20,7 +20,8 @@ export default function IdentityCard({item, setStudent}) {
         <div>
         <div className="identity" >
             <div className="identity-picture" onClick={openIdentityModal}>
-
+                {console.log(item)}
+                <img src={item.image} alt="" />
             </div>
             <div className="identity-name">
             <h5>{item.firstname} {item.lastname} </h5>

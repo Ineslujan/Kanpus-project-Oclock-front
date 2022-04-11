@@ -5,17 +5,18 @@ import { DateTime } from "luxon";
 import { requestEvent } from '../../requests/AddClassesFormRequest';
 
 export default function AddClassesFormPart1({ 
-    setAllDatasForm, 
-    setTabTeachers, 
-    setTabClasseRoom, 
-    setCloseFormPart1, closeFormPart1,
-    startDate, setStartDate,
-    endDate, setEndDate,
-    startTime, setStartTime,
-    endTime, setEndTime,
-    editDatas,
-    courseName,
-    setCourseName
+        setAllDatasForm, 
+        setTabTeachers, 
+        setTabClasseRoom, 
+        setCloseFormPart1, closeFormPart1,
+        startDate, setStartDate,
+        endDate, setEndDate,
+        startTime, setStartTime,
+        endTime, setEndTime,
+        editDatas,
+        courseName,
+        setCourseName,
+        eventId
     }) {
 
     const [showStartTimePicker, setShowStartTimePicker] = useState(false);
@@ -64,15 +65,17 @@ export default function AddClassesFormPart1({
 
     const onSubmit = (e) =>  {
         e.preventDefault()
-        const start_date = `${newStartDate.year}-${newStartDate.month}-${newStartDate.day} ${startTime}:00 ${newStartDate.offsetNameShort}`;
-        const end_date = `${newEndDate.year}-${newEndDate.month}-${newEndDate.day} ${endTime}:00 ${newEndDate.offsetNameShort}`;
+        const start_date = `${newStartDate.year}-${newStartDate.month}-${newStartDate.day} ${startTime}:00 `;
+        const end_date = `${newEndDate.year}-${newEndDate.month}-${newEndDate.day} ${endTime}:00 `;
+        console.log(start_date)
         setAllDatasForm({
             name: courseName,
             start_date: start_date,
             end_date: end_date,
         })
         const getDatas = async () => {
-            const datas = await requestEvent({
+            console.log(eventId);
+            const datas = await requestEvent(eventId, {
                 name: courseName,
                 start_date: start_date,
                 end_date: end_date,
