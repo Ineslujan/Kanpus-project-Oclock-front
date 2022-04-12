@@ -24,10 +24,12 @@ export default function Organizer() {
     const [events, setEvents] = useState([]);
 
     const changeToPreviousWeek= () => {
+        console.log("-----changement de semaine-----");
         setFirstDayOfWeek(firstDayOfWeek => DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }));
     };
 
     const changeToNextWeek= () => {
+        console.log("-----changement de semaine-----");
         setFirstDayOfWeek(firstDayOfWeek => DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }));
     };
 
@@ -88,6 +90,7 @@ export default function Organizer() {
             }
 
         })
+        console.log("----------SetEvents donc Re-render----------");
         setEvents(dataReal);
     }
 
@@ -209,6 +212,7 @@ export default function Organizer() {
                     
                     const x = calculateXPos(startDayNumber, startDayHour);
                     const w = defineCardWidth(formatedStartDate, startDayHour, formatedEndDate, endDayHour);
+                    event.event_id === 17 && console.log("X =>",x,"W =>",w)
 
                     return (
                         <div data-grid={{
