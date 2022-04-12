@@ -61,6 +61,7 @@ export const defineMorningOrAfternoon = (time, period) => {
 
     // for end dates
     else if (period === "end") {
+
         // compare if : break's middle time < DATE'S TIME < end break's time extremity
         if ((DateTime.fromISO(defineTimeExtremity().breakEndExtremity) > DateTime.fromISO(time)) && (DateTime.fromISO(defineTimeExtremity().middleLunchBreakTime) < DateTime.fromISO(time))) {
             // PM to suppr
