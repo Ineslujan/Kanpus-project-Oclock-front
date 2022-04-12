@@ -5,6 +5,11 @@ import axios from 'axios';
 //     return response;
 // };
 
+export async function createPlace (place) {
+    const response = await axios.post(`https://kanpus-api.herokuapp.com/place`, place) 
+    return response;
+};
+
 export async function updatePlace (id, place) {
     const response = await axios.patch(`https://kanpus-api.herokuapp.com/place/${id}`, place) 
     return response;

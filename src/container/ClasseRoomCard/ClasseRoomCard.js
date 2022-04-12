@@ -7,7 +7,7 @@ import { getPlacesOrganizer } from '../../requests/aboutOrganizer';
 
 import './classeRoomCard.scss';
 
-export default function ClasseRoomCard({ data, setAllPlaces}) {
+export default function ClasseRoomCard({ data, getDatas }) {
     const [updateView, setUpdateView] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
 
@@ -18,12 +18,6 @@ export default function ClasseRoomCard({ data, setAllPlaces}) {
     const deleteToggle = () => {
         setDeleteModal(toggle => !toggle)
     }
-
-    const getDatas = async () => {
-        const datas = await getPlacesOrganizer();
-            setAllPlaces(datas);
-    }
-
 
     const deleteRoom = async (id) => {
        const datas = await deletePlace(id);

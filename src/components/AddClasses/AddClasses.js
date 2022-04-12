@@ -28,7 +28,7 @@ export default function AddClasses() {
 
     const [tabClasseRoom, setTabClasseRoom]= useState(null);
     const [classeRoom, setClasseRoom] = useState(null);
-    const [adress, setAdress] = useState(null);
+    const [adress, setAdress] = useState("");
 
     const [teacher, setTeacher]= useState([]);
     const [tabTeachers, setTabTeachers] = useState(null);
@@ -45,20 +45,24 @@ export default function AddClasses() {
 
     const [editDatas, setEditDatas] = useState(null)
 
-    const location = useLocation()
+    const location = useLocation();
 
     useEffect(() => {
         if(location.state){
             const {myData} = location.state
             console.log("addclasse=>",myData);
+            console.log(new Date(myData.start_date));
+            
             setEventId(myData.event_id)
             setEditDatas(myData);
-            setEquipment("ca passe");
-            console.log(new Date(myData.start_date));
+            setEquipment(myData.equipment);
             setCourseName(myData.name);
             setStartDate(new Date(myData.start_date));
             setEndDate(new Date(myData.end_date));
-            setTeacher(myData.former.id);
+            setTeacher(myData.former);
+            setTabSelectedStudents(myData.trainee);
+            setRole(myData.role);
+            setNote(myData.note)
         }
     }, [])
 
