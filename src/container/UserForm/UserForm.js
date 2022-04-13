@@ -102,6 +102,7 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
                 if(datas.status === 200){
                     console.log("trainee créé");
                     console.log("mysubmit=>", submit)
+                    getStudents();
                     
                 }
             }
@@ -125,8 +126,8 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
             // }
         }
         console.log("test=>", submit)
-        getStudents();
-        // setSeeUpdateModal(false);  
+        
+        setSeeUpdateModal(false);  
     }
 
 
