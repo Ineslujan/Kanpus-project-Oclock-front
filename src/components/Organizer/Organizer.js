@@ -22,6 +22,7 @@ export default function Organizer() {
     const [previousWeek, setPreviousWeek] = useState(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }));
     const [places, setPlaces] = useState([]);
     const [events, setEvents] = useState([]);
+    console.log(events);
 
     const changeToPreviousWeek= () => {
         console.log("-----changement de semaine-----");
@@ -201,7 +202,7 @@ export default function Organizer() {
             {
                 places.length > 0 && events.length > 0 && events.map((event) => {
 
-
+                    console.log(event);
                     const startDayNumber = Number(UTCDate(event.start_date, "E"));
                     const startDayHour = UTCDate(event.start_date, "HH:mm");
                     const endDayHour = UTCDate(event.end_date, "HH:mm");
@@ -224,7 +225,7 @@ export default function Organizer() {
                             }}
                             data-organizer-type="card"
                             style={{ backgroundColor: event.former[0].color }}
-                            key={`${event.event_id + event.name + firstDayOfWeek}`}
+                            key={Math.random()}
                         >
                             <div className="card-content">
                                 {event.name}
