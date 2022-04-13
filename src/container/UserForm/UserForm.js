@@ -78,11 +78,11 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
         setSubmit({
             firstname: firstname,
             lastname: lastname,
-            promo_id: promoId,
+            promo_id: Number(promoId),
             address: adress,
             phone_number: phone,
             email: email,
-            url_image: "phil.jpg",
+            image: "phil.jpg",
             new_password: newPassword,
             confirm_new_password: confirmNewPassword
         })
@@ -114,7 +114,7 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
             //     address: adress,
             //     phone_number: phone,
             //     email: email,
-            //     url_image: "phil.jpg",
+            //     image: "phil.jpg",
             //     new_password: newPassword,
             //     confirm_new_password: confirmNewPassword ,
             // });
@@ -124,9 +124,9 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
                 
             // }
         }
-        console.log("test=>", submit)
+        // console.log("test=>", submit)
         getStudents();
-        // setSeeUpdateModal(false);  
+        setSeeUpdateModal(false);  
     }
 
 
