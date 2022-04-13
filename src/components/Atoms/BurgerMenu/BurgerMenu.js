@@ -19,24 +19,17 @@ export default function BurgerMenu() {
         //             <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
         //         </ul>
 
-                // <!-- MENU TOGGLE BUTTON -->
-                <>
-                <a href="#nav" class="nav__toggle" role="button" aria-expanded="false" aria-controls="menu">
-                    <svg class="menuicon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-                        <title>Toggle Menu</title>
-                        <g>
-                            <line class="menuicon__bar" x1="13" y1="16.5" x2="37" y2="16.5" />
-                            <line class="menuicon__bar" x1="13" y1="24.5" x2="37" y2="24.5" />
-                            <line class="menuicon__bar" x1="13" y1="24.5" x2="37" y2="24.5" />
-                            <line class="menuicon__bar" x1="13" y1="32.5" x2="37" y2="32.5" />
-                            <circle class="menuicon__circle" r="23" cx="25" cy="25" />
-                        </g>
-                    </svg>
-                </a>
+        // <!-- MENU TOGGLE BUTTON -->
+        <>
+            <div id="nav-icon1">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-                {/* // <!-- ANIMATED BACKGROUND ELEMENT --> */}
-                <div class="splash"></div>
-</>
+            {/* // <!-- ANIMATED BACKGROUND ELEMENT --> */}
+            <div class="splash"></div>
+        </>
         //     </nav>
 
         // </header>

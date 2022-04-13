@@ -100,7 +100,7 @@ export default function AddClasses() {
                 const datas = await postEvent({
                     ...allDatasForm,
                     place_id: classeRoom, 
-                    adress: adress,
+                    address: adress,
                     former: teacher, 
                     trainee: tabTrainee, 
                     role: role,
@@ -126,7 +126,7 @@ export default function AddClasses() {
                 const datas = await updateEvent(eventId,{
                     ...allDatasForm,
                     place_id: classeRoom, 
-                    adress: adress,
+                    address: adress,
                     former: teacher, 
                     trainee: tabTrainee, 
                     role: role,
@@ -148,7 +148,7 @@ export default function AddClasses() {
             } 
             getDatas();  
         } 
-        // console.log(allDatasForm);
+        console.log(allDatasForm);
     }
 
   return (
