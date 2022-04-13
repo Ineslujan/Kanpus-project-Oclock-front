@@ -5,6 +5,7 @@ import { getPlacesOrganizer, getEventsOrganizer } from '../../requests/aboutOrga
 import { ajustX, defineCardWidth } from './cards/cardPlacement';
 import useWindowDimensions from '../../customHooks/getWindowDimensions';
 import GridLayout from "react-grid-layout";
+import { v4 as uuid } from 'uuid';
 
 import '../../../node_modules/react-grid-layout/css/styles.css'
 import '../../../node_modules/react-resizable/css/styles.css'
@@ -22,6 +23,7 @@ export default function Organizer() {
     const [previousWeek, setPreviousWeek] = useState(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }));
     const [places, setPlaces] = useState([]);
     const [events, setEvents] = useState([]);
+    console.log(events);
 
     const changeToPreviousWeek= () => {
         console.log("-----changement de semaine-----");
@@ -58,7 +60,6 @@ export default function Organizer() {
         });
         const firstWeekDay = date;
         
-        // data.start_date = `${newStartDate.year}-${newStartDate.month}-${newStartDate.day} ${startTime}:00 ${newStartDate.offsetNameShort}`;
         
         dataReal.forEach((d) => {
             const objectStartDate = DateTime.fromISO(d.start_date).toObject();
@@ -155,7 +156,7 @@ export default function Organizer() {
 
         <GridLayout className="layout" cols={11} onDragStop={onDragStopTest} onResizeStop={onResizeStopTest} rowHeight={60} compactType={null} preventCollision={true} rows={8} width={windowWidth} maxRows={places.length + 1} >
 
-            <div data-grid={{ x: 0, y: 0, w: 1, h: 1, static: true }} data-organizer-type="blank" key="blank" >
+            <div data-grid={{ x: 0, y: 0, w: 1, h: 1, static: true }} data-organizer-type="blank" key={uuid()} >
                 <div className="blank-row">
                     <div className="year">{firstDayOfWeek.year}</div>
                     <div>
@@ -166,23 +167,23 @@ export default function Organizer() {
                 <div className="row"></div>
             </div>
 
-            <div data-grid={{ x: 1, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key="day 1"> {firstDayOfWeek.plus({ days: 0 }).weekdayLong} {firstDayOfWeek.plus({ days: 0 }).day} {firstDayOfWeek.plus({ days: 0 }).monthLong}
+            <div data-grid={{ x: 1, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 0 }).weekdayLong} {firstDayOfWeek.plus({ days: 0 }).day} {firstDayOfWeek.plus({ days: 0 }).monthLong}
                 <div className="column"></div> {/** For drawing externals borders in CSS */}
                 <div className="column-middle"></div> {/** For drawing middle borders in CSS */}
             </div>
-            <div data-grid={{ x: 3, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key="day 2"> {firstDayOfWeek.plus({ days: 1 }).weekdayLong} {firstDayOfWeek.plus({ days: 1 }).day} {firstDayOfWeek.plus({ days: 1 }).monthLong}
+            <div data-grid={{ x: 3, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 1 }).weekdayLong} {firstDayOfWeek.plus({ days: 1 }).day} {firstDayOfWeek.plus({ days: 1 }).monthLong}
                 <div className="column"></div>
                 <div className="column-middle"></div>
             </div>
-            <div data-grid={{ x: 5, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key="day 3"> {firstDayOfWeek.plus({ days: 2 }).weekdayLong} {firstDayOfWeek.plus({ days: 2 }).day} {firstDayOfWeek.plus({ days: 2 }).monthLong}
+            <div data-grid={{ x: 5, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 2 }).weekdayLong} {firstDayOfWeek.plus({ days: 2 }).day} {firstDayOfWeek.plus({ days: 2 }).monthLong}
                 <div className="column"></div>
                 <div className="column-middle"></div>
             </div>
-            <div data-grid={{ x: 7, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key="day 4"> {firstDayOfWeek.plus({ days: 3 }).weekdayLong} {firstDayOfWeek.plus({ days: 3 }).day} {firstDayOfWeek.plus({ days: 3 }).monthLong}
+            <div data-grid={{ x: 7, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 3 }).weekdayLong} {firstDayOfWeek.plus({ days: 3 }).day} {firstDayOfWeek.plus({ days: 3 }).monthLong}
                 <div className="column"></div>
                 <div className="column-middle"></div>
             </div>
-            <div data-grid={{ x: 9, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key="day 5"> {firstDayOfWeek.plus({ days: 4 }).weekdayLong} {firstDayOfWeek.plus({ days: 4 }).day} {firstDayOfWeek.plus({ days: 4 }).monthLong}
+            <div data-grid={{ x: 9, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 4 }).weekdayLong} {firstDayOfWeek.plus({ days: 4 }).day} {firstDayOfWeek.plus({ days: 4 }).monthLong}
                 <div className="column"></div>
                 <div className="column-middle"></div>
             </div>
@@ -191,7 +192,7 @@ export default function Organizer() {
             {
                 places.map((item) => {
                     return (
-                        <div data-grid={{ x: 0, y: (item.position + 1), w: 1, h: 1, static: true }} data-organizer-type="row" key={`${item.id + item.name}`}>
+                        <div data-grid={{ x: 0, y: (item.position + 1), w: 1, h: 1, static: true }} data-organizer-type="row" key={uuid()}>
                             {item.name}
                             <div className="row"></div>
                         </div>
@@ -201,7 +202,7 @@ export default function Organizer() {
             {
                 places.length > 0 && events.length > 0 && events.map((event) => {
 
-
+                    console.log(event);
                     const startDayNumber = Number(UTCDate(event.start_date, "E"));
                     const startDayHour = UTCDate(event.start_date, "HH:mm");
                     const endDayHour = UTCDate(event.end_date, "HH:mm");
@@ -224,7 +225,7 @@ export default function Organizer() {
                             }}
                             data-organizer-type="card"
                             style={{ backgroundColor: event.former[0].color }}
-                            key={`${event.event_id + event.name + firstDayOfWeek}`}
+                            key={uuid()}
                         >
                             <div className="card-content">
                                 {event.name}
