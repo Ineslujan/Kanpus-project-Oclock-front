@@ -8,7 +8,6 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
     Modal.setAppElement(document.getElementById('root'));
 
     const [name, setName] = useState("");
-    const [position, setPosition] = useState(0);
     const [allPositionNotAvailable, setAllPositionNotAvailable] = useState([]);
     const [allNameNotAvailable, setAllNameNotAvailable] = useState([]);
     const [newPosition, setNewPosition] = useState(5);
@@ -41,7 +40,6 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
     }, [allPlaces]);
 
     const changePosition = (e) => {
-        setPosition(e.target.value);
         setNewPosition(e.target.value);
     }
 

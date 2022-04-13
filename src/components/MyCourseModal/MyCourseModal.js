@@ -68,10 +68,31 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
   return (
     <Modal
         isOpen={modalIsOpen}
-        // onAfterOpen={afterOpenModal}
-        // onRequestClose={closeModal}
-        // style={customStyles}
-        // contentLabel="Example Modal"
+        style={{
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(255, 255, 255, 0.75)',
+              borderRadius: '50px',
+            },
+            content: {
+              position: 'absolute',
+              top: '40px',
+              left: '40px',
+              right: '40px',
+              bottom: '40px',
+              border: '1px solid #ccc',
+              background: 'rgba(36,151,208,255)',
+              overflow: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              borderRadius: '10px',
+              outline: 'none',
+              padding: '20px'
+            }
+          }}
     >
         <div className="modal-course-info">
            
@@ -85,7 +106,9 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
             </Link>
                 <button className="modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
 
-                <Modal isOpen={seeConfirmationModal} >
+                <Modal isOpen={seeConfirmationModal} 
+                  
+                >
                     <div className="modal-button-close">
                         <div className="modal-confirmation-delete">
                             <button className="close" onClick={confirmationModal}>x</button>
