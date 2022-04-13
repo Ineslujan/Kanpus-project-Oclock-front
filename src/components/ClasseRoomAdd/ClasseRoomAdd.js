@@ -69,9 +69,11 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
                 if(datas.status === 200){
                     toggleCreateModal();
                     getDatas();
+                    console.log("place", name, newPosition );
                 }
             }
             postPlace();
+
         }
     }
 

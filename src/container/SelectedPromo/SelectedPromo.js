@@ -1,22 +1,14 @@
 import React, { useState,useEffect} from 'react';
-import { requestTrainee } from '../../requests/AddClassesFormRequest';
+
 import { v4 as uuid } from 'uuid';
 import './selectedPromo.scss'
 
-export default function SelectedPromo({setSelectedPromo, selectedPromo, allPromo, setAllPromo }) {
+export default function SelectedPromo({setSelectedPromo, selectedPromo, allPromo, setAllPromo, getStudents }) {
 
     const [toggleSelectPromo, setToggleSelectPromo] = useState(false)
 
 
     useEffect(() => {
-        const getStudents = async () => {
-            const trainees = await requestTrainee();
-            if(trainees.status === 200){
-                setAllPromo(trainees.data)
-                setSelectedPromo(trainees.data[0])
-                // console.log('trainee=>',trainees.data)
-            }
-        }
         getStudents()
     }, [])
 

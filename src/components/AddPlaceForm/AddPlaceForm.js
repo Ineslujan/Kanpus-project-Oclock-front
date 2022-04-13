@@ -15,9 +15,9 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress}) {
 
     useEffect(() => {
         setPlaceAvailable(tabClasseRoom.filter((item) => item.event[0] === null));
-        console.log('teacherEvent1=>', placeAvailable);
+        console.log('teacherEvent1 =>', placeAvailable);
         setPlaceNotAvailable(tabClasseRoom.filter((item) => item.event[0] !== null));
-        console.log('teacherEvent2=>', placeNotAvailable);
+        console.log('teacherEvent2 =>', placeNotAvailable);
     }, [tabClasseRoom]);
 
     const showAllPlaces = () => {

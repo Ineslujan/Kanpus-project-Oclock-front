@@ -22,18 +22,22 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
     }
 
     const deleteStudent = async (id) => {
-        // await deleteUser(id);
-        const getStudents = async () => {
-            const trainees = await requestTrainee();
-            if(trainees.status === 200){
-                setAllPromo(trainees.data)
-                setSelectedPromo(trainees.data[0])
-                // console.log('trainee=>',trainees.data)
-            }
+        const deleteOneStudent = await deleteUser(id);
+            if(deleteOneStudent.status===200){
+                // console.log("id",id);
+                const getStudents = async () => {
+                    const trainees = await requestTrainee();
+                    // console.log('trainee=>',trainees.data)
+                    if(trainees.status === 200){
+                        setAllPromo(trainees.data);
+                        setSelectedPromo(trainees.data[0]);
+                        // console.log('trainee=>',trainees.data)
+                    }
+                }
+            getStudents();
+            setSeeConfirmationModal(modal => !modal);
+            closeIdentityModal();
         }
-        getStudents()
-        setSeeConfirmationModal(modal => !modal)
-        closeIdentityModal()
     }
 
   return (
@@ -75,7 +79,7 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
                 <div className="identity-modal-container-name">
                     <span className="identity-modal-name">{item.firstname}</span> <span className="identity-modal-name">{item.lastname}</span>
                 </div>
-                <img className="picture" src="" alt="" />
+                <img className="picture" src={item.image} alt="student picture" />
                 <p className="identity-modal-promo">{item.promo}</p>
                 <div className="identity-modal-container-adress">
                     <p className="adress-title">Adress :</p>

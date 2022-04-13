@@ -3,7 +3,6 @@ import ClasseRoomForm from './ClasseRoomForm/ClasseRoomForm';
 import Pen from '../../public/images/pen.png';
 import Trash from '../../public/images/trash.png';
 import { updatePlace, deletePlace } from '../../requests/placeRequest';
-import { getPlacesOrganizer } from '../../requests/aboutOrganizer';
 
 import './classeRoomCard.scss';
 
@@ -52,7 +51,7 @@ export default function ClasseRoomCard({ data, getDatas }) {
                     <>
                         <p className="classeroom-confirmation">Voulez-vous vraiment supprimer cette salle ?</p>
                         <div className="classeroom-button-container">
-                        <button className="classeroom-confirmation-button" onClick={ ()=> deleteRoom(data.id) }>oui</button>
+                        <button className="classeroom-confirmation-button" onClick={ () => deleteRoom(data.id) }>oui</button>
                         <button className="classeroom-confirmation-button"  onClick={deleteToggle}>non</button></div>
                     </>
                 }

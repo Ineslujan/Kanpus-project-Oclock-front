@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import { requestTrainee } from '../../requests/AddClassesFormRequest';
 import SelectedPromo from '../../container/SelectedPromo/SelectedPromo';
 import IdentityCard from '../../container/IdentityCard/IdentityCard';
 
@@ -17,7 +18,16 @@ export default function Trainee() {
 
     useEffect(() => {
         // console.log('hiphop', selectedPromo)
-    }, [selectedPromo])
+    }, [selectedPromo]);
+
+    const getStudents = async () => {
+        const trainees = await requestTrainee();
+        if(trainees.status === 200){
+            setAllPromo(trainees.data)
+            setSelectedPromo(trainees.data[0])
+            // console.log('trainee=>',trainees.data)
+        }
+    }
     
     const setUpdate = () => {
         setSeeUpdateModal(seeUpdateModal => !seeUpdateModal);
@@ -25,11 +35,11 @@ export default function Trainee() {
   
     return (
         <div className='trainee'> 
-            <SelectedPromo selectedPromo={selectedPromo} setSelectedPromo={setSelectedPromo} allPromo={allPromo} setAllPromo={setAllPromo} />
+            <SelectedPromo selectedPromo={selectedPromo} setSelectedPromo={setSelectedPromo} allPromo={allPromo} setAllPromo={setAllPromo} getStudents={getStudents} />
 
                 <div className="trainee-create">
                     <button className="trainer-create-button" onClick={setUpdate}>Créer un Stagiaire</button>
-                    {seeUpdateModal && <UserForm seeUpdateModal={seeUpdateModal} setUpdate={setUpdate} /> }
+                    {seeUpdateModal && <UserForm seeUpdateModal={seeUpdateModal} setUpdate={setUpdate} allPromo={allPromo} getStudents={getStudents} setSeeUpdateModal={setSeeUpdateModal} /> }
                 </div>
             
            
@@ -44,7 +54,7 @@ export default function Trainee() {
                         </div>
                         <div className="trainee-content-promo-students">
                             {selectedPromo && selectedPromo.trainee.map((item)=> (
-                                <IdentityCard key={item.id} item={item}  setStudent={setStudent} setSelectedPromo={setSelectedPromo} />
+                                <IdentityCard key={item.id} item={item}  setStudent={setStudent} setSelectedPromo={setSelectedPromo} setAllPromo={setAllPromo} />
                             ))}
                         </div>
                     </div>

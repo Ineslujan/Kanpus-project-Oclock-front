@@ -21,11 +21,9 @@ export default function ClasseRoomForm({data, updateToggle, updateRoom}) {
         e.preventDefault();
         updateRoom(data.id, {
             name: name,
-            position: position,
+            position: Number(position),
         })
         updateToggle()
-
-        // console.log(data)
     }
 
   return (
