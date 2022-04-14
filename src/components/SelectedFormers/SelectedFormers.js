@@ -1,19 +1,20 @@
 import React, { useState,useEffect} from 'react';
 
 import { v4 as uuid } from 'uuid';
-import './selectedPromo.scss'
+import './selectedFormers.scss'
 
-export default function SelectedPromo({setSelectedPromo, selectedPromo, allPromo, getStudents }) {
+export default function SelectedPromo({selectedStatusFormer, setSelectedStatusFormer, allPromo, getStudents }) {
 
     const [toggleSelectPromo, setToggleSelectPromo] = useState(false)
 
 
     useEffect(() => {
-        getStudents()
+        getStudents();
+        console.log("formoers!!!", selectedStatusFormer)
     }, [])
 
     const selectPromo = (item) => {
-        setSelectedPromo(item);
+        setSelectedStatusFormer(item);
         setToggleSelectPromo(toggle =>!toggle)
         // console.log("selectedPromo=>",item)
     }
@@ -25,9 +26,9 @@ export default function SelectedPromo({setSelectedPromo, selectedPromo, allPromo
 
   return (
     <div className="select-promo">
-           {selectedPromo && <button onClick={toggle}>{selectedPromo.promo}</button>}
+           {selectedStatusFormer && <button onClick={toggle}>{selectedStatusFormer.is_permanent}</button>}
             {toggleSelectPromo && allPromo && allPromo.map((item)=> (
-               selectedPromo.promo !== item.promo && <button  key={uuid()} onClick={()=>selectPromo(item)}>{item.promo}</button>
+               selectedStatusFormer.is_permanent !== item.is_permanent && <button  key={uuid()} onClick={()=>selectPromo(item)}>{item.is_permanent}</button>
             ))}
         
     </div>

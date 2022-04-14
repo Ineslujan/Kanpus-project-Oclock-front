@@ -38,7 +38,7 @@ export default function Navbar() {
                 className={({ isActive }) => isActive ? activeClassName : "navlink"}
             >Groupes</NavLink> */}
             <NavLink
-                to="/formateurs"
+                to="/former"
                 className={({ isActive }) => isActive ? activeClassName : "navlink"}
             >Formateurs</NavLink>
         </div>
