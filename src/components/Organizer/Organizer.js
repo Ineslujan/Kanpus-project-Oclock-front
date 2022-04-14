@@ -54,32 +54,60 @@ export default function Organizer() {
             return { ...event }
         });
         const firstWeekDay = date;
+        const firstWeekDayWeekNumber = firstWeekDay.toFormat('WW');
+        console.log("_____________ ", firstWeekDayWeekNumber);
 
 
         dataReal.forEach((d) => {
-            const startDateEventDay = DateTime.fromISO(d.start_date)
-            const endDateEventDay = DateTime.fromISO(d.end_date)
-            const startDateEventWeekday = DateTime.fromISO(d.start_date).toFormat('c')
-            const endDateEventWeekday = DateTime.fromISO(d.end_date).toFormat('c')
+            const startDate = DateTime.fromISO(d.start_date)
+            const endDate = DateTime.fromISO(d.end_date)
+            const startWeekdayNumber = DateTime.fromISO(d.start_date).toFormat('c') // 3 (wednesday)
+            const endWeekdayNumber = DateTime.fromISO(d.end_date).toFormat('c') // 6 (saturday)
+            const startWeekNumber = DateTime.fromISO(d.start_date).toFormat('WW') // 23rd week
+            const endWeekNumber = DateTime.fromISO(d.end_date).toFormat('WW') // 24rd week
+            console.log("!!! WeekNumber !!!", startWeekNumber, endWeekNumber);
 
-            const diffEvent = endDateEventDay.diff(startDateEventDay, 'weeks')
+            const diffEvent = endDate.diff(startDate, 'weeks')
             const gapWeek = diffEvent.weeks
 
-            if (gapWeek >= 1) {
-                //! A mettre en place
+            const newStartDate = (StartEnd, weekdayNumber, date) => {
+                const toRemoveInStartDate = Math.abs(Number(weekdayNumber) - 1);
+                const newDate = date.minus({ days: toRemoveInStartDate }).toFormat("yyyy-MM-dd")
+                d.start_date = `${newDate}T03:00:00.000Z`; //! link sur les heures de base
+                return
             }
-            else if (startDateEventWeekday > endDateEventWeekday) {
-                if (startDateEventDay > firstWeekDay) {
 
-                    const toAddInEndDate = Math.abs(Number(startDateEventWeekday) - 5);
-                    const newDate = startDateEventDay.plus({ days: toAddInEndDate }).toFormat("yyyy-MM-dd")
-                    d.end_date = `${newDate}T22:00:00.000Z`;
+            const newEndDate = (StartEnd, weekdayNumber, date) => {
+                const toAddInEndDate = Math.abs(Number(weekdayNumber) - 5);
+                const newDate = date.plus({ days: toAddInEndDate }).toFormat("yyyy-MM-dd")
+                d.end_date = `${newDate}T22:00:00.000Z`; //! link sur les heures de base
+                return
+            }
+
+            if (gapWeek >= 1) {
+                if (startWeekNumber === firstWeekDayWeekNumber && (startWeekdayNumber !== 6 || startWeekdayNumber !== 7)) { //! revoir les 6 et 7 si c'est pertinent
+                    newEndDate("end", startWeekdayNumber, startDate)
+                    console.log("start week => ", startWeekNumber, d);
+                    console.log("start weekday number => ", startWeekdayNumber);
                 }
-                if (startDateEventDay < firstWeekDay) {
+                else if (endWeekNumber === firstWeekDayWeekNumber && (endWeekdayNumber !== 6 || endWeekdayNumber !== 7)) { //! revoir les 6 et 7 si c'est pertinent
+                    newStartDate("start", endWeekdayNumber, endDate)
+                    console.log("end week => ", endWeekNumber, d);
+                    console.log("end weekday number => ", endWeekdayNumber);
+                }
+                else {
+                    d.start_date = `${firstDayOfWeek.toFormat("yyyy-MM-dd")}T03:00:00.000Z`; //! link sur les heures de base
+                    d.end_date = `${firstDayOfWeek.plus({ days: 4 }).toFormat("yyyy-MM-dd")}T22:00:00.000Z`; //! link sur les heures de base
+                    console.log("between week => ", startWeekNumber, endWeekNumber, d);
+                }
 
-                    const toRemoveInStartDate = Math.abs(Number(endDateEventWeekday) - 1);
-                    const newDate = endDateEventDay.minus({ days: toRemoveInStartDate }).toFormat("yyyy-MM-dd")
-                    d.start_date = `${newDate}T03:00:00.000Z`;
+            }
+            else if (startWeekdayNumber > endWeekdayNumber) {
+                if (startDate > firstWeekDay) {
+                    newEndDate("end", startWeekdayNumber, startDate)
+                }
+                if (startDate < firstWeekDay) {
+                    newStartDate("start", endWeekdayNumber, endDate)
                 }
             }
 
@@ -225,8 +253,8 @@ export default function Organizer() {
                                 <div className="card-content">
                                     {event.name}
                                     <div className="card-content-time">
-                                        <span>{startDayHour}</span>
-                                        <span>{endDayHour}</span>
+                                        <span>{startDayHour === "03:00" ? "... <= " : startDayHour}</span>
+                                        <span>{endDayHour === "22:00" ? " => ..." : endDayHour}</span>
                                     </div>
                                 </div>
                             </div>
