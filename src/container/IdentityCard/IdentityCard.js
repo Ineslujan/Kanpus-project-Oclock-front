@@ -3,7 +3,7 @@ import IdentityModal from '../IdentityModal/IdentityModal';
 
 import './identityCard.scss'
 
-export default function IdentityCard({item, setStudent, setAllPromo, setSelectedPromo }) {
+export default function IdentityCard({item, setAllPromo, setSelectedPromo, setSeeUpdateModal, getStudents}) {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -26,7 +26,15 @@ export default function IdentityCard({item, setStudent, setAllPromo, setSelected
             <div className="identity-name">
             <h5>{item.firstname} {item.lastname} </h5>
             </div>
-            {modalIsOpen && <IdentityModal item={item} modalIsOpen={modalIsOpen} closeIdentityModal={closeIdentityModal} setAllPromo={setAllPromo} setSelectedPromo={setSelectedPromo} /> }
+            {modalIsOpen && <IdentityModal 
+                item={item} 
+                modalIsOpen={modalIsOpen} 
+                closeIdentityModal={closeIdentityModal} 
+                setAllPromo={setAllPromo} 
+                setSelectedPromo={setSelectedPromo} 
+                setSeeUpdateModal={setSeeUpdateModal}
+                getStudents={getStudents}
+            /> }
         </div>
         </div>
     )

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { addTrainee, getAllPromo } from '../../requests/traineeRequest';
+import { addTrainee, getAllPromo, updateTrainee } from '../../requests/traineeRequest';
 
-export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setUpdate, getStudents }) {
+export default function UserForm({ data, updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
 
     Modal.setAppElement(document.getElementById('root'));
 
@@ -16,18 +16,16 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
     const [email, setEmail] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
-    const [submit, setSubmit] = useState(null);
 
     useEffect(() => {
         if(data){
-            console.log("data in userForm=>", data);
             setFirstname(data.firstname);
             setLastname(data.lastname);
+            setPromoId(data.promo_id)
             setPromo(data.promo);
             setAdress(data.address);
             setPhone(data.phone_number);
             setEmail(data.email);
-            console.log('promodata=>',data.promo_id)
         }
         const getPromo = async () => {
             const promos = await getAllPromo ()
@@ -50,7 +48,6 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
 
     const changePromo = (e) => {
         setPromoId(e.target.value);
-        // console.log("changepromo", promoId);
     }
 
     const changeAdress = (e) => {
@@ -75,17 +72,7 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-        setSubmit({
-            firstname: firstname,
-            lastname: lastname,
-            promo_id: Number(promoId),
-            address: adress,
-            phone_number: phone,
-            email: email,
-            image: "phil.jpg",
-            new_password: newPassword,
-            confirm_new_password: confirmNewPassword
-        })
+
         if(!data){
             const postDatas = async () => {
                 const datas = await addTrainee({
@@ -100,41 +87,40 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
                     confirm_new_password: confirmNewPassword ,
                 });
                 if(datas.status === 200){
-                    console.log("trainee créé");
-                    console.log("mysubmit=>", submit)
                     getStudents();
-                    
+                    setUpdate();
                 }
             }
             postDatas();
-        // } else {
-            // const datas = await updateTrainee(id, {
-            //     firstname: firstname,
-            //     lastname: lastname,
-            //     promo_id: promoId,
-            //     address: adress,
-            //     phone_number: phone,
-            //     email: email,
-            //     image: "phil.jpg",
-            //     new_password: newPassword,
-            //     confirm_new_password: confirmNewPassword ,
-            // });
-            // if(datas.status === 200){
-            //     console.log("trainee créé");
-            //     console.log("mysubmit=>", submit)
-                
-            // }
-        }
-        console.log("test=>", submit)
-        
-        setSeeUpdateModal(false);  
-    }
+        } else {
+            const update = async () => {
+                const datas = await updateTrainee(data.id, {
+                    firstname: firstname,
+                    lastname: lastname,
+                    promo_id: Number(promoId),
+                    address: adress,
+                    phone_number: phone,
+                    email: email,
+                    image: "thumbnail.png",
+                });
+                if(datas.status === 200){
+                    getStudents();
+                    setUpdate();
+                    closeIdentityModal();
 
+                } 
+            }
+            update();
+        }
+        // console.log("test=>", firstname, lastname, promoId, adress, phone, email)
+        
+         
+    }
 
     return (
 
         <Modal
-        isOpen={seeUpdateModal}
+        isOpen={updateModal}
         >
             <div className="user-form">
                 <div className="modal-button-close">
@@ -154,7 +140,6 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
                                 <option key={index} className="studends-list" value={item.id}>{item.name}</option>
                             ))}
                             </select>
-                            {/* <input type="text" name="promo" value={promo} onChange={changePromo} /> */}
                         </div>
                         {/* <div className="user-form-right-content">
                             <label htmlFor="color">Couleur : 
@@ -173,15 +158,18 @@ export default function UserForm({ data, seeUpdateModal, setSeeUpdateModal, setU
                             <label htmlFor="email">Email : </label>
                             <input type="text" name="email" value={email} onChange={changeEmail} />
                         </div>
-                        <div className="user-form-right-content">
-                            <div className="user-form-password">
-                                <label htmlFor="email">Mot de passe : </label>
-                                <input type="text" name="email" value={newPassword} onChange={changeNewPassword} />
+                        {!data &&
+                            <div className="user-form-right-content">
+                                <div className="user-form-password">
+                                    <label htmlFor="email">Mot de passe : </label>
+                                    <input type="text" name="email" value={newPassword} onChange={changeNewPassword} />
 
-                                <label htmlFor="email">Confirmez le mot de passe : </label>
-                                <input type="text" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+                                    <label htmlFor="email">Confirmez le mot de passe : </label>
+                                    <input type="text" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+                                </div>
                             </div>
-                        </div>
+                        }
+
                         <button>valider</button>
                     </div>
                 </form>

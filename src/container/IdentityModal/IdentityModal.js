@@ -8,13 +8,15 @@ import { requestTrainee } from '../../requests/AddClassesFormRequest';
 import './identityModal.scss'
 import UserForm from '../UserForm/UserForm';
 
-export default function IdentityModal({item, modalIsOpen, closeIdentityModal, setSelectedPromo, setAllPromo}) {
+export default function IdentityModal({item, modalIsOpen, closeIdentityModal, setSelectedPromo, setAllPromo, setSeeUpdateModal, getStudents}) {
     Modal.setAppElement(document.getElementById('root'));
     const [seeConfirmationModal, setSeeConfirmationModal] = useState(false);
-    const [seeUpdateModal, setSeeUpdateModal] = useState(false);
+    const [updateModal, setUpdateModal] = useState(false);
 
     const setUpdate = () => {
-        setSeeUpdateModal(seeUpdateModal => !seeUpdateModal);
+        console.log("heyhi")
+        setUpdateModal(x=>!x);
+        console.log(updateModal)
     }
 
     const confirmationModal = () => {
@@ -53,7 +55,7 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
     
                     <button className="modal-icone" onClick={setUpdate}><img src={Pen} alt="pen"/></button> 
 
-            {seeUpdateModal && <UserForm data={item} seeUpdateModal={seeUpdateModal} setUpdate={setUpdate} /> }
+             {updateModal && <UserForm data={item} updateModal={updateModal} setUpdate={setUpdate} setSeeUpdateModal={setSeeUpdateModal} getStudents={getStudents} closeIdentityModal={closeIdentityModal}   /> }
 
              <button className="modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
 
