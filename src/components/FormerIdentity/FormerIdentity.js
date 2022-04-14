@@ -4,7 +4,7 @@ import FormerIdentityModal from '../FormerIdentityModal/FormerIdentityModal';
 
 import './formerIdentity.scss'
 
-export default function FormerIdentity({item, setAllPromo, setSelectedPromo, setSeeUpdateModal, getStudents}) {
+export default function FormerIdentity({ item, setAllPromo, setSelectedPromo, setSeeUpdateModal, getStudents }) {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 

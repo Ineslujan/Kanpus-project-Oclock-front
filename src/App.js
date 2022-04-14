@@ -12,6 +12,7 @@ import MyCourse from './components/MyCourse/MyCourse';
 import Trainee from './components/Trainee/Trainee';
 import ClasseRoom from './components/ClasseRoom/ClasseRoom';
 import Former from './components/Former/Former';
+import Promos from './components/Promos/Promos'
 
 import Group from './components/Group/Group';
 
@@ -31,6 +32,7 @@ function App() {
                 <Route path='/trainee' element={<Trainee />} />
                 <Route path='/places' element={<ClasseRoom />} />
                 <Route path='/former' element={<Former />} />
+                <Route path='/promos' element={<Promos />} />
             </Routes>
         </div>
     );
