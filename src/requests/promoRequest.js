@@ -14,7 +14,7 @@ export async function updatePromo(id, form) {
         console.log(error)
     }
     
-};
+}; 
 
 export async function deletePromo (id) {
     const response = await axios.delete(`${api}/promo/${id}`) 
