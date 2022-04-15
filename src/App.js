@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { AuthenticationContext } from './context/authenticationContext';
 import './App.css';
+import './app.scss';
 
 import Header from './components/Header/Header';
 

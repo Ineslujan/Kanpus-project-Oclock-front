@@ -6,7 +6,7 @@ import IdentityCard from '../../container/IdentityCard/IdentityCard';
 import PromoCreate from '../PromoCreate/PromoCreate';
 import { updatePromo, deletePromo } from '../../requests/promoRequest';
 
-import Pen from '../../public/images/pen.png'
+import Pen from '../../assets/images/pen.png'
 
 import './promos.scss'
 

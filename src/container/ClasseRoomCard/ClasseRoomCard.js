@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import ClasseRoomForm from './ClasseRoomForm/ClasseRoomForm';
-import Pen from '../../public/images/pen.png';
-import Trash from '../../public/images/trash.png';
+import Pen from '../../assets/images/pen.png';
+import Trash from '../../assets/images/trash.png';
 import { updatePlace, deletePlace } from '../../requests/placeRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
 

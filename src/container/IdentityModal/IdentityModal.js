@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Modal from 'react-modal';
-import Pen from '../../public/images/pen.png';
-import Trash from '../../public/images/trash.png';
+import Pen from '../../assets/images/pen.png';
+import Trash from '../../assets/images/trash.png';
 import { deleteUser } from '../../requests/traineeRequest';
 import { requestTrainee } from '../../requests/addClassesFormRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
