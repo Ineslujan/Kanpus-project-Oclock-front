@@ -7,7 +7,6 @@ import FormerForm from '../../container/FormerForm/FormerForm';
 
 import './former.scss'
 
-
 export default function Former() {
     const { authentication } = useContext(AuthenticationContext);
 
@@ -17,7 +16,7 @@ export default function Former() {
     const [seeUpdateModal, setSeeUpdateModal] = useState(false);
 
     const getStudents = async () => {
-        const formers = await getFormers();
+        const formers = await getFormers(authentication.token);
         if(formers.status === 200){
             console.log(formers.data)
             setAllPromo(formers.data)

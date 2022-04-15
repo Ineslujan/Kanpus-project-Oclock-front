@@ -1,27 +1,66 @@
 import axios from 'axios';
-import {api} from './apiRoute';
+import { api } from './apiRoute';
 
-export async function addTrainee (form) {
-    const response = await axios.post(`${api}/user/trainee`, form) 
-    return response;
+export async function addTrainee(form, token) {
+    try {
+        const response = await axios.post(`${api}/user/trainee`, form,
+            {
+
+                headers: {
+                    authorization: `${token}`
+                },
+            })
+        return response;
+    }
+    catch (err) {
+        return false;
+    }
 };
 
-export async function updateTrainee(id, form) {
-    try{
-        const response = await axios.patch(`${api}/user/trainee/${id}`, form) 
-    return response;
+export async function updateTrainee(id, form, token) {
+    try {
+        const response = await axios.patch(`${api}/user/trainee/${id}`, form,
+            {
+
+                headers: {
+                    authorization: `${token}`
+                },
+            })
+        return response;
     } catch (error) {
         console.log(error)
     }
-    
+
 };
 
-export async function deleteUser (id) {
-    const response = await axios.delete(`${api}/user/trainee/${id}`) 
-    return response;
+export async function deleteUser(id, token) {
+    try {
+        const response = await axios.delete(`${api}/user/trainee/${id}`,
+            {
+
+                headers: {
+                    authorization: `${token}`
+                },
+            })
+        return response;
+    }
+    catch (err) {
+        return false;
+    }
 };
 
-export async function getAllPromo () {
-    const response = await axios.get(`${api}/promo/`) 
-    return response;
+export async function getAllPromo(token) {
+    try {
+        const response = await axios.get(`${api}/promo/`,
+            {
+
+                headers: {
+                    authorization: `${token}`
+                },
+            })
+        return response;
+    }
+    catch (err) {
+        return false;
+    }
 };

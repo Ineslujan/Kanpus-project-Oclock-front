@@ -1,18 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { getPlacesOrganizer } from '../../requests/aboutOrganizer';
 import ClasseRoomCard from '../../container/ClasseRoomCard/ClasseRoomCard';
 import ClasseRoomAdd from '../ClasseRoomAdd/ClasseRoomAdd';
-
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 import './classeRoom.scss'
 
 export default function ClasseRoom() {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const [allPlaces, setAllPlaces] = useState(null);
     const [createModal, setCreateModal] = useState(false);
 
     const getDatas = async () => {
-        const datas = await getPlacesOrganizer();
+        const datas = await getPlacesOrganizer(authentication.token);
             setAllPlaces(datas);
             console.log(allPlaces);
     }

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthenticationContext } from '../../context/authenticationContext';
-import { requestTrainee } from '../../requests/AddClassesFormRequest';
+import { requestTrainee } from '../../requests/addClassesFormRequest';
 import SelectedPromo from '../../container/SelectedPromo/SelectedPromo';
 import IdentityCard from '../../container/IdentityCard/IdentityCard';
 
@@ -16,7 +16,7 @@ export default function Trainee() {
     const [seeUpdateModal, setSeeUpdateModal] = useState(false);
 
     const getStudents = async () => {
-        const trainees = await requestTrainee();
+        const trainees = await requestTrainee(authentication.token);
         if(trainees.status === 200){
             setAllPromo(trainees.data)
             setSelectedPromo(trainees.data[0])

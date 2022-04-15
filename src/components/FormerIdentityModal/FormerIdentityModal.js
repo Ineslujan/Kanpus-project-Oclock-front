@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Modal from 'react-modal';
 import Pen from '../../public/images/pen.png';
 import Trash from '../../public/images/trash.png';
 import { getFormers, deleteFormer } from '../../requests/formerRequest';
 import FormerForm from '../../container/FormerForm/FormerForm';
-
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 import './formerIdentityModal.scss'
 
 
 export default function FormerIdentityModal({item, modalIsOpen, closeIdentityModal, setSelectedPromo, setAllPromo, setSeeUpdateModal, getStudents}) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
+    
     Modal.setAppElement(document.getElementById('root'));
     const [seeConfirmationModal, setSeeConfirmationModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
@@ -25,11 +27,11 @@ export default function FormerIdentityModal({item, modalIsOpen, closeIdentityMod
     }
 
     const deleteStudent = async (id) => {
-        const deleteOneStudent = await deleteFormer(id);
+        const deleteOneStudent = await deleteFormer(id, authentication.token);
             if(deleteOneStudent.status===200){
                 // console.log("id",id);
                 const getStudents = async () => {
-                    const trainees = await getFormers();
+                    const trainees = await getFormers(authentication.token);
                     // console.log('trainee=>',trainees.data)
                     if(trainees.status === 200){
                         setAllPromo(trainees.data);

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { addFormer, getFormers, updateFormer } from '../../requests/formerRequest';
-
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 export default function FormerForm({ data, updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     Modal.setAppElement(document.getElementById('root'));
 
@@ -30,7 +31,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
             setEmail(data.email);
         }
         const getPromo = async () => {
-            const promos = await getFormers ()
+            const promos = await getFormers (authentication.token)
             if(promos.status === 200) {
                 setGetPromos(promos.data);
                 console.log(promos.data);
@@ -102,7 +103,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                     is_permanent: true,
                     new_password: newPassword,
                     confirm_new_password: confirmNewPassword ,
-                });
+                }, authentication.token);
                 if(datas.status === 200){
                     getStudents();
                     setUpdate();
@@ -120,7 +121,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                     email: email,
                     is_permanent: true,
                     image: "thumbnail.png",
-                });
+                }, authentication.token);
                 if(datas.status === 200){
                     getStudents();
                     setUpdate();

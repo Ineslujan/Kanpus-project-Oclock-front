@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { DateTime, Interval } from "luxon";
 import { getPlacesOrganizer, getEventsOrganizer } from '../../requests/aboutOrganizer';
 import { ajustX, defineCardWidth } from './cards/cardPlacement';
@@ -7,6 +7,8 @@ import useWindowDimensions from '../../customHooks/getWindowDimensions';
 import GridLayout from "react-grid-layout";
 import { v4 as uuid } from 'uuid';
 import EventModal from '../../components/EventModal/EventModal'
+import { AuthenticationContext } from '../../context/authenticationContext';
+
 
 
 import '../../../node_modules/react-grid-layout/css/styles.css'
@@ -16,9 +18,11 @@ import './cards.scss'
 
 
 export default function Organizer() {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
+
     const windowWidth = useWindowDimensions().width;
     const windowWidthDividedEleven = useWindowDimensions().width / 11;
-
+    
     const [today, setToday] = useState(new Date());
     const [firstDayOfWeek, setFirstDayOfWeek] = useState(DateTime.fromJSDate(today).minus({ days: DateTime.fromJSDate(today).weekday - 1 }));
     const [nextWeek, setNextWeek] = useState(DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }));
@@ -131,8 +135,8 @@ export default function Organizer() {
         setPreviousWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }))
 
         const getEvents = async (date) => {
-            try {
-                const { data } = await getEventsOrganizer(date.toFormat("yyyy-MM-dd"));
+            try { //! ToCorrect
+                const { data } = await getEventsOrganizer(date.toFormat("yyyy-MM-dd"), authentication.token);
                 if (data) {
                     setPureEvents(data)
                     return data;
@@ -152,7 +156,7 @@ export default function Organizer() {
 
     useEffect(() => {
         const getDatas = async () => {
-            const datas = await getPlacesOrganizer();
+            const datas = await getPlacesOrganizer(authentication.token);
             setPlaces(datas);
         }
         getDatas();
@@ -230,6 +234,7 @@ export default function Organizer() {
 
                 {
                     places.length > 0 && events.length > 0 && events.map((event) => {
+                        console.log("----",event);
 
                         const startDayNumber = Number(UTCDate(event.start_date, "E"));
                         const startDayHour = UTCDate(event.start_date, "HH:mm");

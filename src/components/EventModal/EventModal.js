@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { DateTime } from "luxon";
 import { Link } from 'react-router-dom';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 import { deleteCourse } from '../../requests/myCourseRequests';
 import { getEventsOrganizer } from '../../requests/aboutOrganizer';
@@ -13,6 +14,7 @@ import Pen from '../../public/images/pen.png'
 import './eventModal.scss';
 
 export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend, setPureEvents, firstDayOfWeek }) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     Modal.setAppElement(document.getElementById('root'));
 
@@ -51,11 +53,10 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
         setSeeConfirmationModal(modal => !modal)
     }
 
-    //! a modifier
     const deleteMyCourse = async (id) => {
-        await deleteCourse(id);
+        await deleteCourse(id, authentication.token);
         const getDatas = async () => {
-            const datas = await getEventsOrganizer(firstDayOfWeek.toFormat("yyyy-MM-dd"));
+            const datas = await getEventsOrganizer(firstDayOfWeek.toFormat("yyyy-MM-dd"), authentication.token);
             if (datas.status === 200) {
                 setPureEvents(datas.data)
                 checkWeekend(datas.data, firstDayOfWeek)

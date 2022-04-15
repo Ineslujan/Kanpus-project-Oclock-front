@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Modal from 'react-modal';
 import Pen from '../../public/images/pen.png';
 import Trash from '../../public/images/trash.png';
 import { deleteUser } from '../../requests/traineeRequest';
-import { requestTrainee } from '../../requests/AddClassesFormRequest';
+import { requestTrainee } from '../../requests/addClassesFormRequest';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 import './identityModal.scss'
 import UserForm from '../UserForm/UserForm';
 
 export default function IdentityModal({item, modalIsOpen, closeIdentityModal, setSelectedPromo, setAllPromo, setSeeUpdateModal, getStudents}) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
+
     Modal.setAppElement(document.getElementById('root'));
     const [seeConfirmationModal, setSeeConfirmationModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
@@ -24,11 +27,11 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
     }
 
     const deleteStudent = async (id) => {
-        const deleteOneStudent = await deleteUser(id);
+        const deleteOneStudent = await deleteUser(id, authentication.token);
             if(deleteOneStudent.status===200){
                 // console.log("id",id);
                 const getStudents = async () => {
-                    const trainees = await requestTrainee();
+                    const trainees = await requestTrainee(authentication.token);
                     // console.log('trainee=>',trainees.data)
                     if(trainees.status === 200){
                         setAllPromo(trainees.data);

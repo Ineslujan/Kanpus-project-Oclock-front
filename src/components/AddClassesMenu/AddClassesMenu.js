@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
-import { requestStudents } from '../../requests/AddClassesFormRequest';
+import { requestStudents } from '../../requests/addClassesFormRequest';
 
 import ItemMenu from '../../container/ItemMenu/ItemMenu';
 import ItemStudentsMenu from '../../container/ItemStudentsMenu/ItemStudentsMenu';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 import './addClassesMenu.scss'
 
 export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStudents}) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const [showPromos, setShowPromos] = useState(false);
     const [showGroupes, setShowGroupes] = useState(false);
@@ -20,7 +22,7 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
 
     useEffect(() => {
         const getStudents = async () => {
-            const students = await requestStudents();
+            const students = await requestStudents(authentication.token);
             if(students.status === 200){
                 setTabPromos(students.data.promos);
                 setTabGroupes(students.data.group)

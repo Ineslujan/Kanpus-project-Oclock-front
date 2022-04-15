@@ -1,11 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthenticationContext } from '../../context/authenticationContext';
-import { requestTrainee } from '../../requests/AddClassesFormRequest';
+import { requestTrainee } from '../../requests/addClassesFormRequest';
 import SelectedPromo from '../../container/SelectedPromo/SelectedPromo';
 import IdentityCard from '../../container/IdentityCard/IdentityCard';
 import PromoCreate from '../PromoCreate/PromoCreate';
 import { updatePromo, deletePromo } from '../../requests/promoRequest';
-
 
 import Pen from '../../public/images/pen.png'
 
@@ -23,7 +22,7 @@ export default function Promos() {
     const [updateInput, setUpdateInput] = useState("")
 
     const getStudents = async () => {
-        const trainees = await requestTrainee();
+        const trainees = await requestTrainee(authentication.token);
         if(trainees.status === 200){
             setAllPromo(trainees.data)
             setSelectedPromo(trainees.data[0])
@@ -46,7 +45,7 @@ export default function Promos() {
     }
 
     const deletePromo = async () => {
-        // const promo = await deletePromo(selectedPromo.trainee[0].promo_id);
+        // const promo = await deletePromo(selectedPromo.trainee[0].promo_id, authentication.token);
         if(promo.status === 200){
            console.log('ca marche on efface une promo promo');
            setSeeUpdateInput(false);
@@ -59,7 +58,7 @@ export default function Promos() {
         const update = async () => {
             const promo = await updatePromo(selectedPromo.trainee[0].promo_id, {
                 name: updateInput,
-            });
+            }, authentication.token);
             if(promo.status === 200){
                console.log('ca marche lupdate promo');
                setSeeUpdateInput(false);

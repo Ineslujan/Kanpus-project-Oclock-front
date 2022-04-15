@@ -1,10 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import CourseCard from '../../container/CourseCard/CourseCard';
 import { requestMyCourse } from '../../requests/myCourseRequests';
+import { AuthenticationContext } from '../../context/authenticationContext';
+
 
 import './myCourse.scss';
 
 export default function MyCourse() {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const [allCourses, setAllCourses] = useState();
     const [seeCourse, setSeeCourse] = useState(false);
@@ -21,7 +24,7 @@ export default function MyCourse() {
 
     useEffect(() => {
         const getDatas = async () => {
-            const datas = await requestMyCourse(paging);
+            const datas = await requestMyCourse(paging, authentication.token);
             if(datas.status === 200){
                 setAllCourses(datas.data)
                 console.log(datas.data)
@@ -42,7 +45,7 @@ export default function MyCourse() {
         setPaging(paging => paging + 1);
 
         const getDatas = async () => {
-            const datas = await requestMyCourse(paging+1);
+            const datas = await requestMyCourse(paging+1, authentication.token);
             if(datas.status === 200){
                 setAllCourses([...allCourses,
                     ...datas.data])
