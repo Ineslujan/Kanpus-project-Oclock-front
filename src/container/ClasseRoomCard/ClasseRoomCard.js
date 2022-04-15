@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import ClasseRoomForm from './ClasseRoomForm/ClasseRoomForm';
 import Pen from '../../public/images/pen.png';
 import Trash from '../../public/images/trash.png';
 import { updatePlace, deletePlace } from '../../requests/placeRequest';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 import './classeRoomCard.scss';
 
 export default function ClasseRoomCard({ data, getDatas }) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
+
     const [updateView, setUpdateView] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
 
@@ -19,14 +22,14 @@ export default function ClasseRoomCard({ data, getDatas }) {
     }
 
     const deleteRoom = async (id) => {
-       const datas = await deletePlace(id);
+       const datas = await deletePlace(id, authentication.token);
         if(datas.status===200){
              getDatas();
         }
     }
 
     const updateRoom = async (id, data) => {
-        const datas = await updatePlace(id, data);
+        const datas = await updatePlace(id, data, authentication.token);
         if(datas.status===200){
             getDatas();
         }

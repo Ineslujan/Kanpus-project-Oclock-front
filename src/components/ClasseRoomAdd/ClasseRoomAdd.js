@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Modal from 'react-modal';
 import './classeRoomAdd.scss';
 import { createPlace } from '../../requests/placeRequest'
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas, allPlaces }) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     Modal.setAppElement(document.getElementById('root'));
 
@@ -65,7 +67,7 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
                 const datas = await createPlace({
                   name: name,
                   position: newPosition
-                });
+                }, authentication.token);
                 if(datas.status === 200){
                     toggleCreateModal();
                     getDatas();

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 import AddClassesFormPart1 from '../AddClassesFormPart1/AddClassesFormPart1';
 import AddClassesMenu from '../AddClassesMenu/AddClassesMenu';
@@ -8,10 +9,11 @@ import AddTeachersForm from '../AddTeachersForm/AddTeachersForm';
 import AddStudentsForm from '../AddStudentsForm/AddStudentsForm';
 import AddTextForm from '../../container/AddTextForm/AddTextForm';
 
-import { postEvent, updateEvent } from '../../requests/AddClassesFormRequest';
+import { postEvent, updateEvent } from '../../requests/addClassesFormRequest';
 import './addClasses.scss'; 
 
 export default function AddClasses() {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const [allDatasForm, setAllDatasForm] = useState({})
 
@@ -107,7 +109,7 @@ export default function AddClasses() {
                     role: role,
                     equipment: equipment,
                     note: note,
-                });
+                }, authentication.token);
                 if(datas.status === 200){
                     setAllDatasForm({
                         ...allDatasForm,
@@ -133,7 +135,7 @@ export default function AddClasses() {
                     role: role,
                     equipment: equipment,
                     note: note,
-                });
+                }, authentication.token);
                 if(datas.status === 200){
                     setAllDatasForm({
                         ...allDatasForm,

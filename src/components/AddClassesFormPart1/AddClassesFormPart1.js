@@ -1,23 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import PickDate from '../DatePicker/PickDate';
 import TimePicker from '../TimePicker/TimePicker';
 import { DateTime } from "luxon";
-import { requestEvent } from '../../requests/AddClassesFormRequest';
+import { requestEvent } from '../../requests/addClassesFormRequest';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 export default function AddClassesFormPart1({ 
-        setAllDatasForm, 
-        setTabTeachers, 
-        setTabClasseRoom, 
-        setCloseFormPart1, closeFormPart1,
-        startDate, setStartDate,
-        endDate, setEndDate,
-        startTime, setStartTime,
-        endTime, setEndTime,
-        editDatas,
-        courseName,
-        setCourseName,
-        eventId
-    }) {
+    setAllDatasForm, 
+    setTabTeachers, 
+    setTabClasseRoom, 
+    setCloseFormPart1, closeFormPart1,
+    startDate, setStartDate,
+    endDate, setEndDate,
+    startTime, setStartTime,
+    endTime, setEndTime,
+    editDatas,
+    courseName,
+    setCourseName,
+    eventId
+}) {
+        const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const [showStartTimePicker, setShowStartTimePicker] = useState(false);
     const [showEndTimePicker, setShowEndTimePicker] = useState(false);
@@ -79,7 +81,7 @@ export default function AddClassesFormPart1({
                 name: courseName,
                 start_date: start_date,
                 end_date: end_date,
-            });
+            }, authentication.token);
             if(datas.status === 200){
                 setTabTeachers(datas.data.former);
                 setTabClasseRoom(datas.data.place);

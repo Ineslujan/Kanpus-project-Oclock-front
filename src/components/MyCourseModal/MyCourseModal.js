@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Modal from 'react-modal';
 import { DateTime } from "luxon";
 import {Link} from 'react-router-dom';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 import { deleteCourse } from '../../requests/myCourseRequests';
 import { requestMyCourse } from '../../requests/myCourseRequests';
@@ -10,9 +11,11 @@ import ArrowNext from '../../public/images/arrow-next.png';
 import Trash from '../../public/images/trash.png';
 import Pen from '../../public/images/pen.png'
 
+
 import './myCourseModal.scss';
 
 export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCourses}) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     Modal.setAppElement(document.getElementById('root'));
 
@@ -52,9 +55,9 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
     }
 
     const deleteMyCourse = async (id) => {
-        await deleteCourse(id);
+        await deleteCourse(id, authentication.token);
         const getDatas = async () => {
-            const datas = await requestMyCourse(1);
+            const datas = await requestMyCourse(1, authentication.token);
             if(datas.status === 200){
                 setAllCourses(datas.data)
                 console.log(datas.data)

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ItemMenu from '../../container/ItemMenu/ItemMenu';
-import { requestTrainee } from '../../requests/AddClassesFormRequest';
+import { requestTrainee } from '../../requests/addClassesFormRequest';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 export default function PromoAndGroupMenu({ setSelectedStudents, tabPromos, setTabPromos, setPromoName }) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
 
     
@@ -13,7 +15,7 @@ export default function PromoAndGroupMenu({ setSelectedStudents, tabPromos, setT
 
     useEffect(() => {
         const getStudents = async () => {
-            const trainees = await requestTrainee();
+            const trainees = await requestTrainee(authentication.token);
             if(trainees.status === 200){
                 // setTabPromos(students.data.promos);
                 // setPromoName(students.data.promos[0].name)

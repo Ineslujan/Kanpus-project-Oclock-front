@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { addPromo } from '../../requests/promoRequest';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 export default function PromoCreate({ updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     Modal.setAppElement(document.getElementById('root'));
 
@@ -31,7 +33,7 @@ export default function PromoCreate({ updateModal, setUpdateModal, setUpdate, ge
                name: promoName,
                start_date: startPromo,
                end_date: endPromo
-            });
+            }, authentication.token);
             if(datas.status === 200){
                 console.log("yououbhjhdjd")
                 // getStudents();

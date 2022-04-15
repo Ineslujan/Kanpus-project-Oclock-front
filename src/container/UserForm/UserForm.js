@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { addTrainee, getAllPromo, updateTrainee } from '../../requests/traineeRequest';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 export default function UserForm({ data, updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     Modal.setAppElement(document.getElementById('root'));
 
@@ -28,7 +30,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
             setEmail(data.email);
         }
         const getPromo = async () => {
-            const promos = await getAllPromo ()
+            const promos = await getAllPromo (authentication.token)
             if(promos.status === 200) {
                 setGetPromos(promos.data);
                 console.log(promos.data);
@@ -85,7 +87,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     image: "phil.jpg",
                     new_password: newPassword,
                     confirm_new_password: confirmNewPassword ,
-                });
+                }, authentication.token);
                 if(datas.status === 200){
                     getStudents();
                     setUpdate();
@@ -102,7 +104,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     phone_number: phone,
                     email: email,
                     image: "thumbnail.png",
-                });
+                }, authentication.token);
                 if(datas.status === 200){
                     getStudents();
                     setUpdate();

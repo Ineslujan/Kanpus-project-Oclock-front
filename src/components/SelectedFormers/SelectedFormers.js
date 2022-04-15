@@ -3,7 +3,7 @@ import React, { useState,useEffect} from 'react';
 import { v4 as uuid } from 'uuid';
 import './selectedFormers.scss'
 
-export default function SelectedPromo({selectedStatusFormer, setSelectedStatusFormer, allPromo, getStudents }) {
+export default function SelectedFormers({selectedStatusFormer, setSelectedStatusFormer, allPromo, getStudents }) {
 
     const [toggleSelectPromo, setToggleSelectPromo] = useState(false)
 
