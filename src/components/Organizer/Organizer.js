@@ -6,7 +6,7 @@ import { ajustX, defineCardWidth } from './cards/cardPlacement';
 import useWindowDimensions from '../../customHooks/getWindowDimensions';
 import GridLayout from "react-grid-layout";
 import { v4 as uuid } from 'uuid';
-import MycourseModal from '../../components/MyCourseModal/MyCourseModal'
+import EventModal from '../../components/EventModal/EventModal'
 
 
 import '../../../node_modules/react-grid-layout/css/styles.css'
@@ -24,13 +24,17 @@ export default function Organizer() {
     const [nextWeek, setNextWeek] = useState(DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }));
     const [previousWeek, setPreviousWeek] = useState(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }));
     const [places, setPlaces] = useState([]);
+    const [pureEvents, setPureEvents] = useState([]);
     const [events, setEvents] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [eventModal, setEventModal] = useState({});
 
-    const openModal = (event) => {
+    const openModal = (event_id) => {
+        console.log(event_id, pureEvents);
         setModalIsOpen(!modalIsOpen);
-        setEventModal(event)
+        const eventFiltered = pureEvents.filter(e => e.event_id === event_id)
+        console.log(eventFiltered);
+        setEventModal(eventFiltered[0])
     }
 
     const changeToPreviousWeek = () => {
@@ -55,7 +59,6 @@ export default function Organizer() {
         });
         const firstWeekDay = date;
         const firstWeekDayWeekNumber = firstWeekDay.toFormat('WW');
-        console.log("_____________ ", firstWeekDayWeekNumber);
 
 
         dataReal.forEach((d) => {
@@ -65,7 +68,6 @@ export default function Organizer() {
             const endWeekdayNumber = DateTime.fromISO(d.end_date).toFormat('c') // 6 (saturday)
             const startWeekNumber = DateTime.fromISO(d.start_date).toFormat('WW') // 23rd week
             const endWeekNumber = DateTime.fromISO(d.end_date).toFormat('WW') // 24rd week
-            console.log("!!! WeekNumber !!!", startWeekNumber, endWeekNumber);
 
             const diffEvent = endDate.diff(startDate, 'weeks')
             const gapWeek = diffEvent.weeks
@@ -87,27 +89,31 @@ export default function Organizer() {
             if (gapWeek >= 1) {
                 if (startWeekNumber === firstWeekDayWeekNumber && (startWeekdayNumber !== 6 || startWeekdayNumber !== 7)) { //! revoir les 6 et 7 si c'est pertinent
                     newEndDate("end", startWeekdayNumber, startDate)
-                    console.log("start week => ", startWeekNumber, d);
-                    console.log("start weekday number => ", startWeekdayNumber);
+                    
                 }
                 else if (endWeekNumber === firstWeekDayWeekNumber && (endWeekdayNumber !== 6 || endWeekdayNumber !== 7)) { //! revoir les 6 et 7 si c'est pertinent
                     newStartDate("start", endWeekdayNumber, endDate)
-                    console.log("end week => ", endWeekNumber, d);
-                    console.log("end weekday number => ", endWeekdayNumber);
                 }
                 else {
                     d.start_date = `${firstDayOfWeek.toFormat("yyyy-MM-dd")}T03:00:00.000Z`; //! link sur les heures de base
                     d.end_date = `${firstDayOfWeek.plus({ days: 4 }).toFormat("yyyy-MM-dd")}T22:00:00.000Z`; //! link sur les heures de base
-                    console.log("between week => ", startWeekNumber, endWeekNumber, d);
                 }
-
             }
-            else if (startWeekdayNumber > endWeekdayNumber) {
+            else if (startWeekdayNumber > endWeekdayNumber) { // 4 > 3 Week from thursday to wednesday 
                 if (startDate > firstWeekDay) {
                     newEndDate("end", startWeekdayNumber, startDate)
                 }
                 if (startDate < firstWeekDay) {
                     newStartDate("start", endWeekdayNumber, endDate)
+                }
+            }
+            else{
+                if (Number(startWeekdayNumber) === 6 || Number(startWeekdayNumber) === 7) {
+                    d.start_date = `${firstDayOfWeek.plus({ days: 7 }).toFormat("yyyy-MM-dd")}T03:00:00.000Z`; //! link sur les heures de base
+                }
+                else if (Number(endWeekdayNumber) === 6 || Number(endWeekdayNumber) === 7) {
+                    d.end_date = `${firstDayOfWeek.plus({ days: 4 }).toFormat("yyyy-MM-dd")}T22:00:00.000Z`; //! link sur les heures de base
+
                 }
             }
 
@@ -128,6 +134,7 @@ export default function Organizer() {
             try {
                 const { data } = await getEventsOrganizer(date.toFormat("yyyy-MM-dd"));
                 if (data) {
+                    setPureEvents(data)
                     return data;
                 }
             } catch (err) {
@@ -248,7 +255,7 @@ export default function Organizer() {
                                 data-organizer-type="card"
                                 style={{ backgroundColor: event.former[0].color }}
                                 key={uuid()}
-                                onClick={() => openModal(event)}
+                                onClick={() => openModal(event.event_id)}
                             >
                                 <div className="card-content">
                                     {event.name}
@@ -266,7 +273,8 @@ export default function Organizer() {
 
             </GridLayout>
             {modalIsOpen &&
-                <MycourseModal modalIsOpen={modalIsOpen} openModal={openModal} datas={eventModal} />}
+                <EventModal modalIsOpen={modalIsOpen} openModal={openModal} datas={eventModal} checkWeekend={checkWeekend} setPureEvents={setPureEvents} firstDayOfWeek={firstDayOfWeek} />}
+                {/* <EventModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} openModal={openModal} datas={datas} /> */}
 
         </>
     )
