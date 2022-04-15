@@ -1,28 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
 import AddClassesFormPart1 from '../AddClassesFormPart1/AddClassesFormPart1';
-
 import AddClassesMenu from '../AddClassesMenu/AddClassesMenu';
 import AddPlaceForm from '../AddPlaceForm/AddPlaceForm';
 import AddTeachersForm from '../AddTeachersForm/AddTeachersForm';
 import AddStudentsForm from '../AddStudentsForm/AddStudentsForm';
 import AddTextForm from '../../container/AddTextForm/AddTextForm';
 
-import './addClasses.scss'
+import { postEvent, updateEvent } from '../../requests/addClassesFormRequest';
+import './addClasses.scss'; 
 
 export default function AddClasses() {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const [allDatasForm, setAllDatasForm] = useState({})
 
     const [closeFormPart1, setCloseFormPart1] = useState(false);
     const [closeFormPart2, setCloseFormPart2] = useState(true);
 
+    const [courseName, setCourseName] = useState("");
+
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+
+    const [startTime, setStartTime] = useState('9:00');
+    const [endTime, setEndTime] = useState('17:30');
+
     const [tabClasseRoom, setTabClasseRoom]= useState(null);
     const [classeRoom, setClasseRoom] = useState(null);
+    const [adress, setAdress] = useState("");
 
     const [teacher, setTeacher]= useState([]);
- 
     const [tabTeachers, setTabTeachers] = useState(null);
+
+    const [eventId, setEventId] = useState(null);
 
     const [tabSelectedStudents, setTabSelectedStudents] = useState([]);
 
@@ -32,11 +45,40 @@ export default function AddClasses() {
 
     const [validAllFormButton, setValidAllFormButton] = useState(false);
 
+    const [editDatas, setEditDatas] = useState(null)
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(location.state){
+            const {myData} = location.state
+            console.log("addclasse=>",myData);
+            console.log(new Date(myData.start_date));
+            
+            setEventId(myData.event_id)
+            setEditDatas(myData);
+            setEquipment(myData.equipment);
+            setCourseName(myData.name);
+            setStartDate(new Date(myData.start_date));
+            setEndDate(new Date(myData.end_date));
+            setTeacher(myData.former);
+            setTabSelectedStudents(myData.trainee);
+            setRole(myData.role);
+            setNote(myData.note)
+        }
+    }, [])
+
+
     useEffect(() => {
         if(!closeFormPart1){
-            setCloseFormPart2(true)
+            // console.log("classeroom",classeRoom);
+            setCloseFormPart2(true);
+            // reset teacher and place state when we back in first page form
+            setTeacher([]);
+            setClasseRoom(undefined);
         } else {
-            setCloseFormPart2(false)
+            setCloseFormPart2(false);
         }
     }, [closeFormPart1]);
 
@@ -47,32 +89,96 @@ export default function AddClasses() {
             setValidAllFormButton(true);
         }
     }, [teacher, classeRoom]);
+
+
     
     const submitForm = () => {
-        console.log("submit form =>")
+        
         const tabTrainee= [];
         tabSelectedStudents.forEach(item=> {tabTrainee.push(item.id)});
+        // console.log("submit form =>", tabSelectedStudents)
+        if(!eventId) {
 
-        setAllDatasForm({
-            ...allDatasForm,
-            place_id: classeRoom, 
-            adress: "",
-            former: teacher, 
-            trainee: tabTrainee, 
-            role: role,
-            equipment: equipment,
-            note: note,
-        })
+            const getDatas = async () => {
+                const datas = await postEvent({
+                    ...allDatasForm,
+                    place_id: classeRoom, 
+                    address: adress,
+                    former: teacher, 
+                    trainee: tabTrainee, 
+                    role: role,
+                    equipment: equipment,
+                    note: note,
+                }, authentication.token);
+                if(datas.status === 200){
+                    setAllDatasForm({
+                        ...allDatasForm,
+                        place_id: classeRoom, 
+                        address: adress,
+                        former: teacher, 
+                        trainee: tabTrainee, 
+                        role: role,
+                        equipment: equipment,
+                        note: note,
+                    })
+                }
+            } 
+            getDatas();  
+        }  else {
+            const getDatas = async () => {
+                const datas = await updateEvent(eventId,{
+                    ...allDatasForm,
+                    place_id: classeRoom, 
+                    address: adress,
+                    former: teacher, 
+                    trainee: tabTrainee, 
+                    role: role,
+                    equipment: equipment,
+                    note: note,
+                }, authentication.token);
+                if(datas.status === 200){
+                    setAllDatasForm({
+                        ...allDatasForm,
+                        place_id: classeRoom, 
+                        address: adress,
+                        former: teacher, 
+                        trainee: tabTrainee, 
+                        role: role,
+                        equipment: equipment,
+                        note: note,
+                    })
+                }
+            } 
+            getDatas();  
+        } 
         console.log(allDatasForm);
+        navigate("/organizer");
     }
 
   return (
     <div className="create-classes-container">
-        <AddClassesFormPart1 setAllDatasForm={setAllDatasForm} setTabTeachers={setTabTeachers} setTabClasseRoom={setTabClasseRoom} closeFormPart1={closeFormPart1} setCloseFormPart1={setCloseFormPart1} />
+        <AddClassesFormPart1 
+            setAllDatasForm = {setAllDatasForm} 
+            setTabTeachers = {setTabTeachers} 
+            setTabClasseRoom = {setTabClasseRoom} 
+            closeFormPart1 = {closeFormPart1} 
+            setCloseFormPart1 = {setCloseFormPart1}
+            startDate = {startDate}
+            setStartDate = {setStartDate}
+            endDate = {endDate}
+            setEndDate = {setEndDate}
+            startTime = {startTime} 
+            setStartTime = {setStartTime}
+            endTime = {endTime}
+            setEndTime = {setEndTime}
+            courseName = {courseName}
+            setCourseName = {setCourseName}
+            eventId = {eventId}
+        />
         {!closeFormPart2 && 
             <div className="container-form-part2">
                 <AddClassesMenu tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents} />
-                <AddPlaceForm  tabClasseRoom={tabClasseRoom} setClasseRoom={setClasseRoom} />
+                <AddPlaceForm  tabClasseRoom={tabClasseRoom} classeRoom={classeRoom} setClasseRoom={setClasseRoom} setAdress={setAdress} />
                 <AddTeachersForm tabTeachers={tabTeachers} teacher={teacher} setTeacher={setTeacher}  />
                 <AddStudentsForm tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents} />
                 <AddTextForm text={"Rôles"} set={setRole} value={role} />

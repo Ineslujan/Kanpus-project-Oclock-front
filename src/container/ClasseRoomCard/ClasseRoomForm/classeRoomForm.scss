@@ -1,0 +1,35 @@
+@use '../../../var.scss';
+@use '../../../reset.scss';
+
+.classeroom-update-input {
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: none;
+}
+
+.classeroom-update-content{
+    position: relative;
+}
+
+.classeroom-button-close{
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+}
+
+.classeroom-validate{
+    background-color: var.$second-color;
+    font-size: 0.7em;
+    border: none;
+    border-radius: 3px;
+    padding-top: 2px;
+    margin-top: 5px;
+}
+
+.classeroom-close {
+    background-color: var.$second-color;
+    width: 22px;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.7em;
+}

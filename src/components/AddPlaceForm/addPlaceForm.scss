@@ -1,38 +1,93 @@
 @use '../../var.scss';
 @use '../../reset.scss';
 
-.place-form-container{
-    margin-top: 3%;
-    
+.place-form{
+ margin-top: 3%;
 }
 
-.place-select-input-container {
+.place-form-container {
+    width: 50%;
+    margin: auto;
     margin-top: 1%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-.place-select {
-    border: 2px solid var.$primary-color;
-    background-color: var.$primary-color;
-    color: var.$second-color ;
-    width: 18%;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 0.9em;
-    padding: 0.1%;
-    margin-right: 2%;
-}
+// .place-select {
+//     border: 2px solid var.$primary-color;
+//     background-color: var.$primary-color;
+//     color: var.$second-color ;
+//     width: 18%;
+//     text-align: center;
+//     border-radius: 5px;
+//     font-size: 0.9em;
+//     padding: 0.1%;
+//     margin-right: 2%;
+// }
 
-.place-select-option{
-    background-color: var.$primary-color ;
-    text-align: start;
-}
+// .place-select-option{
+//     background-color: var.$primary-color ;
+//     text-align: start;
+// }
 
 .place-adress {
-    width: 27%;
+    width: 60%;
+    height: 29px;
     border: 2px solid var.$primary-color;
     border-radius: 5px;
     font-size: 0.9em;
     color: var.$primary-color;
+}
+
+// .place-form-select-container{
+//     width: 100%;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-around;
+//     align-items: center;
+// }
+
+.place-form-button{
+    width: 100%;
+    height: 30px;
+    border: 2px solid var.$primary-color;
+    background-color: var.$primary-color;
+    color: var.$second-color ;
+    border-radius: 0;
+    &:last-child{
+        border-radius: 0 0 5px 5px ;
+    }
+
+}
+
+.disabled{
+
+    border: 2px solid lightgray;
+    background-color: lightgrey;
+    color: var.$second-color ;
+    border-radius: 0;
+    cursor: initial;
+    &:last-child{
+        border-radius: 0 0 5px 5px ;
+    }
+
+}
+.place-form-button-container{
+    width: 35%;
+}
+
+.place-modale-info {
+    position: relative;
+}
+.info-classeroom{
+    position: absolute;
+    width: 200px;
+    height: auto;
+    border: 2px solid var.$primary-color;
+    background-color: var.$primary-color;
+    color: var.$second-color ;
+    border-radius: 0  5px 5px 0;
+    font-size: 0.9em;
+    top: 0;
+    right: -200px;
 }

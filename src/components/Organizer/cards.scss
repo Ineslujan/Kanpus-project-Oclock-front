@@ -1,0 +1,16 @@
+@use '../../var.scss';
+@use 'sass:color';
+@use '../../reset.scss';
+
+div[data-organizer-type="card"]{
+    font-size: 0.8rem;
+    border-radius: 5px;
+}
+
+div[data-organizer-type="card"] .card-content{
+    flex-direction: column;
+}
+
+div[data-organizer-type="card"] .card-content-time{
+    justify-content: flex-end;
+}

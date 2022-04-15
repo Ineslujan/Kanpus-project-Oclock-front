@@ -1,0 +1,56 @@
+@use '../../var.scss';
+@use '../../reset.scss';
+
+.classeroom-card{
+    width: 250px;
+    height: 150px;
+    border: 2px solid var.$primary-color;
+    background-color: var.$primary-color;
+    color: var.$second-color;
+    border-radius: 5px;
+    margin: 2% 1%;
+    padding: 30px;
+    font-size: 1.5em;
+    position: relative;
+}
+
+.classeroom-create-button{
+    width: 140px;
+    margin-top: 7px;
+    margin-bottom: 5px;
+    background-color: var.$primary-color;
+    border: none;
+    border-radius: 3px;
+    color: var.$second-color;
+    font-size: 15px;
+    padding:  7px 10px ;
+}
+
+.classeroom-button{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.classeroom-name{
+    margin-bottom: 20px;
+}
+
+.classeroom-confirmation{
+    font-size: 0.8em;
+    margin-bottom: 10px;
+}
+.classeroom-button-container {
+    height: 20px;
+    
+}
+
+.classeroom-confirmation-button{
+    background-color: var.$second-color;
+    border: none;
+    color: var.$primary-color;
+    border-radius: 3px;
+    margin: 15px 10px;
+    width: 65px;
+    font-size: 20px;
+}

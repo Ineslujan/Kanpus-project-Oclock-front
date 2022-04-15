@@ -17,14 +17,16 @@ export default function PickDate({ startDate, setStartDate, endDate, setEndDate 
       setStartDate(start);
       setEndDate(end);
   };
+
   return (
     <DatePicker
-    locale={fr}
-    onChange={onChange}
-    startDate={startDate}
-    endDate={endDate}
-    selectsRange
-    inline
-  />
+      locale={fr}
+      onChange={onChange}
+      startDate={startDate}
+      endDate={endDate}
+      minDate={new Date()}
+      selectsRange
+      inline
+    />
   )
 }

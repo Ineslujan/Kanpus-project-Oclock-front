@@ -1,0 +1,1 @@
+export const api = `https://kanpus-api.herokuapp.com`;
