@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import AddClassesFormPart1 from '../AddClassesFormPart1/AddClassesFormPart1';
 import AddClassesMenu from '../AddClassesMenu/AddClassesMenu';
@@ -46,6 +46,7 @@ export default function AddClasses() {
     const [editDatas, setEditDatas] = useState(null)
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(location.state){
@@ -149,6 +150,7 @@ export default function AddClasses() {
             getDatas();  
         } 
         console.log(allDatasForm);
+        navigate("/organizer");
     }
 
   return (

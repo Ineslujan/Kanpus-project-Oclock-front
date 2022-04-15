@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {api} from './apiRoute';
 
 // export async function addTrainee (form) {
 //     const response = await axios.get(`https://kanpus-api.herokuapp.com/place/trainee`, form) 
@@ -6,16 +7,16 @@ import axios from 'axios';
 // };
 
 export async function createPlace (place) {
-    const response = await axios.post(`https://kanpus-api.herokuapp.com/place`, place) 
+    const response = await axios.post(`${api}/place`, place) 
     return response;
 };
 
 export async function updatePlace (id, place) {
-    const response = await axios.patch(`https://kanpus-api.herokuapp.com/place/${id}`, place) 
+    const response = await axios.patch(`${api}/place/${id}`, place) 
     return response;
 };
 
 export async function deletePlace (id) {
-    const response = await axios.delete(`https://kanpus-api.herokuapp.com/place/${id}`) 
+    const response = await axios.delete(`${api}/place/${id}`) 
     return response;
 };

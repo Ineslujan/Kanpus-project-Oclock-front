@@ -1,8 +1,9 @@
 import axios from 'axios';
+import {api} from './apiRoute';
 
 export async function getPlacesOrganizer() {
     try {
-        const response = await axios.get(`https://kanpus-api.herokuapp.com/place/`);
+        const response = await axios.get(`${api}/place/`);
         return response.data;
     }
     catch (err) {
@@ -11,7 +12,7 @@ export async function getPlacesOrganizer() {
 }
 
 export async function getEventsOrganizer(date) {
-    return await axios.get(`https://kanpus-api.herokuapp.com/event/organizer/${date}`);
+    return await axios.get(`${api}/event/organizer/${date}`);
 }
 
 

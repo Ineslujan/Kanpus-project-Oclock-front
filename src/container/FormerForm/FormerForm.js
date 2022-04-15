@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { addTrainee, getAllPromo, updateTrainee } from '../../requests/traineeRequest';
+import { addFormer, getFormers, updateFormer } from '../../requests/formerRequest';
 
-export default function UserForm({ data, updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
+
+export default function FormerForm({ data, updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
 
     Modal.setAppElement(document.getElementById('root'));
 
@@ -10,10 +11,11 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
     const [lastname, setLastname] = useState("");
     const [getPromos, setGetPromos] = useState(null)
     const [promo, setPromo] = useState("");
-    const [promoId, setPromoId] = useState(null)
+    const [colorId, setColorId] = useState(null)
     const [adress, setAdress] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
+    const [permanent, setPermanent] = useState(true)
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
@@ -21,14 +23,14 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
         if(data){
             setFirstname(data.firstname);
             setLastname(data.lastname);
-            setPromoId(data.promo_id)
+            setColorId(data.color)
             setPromo(data.promo);
             setAdress(data.address);
             setPhone(data.phone_number);
             setEmail(data.email);
         }
         const getPromo = async () => {
-            const promos = await getAllPromo ()
+            const promos = await getFormers ()
             if(promos.status === 200) {
                 setGetPromos(promos.data);
                 console.log(promos.data);
@@ -37,6 +39,15 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
         getPromo();
     }, [])
     
+    const color = [
+        {name: "red", number:'#269987'},
+        {name: "bleu", number:'#269987'},
+        {name: "vert", number:'#269987'},
+        {name: "jaune", number:'#269987'},
+        {name: "orange", number:'#269987'},
+        {name: "cyan", number:'#269987'},
+        {name: "violet", number:'#269987'},
+        {name: "noir", number:'#269987'},]
 
     const changeFirstName = (e) => {
         setFirstname(e.target.value);
@@ -46,8 +57,8 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
         setLastname(e.target.value);
     }
 
-    const changePromo = (e) => {
-        setPromoId(e.target.value);
+    const changeColor = (e) => {
+        setColorId(e.target.value);
     }
 
     const changeAdress = (e) => {
@@ -62,6 +73,11 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
         setEmail(e.target.value);
     }
 
+    const changePermanent = (e) => {
+        setPermanent(e.target.value);
+        console.log(e.target.value)
+    }
+
     const changeNewPassword = (e) => {
         setNewPassword(e.target.value);
     }
@@ -72,16 +88,18 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
 
     const handlerSubmit = (e) => {
         e.preventDefault();
+
         if(!data){
             const postDatas = async () => {
-                const datas = await addTrainee({
+                const datas = await addFormer({
                     firstname: firstname,
                     lastname: lastname,
-                    promo_id: Number(promoId),
+                    color: colorId.number,  
                     address: adress,
                     phone_number: phone,
                     email: email,
                     image: "phil.jpg",
+                    is_permanent: true,
                     new_password: newPassword,
                     confirm_new_password: confirmNewPassword ,
                 });
@@ -93,13 +111,14 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
             postDatas();
         } else {
             const update = async () => {
-                const datas = await updateTrainee(data.id, {
+                const datas = await updateFormer(data.id, {
                     firstname: firstname,
                     lastname: lastname,
-                    promo_id: Number(promoId),
+                    color: colorId,
                     address: adress,
                     phone_number: phone,
                     email: email,
+                    is_permanent: true,
                     image: "thumbnail.png",
                 });
                 if(datas.status === 200){
@@ -132,19 +151,14 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     </div>
                     <div className="user-form-main-container">
                         <div className="user-form-right-content">
-                            <label htmlFor="promo" >Promo : </label>
-                            <select name="promo" id="promo_user" onChange={changePromo}>
-                                <option key={'jdfjdjkfdjdf'} className="studends-list" value={promoId}>{promo}</option>
-                            {getPromos && getPromos.map((item,index)=> (
-                                <option key={index} className="studends-list" value={item.id}>{item.name}</option>
+                            <label htmlFor="color" >Couleur : </label>
+                            <select name="color" id="color_user" onChange={changeColor}>
+                                <option key={'jdfjdjkfddddjdf'} className="studends-list" value={color.number}>{color.name}</option>
+                            {color && color.map((item,index)=> (
+                                <option key={index} className="studends-list" value={item.number}>{item.name}</option>
                             ))}
                             </select>
                         </div>
-                        {/* <div className="user-form-right-content">
-                            <label htmlFor="color">Couleur : 
-                            <input type="text" name="color" value={color} onChange={changeColor} />
-                            </label>
-                        </div> */}
                         <div className="user-form-right-content">
                             <label htmlFor="adress">Adresse : </label>
                             <input type="text" name="adress" value={adress} onChange={changeAdress} />
@@ -157,6 +171,17 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                             <label htmlFor="email">Email : </label>
                             <input type="text" name="email" value={email} onChange={changeEmail} />
                         </div>
+                        <div className="user-form-right-content">
+                            <label htmlFor="is_permanent">Permanent : 
+                                <input type="radio" id="is_permanent" name="is-permanent" value="permanent" onChange={changePermanent} />
+                            </label>
+                            <label htmlFor="not-permanent">Non permanent : 
+                                <input type="radio" id="not-permanent" name="is-permanent" checked value="non-permanent" onChange={changePermanent} />
+                            </label>
+                        </div>
+               
+                   
+                      
                         {!data &&
                             <div className="user-form-right-content">
                                 <div className="user-form-password">

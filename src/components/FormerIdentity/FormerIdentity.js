@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import IdentityModal from '../IdentityModal/IdentityModal';
+import FormerIdentityModal from '../FormerIdentityModal/FormerIdentityModal';
 
-import './identityCard.scss'
 
-export default function IdentityCard({item, setAllPromo, setSelectedPromo, setSeeUpdateModal, getStudents}) {
+import './formerIdentity.scss'
+
+export default function FormerIdentity({ item, setAllPromo, setSelectedPromo, setSeeUpdateModal, getStudents }) {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -26,7 +27,7 @@ export default function IdentityCard({item, setAllPromo, setSelectedPromo, setSe
             <div className="identity-name">
             <h5>{item.firstname} {item.lastname} </h5>
             </div>
-            {modalIsOpen && <IdentityModal 
+            {modalIsOpen && <FormerIdentityModal 
                 item={item} 
                 modalIsOpen={modalIsOpen} 
                 closeIdentityModal={closeIdentityModal} 
