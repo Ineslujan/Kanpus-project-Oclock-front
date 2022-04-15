@@ -7,9 +7,9 @@ import { AuthenticationContext } from '../../context/authenticationContext';
 import { deleteCourse } from '../../requests/myCourseRequests';
 import { requestMyCourse } from '../../requests/myCourseRequests';
 
-import ArrowNext from '../../public/images/arrow-next.png';
-import Trash from '../../public/images/trash.png';
-import Pen from '../../public/images/pen.png'
+import ArrowNext from '../../assets/images/arrow-next.png';
+import Trash from '../../assets/images/trash.png';
+import Pen from '../../assets/images/pen.png'
 
 
 import './myCourseModal.scss';

@@ -1,22 +1,21 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { getPlacesOrganizer } from '../../requests/aboutOrganizer';
-import ClasseRoomCard from '../../container/ClasseRoomCard/ClasseRoomCard';
-import ClasseRoomAdd from '../ClasseRoomAdd/ClasseRoomAdd';
+import { requestTrainee } from '../../requests/addClassesFormRequest';
+import PromoCard from '../PromoCard/PromoCard';
+import PromoCreate from '../PromoCreate/PromoCreate';
 import { AuthenticationContext } from '../../context/authenticationContext';
 
-import './classeRoom.scss'
 
-export default function ClasseRoom() {
+export default function Promos() {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
-    const [allPlaces, setAllPlaces] = useState(null);
+    const [allPromo, setAllPromo] = useState(null);
     const [createModal, setCreateModal] = useState(false);
 
         const getDatas = async () => {
         const trainees = await requestTrainee(authentication.token);
         if(trainees.status === 200){
             setAllPromo(trainees.data)
-            setSelectedPromo(trainees.data[0])
+            // setSelectedPromo(trainees.data[0])
 
         }
     }
@@ -29,10 +28,12 @@ export default function ClasseRoom() {
  
     useEffect(() => {
         getDatas();
+        
     }, [])
 
     const toggleCreateModal = () => {
         setCreateModal(modal => !modal)
+        console.log("allpromo",allPromo)
     }
 
  
@@ -41,15 +42,15 @@ export default function ClasseRoom() {
     return (
         <div className="classeroom">
             <div className="classeroom-container">
-                {createModal && <ClasseRoomAdd createModal={createModal}  toggleCreateModal={toggleCreateModal} getDatas={getDatas} allPlaces={allPlaces} setAllPlaces={setAllPlaces} />}
+                {createModal && <PromoCreate createModal={createModal} toggleCreateModal={toggleCreateModal} getDatas={getDatas} allPromo={allPromo} setAllPromo={setAllPromo} />}
                 
                 <div className="classeroom-create">
                     <p className="classeroom-title">Lieux</p>
-                    <button className="classeroom-create-button" onClick={toggleCreateModal} >Créer une salle</button>
+                    <button className="classeroom-create-button" onClick={toggleCreateModal} >Créer une promo</button>
                 </div>
                 <div className="classeroom-content">
-                    {allPlaces &&  allPlaces.map((item) => (
-                            <ClasseRoomCard key={item.id} data={item} getDatas={getDatas} />
+                    {allPromo &&  allPromo.map((item, index) => (
+                            <PromoCard key={index} data={item} getDatas={getDatas} />
                     ))}
                 </div>
 

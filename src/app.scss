@@ -1,0 +1,9 @@
+@use './var.scss';
+@use './reset.scss';
+@use './font.scss';
+
+body {
+    background-color: var.$background-color;
+    color: var.$second-color;
+    font-family: 'Lato', Verdana, sans-serif;
+}

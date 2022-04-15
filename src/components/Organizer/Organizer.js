@@ -10,7 +10,6 @@ import EventModal from '../../components/EventModal/EventModal'
 import { AuthenticationContext } from '../../context/authenticationContext';
 
 
-
 import '../../../node_modules/react-grid-layout/css/styles.css'
 import '../../../node_modules/react-resizable/css/styles.css'
 import './organizer.scss'
