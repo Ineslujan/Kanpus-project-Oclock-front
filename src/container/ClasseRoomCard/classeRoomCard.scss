@@ -3,8 +3,8 @@
 .classeroom-card{
     width: 250px;
     height: 150px;
-    border: 2px solid var.$primary-color;
-    background-color: var.$primary-color;
+    border: 2px solid var.$second-color;
+    background-color: var.$background-color;
     color: var.$second-color;
     border-radius: 5px;
     margin: 2% 1%;
@@ -14,15 +14,28 @@
 }
 
 .classeroom-create-button{
+    font-family: 'Lato', Verdana, sans-serif;
     width: 140px;
     margin-top: 7px;
     margin-bottom: 5px;
-    background-color: var.$primary-color;
-    border: none;
+    background-color: var.$background-color;
+    border: 2px solid var.$second-color;
     border-radius: 3px;
-    color: var.$second-color;
+    color: #F3F2F2;
     font-size: 15px;
-    padding:  7px 10px ;
+    padding: 7px 10px;
+    font-weight: bold;
+    position: fixed;
+    bottom: 30px;
+    right: 46%;
+    transition: all 0.3s;
+}
+
+.classeroom-create-button:hover{
+    color: var.$other-color;
+    border: 2px solid var.$other-color;
+    background-color: var.$background-color;
+    border-radius: 3px;
 }
 
 .classeroom-button{
@@ -52,4 +65,25 @@
     margin: 15px 10px;
     width: 65px;
     font-size: 20px;
+}
+
+.modal-icone-pen,.modal-icone-trash{
+    background-color: transparent;
+    filter: invert(98%) sepia(1%) saturate(247%) hue-rotate(244deg) brightness(115%) contrast(90%);
+    transition: all 0.3s;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+.modal-icone-pen:hover{
+    filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(101%) contrast(106%);
+    transform: scale(1.02);
+}
+.modal-icone-trash:hover{
+    filter: invert(11%) sepia(75%) saturate(6669%) hue-rotate(350deg) brightness(105%) contrast(94%);
+    transform: scale(1.02);
+}
+
+.classeroom-info{
+    font-weight:900;
 }

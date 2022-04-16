@@ -1,7 +1,14 @@
-$primary-color: #006ADB; // 
-$second-color:#F3F2F2; // font
-$other-color:#FF9700; // 
+// convert hexa to filter
+//  https://codepen.io/sosuke/pen/Pjoqqp
 
+
+$primary-color: #006ADB; //
+// filter: invert(33%) sepia(88%) saturate(6851%) hue-rotate(200deg) brightness(100%) contrast(102%);
+$second-color:#F3F2F2; // 
+// filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
+$other-color:#FF9700; // 
+// filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(101%) contrast(106%);
+$shadow-color: #f3f2f257;
 $background-color:#152242;
 
 $former-color1: #9C0D38;
@@ -15,3 +22,7 @@ $former-color8: #023618;
 
 $disabled-primary-color:rgb(198, 198, 198);
 $disabled-border-color:rgb(228, 228, 228);
+
+$trash-color: #ec1022;
+// filter: invert(11%) sepia(75%) saturate(6669%) hue-rotate(350deg) brightness(105%) contrast(94%);
+

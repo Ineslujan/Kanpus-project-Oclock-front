@@ -40,8 +40,8 @@ export default function Former() {
                 getStudents={getStudents} 
             />
 
-                <div className="trainee-create">
-                    <button className="trainer-create-button" onClick={setUpdate}>Créer un professeur</button>
+                <div className="former-create">
+                    <button className="former-create-button" onClick={setUpdate}>Créer un professeur</button>
                     {seeUpdateModal && <FormerForm updateModal={seeUpdateModal} setUpdateModal={setSeeUpdateModal}  setUpdate={setUpdate} allPromo={allPromo} getStudents={getStudents} /> }
                 </div>
 

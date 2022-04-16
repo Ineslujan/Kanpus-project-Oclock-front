@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import Close from '../../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 import './classeRoomForm.scss'
 
 export default function ClasseRoomForm({data, updateToggle, updateRoom}) {
@@ -34,7 +34,7 @@ export default function ClasseRoomForm({data, updateToggle, updateRoom}) {
                 <input className="classeroom-update-input" type="number" value={position} onChange={changePosition} />
                 <button className="classeroom-validate">Valider</button>    
                 <div className="classeroom-button-close">
-                    <button className="classeroom-close" onClick={updateToggle}>x</button>
+                    <button className="classeroom-close" onClick={updateToggle}><img src={Close} alt="close" class="classeroom-close-color" /></button>
                 </div>        
             </form>
         </div>

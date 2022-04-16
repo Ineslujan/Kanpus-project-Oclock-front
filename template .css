@@ -1,6 +1,4 @@
-@use '../../var.scss';
-
-.select-ispermanent-button{
+button {
     font-family: 'Lato', Verdana, sans-serif;
     width: 140px;
     margin-top: 7px;
@@ -12,10 +10,13 @@
     font-size: 15px;
     padding: 7px 10px;
     font-weight: bold;
-    margin: 0 auto;
+    transition-duration: 0.3s;
+
 }
 
-.trainee-create{
-    display: flex;
-    justify-content: center;
+button:hover{
+    color: var.$other-color;
+    border: 2px solid var.$other-color;
+    background-color: var.$background-color;
+    border-radius: 3px;
 }

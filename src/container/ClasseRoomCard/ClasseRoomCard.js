@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import ClasseRoomForm from './ClasseRoomForm/ClasseRoomForm';
-import Pen from '../../assets/images/pen.png';
-import Trash from '../../assets/images/trash.png';
+import Pen from '../../assets/images/icones-bags-svg/bi-pencil-fill.svg';
+import Trash from '../../assets/images/icones-bags-svg/bi-trash3-fill.svg';
 import { updatePlace, deletePlace } from '../../requests/placeRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
 
@@ -41,8 +41,8 @@ export default function ClasseRoomCard({ data, getDatas }) {
             <div className="classeroom-info">
                 {!deleteModal &&
                     <div className="classeroom-button">
-                        <button className="modal-icone" onClick={updateToggle}><img src={Pen} alt="pen"/></button> 
-                        <button className="modal-icone" onClick={deleteToggle}><img src={Trash} alt="trash" /></button>
+                        <button className="modal-icone-pen" onClick={updateToggle}><img src={Pen} alt="pen"/></button> 
+                        <button className="modal-icone-trash" onClick={deleteToggle}><img src={Trash} alt="trash" /></button>
                     </div>
                 }
                 {!deleteModal?

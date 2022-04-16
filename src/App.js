@@ -13,7 +13,7 @@ import MyCourse from './components/MyCourse/MyCourse';
 import Trainee from './components/Trainee/Trainee';
 import ClasseRoom from './components/ClasseRoom/ClasseRoom';
 import Former from './components/Former/Former';
-import Promos from './components/Promos/Promos'
+import Promos from './components/Promos/Promos';
 
 import Group from './components/Group/Group';
 

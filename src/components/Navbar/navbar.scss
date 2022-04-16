@@ -1,10 +1,37 @@
 @use '../../var.scss';
 
 .activeStyle{
-    text-decoration: underline;
-    color: red;
+
+    background-color: var.$primary-color;
+    font-size: 15px;
+    // border: 2px solid var.$other-color;
+    // box-shadow: 2.5px 1.25px 1.25px var.$shadow-color;
+    color: var.$other-color;
+    text-shadow: 0.5px 0.10px 0.10px var.$shadow-color;
+    border-radius: 20px;
 }
 
-.navlink{
-    margin-right: 10px;
+.navlink-add,.navlink-section{
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    background-color: var.$primary-color;
+    border: none;
+    
 }
+
+.navlink-add,.navlink-section,.activeStyle{
+    
+    padding:  8px 10px ;
+    width: 140px;
+    background-color: var.$background-color;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.create-event-color {
+    filter: invert(98%) sepia(1%) saturate(247%) hue-rotate(244deg) brightness(115%) contrast(90%);
+    
+}
+

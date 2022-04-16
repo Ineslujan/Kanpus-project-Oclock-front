@@ -6,7 +6,7 @@ import IdentityCard from '../../container/IdentityCard/IdentityCard';
 import PromoCreate from '../PromoCreate/PromoCreate';
 import { updatePromo, deletePromo } from '../../requests/promoRequest';
 
-import Pen from '../../assets/images/pen.png'
+import Pen from '../../assets/images/icones-bags-svg/bi-pen-fill.svg'
 
 import './promos.scss'
 
@@ -73,7 +73,7 @@ export default function Promos() {
                 {!seeUpdateInput ?
                 <>
                     <SelectedPromo selectedPromo={selectedPromo} setSelectedPromo={setSelectedPromo} allPromo={allPromo} setAllPromo={setAllPromo} getStudents={getStudents} />
-                    <button onClick={updateButton}> <img src={Pen} alt="pen" /></button>
+                    <button className="promo-icon-pen" onClick={updateButton}> <img src={Pen} alt="pen" /></button>
                 </>
                 :
                 <>

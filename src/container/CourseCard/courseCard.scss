@@ -5,20 +5,30 @@
     width: 80%;
 
     &-day {
-        color: var.$primary-color;
+        color: var.$second-color;
         margin-bottom: 1%;
-        font-size: 1.2em;
+        font-size: 2em;
         text-align: start;
+        font-weight: bold;
     }
 
     &-course {
         padding: 2%;
         padding-bottom: 4%;
-        background-color: var.$primary-color;
+        background-color: var.$background-color;
         color: var.$second-color;
         border-radius: 5px;
+        width: 70%;
+        border: 2px solid var.$second-color;
+        border-radius: 3px;
+        
     }
 
+}
+.mycourse-card-course:hover{
+    color: var.$other-color;
+    border-color: var.$other-color;
+    transform: scale(1.02);
 }
 
 .mycourse-card-former, .mycourse-card-date{
@@ -53,6 +63,8 @@
     align-items: center;
 }
 
+
 .name{
-    
+    font-weight: bold;
+    font-size: 2rem;
 }
