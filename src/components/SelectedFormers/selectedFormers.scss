@@ -3,7 +3,7 @@
 .select-ispermanent-button{
     font-family: 'Lato', Verdana, sans-serif;
     width: 140px;
-    margin-top: 7px;
+    margin-top: 10px;
     margin-bottom: 5px;
     background-color: var.$background-color;
     border: 2px solid var.$second-color;
@@ -12,10 +12,6 @@
     font-size: 15px;
     padding: 7px 10px;
     font-weight: bold;
-    margin: 0 auto;
+
 }
 
-.trainee-create{
-    display: flex;
-    justify-content: center;
-}

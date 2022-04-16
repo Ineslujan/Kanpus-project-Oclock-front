@@ -30,11 +30,11 @@ export default function ClasseRoomForm({data, updateToggle, updateRoom}) {
     <div className="class">
         <div className="classeroom-update-content">
             <form action="" onSubmit={handleSubmit}>
-                <input className="classeroom-update-input" type="text" value={name} onChange={changeName} />
-                <input className="classeroom-update-input" type="number" value={position} onChange={changePosition} />
+                <input className="classeroom-update-input-text" type="text" value={name} onChange={changeName} />
+                <input className="classeroom-update-input-position" type="number" value={position} onChange={changePosition} />
                 <button className="classeroom-validate">Valider</button>    
                 <div className="classeroom-button-close">
-                    <button className="classeroom-close" onClick={updateToggle}><img src={Close} alt="close" class="classeroom-close-color" /></button>
+                    <button className="classeroom-close" onClick={updateToggle}><img src={Close} alt="close" class="classeroom-close-icon" /></button>
                 </div>        
             </form>
         </div>
