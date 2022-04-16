@@ -17,7 +17,8 @@ export default function AddClassesFormPart1({
     editDatas,
     courseName,
     setCourseName,
-    eventId
+    eventId,
+    closePart1
 }) {
         const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
@@ -94,7 +95,7 @@ export default function AddClassesFormPart1({
     return (
         <>
             {closeFormPart1 ? 
-                <div className="data-open-container"onClick={()=> setCloseFormPart1(false)}>
+                <div className="data-open-container"onClick={closePart1}>
                     <button className="date-open" >{courseName}</button>
                     <button className="date-open" >{`${newStartDate.weekdayLong} ${newStartDate.day}  ${newStartDate.monthLong} ${newStartDate.year} ${startTime}`}</button>
                     <button className="date-open" >{`${newEndDate.weekdayLong} ${newEndDate.day} ${newEndDate.monthLong} ${newEndDate.year} ${endTime}`}</button>

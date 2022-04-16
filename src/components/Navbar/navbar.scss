@@ -1,8 +1,7 @@
 @use '../../var.scss';
 
 .activeStyle{
-    text-decoration: underline;
-    color: red;
+    color: var.$other-color;
 }
 
 .navlink{

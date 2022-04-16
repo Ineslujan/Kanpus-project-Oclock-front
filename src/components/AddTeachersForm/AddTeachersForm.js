@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { set } from 'react-hook-form';
 import './addTeachersForm.scss';
 
-export default function AddTeachersForm({ tabTeachers, teacher, setTeacher }) {
+export default function AddTeachersForm({ tabTeachers, teacher, setTeacher, tabTeachersAdded, setTabTeachersAdded }) {
   const [seeTeachers, setSeeTeachers] = useState(false);
-  const [tabTeachersAdded, setTabTeachersAdded] = useState([]);
+  
   const [teacherAvailable, setTeacherNoEvent] = useState([]);
   const [teacherNotAvailable, setTeacherNotAvailable] = useState([]);
 
@@ -21,12 +21,29 @@ export default function AddTeachersForm({ tabTeachers, teacher, setTeacher }) {
     console.log('teacherEvent2=>');
   }, [tabTeachers]);
 
+  useEffect(() => {
+//     if(tabTeachersAdded.length > 0) {
+
+//         tabTeachersAdded.array.forEach(element => {
+//             setTeacher([
+//                 ...teacher,
+//                 element.user_id,
+//                 ]);
+//         });
+        
+//     }
+  console.log('useEffect', tabTeachersAdded, teacher);
+  }, [])
+  
+
   const showAllTeachers = () => {
     setSeeTeachers(( seeTeachers ) => !seeTeachers);
     // console.log(tabTeachers);
   };
 
   const addTeacher = (item) => {
+
+    console.log("tabAdded", tabTeachersAdded, item, teacher);
     if (tabTeachersAdded.find((el) => el.user_id === item.user_id)) {
 
     } else {
@@ -34,13 +51,13 @@ export default function AddTeachersForm({ tabTeachers, teacher, setTeacher }) {
         ...teacher,
         item.user_id,
       ]);
-      console.log(item);
+      console.log('else',item);
       setTabTeachersAdded([
         ...tabTeachersAdded,
         item,
 
       ]);
-    //   console.log('teacherAdd2=>',tabTeachersAdded);
+      console.log('teacherAdd2=>',tabTeachersAdded);
     }
     setSeeTeachers(false);
   };

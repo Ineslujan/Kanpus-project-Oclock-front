@@ -44,8 +44,8 @@ export default function PromoCard({ data , getDatas}) {
             <div className="classeroom-info">
                 {!deleteModal &&
                     <div className="classeroom-button">
-                        <button className="modal-icone" onClick={updateToggle}><img src={Pen} alt="pen"/></button> 
-                        <button className="modal-icone" onClick={deleteToggle}><img src={Trash} alt="trash" /></button>
+                        <button className="modal-icone" onClick={updateToggle}><img className="white-img" src={Pen} alt="pen"/></button> 
+                        <button className="modal-icone" onClick={deleteToggle}><img className="white-img" src={Trash} alt="trash" /></button>
                     </div>
                 }
                 {!deleteModal?
