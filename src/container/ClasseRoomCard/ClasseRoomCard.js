@@ -54,8 +54,8 @@ export default function ClasseRoomCard({ data, getDatas }) {
                     <>
                         <p className="classeroom-confirmation">Voulez-vous vraiment supprimer cette salle ?</p>
                         <div className="classeroom-button-container">
-                        <button className="classeroom-confirmation-button" onClick={ () => deleteRoom(data.id) }>oui</button>
-                        <button className="classeroom-confirmation-button"  onClick={deleteToggle}>non</button></div>
+                        <button className="classeroom-confirmation-validate-button" onClick={ () => deleteRoom(data.id) }>oui</button>
+                        <button className="classeroom-confirmation-cancel-button"  onClick={deleteToggle}>non</button></div>
                     </>
                 }
             </div>

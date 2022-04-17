@@ -10,10 +10,10 @@
     margin: 0 5% 10%;
     cursor: pointer;
 
-}
-
-.identity:hover{
-    color: var.$other-color;
+    &:hover{
+        color: var.$other-color;
+    
+    }
 
 }
 

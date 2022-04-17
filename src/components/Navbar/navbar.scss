@@ -4,8 +4,6 @@
 
     background-color: var.$primary-color;
     font-size: 15px;
-    // border: 2px solid var.$other-color;
-    // box-shadow: 2.5px 1.25px 1.25px var.$shadow-color;
     color: var.$other-color;
     text-shadow: 0.5px 0.10px 0.10px var.$shadow-color;
     border-radius: 20px;
@@ -24,7 +22,7 @@
 .navlink-add,.navlink-section,.activeStyle{
     
     padding:  8px 10px ;
-    width: 140px;
+    // width: 140px;
     background-color: var.$background-color;
     font-size: 18px;
     font-weight: bold;

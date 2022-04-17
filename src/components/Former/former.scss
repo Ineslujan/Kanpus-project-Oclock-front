@@ -17,11 +17,12 @@
     bottom: 5%;
     right: 46%;
     transition-duration: 0.3s;
+
+    &:hover{
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+        border-radius: 3px;
+    }
 }
 
-.former-create-button:hover{
-    color: var.$other-color;
-    border: 2px solid var.$other-color;
-    background-color: var.$background-color;
-    border-radius: 3px;
-}

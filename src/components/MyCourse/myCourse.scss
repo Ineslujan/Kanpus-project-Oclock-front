@@ -21,9 +21,10 @@
     padding: 7px 10px;
     font-weight: bold;
     transition: all 0.3s;
+
+    &:hover{
+        color: var.$other-color;
+        border-color: var.$other-color;;
+    }
 }
 
-.pagination-mycourse-button:hover{
-    color: var.$other-color;
-    border-color: var.$other-color;;
-}

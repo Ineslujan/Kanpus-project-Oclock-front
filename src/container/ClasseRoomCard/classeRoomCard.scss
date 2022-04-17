@@ -57,17 +57,32 @@
     
 }
 
-.classeroom-confirmation-button{
-    background-color: var.$second-color;
-    border: none;
-    color: var.$primary-color;
+.classeroom-confirmation-validate-button, .classeroom-confirmation-cancel-button{
+    background-color: var.$background-color;
+    border: 1px solid var.$second-color;
+    color: var.$second-color;
     border-radius: 3px;
-    margin: 15px 10px;
+    margin: 3px;
+    padding: 3%;
     width: 65px;
     font-size: 20px;
 }
+.classeroom-confirmation-validate-button:hover{
+    color: var.$trash-color;
+    border: 1px solid var.$trash-color;
+    background-color: var.$background-color;
 
-.modal-icone-pen,.modal-icone-trash{
+}
+
+.classeroom-confirmation-cancel-button:hover{
+    color: var.$other-color;
+    border: 1px solid var.$other-color;
+    background-color: var.$background-color;
+
+}
+
+
+.modal-icone-pencil,.modal-icone-trash{
     background-color: transparent;
     filter: invert(98%) sepia(1%) saturate(247%) hue-rotate(244deg) brightness(115%) contrast(90%);
     transition: all 0.3s;
@@ -75,22 +90,20 @@
     transform-box: fill-box;
     margin-right: 0.5rem;
 }
-// .modal-icone-pen{
-//     margin-right: 0.5rem;
-// }
 
-.modal-icone-pen:hover{
+
+.modal-icone-pencil:hover{
     filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(101%) contrast(106%);
-    transform: scale(1.02);
+    
 }
 .modal-icone-trash:hover{
     filter: invert(11%) sepia(75%) saturate(6669%) hue-rotate(350deg) brightness(105%) contrast(94%);
-    transform: scale(1.02);
+    
     
 }
 
-.img-pencil:hover{
-    transform: scale(1.10);
+.img-pencil:hover,.img-trash:hover{
+    transform: scale(1.15);
 
 }
 
