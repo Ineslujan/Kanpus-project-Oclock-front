@@ -19,4 +19,5 @@ button:hover{
     border: 2px solid var.$other-color;
     background-color: var.$background-color;
     border-radius: 3px;
+    
 }

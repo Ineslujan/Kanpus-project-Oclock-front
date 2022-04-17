@@ -32,10 +32,24 @@
 .place-adress {
     width: 60%;
     height: 29px;
-    border: 2px solid var.$primary-color;
+    border: 1px solid var.$second-color;
+    background-color: var.$background-color;
     border-radius: 5px;
     font-size: 0.9em;
     color: var.$primary-color;
+    transition: 0.3sec;
+
+    &:focus{
+        border: 1.5px solid var.$other-color;
+        color: var.$other-color;
+    }
+
+    &:hover {
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+
+    }
 }
 
 // .place-form-select-container{
@@ -46,17 +60,25 @@
 //     align-items: center;
 // }
 
-.place-form-button{
+.place-form-button {
     width: 100%;
     height: 30px;
-    border: 2px solid var.$primary-color;
-    background-color: var.$primary-color;
+    font-weight: bold;
+    border: 2px solid var.$second-color;
+    background-color: var.$background-color;
     color: var.$second-color ;
     border-radius: 0;
+    transition: all 0.3sec;
+
     &:last-child{
         border-radius: 0 0 5px 5px ;
     }
 
+    &:hover {
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+    }
 }
 
 .disabled{
