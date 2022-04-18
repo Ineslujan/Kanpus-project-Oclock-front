@@ -3,6 +3,7 @@ import { requestTrainee } from '../../requests/addClassesFormRequest';
 import PromoCard from '../PromoCard/PromoCard';
 import PromoCreate from '../PromoCreate/PromoCreate';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import { getAllPromo } from '../../requests/traineeRequest';
 
 
 export default function Promos() {
@@ -12,12 +13,17 @@ export default function Promos() {
     const [createModal, setCreateModal] = useState(false);
 
         const getDatas = async () => {
-        const trainees = await requestTrainee(authentication.token);
-        if(trainees.status === 200){
-            setAllPromo(trainees.data)
-            // setSelectedPromo(trainees.data[0])
+        // const trainees = await requestTrainee(authentication.token);
+        // if(trainees.status === 200){
+        //     setAllPromo(trainees.data)
+        //     // setSelectedPromo(trainees.data[0])
 
+        // }
+        const allProm = await getAllPromo (authentication.token);
+        if(allProm.status ===200){
+            setAllPromo(allProm.data);
         }
+ 
     }
 
     // const getDatas = async () => {
@@ -45,7 +51,7 @@ export default function Promos() {
                 {createModal && <PromoCreate createModal={createModal} toggleCreateModal={toggleCreateModal} getDatas={getDatas} allPromo={allPromo} setAllPromo={setAllPromo} />}
                 
                 <div className="classeroom-create">
-                    <p className="classeroom-title">Lieux</p>
+                    <p className="classeroom-title">Promos</p>
                     <button className="classeroom-create-button" onClick={toggleCreateModal} >Créer une promo</button>
                 </div>
                 <div className="classeroom-content">

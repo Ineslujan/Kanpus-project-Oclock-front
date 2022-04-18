@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { addTrainee, getAllPromo, updateTrainee } from '../../requests/traineeRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import { uploadPic } from '../../requests/pictureRequest';
 
 export default function UserForm({ data, updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
@@ -18,6 +19,9 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
     const [email, setEmail] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
+    const [picture, setPicture] = useState();
+    const [showPicture, setShowPicture] = useState(false);
+    const [urlPicture, setUrlPicture] = useState();
 
     useEffect(() => {
         if(data){
@@ -74,7 +78,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-
+        console.log(firstname, lastname, Number(promoId), adress, phone, email, newPassword, confirmNewPassword ,"picture", picture)
         if(!data){
             const postDatas = async () => {
                 const datas = await addTrainee({
@@ -84,7 +88,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     address: adress,
                     phone_number: phone,
                     email: email,
-                    image: "phil.jpg",
+                    image: picture,
                     new_password: newPassword,
                     confirm_new_password: confirmNewPassword ,
                 }, authentication.token);
@@ -103,7 +107,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     address: adress,
                     phone_number: phone,
                     email: email,
-                    image: "thumbnail.png",
+                    image: picture,
                 }, authentication.token);
                 if(datas.status === 200){
                     getStudents();
@@ -115,8 +119,26 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
             update();
         }
         // console.log("test=>", firstname, lastname, promoId, adress, phone, email)
-        
-         
+    }
+
+    const uploadPicture = async () => {
+        console.log("picture",picture)
+        const fd = new FormData()
+        fd.append('sampleFile', picture);
+        const upload = await uploadPic (fd);
+        if(upload.status === 200){
+            console.log("ok pour l'image")
+            console.log(upload);
+            setPicture(upload.data.imageName)
+            setUrlPicture(upload.data.imageUrl);
+            setShowPicture(true);
+        }
+    }
+
+    const newPicture = (e) => {
+        e.preventDefault();
+        setPicture(e.target.files[0])
+       console.log("onchange",e.target.files[0]) 
     }
 
     return (
@@ -143,14 +165,15 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                             ))}
                             </select>
                         </div>
-                        {/* <div className="user-form-right-content">
-                            <label htmlFor="color">Couleur : 
-                            <input type="text" name="color" value={color} onChange={changeColor} />
-                            </label>
-                        </div> */}
+                     
                         <div className="user-form-right-content">
-                            <label htmlFor="adress">Adresse : </label>
-                            <input type="text" name="adress" value={adress} onChange={changeAdress} />
+                        {!showPicture ?
+                            <>
+                                <input type="file" name="sampleFile" onChange={newPicture}/>
+                                <button type="button" onClick={uploadPicture}>Uploader</button>
+                            </>
+                            :
+                            <img src={urlPicture} alt="avatar" />  }
                         </div>
                         <div className="user-form-right-content">
                             <label htmlFor="phone">Téléphone : </label>

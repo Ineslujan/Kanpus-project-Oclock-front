@@ -58,7 +58,9 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress, seeCl
                             {seePlace && placeNotAvailable.map((item, index) => (
                                 <button className="place-form-button disabled" key={index} value={item.id} onMouseEnter={()=> info(item)} onMouseLeave={leaveInfo}>{item.name}</button>
                             ))}
-                            {modaleInfoClasseRoom && <div className="info-classeroom">{modaleInfoItem.name}</div>}
+                            {modaleInfoClasseRoom && 
+                                <div className="info-classeroom">{modaleInfoItem.event.map((item) => `Salle prise par le cours :${item}`)}</div>
+                            }
                         </div>
                     </div>
                 </div>

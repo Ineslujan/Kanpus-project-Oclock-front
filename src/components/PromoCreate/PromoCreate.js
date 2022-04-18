@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import Modal from 'react-modal';
 import '../ClasseRoomAdd/classeRoomAdd.scss';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import { addPromo } from '../../requests/promoRequest';
 
 export default function PromoCreate({ createModal, toggleCreateModal, getDatas, allPromo }) {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
@@ -9,30 +10,29 @@ export default function PromoCreate({ createModal, toggleCreateModal, getDatas, 
     Modal.setAppElement(document.getElementById('root'));
 
     const [name, setName] = useState("");
-    const [allPositionNotAvailable, setAllPositionNotAvailable] = useState([]);
-    const [allNameNotAvailable, setAllNameNotAvailable] = useState([]);
-    const [newPosition, setNewPosition] = useState(5);
-    const [positionError, setPositionError] = useState(false);
     const [nameError, setNameError] = useState(false);
 
 
-    const changePosition = (e) => {
-        setNewPosition(e.target.value);
-    }
+    // const changePosition = (e) => {
+    //     setNewPosition(e.target.value);
+    // }
 
     const changeName = (e) => {
         setName(e.target.value);
+        console.log(e.target.value)
     }
     
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
+
         const postPlace = async () => {
-            const datas = await createPromo({
+            const datas = await addPromo({
               name: name
             }, authentication.token);
             if(datas.status === 200){
                 toggleCreateModal();
                 getDatas();
-                console.log("place", name );
+                console.log("promo", name );
             }
         }
         postPlace();

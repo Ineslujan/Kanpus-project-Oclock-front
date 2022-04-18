@@ -64,3 +64,4 @@ export async function getAllPromo(token) {
         return false;
     }
 };
+

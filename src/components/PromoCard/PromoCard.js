@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import Pen from '../../assets/images/icones-bags-svg/bi-pen-fill.svg';
 import Trash from '../../assets/images/icones-bags-svg/bi-trash3-fill.svg';
+import { DateTime } from "luxon";
 import { updatePromo, deletePromo } from '../../requests/promoRequest';
 import PromoForm from '../PromoForm/PromoForm';
 import { AuthenticationContext } from '../../context/authenticationContext';
@@ -28,6 +29,7 @@ export default function PromoCard({ data , getDatas}) {
        const datas = await deletePromo(id, authentication.token);
         if(datas.status===200){
              getDatas();
+             setDeleteModal(toggle => !toggle)
         }
     }
 
@@ -50,8 +52,8 @@ export default function PromoCard({ data , getDatas}) {
                 }
                 {!deleteModal?
                     <>
-                        <p className="classeroom-name">{data.promo}</p>
-                        <p className="classeroom-position"> Elèves : {data.trainee.length}</p>
+                        <p className="classeroom-name">{data.name}</p>
+                        <p className="classeroom-position">  {DateTime.fromISO(data.created_at).year}</p>
                     </>
                 :
                     <>

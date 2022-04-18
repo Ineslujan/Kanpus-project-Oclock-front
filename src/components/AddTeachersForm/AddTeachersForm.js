@@ -93,7 +93,7 @@ const leaveInfo = () => {
              {seeTeachers && teacherNotAvailable.map((item, index) => (
                 <button className="teacher-form-select-disabled" key={index} value={item.user_id} onMouseEnter={()=> info(item)} onMouseLeave={leaveInfo}>{item.firstname}  {item.lastname}</button>
                 ))}
-                {modaleInfoTeacher && <div className="info-teacher">{modaleInfo.firstname} {modaleInfo.lastname}</div>}
+                {modaleInfoTeacher && <div className="info-teacher">{modaleInfo.event.map((item) => item)}</div>}
         </div>
         <div className="teacher-selected-container">
             {tabTeachersAdded && tabTeachersAdded.map((item, index) => (

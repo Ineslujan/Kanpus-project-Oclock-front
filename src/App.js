@@ -23,7 +23,8 @@ function App() {
 
     return (
         <div className="App">
-            <Header />
+            
+            {authentication.logged && <Header />}
             <Routes>
                 <Route path='/' element={<Connexion />} />
                 <Route path='/add' element={<AddClasses />} />
@@ -34,6 +35,8 @@ function App() {
                 <Route path='/places' element={<ClasseRoom />} />
                 <Route path='/former' element={<Former />} />
                 <Route path='/promos' element={<Promos />} />
+             
+                
             </Routes>
         </div>
     );

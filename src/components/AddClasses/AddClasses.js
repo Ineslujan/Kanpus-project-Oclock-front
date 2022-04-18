@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthenticationContext } from '../../context/authenticationContext';
-
+import { DateTime } from "luxon";
 import AddClassesFormPart1 from '../AddClassesFormPart1/AddClassesFormPart1';
 import AddClassesMenu from '../AddClassesMenu/AddClassesMenu';
 import AddPlaceForm from '../AddPlaceForm/AddPlaceForm';
@@ -54,16 +54,19 @@ export default function AddClasses() {
         if(location.state){
             const {myData} = location.state
             // console.log("addclasse=>",myData);
-            // console.log(new Date(myData.start_date));
+            console.log("date=>", DateTime.fromJSDate(new Date(myData.start_date)).hour);
+            console.log("date=>", DateTime.fromJSDate(new Date(myData.start_date)).minute);
             // console.log("addclasseTrainee",myData.trainee);
             
-            setEventId(myData.event_id)
+            setEventId(myData.event_id);
             setEquipment(myData.equipment);
             setCourseName(myData.name);
             setStartDate(new Date(myData.start_date));
             setEndDate(new Date(myData.end_date));
+            setStartTime(`${DateTime.fromJSDate(new Date(myData.start_date)).toUTC().hour}:${DateTime.fromJSDate(new Date(myData.start_date)).minute}${DateTime.fromJSDate(new Date(myData.start_date)).minute === 0 &&"0"}`);
+            setEndTime(`${DateTime.fromJSDate(new Date(myData.end_date)).toUTC().hour}:${DateTime.fromJSDate(new Date(myData.end_date)).minute}`);
             setRole(myData.role);
-            setNote(myData.note)
+            setNote(myData.note);
 
             const getDatas = async () => {
                 // console.log('je passe ici', myData.former);

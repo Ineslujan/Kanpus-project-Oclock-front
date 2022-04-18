@@ -21,7 +21,9 @@ export default function ConnexionForm() {
                 console.log(datas)
                 setAuthentication({
                     role: datas.data.user.role,
-                    token: datas.headers.authorization
+                    token: datas.headers.authorization,
+                    user: datas.data.user,
+                    logged: datas.data.logged
                 })
                 datas.data.user.role === "trainee" && navigate("/mycourse")
                 datas.data.user.role === "former" && navigate("/organizer")
@@ -39,7 +41,7 @@ export default function ConnexionForm() {
     <form className="connexion-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="connexion-form-container">
             <label htmlFor="connexion-email" className="connexion-form-label">Email :</label> <br/>
-            <input type="text" className="connexion-form-input" value="admin@gmail.com" {...register("email", { required: true })} /> <br/>
+            <input type="text" className="connexion-form-input" value="admin2@gmail.com" {...register("email", { required: true })} /> <br/>
             {errors.email && <span>Vous devez rentrer un email pour vous connecter</span>}
         </div>
         <div className="connexion-form-container">
