@@ -2,7 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { addTrainee, getAllPromo, updateTrainee } from '../../requests/traineeRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
+import svgPepole from '../../assets/images/icones-bags-svg/bi-people-fill.svg';
+import svgEnvelope from '../../assets/images/icones-bags-svg/bi-envelope-fill.svg';
+import svgMarker from '../../assets/images/icones-bags-svg/majesticons-map-marker-area.svg';
+import svgPhone from '../../assets/images/icones-bags-svg/bi-telephone-fill.svg';
+import svgMortarboard from '../../assets/images/icones-bags-svg/bi-mortarboard-fill.svg';
 import './userForm.scss'
+
 
 export default function UserForm({ data, updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
@@ -124,58 +131,66 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
 
         <Modal
         isOpen={updateModal}
+        className='Modal'
+        overlayClassName='Overlay'
         >
             <div className="user-form">
                 <div className="modal-button-close">
-                    <button className="close" onClick={setUpdate}>x</button>
+                    <button onClick={setUpdate}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
-                <form action="" onSubmit={handlerSubmit}>
-                    <div className="user-form-name-container">
-                        <input type="text" value={firstname} onChange={changeFirstName} />
-                        <input type="text" value={lastname} onChange={changeLastName} />
-                    </div>
-                    <div className="user-form-main-container">
+                <div className="form-wrapper">
+                <form className='user-form-content' action="" onSubmit={handlerSubmit}>
+                    
+
                         <div className="user-form-right-content">
-                            <label htmlFor="promo" >Promo : </label>
+                            <label htmlFor="promo" ><img src={svgPepole} alt="Pepole" /></label>
+                            <input type="text" placeholder="Prénom" value={firstname} onChange={changeFirstName} />
+                        </div>
+                        <div className="user-form-right-content">
+                            <label htmlFor="promo" ><img src={svgPepole} alt="Pepole" /></label>
+                            <input type="text" placeholder="Nom" value={lastname} onChange={changeLastName} />
+                        </div>
+                        <div className="user-form-right-content">
+                            <label htmlFor="promo" ><img src={svgMortarboard} alt="Mortarboard" /></label>
                             <select name="promo" id="promo_user" onChange={changePromo}>
-                                <option key={'jdfjdjkfdjdf'} className="studends-list" value={promoId}>{promo}</option>
+                                <option key={'promo_option'} className="studends-list" value={promoId}>{promo}</option>
                             {getPromos && getPromos.map((item,index)=> (
                                 <option key={index} className="studends-list" value={item.id}>{item.name}</option>
                             ))}
                             </select>
                         </div>
-                        {/* <div className="user-form-right-content">
-                            <label htmlFor="color">Couleur : 
-                            <input type="text" name="color" value={color} onChange={changeColor} />
-                            </label>
-                        </div> */}
                         <div className="user-form-right-content">
-                            <label htmlFor="adress">Adresse : </label>
-                            <input type="text" name="adress" value={adress} onChange={changeAdress} />
+                            <label htmlFor="adress"><img src={svgMarker} alt="Marker" /></label>
+                            <input type="text" placeholder="Adresse" name="adress" value={adress} onChange={changeAdress} />
                         </div>
                         <div className="user-form-right-content">
-                            <label htmlFor="phone">Téléphone : </label>
-                            <input type="text" name="phone" value={phone} onChange={changePhone} />
+                            <label htmlFor="phone"><img src={svgPhone} alt="Phone" /></label>
+                            <input type="text" placeholder="Téléphone" name="phone" value={phone} onChange={changePhone} />
                         </div>
                         <div className="user-form-right-content">
-                            <label htmlFor="email">Email : </label>
-                            <input type="text" name="email" value={email} onChange={changeEmail} />
+                            <label htmlFor="email"><img src={svgEnvelope} alt="Envelope" /></label>
+                            <input type="text" placeholder="Email" name="email" value={email} onChange={changeEmail} />
                         </div>
                         {!data &&
-                            <div className="user-form-right-content">
-                                <div className="user-form-password">
-                                    <label htmlFor="email">Mot de passe : </label>
-                                    <input type="text" name="email" value={newPassword} onChange={changeNewPassword} />
-
-                                    <label htmlFor="email">Confirmez le mot de passe : </label>
-                                    <input type="text" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+                            <>
+                                <div className="user-form-right-content">
+                                    <label htmlFor="email"><img src={svgPepole} alt="password" /></label>
+                                    <input type="text" placeholder="Mot de pass" name="email" value={newPassword} onChange={changeNewPassword} />
                                 </div>
-                            </div>
+                                <div className="user-form-right-content">
+                                    <label htmlFor="email"><img src={svgPepole} alt="password" /></label>
+                                    <input type="text" placeholder="Confirmez le mot de passe" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+                                </div>
+                            </>
+
+
+                            
                         }
 
-                        <button>valider</button>
-                    </div>
+                        <button className='trainee-confirmation-validate-button'>valider</button>
+                    
                 </form>
+                </div>
             
             </div>
         </Modal>
