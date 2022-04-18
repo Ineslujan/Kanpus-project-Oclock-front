@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { addTrainee, getAllPromo, updateTrainee } from '../../requests/traineeRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import './userForm.scss'
 
 export default function UserForm({ data, updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);

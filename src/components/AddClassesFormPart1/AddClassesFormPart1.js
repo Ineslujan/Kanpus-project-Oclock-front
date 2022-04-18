@@ -104,12 +104,12 @@ export default function AddClassesFormPart1({
                     <div className="create-date-form-container">
                         <label htmlFor="create-date-name" className="create-date-name-label">nom du cours</label>
                         <input type="text" className="create-date-form-input" value={courseName} onChange={changeName} />
-                    </div>
-
+                    </div>   
                     <label htmlFor="create-date-name" className="create-date-name-label">choisissez une date</label>
-                    <PickDate startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} />
+                    <div className="calendar-datepicker">                        
+                        <PickDate startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} />                                              
+                    </div>
                     <label htmlFor="create-date-name" className="create-date-name-label">horaires</label>
-
                     <div className="create-date-form-time-container">
                         {showStartTimePicker ? <TimePicker time={startTime} setTime={setStartTime} setShowPicker={setShowStartTimePicker} /> : <button className="date-time-button" onClick={()=> setShowStartTimePicker(true)}>{startTime}</button> }
                         {showEndTimePicker ? <TimePicker  time={endTime} setTime={setEndTime} setShowPicker={setShowEndTimePicker} /> : <button className="date-time-button"  onClick={()=> setShowEndTimePicker(true)}>{endTime}</button> }

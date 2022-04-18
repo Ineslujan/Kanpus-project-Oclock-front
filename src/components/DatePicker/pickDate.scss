@@ -1,7 +1,7 @@
 @use '../../var.scss';
 
 .react-datepicker__header{
-    background-color: var.$primary-color ;
+    background-color: var.$background-color ;
     
 }
 
@@ -11,11 +11,54 @@
 
 
 .react-datepicker__day--keyboard-selected{
+    background-color: var.$other-color;
 } 
 
 .react-datepicker__day--today{
     background-color: transparent;
-    color: black;
-    border-radius: 50%;
-    border: 2px solid var.$primary-color
+
+
+}
+
+.react-datepicker__day--range-end {
+    background-color: var.$other-color;
+    font-size: bold;
+    &:hover{
+        border: 1px solid var.$other-color;
+        background-color: transparent;
+        color: black;
+    }
+}
+
+.react-datepicker__day--range-start{
+    background-color: var.$other-color;
+    &:hover{
+        border: 1px solid var.$other-color;
+        background-color: transparent;
+        color: black;
+    }
+}
+
+
+.react-datepicker__day--in-range {
+    background-color: var.$other-color;
+    &:hover{
+        border: 1px solid var.$other-color;
+        background-color: transparent;
+        color: black;
+    }
+}
+
+
+.react-datepicker__day--today:hover{
+    border: 1px solid var.$other-color;
+}
+
+.react-datepicker__day--in-selecting-range-start{
+    background-color: var.$other-color;
+
+}
+
+.react-datepicker__year-text--in-selecting-range{
+    background-color: var.$other-color;
 }

@@ -6,8 +6,13 @@ body {
     background-color: var.$background-color;
     color: var.$second-color;
     font-family: 'Lato', Verdana, sans-serif;
+    margin-top: 60px;
+    z-index: -1;
+
 }
 
+.navbar-container {
+    z-index: 9;
 
-
+}
 

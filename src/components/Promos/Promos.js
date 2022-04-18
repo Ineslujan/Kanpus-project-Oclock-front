@@ -6,9 +6,9 @@ import IdentityCard from '../../container/IdentityCard/IdentityCard';
 import PromoCreate from '../PromoCreate/PromoCreate';
 import { updatePromo, deletePromo } from '../../requests/promoRequest';
 
-import Pen from '../../assets/images/icones-bags-svg/bi-pen-fill.svg'
+import Pen from '../../assets/images/icones-bags-svg/bi-pen-fill.svg';
 
-import './promos.scss'
+import './promos.scss';
 
 
 export default function Promos() {

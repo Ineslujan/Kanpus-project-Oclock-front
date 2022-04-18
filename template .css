@@ -21,3 +21,16 @@ button:hover{
     border-radius: 3px;
     
 }
+
+.create-date-form-input {
+    margin: 0.5% 0 2%;
+    width: 25%;
+    padding: 0.5% 1%;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: 1.5px solid #F3F2F2;
+    background-color: #152242;
+    caret-color: #F3F2F2;
+    color: #F3F2F2;
+    font-weight: bold;
+}

@@ -29,6 +29,10 @@
     position: relative;
 }
 
+.calendar-datepicker{
+    margin-top: 0.5% 0.2%;
+    padding: 0.5% 1%;
+}
 
 .create-date-form{
     margin-top: 1%;
@@ -39,6 +43,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 0.8%;
 }
 
 .create-date-form-input{

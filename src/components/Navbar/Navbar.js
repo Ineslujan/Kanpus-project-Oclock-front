@@ -26,6 +26,10 @@ export default function Navbar() {
                 className={({ isActive }) => isActive ? activeClassName : "navlink-section"}
             >Stagiaires</NavLink>
             <NavLink
+                to="/former"
+                className={({ isActive }) => isActive ? activeClassName : "navlink-section"}
+            >Formateurs</NavLink>
+            <NavLink
                 to="/places"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-section"}
             >Lieux</NavLink>
@@ -37,10 +41,7 @@ export default function Navbar() {
                 to="/groupes"
                 className={({ isActive }) => isActive ? activeClassName : "navlink"}
             >Groupes</NavLink> */}
-            <NavLink
-                to="/former"
-                className={({ isActive }) => isActive ? activeClassName : "navlink-section"}
-            >Formateurs</NavLink>
+            
         </div>
     )
 }
