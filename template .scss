@@ -11,17 +11,36 @@ button {
     padding: 7px 10px;
     font-weight: bold;
     transition-duration: 0.3s;
-
-}
-
-button:hover{
-    color: var.$other-color;
-    border: 2px solid var.$other-color;
-    background-color: var.$background-color;
-    border-radius: 3px;
     
+    &:hover{
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+        border-radius: 3px;
+        
+    }
+
 }
 
+
+
+.classeroom-confirmation-validate-button, .classeroom-confirmation-cancel-button{
+    background-color: var.$background-color;
+    border: 1px solid var.$second-color;
+    color: var.$second-color;
+    border-radius: 3px;
+    margin: 3px;
+    padding: 3%;
+    width: 65px;
+    font-size: 20px;
+}
+
+.classeroom-confirmation-validate-button:hover{
+    color: var.$trash-color;
+    border: 1px solid var.$trash-color;
+    background-color: var.$background-color;
+
+}
 .create-date-form-input {
     margin: 0.5% 0 2%;
     width: 25%;
