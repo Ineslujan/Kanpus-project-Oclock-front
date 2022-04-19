@@ -8,7 +8,7 @@
     right: 0px; // mobil 40px
     bottom: 0px; // mobil 40px
     padding: 2rem;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: var.$background-color;
 }
 
@@ -22,7 +22,12 @@
       
   }
 
+  .user-form-avatar{
+     display: none;
+  }
+
   .user-form-content{
+      margin-top: 20px;
     width: 100%; 
       display: flex;
       justify-content: center;
@@ -33,27 +38,44 @@
   
 
   .modal-button-close button{
-   background-color: transparent;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    filter: invert(11%) sepia(92%) saturate(3810%) hue-rotate(331deg) brightness(88%) contrast(98%);
   }
 
-  .modal-button-close img{
-    
-    filter: invert(11%) sepia(92%) saturate(3810%) hue-rotate(349deg) brightness(124%) contrast(98%)
-   }
+ 
 
 
   .user-form-right-content{
-    margin: 0.5rem; 
+    margin-bottom: 1rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       flex-direction: row; 
   }
+.user-form-upload-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+}
 
 
-  .user-form-right-content img{
-    width: 100px;
+  .user-form-icone{
+    width: 30px;
     filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
+   }
+.user-from-file{
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+   .user-form-upload{
+    
+   // margin-left: 0.5rem;
+     filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
    }
 
 .trainee-confirmation-validate-button{
@@ -89,10 +111,17 @@
     color: var.$second-color;
     display: flex;
     align-items: center;
-    
-
-
 }
+
+.user-form-right-content label button{
+background: transparent;
+}
+
+.user-form-right-content label button img{
+
+    filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
+}
+
 
 .user-form-right-content input{
 
@@ -141,8 +170,27 @@
 
 @media (min-width: 800px) {
 
+    .user-form-avatar{
+
+        display: block;
+        border: 2px solid var.$other-color;
+        position: fixed;
+        top: 100px;
+        left: calc(15% + 30px);
+      width: 160px; 
+    }
+
+    .modal-button-close button{
+     position: fixed;
+     top: 60px;
+     right: calc(15% + 20px);
+     background-color: transparent;
+     filter: invert(11%) sepia(92%) saturate(3810%) hue-rotate(331deg) brightness(88%) contrast(98%);
+  
+    }
+
     .user-form-right-content{
-        margin: 0.8rem; 
+        margin: 0.7rem; 
      
       }
 
@@ -159,15 +207,15 @@
 
 
     .user-form-content{
-        width: 30%; // mobil
+        width: 60%;
         display: flex;
         justify-content: center;
         flex-direction: column;
     }
     .Modal{
-    top: 100px; // mobil 100px
-    left: 40px; // mobil 40px
-    right: 40px; // mobil 40px
+    top: 40px; // mobil 100px
+    left: 15%; // mobil 40px
+    right: 15%; // mobil 40px
     bottom: 40px; // mobil 40px
     }
 
@@ -177,13 +225,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var.$second-color;
+    background-color: rgba(104, 104, 104, 0.507);
+    z-index: 10;
   }
 }
 
-@media (min-width: 1310px) {
-    .user-form-right-content{
-       margin: 0rem;
+// @media (min-width: 1310px) {
+//     .user-form-right-content{
+//        margin: 0rem;
      
-      }
-}
+//       }
+//}

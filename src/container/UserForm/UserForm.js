@@ -9,6 +9,8 @@ import svgMarker from '../../assets/images/icones-bags-svg/majesticons-map-marke
 import svgPhone from '../../assets/images/icones-bags-svg/bi-telephone-fill.svg';
 import svgMortarboard from '../../assets/images/icones-bags-svg/bi-mortarboard-fill.svg';
 import svgPassword from '../../assets/images/icones-bags-svg/RiLockPasswordFill.svg';
+import svgImage from '../../assets/images/icones-bags-svg/bi-person-bounding-box.svg';
+import svgUpload from '../../assets/images/icones-bags-svg/IcRoundFileUpload.svg';
 import './userForm.scss'
 
 import { uploadPic } from '../../requests/pictureRequest';
@@ -169,15 +171,15 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     
 
                         <div className="user-form-right-content">
-                            <label htmlFor="promo" ><img src={svgPepole} alt="Pepole" /></label>
+                            <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
                             <input type="text" placeholder="Prénom" value={firstname} onChange={changeFirstName} />
                         </div>
                         <div className="user-form-right-content">
-                            <label htmlFor="promo" ><img src={svgPepole} alt="Pepole" /></label>
+                            <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
                             <input type="text" placeholder="Nom" value={lastname} onChange={changeLastName} />
                         </div>
                         <div className="user-form-right-content">
-                            <label htmlFor="promo" ><img src={svgMortarboard} alt="Mortarboard" /></label>
+                            <label htmlFor="promo" ><img className="user-form-icone" src={svgMortarboard} alt="Mortarboard" /></label>
                             <select name="promo" id="promo_user" onChange={changePromo}>
                                 <option key={'promo_option'} className="studends-list" value={promoId}>{promo}</option>
                             {getPromos && getPromos.map((item,index)=> (
@@ -186,31 +188,42 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                             </select>
                         </div>
                         <div className="user-form-right-content">
-                            <label htmlFor="adress"><img src={svgMarker} alt="Marker" /></label>
+                            <label htmlFor="adress"><img className="user-form-icone" src={svgMarker} alt="Marker" /></label>
                             <input type="text" placeholder="Adresse" name="adress" value={adress} onChange={changeAdress} />
                      </div>
-                        <div className="user-form-right-content">
+                        
                         {!showPicture ?
                             <>
-                                <input type="file" name="sampleFile" onChange={newPicture}/>
-                                <button type="button" onClick={uploadPicture}>Uploader</button>
+                            <div className="user-form-right-content">
+                            <label htmlFor="adress"><img className="user-form-icone" src={svgImage} alt="Marker" /></label>
+                            <div className="user-form-upload-wrapper">
+            
+                                <input className="user-from-file" type="file" name="sampleFile" onChange={newPicture}/>
+                                <button className="user-form-upload" type="button" onClick={uploadPicture}>
+                                    <img  src={svgUpload} alt="upload" />
+                                </button>
+                                </div>
+                                </div>
                             </>
                             :
-                            <img src={urlPicture} alt="avatar" />  }
-                        </div>
+                            
+                            <img className="user-form-avatar" src={urlPicture} alt="avatar" /> 
+                            
+                             }
+                        
                
                         <div className="user-form-right-content">
-                            <label htmlFor="phone"><img src={svgPhone} alt="Téléphone" /> </label>
+                            <label htmlFor="phone"><img className="user-form-icone" src={svgPhone} alt="Téléphone" /> </label>
                             <input type="text" name="phone" value={phone} onChange={changePhone} />
                         </div>
                         <div className="user-form-right-content">
-                            <label htmlFor="email"><img src={svgEnvelope} alt="Envelope" /></label>
+                            <label htmlFor="email"><img className="user-form-icone" src={svgEnvelope} alt="Envelope" /></label>
                             <input type="text" placeholder="Email" name="email" value={email} onChange={changeEmail} />
                         </div>
                         {!data &&
                             <>
                                 <div className="user-form-right-content">
-                                    <label htmlFor="email"><img src={svgPassword} alt="password" /></label>
+                                    <label htmlFor="email"><img className="user-form-icone" src={svgPassword} alt="password" /></label>
                                     <input type="text" placeholder="Mot de pass" name="email" value={newPassword} onChange={changeNewPassword} />
                                 </div>
                                 <div className="user-form-right-content">
