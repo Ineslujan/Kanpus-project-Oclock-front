@@ -27,7 +27,10 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
         if(data){
             setFirstname(data.firstname);
             setLastname(data.lastname);
-            setPromoId(data.promo_id)
+            setPicture(data.image);
+            setShowPicture(true);
+            setUrlPicture(data.image);
+            setPromoId(data.promo_id);
             setPromo(data.promo);
             setAdress(data.address);
             setPhone(data.phone_number);
@@ -125,7 +128,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
         console.log("picture",picture)
         const fd = new FormData()
         fd.append('sampleFile', picture);
-        const upload = await uploadPic (fd);
+        const upload = await uploadPic (fd, authentication.token);
         if(upload.status === 200){
             console.log("ok pour l'image")
             console.log(upload);
@@ -174,6 +177,10 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                             </>
                             :
                             <img src={urlPicture} alt="avatar" />  }
+                        </div>
+                        <div className="user-form-right-content">
+                            <label htmlFor="adress">Adresse : </label>
+                            <input type="text" name="adress" value={adress} onChange={changeAdress} />
                         </div>
                         <div className="user-form-right-content">
                             <label htmlFor="phone">Téléphone : </label>
