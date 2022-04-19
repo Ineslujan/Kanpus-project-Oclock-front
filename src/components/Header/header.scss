@@ -1,9 +1,18 @@
 @use '../../var.scss';
 
-.navbar-container{
+.navbar {
+    width: 100%;
+    position: fixed;
+    display: flex;
     border-bottom: 3px solid var.$primary-color ;
     height: 60px;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    background-color: var.$background-color;
+    z-index: 9;
+
+    &-container{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
 }

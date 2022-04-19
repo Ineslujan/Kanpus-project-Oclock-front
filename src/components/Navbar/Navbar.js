@@ -3,16 +3,17 @@ import { NavLink } from "react-router-dom";
 
 import './navbar.scss';
 
-export default function Navbar() {
+export default function Navbar({ isOpen }) {
 
     let activeClassName = "navlink activeStyle"
+    console.log("grrr",isOpen);
 
     return (
-        <div className="navbar-container-link">
+        <div className={isOpen ? "navbar-container-link open" : "navbar-container-link"}>
             <NavLink
                 to="/add"
                 className={({ isActive }) => isActive ? activeClassName : "navlink"}
-            >+</NavLink>
+            >{isOpen ? "Créer un cours" : "+"}</NavLink>
             <NavLink
                 to="/organizer"
                 className={({ isActive }) => isActive ? activeClassName : "navlink"}
@@ -26,6 +27,10 @@ export default function Navbar() {
                 className={({ isActive }) => isActive ? activeClassName : "navlink"}
             >Stagiaires</NavLink>
             <NavLink
+                to="/former"
+                className={({ isActive }) => isActive ? activeClassName : "navlink"}
+            >Formateurs</NavLink>
+            <NavLink
                 to="/places"
                 className={({ isActive }) => isActive ? activeClassName : "navlink"}
             >Lieux</NavLink>
@@ -37,10 +42,6 @@ export default function Navbar() {
                 to="/groupes"
                 className={({ isActive }) => isActive ? activeClassName : "navlink"}
             >Groupes</NavLink> */}
-            <NavLink
-                to="/former"
-                className={({ isActive }) => isActive ? activeClassName : "navlink"}
-            >Formateurs</NavLink>
         </div>
     )
 }
