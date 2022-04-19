@@ -21,7 +21,9 @@ export default function ConnexionForm() {
                 console.log(datas)
                 setAuthentication({
                     role: datas.data.user.role,
-                    token: datas.headers.authorization
+                    token: datas.headers.authorization,
+                    user: datas.data.user,
+                    logged: datas.data.logged
                 })
                 datas.data.user.role === "trainee" && navigate("/mycourse")
                 datas.data.user.role === "former" && navigate("/organizer")

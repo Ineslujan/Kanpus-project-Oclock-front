@@ -1,5 +1,189 @@
 @use '../../var.scss';
 
-.user-form{
+.Modal{
+    position: fixed;
+    z-index: 50;
+    top: 0px; // mobil 100px
+    left: 0px; // mobil 40px
+    right: 0px; // mobil 40px
+    bottom: 0px; // mobil 40px
+    padding: 2rem;
+    border-radius: 3px;
+    background-color: var.$background-color;
+}
+
+
+  .form-wrapper{
+      display: flex;
+      
+      align-items: center;
+      
+      justify-content: flex-start;
+      
+  }
+
+  .user-form-content{
+    width: 100%; 
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      
+  }
+
+  
+
+  .modal-button-close button{
+   background-color: transparent;
+  }
+
+  .modal-button-close img{
     
+    filter: invert(11%) sepia(92%) saturate(3810%) hue-rotate(349deg) brightness(124%) contrast(98%)
+   }
+
+
+  .user-form-right-content{
+    margin: 0.5rem; 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row; 
+  }
+
+
+  .user-form-right-content img{
+    width: 100px;
+    filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
+   }
+
+.trainee-confirmation-validate-button{
+  
+    font-family: 'Lato', Verdana, sans-serif;
+  
+    background-color: var.$background-color;
+    border: 2px solid var.$second-color;
+    border-radius: 3px;
+    color: #F3F2F2;
+    font-size: 15px;
+    padding: 7px 10px;
+    font-weight: bold;
+    transition-duration: 0.3s;
+    margin: 1rem auto;
+
+    &:hover{
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+        
+    }
+  
+}
+
+.user-form-right-content label{
+    width: 15%;
+    font-family: 'Lato', Verdana, sans-serif;
+    font-weight: bold;
+
+    margin-right: 1rem;
+    margin-bottom: 0.1rem; //mobil
+    color: var.$second-color;
+    display: flex;
+    align-items: center;
+    
+
+
+}
+
+.user-form-right-content input{
+
+
+ display: flex;
+ 
+}
+
+.user-form-right-content input{
+
+    background-color: var.$background-color;
+    color: var.$second-color;
+    border: 1.5px solid var.$second-color;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 85%;
+    
+    
+
+    &:focus{
+        border: 1.5px solid var.$other-color;
+        color: var.$other-color;
+    }
+}
+
+.user-form-right-content select{
+
+    background-color: var.$background-color;
+    color: var.$second-color;
+    border: 1.5px solid var.$second-color;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 85%;
+    
+    
+    
+
+    &:focus{
+        border: 1.5px solid var.$other-color;
+        color: var.$other-color;
+    }
+}
+
+
+@media (min-width: 800px) {
+
+    .user-form-right-content{
+        margin: 0.8rem; 
+     
+      }
+
+      .user-form-right-content label{
+        width: 10%;
+     
+      }
+
+    .form-wrapper{
+        
+    justify-content: center;
+    flex-wrap: wrap;
+    }
+
+
+    .user-form-content{
+        width: 30%; // mobil
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .Modal{
+    top: 100px; // mobil 100px
+    left: 40px; // mobil 40px
+    right: 40px; // mobil 40px
+    bottom: 40px; // mobil 40px
+    }
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var.$second-color;
+  }
+}
+
+@media (min-width: 1310px) {
+    .user-form-right-content{
+       margin: 0rem;
+     
+      }
 }

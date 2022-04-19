@@ -19,8 +19,6 @@ export default function ItemStudentsMenu({ showStudents, selectedStudents, tabSe
     // }
 
     const addStudent = (item) => {
-
-        
         if(tabSelectedStudents.find(el => el.id === item.id)){
             console.log('if')
      
@@ -29,16 +27,23 @@ export default function ItemStudentsMenu({ showStudents, selectedStudents, tabSe
             setTabSelectedStudents([
                 ...tabSelectedStudents, 
                 item
-                
             ])
             console.log(tabSelectedStudents);
         }
     }
+
+    const addAllStudents = () => {
+        setTabSelectedStudents(selectedStudents);
+    }
+
+    
   return (
     <div className="students-menu-container">
-        <button  className="studends-list-add-all">Ajoutez tous</button>
-        {showStudents && selectedStudents.map((item,index)=> (
+        <button  className="studends-list-add-all" onClick={addAllStudents}>Ajoutez tous</button>
+        {selectedStudents.map((item,index)=> ( 
+        
                 <button key={index} className="studends-list" onClick={()=>addStudent(item)}>{item.firstname} {item.lastname}</button>
+            
         ))}
     </div>
   )
