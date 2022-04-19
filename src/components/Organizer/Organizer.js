@@ -1,10 +1,9 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { DateTime } from "luxon";
-import axios from 'axios';
 
 import { getPlacesOrganizer, getEventsOrganizer, getSettings } from '../../requests/aboutOrganizer';
-import { ajustX, defineCardWidth, calculateXPos } from './cards/cardPlacement';
+import { defineCardWidth, calculateXPos } from './cards/cardPlacement';
 import { handleWeekend } from './cards/handleWeekend';
 import useWindowDimensions from '../../customHooks/getWindowDimensions';
 import GridLayout from "react-grid-layout";
@@ -12,9 +11,10 @@ import { v4 as uuid } from 'uuid';
 import EventModal from '../../components/EventModal/EventModal'
 import { AuthenticationContext } from '../../context/authenticationContext';
 
-
 import '../../../node_modules/react-grid-layout/css/styles.css'
 import '../../../node_modules/react-resizable/css/styles.css'
+import leftArrow from '../../assets/images/icones-bags-svg/bi-arrow-left-square-fill.svg';
+import rightArrow from '../../assets/images/icones-bags-svg/bi-arrow-right-square-fill.svg';
 import './organizer.scss'
 import './cards.scss'
 
@@ -23,6 +23,7 @@ export default function Organizer() {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const windowWidth = useWindowDimensions().width;
+    console.log(windowWidth);
     const windowWidthDividedEleven = useWindowDimensions().width / 11;
 
     const [today, setToday] = useState(new Date());
@@ -104,38 +105,51 @@ export default function Organizer() {
 
     return (
         <>
-            <GridLayout className={"layout"} cols={11} onDragStop={onDragStopTest} onResizeStop={onResizeStopTest} rowHeight={60} compactType={null} preventCollision={true} rows={8} width={windowWidth} maxRows={places.length + 1} >
+            <GridLayout className={"layout"} cols={11} onDragStop={onDragStopTest} onResizeStop={onResizeStopTest} rowHeight={60} compactType={null} preventCollision={true} rows={8} width={windowWidth - windowWidth * 0.0104} maxRows={places.length + 1} >
 
                 <div data-grid={{ x: 0, y: 0, w: 1, h: 1, static: true }} data-organizer-type="blank" key={uuid()} >
                     <div className="blank-row">
-                        <div className="year">{firstDayOfWeek.year}</div>
-                        <div>
-                            <button className="weeks-button-left" onClick={changeToPreviousWeek}>&lt;</button>
-                            <button className="weeks-button-right" onClick={changeToNextWeek}>&gt;</button>
+                        <div className="month-year">
+                            <div className="month">{firstDayOfWeek.monthLong}</div>
+                            <div className="year">{firstDayOfWeek.year}</div>
+                        </div>
+                        <div className="changeWeek">
+                            <button className="weeks-button-left" onClick={changeToPreviousWeek}><img src={leftArrow} alt="left arrow" /></button>
+                            <button className="weeks-button-right" onClick={changeToNextWeek}><img src={rightArrow} alt="right arrow" /></button>
                         </div>
                     </div>
-                    <div className="row"></div>
+                    <div className="row" style={{ width: (((windowWidth - windowWidth * 0.0104) / 11) * 11) + "px" }}></div>
                 </div>
 
-                <div data-grid={{ x: 1, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 0 }).weekdayLong} {firstDayOfWeek.plus({ days: 0 }).day} {firstDayOfWeek.plus({ days: 0 }).monthLong}
-                    <div className="column" style={{height: (70 * (places.length + 1))+ "px"}}></div> {/** For drawing externals borders in CSS */}
-                    <div className="column-middle" style={{height: (70 * (places.length + 1))+ "px"}}></div> {/** For drawing middle borders in CSS */}
+                <div data-grid={{ x: 1, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}>
+                    <span className="column-weekday">{firstDayOfWeek.plus({ days: 0 }).weekdayLong}</span>
+                    <span className="column-day">{firstDayOfWeek.plus({ days: 0 }).day}</span>
+                    <div className="column" style={{ height: (70 * (places.length + 1)) + "px" }}></div> {/** For drawing externals borders in CSS */}
+                    <div className="column-middle" style={{ height: (70 * (places.length)) + "px" }}></div> {/** For drawing middle borders in CSS */}
                 </div>
-                <div data-grid={{ x: 3, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 1 }).weekdayLong} {firstDayOfWeek.plus({ days: 1 }).day} {firstDayOfWeek.plus({ days: 1 }).monthLong}
-                    <div className="column" style={{height: (70 * (places.length + 1))+ "px"}}></div>
-                    <div className="column-middle" style={{height: (70 * (places.length + 1))+ "px"}}></div>
+                <div data-grid={{ x: 3, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}>
+                    <span className="column-weekday">{firstDayOfWeek.plus({ days: 1 }).weekdayLong}</span>
+                    <span className="column-day">{firstDayOfWeek.plus({ days: 1 }).day}</span>
+                    <div className="column" style={{ height: (70 * (places.length + 1)) + "px" }}></div>
+                    <div className="column-middle" style={{ height: (70 * (places.length)) + "px" }}></div>
                 </div>
-                <div data-grid={{ x: 5, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 2 }).weekdayLong} {firstDayOfWeek.plus({ days: 2 }).day} {firstDayOfWeek.plus({ days: 2 }).monthLong}
-                    <div className="column" style={{height: (70 * (places.length + 1))+ "px"}}></div>
-                    <div className="column-middle" style={{height: (70 * (places.length + 1))+ "px"}}></div>
+                <div data-grid={{ x: 5, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}>
+                    <span className="column-weekday">{firstDayOfWeek.plus({ days: 2 }).weekdayLong}</span>
+                    <span className="column-day">{firstDayOfWeek.plus({ days: 2 }).day}</span>
+                    <div className="column" style={{ height: (70 * (places.length + 1)) + "px" }}></div>
+                    <div className="column-middle" style={{ height: (70 * (places.length)) + "px" }}></div>
                 </div>
-                <div data-grid={{ x: 7, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 3 }).weekdayLong} {firstDayOfWeek.plus({ days: 3 }).day} {firstDayOfWeek.plus({ days: 3 }).monthLong}
-                    <div className="column" style={{height: (70 * (places.length + 1))+ "px"}}></div>
-                    <div className="column-middle" style={{height: (70 * (places.length + 1))+ "px"}}></div>
+                <div data-grid={{ x: 7, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}>
+                    <span className="column-weekday">{firstDayOfWeek.plus({ days: 3 }).weekdayLong}</span>
+                    <span className="column-day">{firstDayOfWeek.plus({ days: 3 }).day}</span>
+                    <div className="column" style={{ height: (70 * (places.length + 1)) + "px" }}></div>
+                    <div className="column-middle" style={{ height: (70 * (places.length)) + "px" }}></div>
                 </div>
-                <div data-grid={{ x: 9, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}> {firstDayOfWeek.plus({ days: 4 }).weekdayLong} {firstDayOfWeek.plus({ days: 4 }).day} {firstDayOfWeek.plus({ days: 4 }).monthLong}
-                    <div className="column" style={{height: (70 * (places.length + 1))+ "px"}}></div>
-                    <div className="column-middle" style={{height: (70 * (places.length + 1))+ "px"}}></div>
+                <div data-grid={{ x: 9, y: 0, w: 2, h: 1, static: true }} data-organizer-type="column" key={uuid()}>
+                    <span className="column-weekday">{firstDayOfWeek.plus({ days: 4 }).weekdayLong}</span>
+                    <span className="column-day">{firstDayOfWeek.plus({ days: 4 }).day}</span>
+                    <div className="column" style={{ height: (70 * (places.length + 1)) + "px" }}></div>
+                    <div className="column-middle" style={{ height: (70 * (places.length)) + "px" }}></div>
                 </div>
 
 
@@ -145,7 +159,7 @@ export default function Organizer() {
                             <div data-grid={{ x: 0, y: (item.position + 1), w: 1, h: 1, static: true }} data-organizer-type="row" key={uuid()}>
                                 {item.name}
                                 {console.log(windowWidth)}
-                                <div className="row" style={{width: ((windowWidth/11) * 11)+ "px"}}></div>
+                                <div className="row" style={{ width: (((windowWidth - windowWidth * 0.0104) / 11) * 11) + "px" }}></div>
                             </div>
                         )
                     })

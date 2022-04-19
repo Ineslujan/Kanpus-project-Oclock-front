@@ -1,88 +1,105 @@
 @use '../../var.scss';
 @use 'sass:color';
 
-div[data-organizer-type="column"]{
-    color: var.$second-color;
-}
-
-div[data-organizer-type="blank"] .row{
-    background-color: var.$primary-color;
-    border: 2px solid var.$other-color;
-}
-
-div[data-organizer-type="column"]:first-child{
-    border-radius: 10px 0 0 0;
-}
-
-div[data-organizer-type="column"]:last-child{
-    border-radius: 0 10px 0 0;
-}
-
-div[data-organizer-type="row"] {
-    background-color: var.$primary-color;
-    color: var.$second-color;
-}
-
-div[data-organizer-type="row"]:first-child{
-    border-radius: 20px 0 0 0;
-}
-
-div[data-organizer-type="row"]:last-child{
-    border-radius: 0 0 0 20px;
-}
-
-.blank-row{
-    display: flex;
-    justify-content: space-around;
-    column-gap: 40%;
-}
-
-.year{
-    color: var.$second-color;
-}
-
-/*
-   BORDERS
-*/
-
-.layout div{
+.layout div:not([data-organizer-type="blank"]) {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.layout div .row{
-    height: inherit;
-    // width: 98.5vw;
-    position: absolute;
+.layout div[data-organizer-type="column"] {
+    color: var.$second-color;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 5px;
+    padding-bottom: 5px;
+}
 
-    
+.column-weekday {
+    font-size: 0.8rem;
+    padding-top: 5px;
+    text-transform: uppercase;
+
+}
+
+.column-day {
+    padding: 0.8rem;
+    border-radius: 10px;
+    background-color: var.$other-color;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+.layout div[data-organizer-type="row"] {
+    // background-color: var.$primary-color;
+    color: var.$second-color;
+    text-align: right;
+}
+
+.layout div .blank-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: inherit;
+    height: inherit;
+    padding: 0 8%;
+}
+
+.month-year {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}
+
+.month {
+    color: var.$other-color;
+    text-transform: uppercase;
+}
+
+.year {
+    color: var.$second-color;
+}
+
+.changeWeek {
+    display: flex;
+    flex-direction: column;
+}
+.weeks-button-left,
+.weeks-button-right {
+    border: none;
+    background: none;
+    filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(101%) contrast(106%);
+    padding-top: 1px;
+}
+
+/*
+BORDERS
+*/
+
+.layout div .row {
+    height: inherit;
+    position: absolute;
     left: -10px;
     bottom: -5px;
     z-index: -1;
     border-bottom: 1px solid var.$primary-color;
 }
 
-.layout div .column{
+.layout div .column {
     width: inherit;
-    // height: calc(100vh - 60px);
     position: absolute;
-    
     left: -5px;
     top: -5px;
     z-index: -1;
     border-left: 1px solid var.$primary-color;
 }
 
-.layout div .column-middle{
+.layout div .column-middle {
     width: 50%;
-    // height: calc(100vh - 60px);
     position: absolute;
-    
     left: 50%;
-    top: -5px;
+    top: 65px;
     z-index: -1;
     border-left: 1px dashed color.scale(var.$primary-color, $lightness: 70%);
 }
-

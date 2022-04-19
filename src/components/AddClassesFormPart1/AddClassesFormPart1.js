@@ -30,27 +30,7 @@ export default function AddClassesFormPart1({
     const [dataMod, setDataMod] = useState(null)
     
     let newStartDate = DateTime.fromJSDate(startDate);
-    let newEndDate = DateTime.fromJSDate(endDate);
-
-    useEffect(() => {
-    //     if(courseEditName && startEditCourse && endEditCourse){
-    //         setStartDate(startEditCourse);
-    //         setEndDat
-    //     }
-    //    setStartDate(DateTime.fromISO(startEditCourse).toUTC())
-    //    setEndDate(DateTime.fromISO(endEditCourse).toUTC())
-    //  console.log(DateTime.fromISO(editDatas.start_date).toUTC())
-
-    // setEndDate(editDatas.end_date)
-    // if(editDatas.length > 0){  
-    //     setDataMod(editDatas)
-    //     console.log("edition mod", dataMod)
-    //     console.log("edition", editDatas)
-        console.log("datamod",dataMod)
-    //}
-  
-    }, [editDatas])
-    
+    let newEndDate = DateTime.fromJSDate(endDate);    
 
     useEffect(() => {
         // console.log(startDate)

@@ -23,7 +23,7 @@ export default function Header() {
             </div>
             {width <= 599 && <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />}
         </div>
-        {width < 599 && <Navbar isOpen={isOpen} />}
+        {width <= 599 && <Navbar isOpen={isOpen} />}
         </>
     )
 }
