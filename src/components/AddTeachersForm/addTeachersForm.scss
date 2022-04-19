@@ -18,12 +18,19 @@
 .teacher-form-select{
     width: 25%;
     height: 30px;
-    border: 2px solid var.$primary-color;
-    background-color: var.$primary-color;
+    font-weight:bold;
+    border: 1px solid var.$second-color;
+    background-color: var.$background-color;
     color: var.$second-color ;
     border-radius: 0;
     &:last-child{
         border-radius: 0 0 5px 5px ;
+    }
+
+    &:hover {
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
     }
 
 }
@@ -64,11 +71,18 @@
 }
 
 .teacher-selected{
-    border: 2px solid var.$primary-color;
-    background-color: var.$primary-color;
+    border: 2px solid var.$second-color;
+    background-color: var.$background-color;
     color: var.$second-color ;
     padding: 0.5% 3%;
-    border-radius: 5px;
+    border-radius: 3px;
+
+    &:hover {
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+    }
+
 }
 
 .info-teacher{

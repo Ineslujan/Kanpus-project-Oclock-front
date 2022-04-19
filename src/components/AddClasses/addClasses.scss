@@ -9,19 +9,30 @@
 
 .date-open{
     width: 50%;
-    background-color: var.$primary-color ;
-    color: var.$second-color ;
-    border: none;
-    border-radius: 5px;
+    background-color: var.$background-color;
+    color: var.$second-color;
+    border: 2px solid var.$second-color;
+    border-radius: 3px;
     padding: 0.8% 1.5%;
     font-size: 2em;
     margin-top: 1%;
+
+    &:hover{
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+        border-radius: 3px;
+    }
 }
 
 .create-classes-container{
     position: relative;
 }
 
+.calendar-datepicker{
+    margin-top: 0.5%;
+
+}
 
 .create-date-form{
     margin-top: 1%;
@@ -32,6 +43,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 6%;
 }
 
 .create-date-form-input{
@@ -40,36 +52,75 @@
     padding: 0.5% 1%;
     font-size: 1.2em;
     border-radius: 5px;
-    border: 1px solid var.$primary-color ;
+    border: 2px solid var.$second-color;
+    background-color: var.$background-color;
+    caret-color: var.$second-color;
+    color: var.$second-color;
+    font-weight: bold;
+
+    &:focus{
+        border: 2px solid var.$other-color;
+        color: var.$other-color;
+        caret-color: var.$other-color;;
+    }
+
+    &:hover {
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+    }
 }
 
 .create-date-name-label{
-    color: var.$primary-color;
+    color: var.$second-color;
     font-size: 1.2em;
+    font-weight: bold;
 }
 
 .date-time-button{
     margin:1% 0.5% 0.5%;
-    background-color: var.$primary-color;
+    background-color: var.$background-color;
     color: var.$second-color ;
-    border: none;
+    border: 2px solid var.$second-color;
     border-radius: 5px;
     padding: 0.5% 1.5%;
     font-size: 2em;
+    transition-duration: 0.3s;
+
+    &:hover{
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+        border-radius: 3px;
+    }
 }
+
+
 
 .date-form-button{
     margin-top: 1rem;
-    background-color: var.$primary-color;
     padding: 0.7% 4%;
-    border-radius: 5px;
-    border: 1px solid rgb(173, 208, 221);
     color: var.$second-color;
     font-size: 1em;
+    font-family: 'Lato', Verdana, sans-serif;
+    background-color: var.$background-color;
+    border: 2px solid var.$second-color;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: bold;
+    transition-duration: 0.3s;
+    
+    &:hover{
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+        border-radius: 3px;
+    }
 
     &:disabled {
         background-color: var.$disabled-primary-color;
-        border: 1px solid var.$disabled-border-color;
+        border: 2px solid var.$second-color;
+        color: var.$second-color;
     }
 }
 
@@ -78,6 +129,16 @@
 }
 
 .form-label{
-    color: var.$primary-color;
+    color: var.$second-color;
     font-size: 1.3em;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
+
+.text-form{
+    background-color: var.$background-color;
+    border: 2px solid var.$second-color;
+    border-radius: 2px;
+
+}
+

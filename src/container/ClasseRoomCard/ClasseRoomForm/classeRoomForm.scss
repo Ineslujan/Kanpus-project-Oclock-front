@@ -1,9 +1,10 @@
 @use '../../../var.scss';
 
 .classeroom-update-input {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 3px;
     border: none;
+    background-color: var.$background-color;
 }
 
 .classeroom-update-content{
@@ -12,23 +13,77 @@
 
 .classeroom-button-close{
     position: absolute;
-    right: -10px;
-    bottom: -10px;
+    right: -25px;
+    bottom: 10px;
+    background-size: auto;
+    
 }
 
 .classeroom-validate{
-    background-color: var.$second-color;
-    font-size: 0.7em;
-    border: none;
+    font-family: 'Lato', Verdana, sans-serif;
+    width: 140px;
+    background-color: var.$background-color;
+    border: 2px solid var.$second-color;
     border-radius: 3px;
-    padding-top: 2px;
-    margin-top: 5px;
+    color: #F3F2F2;
+    font-size: 15px;
+    padding: 7px 10px;
+    font-weight: bold;
+    transition-duration: 0.3s;
+
+    &:hover{
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+        
+    }
+}
+
+.classeroom-form-buttons{
+    padding: 3px;
+    margin-top: 3px;
 }
 
 .classeroom-close {
-    background-color: var.$second-color;
-    width: 22px;
+    background-color: transparent;
     border: none;
-    border-radius: 3px;
-    font-size: 0.7em;
+    background-size: auto;
+    padding: 3px 5px;
+    transition: all 0.3s;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+
 }
+
+.classeroom-close-icon {
+    filter: invert(10%) sepia(94%) saturate(5109%) hue-rotate(335deg) brightness(76%) contrast(93%);
+    margin-left: 1px;
+    margin-top: 1px;
+
+    &:hover{
+        transform: scale(1.2);  
+    }
+}
+
+
+
+.classeroom-update-input-position,.classeroom-update-input-text{
+
+    background-color: var.$background-color;
+    color: var.$second-color;
+    border: 1.5px solid var.$second-color;
+    border-radius: 3px;
+    font-weight: bold;
+
+    &:focus{
+        border: 1.5px solid var.$other-color;
+        color: var.$other-color;
+    }
+}
+
+
+.classeroom-form-buttons{
+    margin-top: 2px;
+    padding: 3px;
+}
+

@@ -3,8 +3,8 @@
 .classeroom-card{
     width: 250px;
     height: 150px;
-    border: 2px solid var.$primary-color;
-    background-color: var.$primary-color;
+    border: 2px solid var.$second-color;
+    background-color: var.$background-color;
     color: var.$second-color;
     border-radius: 5px;
     margin: 2% 1%;
@@ -14,15 +14,28 @@
 }
 
 .classeroom-create-button{
+    font-family: 'Lato', Verdana, sans-serif;
     width: 140px;
     margin-top: 7px;
     margin-bottom: 5px;
-    background-color: var.$primary-color;
-    border: none;
+    background-color: var.$background-color;
+    border: 2px solid var.$second-color;
     border-radius: 3px;
-    color: var.$second-color;
+    color: #F3F2F2;
     font-size: 15px;
-    padding:  7px 10px ;
+    padding: 7px 20px;
+    font-weight: bold;
+    position: fixed;
+    bottom: 30px;
+    right: 46%;
+    transition: all 0.3s;
+}
+
+.classeroom-create-button:hover{
+    color: var.$other-color;
+    border: 2px solid var.$other-color;
+    background-color: var.$background-color;
+    border-radius: 3px;
 }
 
 .classeroom-button{
@@ -44,12 +57,56 @@
     
 }
 
-.classeroom-confirmation-button{
-    background-color: var.$second-color;
-    border: none;
-    color: var.$primary-color;
+.classeroom-confirmation-validate-button, .classeroom-confirmation-cancel-button{
+    background-color: var.$background-color;
+    border: 1px solid var.$second-color;
+    color: var.$second-color;
     border-radius: 3px;
-    margin: 15px 10px;
+    margin: 3px;
+    padding: 3%;
     width: 65px;
     font-size: 20px;
+}
+.classeroom-confirmation-validate-button:hover{
+    color: var.$trash-color;
+    border: 1px solid var.$trash-color;
+    background-color: var.$background-color;
+
+}
+
+.classeroom-confirmation-cancel-button:hover{
+    color: var.$other-color;
+    border: 1px solid var.$other-color;
+    background-color: var.$background-color;
+
+}
+
+
+.modal-icone-pencil,.modal-icone-trash{
+    background-color: transparent;
+    filter: invert(98%) sepia(1%) saturate(247%) hue-rotate(244deg) brightness(115%) contrast(90%);
+    transition: all 0.3s;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+    margin-right: 0.5rem;
+}
+
+
+.modal-icone-pencil:hover{
+    filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(101%) contrast(106%);
+    
+}
+.modal-icone-trash:hover{
+    filter: invert(11%) sepia(75%) saturate(6669%) hue-rotate(350deg) brightness(105%) contrast(94%);
+    
+    
+}
+
+.img-pencil:hover,.img-trash:hover{
+    transform: scale(1.15);
+
+}
+
+.classeroom-info{
+    font-weight:900;
 }

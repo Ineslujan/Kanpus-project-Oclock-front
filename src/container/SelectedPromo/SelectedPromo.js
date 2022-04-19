@@ -25,9 +25,9 @@ export default function SelectedPromo({setSelectedPromo, selectedPromo, allPromo
 
   return (
     <div className="select-promo">
-           {selectedPromo && <button onClick={toggle}>{selectedPromo.promo}</button>}
+           {selectedPromo && <button className="select-promo-button" onClick={toggle}>{selectedPromo.promo}</button>}
             {toggleSelectPromo && allPromo && allPromo.map((item)=> (
-               selectedPromo.promo !== item.promo && <button  key={uuid()} onClick={()=>selectPromo(item)}>{item.promo}</button>
+               selectedPromo.promo !== item.promo && <button  className="select-promo-button" key={uuid()} onClick={()=>selectPromo(item)}>{item.promo}</button>
             ))}
         
     </div>

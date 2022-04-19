@@ -67,7 +67,7 @@ export default function MyCourse() {
                         <CourseCard key={item.event_id} datas={item} openModal={openModal} modalIsOpen={modalIsOpen} setAllCourses={setAllCourses} />
                     ))}
             
-                    <button className="button" onClick={addCourse}>Voir la suite des cours</button>
+                    <button className="pagination-mycourse-button" onClick={addCourse}>Voir la suite des cours</button>
           
         </div>
     )

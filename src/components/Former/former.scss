@@ -1,1 +1,28 @@
 @use '../../var.scss';
+
+.former-create-button{
+
+    font-family: "Lato", Verdana, sans-serif;
+    width: 140px;
+    margin-top: 7px;
+    margin-bottom: 5px;
+    background-color: #152242;
+    border: 2px solid #F3F2F2;
+    border-radius: 3px;
+    color: #F3F2F2;
+    font-size: 15px;
+    padding: 7px 10px;
+    font-weight: bold;
+    position: fixed;
+    bottom: 5%;
+    right: 46%;
+    transition-duration: 0.3s;
+
+    &:hover{
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+        border-radius: 3px;
+    }
+}
+

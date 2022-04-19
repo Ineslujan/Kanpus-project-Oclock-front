@@ -148,7 +148,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
         console.log("picture",picture)
         const fd = new FormData()
         fd.append('sampleFile', picture);
-        const upload = await uploadPic (fd);
+        const upload = await uploadPic (fd, authentication.token);
         if(upload.status === 200){
             console.log("ok pour l'image")
             console.log(upload);

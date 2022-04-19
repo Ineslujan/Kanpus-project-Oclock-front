@@ -31,10 +31,13 @@ export default function Trainee() {
   
     return (
         <div className='trainee'> 
+            <div className='select-promo-container'>
             <SelectedPromo selectedPromo={selectedPromo} setSelectedPromo={setSelectedPromo} allPromo={allPromo} setAllPromo={setAllPromo} getStudents={getStudents} />
+            </div>
+            
 
                 <div className="trainee-create">
-                    <button className="trainer-create-button" onClick={setUpdate}>Créer un Stagiaire</button>
+                    <button className="trainee-create-button" onClick={setUpdate}>Créer un Stagiaire</button>
                     {seeUpdateModal && <UserForm updateModal={seeUpdateModal} setUpdateModal={setSeeUpdateModal}  setUpdate={setUpdate} allPromo={allPromo} getStudents={getStudents} /> }
                 </div>
 

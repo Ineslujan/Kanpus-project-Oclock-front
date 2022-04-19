@@ -1,1 +1,6 @@
 @use '../../var.scss';
+
+.promo-icon-pen {
+    background-color: transparent;
+    filter: invert(98%) sepia(1%) saturate(247%) hue-rotate(244deg) brightness(115%) contrast(90%);
+}
