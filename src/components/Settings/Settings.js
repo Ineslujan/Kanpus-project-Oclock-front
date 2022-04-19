@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import Modal from 'react-modal';
-import SettingsUpdate from '../../SettingsUpdate/SettingsUpdate';
+import SettingsUpdate from '../SettingsUpdate/SettingsUpdate';
 import { getSettings } from '../../requests/test';
 import { AuthenticationContext } from '../../context/authenticationContext';
 

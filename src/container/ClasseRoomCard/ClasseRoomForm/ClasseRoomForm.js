@@ -34,7 +34,7 @@ export default function ClasseRoomForm({data, updateToggle, updateRoom}) {
                 <input className="classeroom-update-input-position" type="number" value={position} onChange={changePosition} />
                     <div className="classeroom-form-buttons">
                         <button className="classeroom-validate">Valider</button>    
-                        <button className="classeroom-close" onClick={updateToggle}><img src={Close} alt="close" class="classeroom-close-icon" /></button>
+                        <button className="classeroom-close classeroom-close-icon" onClick={updateToggle}><img src={Close} alt="close" /></button>
                     </div>        
             </form>
         </div>

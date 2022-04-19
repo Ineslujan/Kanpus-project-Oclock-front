@@ -36,11 +36,14 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
             setFirstname(data.firstname);
             setLastname(data.lastname);
             setColorChoice(data.color);
-            setPicture(data.image)
+            setPicture(data.image_thumbnail)
+            setUrlPicture(data.image)
             setPromo(data.promo);
             setAdress(data.address);
             setPhone(data.phone_number);
             setEmail(data.email);
+            setShowPicture(true);
+            setPermanent(data.is_permanent)
         }
         const getPromo = async () => {
             const promos = await getFormers (authentication.token)
@@ -166,7 +169,11 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
     const newColor = (item) => {
         setColorChoice(item.color);
-        setClassColor(item.name)
+        setClassColor(item.name);
+    };
+
+    const updateImage = () => {
+        setShowPicture(false)
     }
 
     return (
@@ -187,7 +194,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
                         <div className="user-form-right-content">
                             <label htmlFor="color" >Couleur : </label>
-                            <button type="button" name="color" id="color_user" className={classColor}></button>
+                            <button type="button" name="color" id="color_user" style={{background: colorChoice}} ></button>
                             {color && color.map((item,index)=> (
                                 <button type="button" key={index} className={item.name} value={item.color} onClick={()=>newColor(item)}></button>
                             ))}
@@ -205,7 +212,11 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                                 <button type="button" onClick={uploadPicture}>Uploader</button>
                             </>
                             :
-                            <img src={urlPicture} alt="avatar" />  }
+                            <>
+                                <img src={urlPicture} alt="avatar" />
+                                <button onClick={updateImage}>modifier</button> 
+                            </>
+                        }
                         </div>
 
                         <div className="user-form-right-content">
