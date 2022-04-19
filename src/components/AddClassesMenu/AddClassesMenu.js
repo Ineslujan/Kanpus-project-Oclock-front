@@ -12,11 +12,9 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const [showPromos, setShowPromos] = useState(false);
-    const [showGroupes, setShowGroupes] = useState(false);
     const [showStudents, setShowStudents] = useState(false);
 
     const [tabPromos, setTabPromos] = useState([]);
-    const [tabGroupes, setTabGroupes] = useState([]);
 
     const [selectedStudents, setSelectedStudents] = useState(false);
 
@@ -25,7 +23,6 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
             const students = await requestStudents(authentication.token);
             if(students.status === 200){
                 setTabPromos(students.data.promos);
-                setTabGroupes(students.data.group)
             }
         }
         getStudents()
@@ -34,18 +31,13 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
 
     const togglePromos = () => {
         setShowPromos(showPromos => !showPromos);
-        // console.log(showGroupes)
-        if (showGroupes){
-            setShowGroupes(false);
-        } 
+        if(showStudents){
+            setShowStudents(false);
+        }
+        
+
     };
 
-    const toggleGroupes = () => {
-        setShowGroupes(showGroupes => !showGroupes);
-        if (showPromos){
-            setShowPromos(false);
-        }
-    };
 
 
   return (
@@ -61,21 +53,17 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
                     toggle={togglePromos} 
                     show={showPromos}
                     setSelectedStudents={setSelectedStudents}
-                    setShowStudents={setShowStudents}  
-                />
-                <ItemMenu 
-                    text={"Groupes"} 
-                    classN={"groupe-title"} 
-                    tab={tabGroupes} 
-                    toggle={toggleGroupes} 
-                    show={showGroupes} 
-                    setSelectedStudents={setSelectedStudents}
+                    selectedStudents={selectedStudents}
                     setShowStudents={setShowStudents} 
+                    showStudents={showStudents} 
                 />
-            </div>  
-            {selectedStudents && <ItemStudentsMenu showStudents={showStudents} selectedStudents={selectedStudents} tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents}/>} 
+            
+        
+                {selectedStudents && showStudents &&
+                    <ItemStudentsMenu showStudents={showStudents} selectedStudents={selectedStudents} tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents}/>
+                } 
+            </div>
         </div>
-     
     </div>
 
   )
