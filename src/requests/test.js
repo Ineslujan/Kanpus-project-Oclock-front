@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { api } from './apiRoute';
 
-export async function test (token) {
+
+export async function getSettings(token) {
     try {
-        const response = await axios.get(`https://kanpus-api.herokuapp.com/test/`, 
+        const response = await axios.get(`${api}/settings/`, 
         {
 
             headers: {

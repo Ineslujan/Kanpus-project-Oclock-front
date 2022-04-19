@@ -26,7 +26,11 @@ export default function ModalPassword({ openPassword, seePasswordModal }) {
         } else {
             setErrorConfirmPassword(false);
         }
-    }, [newPassword, confirmNewPassword])
+    }, [newPassword, confirmNewPassword]);
+
+    const changePassword = () => {
+        console.log("je change de mot de passe")
+    }
     
 
 
@@ -46,8 +50,9 @@ export default function ModalPassword({ openPassword, seePasswordModal }) {
                 <p>Entrez votre nouveau mot de passe</p>
                 <input type="text" className="new-password" onChange={handleNewPassword} />
                 <p>Confirmez votre nouveau mot de passe</p>
-                <input type="text" className="new-password" onChange={handleConfirmNewPassword} />
+                <input type="text" className="new-password" onChange={handleConfirmNewPassword} />   
             </div>
+            <button className="valider" onClick={changePassword}>Valider</button>
             { errorConfirmPassword &&
                 <div>
                     <p>Les mots de passe ne correspondent pas !</p>
