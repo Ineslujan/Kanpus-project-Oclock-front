@@ -3,16 +3,17 @@ import { NavLink } from "react-router-dom";
 import Calendar from '../../assets/images/icones-bags-svg/bi-calendar-plus-fill.svg';
 import './navbar.scss';
 
-export default function Navbar() {
+export default function Navbar({ isOpen }) {
 
     let activeClassName = "navlink activeStyle"
+    console.log("grrr",isOpen);
 
     return (
-        <div className="navbar-container-link">
+        <div className={isOpen ? "navbar-container-link open" : "navbar-container-link"}>
             <NavLink
                 to="/add"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-add"}
-            ><img src={Calendar} alt="calendar" class="create-event-color" /></NavLink>
+            >{isOpen ? "Créer un cours" : <img src={Calendar} alt="calendar" class="create-event-color" />}</NavLink>
             <NavLink
                 to="/organizer"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-section"}
@@ -37,11 +38,6 @@ export default function Navbar() {
                 to="/promos"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-section"}
             >Promos</NavLink>
-            {/* <NavLink
-                to="/groupes"
-                className={({ isActive }) => isActive ? activeClassName : "navlink"}
-            >Groupes</NavLink> */}
-            
         </div>
     )
 }

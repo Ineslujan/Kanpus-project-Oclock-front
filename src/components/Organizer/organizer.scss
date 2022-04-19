@@ -54,8 +54,9 @@ div[data-organizer-type="row"]:last-child{
 
 .layout div .row{
     height: inherit;
-    width: 100vw;
+    // width: 98.5vw;
     position: absolute;
+
     
     left: -10px;
     bottom: -5px;
@@ -65,7 +66,7 @@ div[data-organizer-type="row"]:last-child{
 
 .layout div .column{
     width: inherit;
-    height: 100vh;
+    // height: calc(100vh - 60px);
     position: absolute;
     
     left: -5px;
@@ -76,11 +77,11 @@ div[data-organizer-type="row"]:last-child{
 
 .layout div .column-middle{
     width: 50%;
-    height: 100vh;
+    // height: calc(100vh - 60px);
     position: absolute;
     
     left: 50%;
-    top: 100%;
+    top: -5px;
     z-index: -1;
     border-left: 1px dashed color.scale(var.$primary-color, $lightness: 70%);
 }

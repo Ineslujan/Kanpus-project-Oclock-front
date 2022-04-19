@@ -3,7 +3,7 @@
 .trainee {
     width: 90%;
     margin: auto;
-    
+
 }
 
 .trainee-container {
@@ -13,30 +13,30 @@
     align-items: center;
     width: 100%;
     border-radius: 3px;
-    
-    
+
+
 }
 
 .trainee-content {
     width: 100%;
-    
-    
+
+
 }
 
-.trainee-content-promo-students{
+.trainee-content-promo-students {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 3%;
 }
 
-.trainee-create{
-   padding-top: 0.3%;
-  
-    
+.trainee-create {
+    padding-top: 0.3%;
+
+
 }
 
-.trainee-create-button{
+.trainee-create-button {
     font-family: 'Lato', Verdana, sans-serif;
     width: 140px;
     margin-top: 7px;
@@ -52,12 +52,11 @@
     bottom: 5%;
     right: 46%;
     transition: all 0.3s;
-    
-    &:hover{
+
+    &:hover {
         color: var.$other-color;
         border: 2px solid var.$other-color;
         background-color: var.$background-color;
         border-radius: 3px;
     }
 }
-
