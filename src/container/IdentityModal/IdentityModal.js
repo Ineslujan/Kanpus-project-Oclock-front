@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Modal from 'react-modal';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 import Pen from '../../assets/images/pen.png';
 import Trash from '../../assets/images/trash.png';
 import { deleteUser } from '../../requests/traineeRequest';
@@ -7,8 +8,10 @@ import { requestTrainee } from '../../requests/addClassesFormRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
 import ModalPassword from '../ModalPassword/ModalPassword';
 
+
 import './identityModal.scss'
 import UserForm from '../UserForm/UserForm';
+
 
 export default function IdentityModal({item, modalIsOpen, closeIdentityModal, setSelectedPromo, setAllPromo, setSeeUpdateModal, getStudents}) {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
@@ -56,9 +59,11 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
     <div>
         <Modal
             isOpen={modalIsOpen}
+            className='Modal'
+            overlayClassName='Overlay'
         >
             <div className="modal-button-close">
-                <button className="close" onClick={closeIdentityModal}>x</button>
+                <button className="close" onClick={closeIdentityModal}><img src={svgCircle} alt="close-icon" /></button>
             </div>
             <div className="identity-modal-container">
                 <div className="modal-icones">
