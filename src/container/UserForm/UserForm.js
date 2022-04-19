@@ -8,6 +8,7 @@ import svgEnvelope from '../../assets/images/icones-bags-svg/bi-envelope-fill.sv
 import svgMarker from '../../assets/images/icones-bags-svg/majesticons-map-marker-area.svg';
 import svgPhone from '../../assets/images/icones-bags-svg/bi-telephone-fill.svg';
 import svgMortarboard from '../../assets/images/icones-bags-svg/bi-mortarboard-fill.svg';
+import svgPassword from '../../assets/images/icones-bags-svg/RiLockPasswordFill.svg';
 import './userForm.scss'
 
 
@@ -174,11 +175,11 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                         {!data &&
                             <>
                                 <div className="user-form-right-content">
-                                    <label htmlFor="email"><img src={svgPepole} alt="password" /></label>
+                                    <label htmlFor="email"><img src={svgPassword} alt="password" /></label>
                                     <input type="text" placeholder="Mot de pass" name="email" value={newPassword} onChange={changeNewPassword} />
                                 </div>
                                 <div className="user-form-right-content">
-                                    <label htmlFor="email"><img src={svgPepole} alt="password" /></label>
+                                    <label htmlFor="email"></label>
                                     <input type="text" placeholder="Confirmez le mot de passe" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
                                 </div>
                             </>
