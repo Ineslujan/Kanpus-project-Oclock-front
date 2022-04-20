@@ -11,8 +11,8 @@ import svgMortarboard from '../../assets/images/icones-bags-svg/bi-mortarboard-f
 import svgPassword from '../../assets/images/icones-bags-svg/RiLockPasswordFill.svg';
 import svgImage from '../../assets/images/icones-bags-svg/bi-person-bounding-box.svg';
 import svgUpload from '../../assets/images/icones-bags-svg/IcRoundFileUpload.svg';
-import './userForm.scss'
-
+import './userForm.scss';
+import { api } from '../../requests/apiRoute'
 import { uploadPic } from '../../requests/pictureRequest';
 
 export default function UserForm({ data, updateModal, setUpdateModal, setUpdate, getStudents, closeIdentityModal }) {
@@ -35,7 +35,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
     const [urlPicture, setUrlPicture] = useState();
 
     useEffect(() => {
-        if(data){
+        if (data) {
             setFirstname(data.firstname);
             setLastname(data.lastname);
             setPicture(data.image_thumbnail);
@@ -48,15 +48,15 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
             setEmail(data.email);
         }
         const getPromo = async () => {
-            const promos = await getAllPromo (authentication.token)
-            if(promos.status === 200) {
+            const promos = await getAllPromo(authentication.token)
+            if (promos.status === 200) {
                 setGetPromos(promos.data);
                 console.log(promos.data);
             }
         }
         getPromo();
     }, [])
-    
+
 
     const changeFirstName = (e) => {
         setFirstname(e.target.value);
@@ -92,8 +92,8 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-        console.log(firstname, lastname, Number(promoId), adress, phone, email, newPassword, confirmNewPassword ,"picture", picture)
-        if(!data){
+        console.log(firstname, lastname, Number(promoId), adress, phone, email, newPassword, confirmNewPassword, "picture", picture)
+        if (!data) {
             const postDatas = async () => {
                 const datas = await addTrainee({
                     firstname: firstname,
@@ -104,9 +104,9 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     email: email,
                     image: picture,
                     new_password: newPassword,
-                    confirm_new_password: confirmNewPassword ,
+                    confirm_new_password: confirmNewPassword,
                 }, authentication.token);
-                if(datas.status === 200){
+                if (datas.status === 200) {
                     getStudents();
                     setUpdate();
                 }
@@ -123,12 +123,12 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     email: email,
                     image: picture,
                 }, authentication.token);
-                if(datas.status === 200){
+                if (datas.status === 200) {
                     getStudents();
                     setUpdate();
                     closeIdentityModal();
 
-                } 
+                }
             }
             update();
         }
@@ -136,11 +136,11 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
     }
 
     const uploadPicture = async () => {
-        console.log("picture",picture)
+        console.log("picture", picture)
         const fd = new FormData()
         fd.append('sampleFile', picture);
-        const upload = await uploadPic (fd, authentication.token);
-        if(upload.status === 200){
+        const upload = await uploadPic(fd, authentication.token);
+        if (upload.status === 200) {
             console.log("ok pour l'image")
             console.log(upload);
             setPicture(upload.data.imageName)
@@ -152,7 +152,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
     const newPicture = (e) => {
         e.preventDefault();
         setPicture(e.target.files[0])
-       console.log("onchange",e.target.files[0]) 
+        console.log("onchange", e.target.files[0])
     }
 
     const updateImage = () => {
@@ -163,60 +163,77 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
     return (
 
         <Modal
-        isOpen={updateModal}
-        className='Modal'
-        overlayClassName='Overlay'
+            isOpen={updateModal}
+            className='Modal'
+            overlayClassName='Overlay'
         >
             <div className="user-form">
                 <div className="modal-button-close">
                     <button onClick={setUpdate}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
-                <div className="form-wrapper">
+
+
                 <form className='user-form-content' action="" onSubmit={handlerSubmit}>
-                    
-                        <div className="user-form-right-content">
-                            <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
-                            <input type="text" placeholder="Prénom" value={firstname} onChange={changeFirstName} />
+                    <div className="user-form-wrapper">
+                        <div className="user-form-wrapper-block">
+                            <div className="user-form-avatar">
+                                {!showPicture ?
+                                    <>
+                                        <img src={`${api}/avatar/thumbnail.jpg`} alt="avatar" />
+
+                                    </>
+                                    :
+                                    <>
+                                        <img src={urlPicture} alt="avatar" />
+                                      
+                                    </>
+                                }
+                            </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
+                                <input type="text" placeholder="Prénom" value={firstname} onChange={changeFirstName} />
+                            </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
+                                <input type="text" placeholder="Nom" value={lastname} onChange={changeLastName} />
+                            </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="promo" ><img className="user-form-icone" src={svgMortarboard} alt="Mortarboard" /></label>
+                                <select name="promo" id="promo_user" onChange={changePromo}>
+                                    <option key={'promo_option'} className="studends-list" value={promoId}>{promo}</option>
+                                    {getPromos && getPromos.map((item, index) => (
+                                        <option key={index} className="studends-list" value={item.id}>{item.name}</option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
-                        <div className="user-form-right-content">
-                            <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
-                            <input type="text" placeholder="Nom" value={lastname} onChange={changeLastName} />
-                        </div>
-                        <div className="user-form-right-content">
-                            <label htmlFor="promo" ><img className="user-form-icone" src={svgMortarboard} alt="Mortarboard" /></label>
-                            <select name="promo" id="promo_user" onChange={changePromo}>
-                                <option key={'promo_option'} className="studends-list" value={promoId}>{promo}</option>
-                            {getPromos && getPromos.map((item,index)=> (
-                                <option key={index} className="studends-list" value={item.id}>{item.name}</option>
-                            ))}
-                            </select>
-                        </div>
+                        <div className="user-form-wrapper-block">
+
                         <div className="user-form-right-content">
                             <label htmlFor="adress"><img className="user-form-icone" src={svgMarker} alt="Marker" /></label>
                             <input type="text" placeholder="Adresse" name="adress" value={adress} onChange={changeAdress} />
                         </div>
                         <div className="user-form-right-content">
-                        {!showPicture ?
-                            <>
-                            <div className="user-form-right-content">
                             <label htmlFor="adress"><img className="user-form-icone" src={svgImage} alt="Marker" /></label>
                             <div className="user-form-upload-wrapper">
-            
-                                <input className="user-from-file" type="file" name="sampleFile" onChange={newPicture}/>
-                                <button className="user-form-upload" type="button" onClick={uploadPicture}>
-                                    <img  src={svgUpload} alt="upload" />
-                                </button>
-                                </div>
-                                </div>
-                            </>
-                            :
-                            <>
-                                <img src={urlPicture} alt="avatar" />
-                                <button onClick={updateImage}>modifier</button> 
-                            </>  
-                        }
+                            {!showPicture ?
+                                    <>
+                                        <input className="user-from-file" type="file" name="sampleFile" onChange={newPicture} />
+                                        <button className="user-form-upload" type="button" onClick={uploadPicture}>
+                                        <img src={svgUpload} alt="upload" />
+                                        </button>
+                                    </>
+                                    :
+                                    <>
+     
+                                        <button className="user-form-edit-img" onClick={updateImage}>Modifier</button>
+                                    </>
+                                }
+                          
+                            </div>
                         </div>
-               
+
+
                         <div className="user-form-right-content">
                             <label htmlFor="phone"><img className="user-form-icone" src={svgPhone} alt="Téléphone" /> </label>
                             <input type="text" name="phone" value={phone} onChange={changePhone} />
@@ -239,11 +256,15 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
 
                         }
 
-                        <button className='trainee-confirmation-validate-button'>valider</button>
-                    
+                        </div>
+
+
+                        
+                    </div>
+                    <button className='trainee-confirmation-validate-button'>valider</button>
                 </form>
-                </div>
-            
+
+
             </div>
         </Modal>
     )

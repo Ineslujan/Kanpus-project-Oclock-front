@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { DateTime } from "luxon";
 import { Link } from 'react-router-dom';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 
 import { deleteCourse } from '../../requests/myCourseRequests';
 import { getEventsOrganizer } from '../../requests/aboutOrganizer';
@@ -71,36 +72,13 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
     return (
         <Modal
             isOpen={modalIsOpen}
-            style={{
-                overlay: {
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: 'rgba(255, 255, 255, 0.75)',
-                    borderRadius: '50px',
-                },
-                content: {
-                    position: 'absolute',
-                    top: '40px',
-                    left: '40px',
-                    right: '40px',
-                    bottom: '40px',
-                    border: '1px solid #ccc',
-                    background: 'rgba(36,151,208,255)',
-                    overflow: 'auto',
-                    WebkitOverflowScrolling: 'touch',
-                    borderRadius: '10px',
-                    outline: 'none',
-                    padding: '20px'
-                }
-            }}
+            className='Modal'
+            overlayClassName='Overlay'
         >
             <div className="modal-course-info">
 
                 <div className="modal-button-close">
-                    <button className="close" onClick={openModal}>x</button>
+                    <button className="close" onClick={openModal}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
                 <div className="modal-icones">
 
@@ -109,12 +87,15 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                     </Link>
                     <button className="modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
 
-                    <Modal isOpen={seeConfirmationModal}
+                    <Modal 
+                    isOpen={seeConfirmationModal}
+                    className='Modal'
+                    overlayClassName='Overlay'
 
                     >
                         <div className="modal-button-close">
                             <div className="modal-confirmation-delete">
-                                <button className="close" onClick={confirmationModal}>x</button>
+                                <button className="close" onClick={confirmationModal}><img src={svgCircle} alt="close-icon" /></button>
                             </div>
                         </div>
                         <div className="modal-confirmation-delete-button">
