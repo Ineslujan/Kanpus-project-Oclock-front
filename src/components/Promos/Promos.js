@@ -51,15 +51,15 @@ export default function Promos() {
     
     
     return (
-        <div className="classeroom">
-            <div className="classeroom-container">
+        <div className="promo">
+            <div className="promo-container">
                 {createModal && <PromoCreate createModal={createModal} toggleCreateModal={toggleCreateModal} getDatas={getDatas} allPromo={allPromo} setAllPromo={setAllPromo} />}
                 
-                <div className="classeroom-create">
-                    <p className="classeroom-title">Promos</p>
-                    <button className="classeroom-create-button" onClick={toggleCreateModal} >Créer une promo</button>
+                <div className="promo-create">
+                    <p className="promos-title">Promos</p>
+                    <button className="promo-create-button" onClick={toggleCreateModal} >Créer une promo</button>
                 </div>
-                <div className="classeroom-content">
+                <div className="promo-content">
                     {allPromo &&  allPromo.map((item, index) => (
                             <PromoCard key={index} data={item} getDatas={getDatas} />
                     ))}

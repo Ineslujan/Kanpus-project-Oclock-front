@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import Modal from 'react-modal';
-import '../ClasseRoomAdd/classeRoomAdd.scss';
+import './promoCreate.scss';
 import { AuthenticationContext } from '../../context/authenticationContext';
 import { addPromo } from '../../requests/promoRequest';
 
@@ -45,12 +45,12 @@ export default function PromoCreate({ createModal, toggleCreateModal, getDatas, 
             <div className="modal-button-close">
                 <button className="close" onClick={toggleCreateModal}>x</button>
             </div>
-            <div className="classeroom-add-container">
-                <form className="classeroom-add-form" onSubmit={onSubmit}>
-                    <div className="classeroom-form">
-                        <label htmlFor="classeroom-name" className="classeroom-form-label">Nom :</label>
-                        <input type="text" className="classeroom-form-input" value={name} onChange={changeName} /> 
-                        {nameError && <p className="classeroom-form-error">Ce nom est déjà attribué à une autre salle</p>}
+            <div className="promo-add-container">
+                <form className="promo-add-form" onSubmit={onSubmit}>
+                    <div className="promo-form">
+                        <label htmlFor="promo-name" className="promo-form-label">Nom :</label>
+                        <input type="text" className="promo-form-input" value={name} onChange={changeName} /> 
+                        {nameError && <p className="promo-form-error">Ce nom est déjà attribué à une autre salle</p>}
                     </div>
                           <button>valider</button>
                 </form>

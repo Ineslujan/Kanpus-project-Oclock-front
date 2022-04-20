@@ -13,7 +13,7 @@ export default function Navbar({ isOpen }) {
             <NavLink
                 to="/add"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-add"}
-            >{isOpen ? "Créer un cours" : <img src={Calendar} alt="calendar" class="create-event-color" />}</NavLink>
+            >{isOpen ? "Créer un cours" : <img src={Calendar} alt="calendar" className="create-event-color" />}</NavLink>
             <NavLink
                 to="/organizer"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-section"}

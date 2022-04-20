@@ -1,1 +1,58 @@
 @use '../../var.scss';
+
+
+.identity{
+    width: 200px;
+    height: 250px;
+    // border: 2px solid var.$primary-color;
+    background-color: var.$background-color;
+    // border: 1px solid var.$second-color;
+    color: var.$second-color;
+    border-radius: 8px;   
+    margin: 0 5% 10%;
+    cursor: pointer;
+    transition: all 0.4s;
+
+    &:hover {
+        color: var.$other-color;
+        border: 3px solid var.$other-color;
+        background-color: var.$background-color;
+        border-radius: 8px;
+        // -webkit-transform: scale(1);
+	    // transform: scale(1);
+    }
+
+}
+
+
+.identity-container-picture{
+    width: 194px;
+    height: 204px;
+
+}
+
+.identity-picture{
+    width: 100%;
+    padding: 0%;
+    height: 90%;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    padding: 0%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+
+}
+
+.identity-container-name{
+    padding: 5px;
+}
+
+.identity-name{
+    font-weight: bold;
+    // padding-top: 4px;
+    font-size: 1.04rem;
+}

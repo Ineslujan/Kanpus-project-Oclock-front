@@ -1,6 +1,6 @@
 @use '../../var.scss';
 
-.classeroom-card{
+.promo-card{
     width: 250px;
     height: 150px;
     border: 2px solid var.$second-color;
@@ -13,7 +13,7 @@
     position: relative;
 }
 
-.classeroom-create-button{
+.promo-create-button{
     font-family: 'Lato', Verdana, sans-serif;
     width: 9rem;
     margin-top: 7px;
@@ -31,33 +31,34 @@
     transition: all 0.3s;
 }
 
-.classeroom-create-button:hover{
+.promo-create-button:hover{
     color: var.$other-color;
     border: 2px solid var.$other-color;
     background-color: var.$background-color;
     border-radius: 3px;
 }
 
-.classeroom-button{
+.promo-button{
     position: absolute;
     bottom: 10px;
     right: 10px;
 }
 
-.classeroom-name{
+.promo-name{
     margin-bottom: 20px;
 }
 
-.classeroom-confirmation{
+.promo-confirmation{
     font-size: 0.8em;
     margin-bottom: 10px;
 }
-.classeroom-button-container {
+.promo-button-container {
     height: 20px;
     
 }
 
-.classeroom-confirmation-validate-button, .classeroom-confirmation-cancel-button{
+.promo-confirmation-validate-button, 
+.promo-confirmation-cancel-button{
     background-color: var.$background-color;
     border: 1px solid var.$second-color;
     color: var.$second-color;
@@ -67,14 +68,14 @@
     width: 65px;
     font-size: 20px;
 }
-.classeroom-confirmation-validate-button:hover{
+.promo-confirmation-validate-button:hover{
     color: var.$trash-color;
     border: 1px solid var.$trash-color;
     background-color: var.$background-color;
 
 }
 
-.classeroom-confirmation-cancel-button:hover{
+.promo-confirmation-cancel-button:hover{
     color: var.$other-color;
     border: 1px solid var.$other-color;
     background-color: var.$background-color;
@@ -82,7 +83,8 @@
 }
 
 
-.modal-icone-pencil,.modal-icone-trash{
+.modal-icone-pencil,
+.modal-icone-trash{
     background-color: transparent;
     filter: invert(98%) sepia(1%) saturate(247%) hue-rotate(244deg) brightness(115%) contrast(90%);
     transition: all 0.3s;
@@ -102,7 +104,8 @@
     
 }
 
-.img-pencil:hover,.img-trash:hover{
+.img-pencil:hover,
+.img-trash:hover{
     transform: scale(1.15);
 
 }

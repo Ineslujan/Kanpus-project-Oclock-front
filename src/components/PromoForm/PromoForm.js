@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import Close from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 
-import '../../container/ClasseRoomCard/ClasseRoomForm/classeRoomForm.scss'
+import './promoForm.scss'
 
 export default function PromoForm({data, updateToggle, updateRoom}) {
 
@@ -21,14 +22,14 @@ export default function PromoForm({data, updateToggle, updateRoom}) {
     }
 
   return (
-    <div className="class">
-        <div className="classeroom-update-content">
-            <form action="" onSubmit={handleSubmit}>
-                <input className="classeroom-update-input" type="text" value={name} onChange={changeName} />
-                <button className="classeroom-validate">Valider</button>    
-                <div className="classeroom-button-close">
-                    <button className="classeroom-close" onClick={updateToggle}>x</button>
-                </div>        
+    <div className="promo">
+        <div className="promo-update-content">
+            <form className="promo-form" action="" onSubmit={handleSubmit}>
+                <input className="promo-update-input" type="text" value={name} onChange={changeName} />
+                    <div className="promo-form-buttons">
+                        <button className="promo-validate">Valider</button>                    
+                        <button className="promo-close" onClick={updateToggle}><img src={Close} alt="close" className="promo-close-icon" /></button>
+                    </div>                      
             </form>
         </div>
 

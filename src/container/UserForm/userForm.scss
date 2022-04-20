@@ -119,6 +119,7 @@
     }
 }
 
+
 .user-form-right-content select{
 
     background-color: var.$background-color;
@@ -130,8 +131,6 @@
     width: 85%;
     
     
-    
-
     &:focus{
         border: 1.5px solid var.$other-color;
         color: var.$other-color;

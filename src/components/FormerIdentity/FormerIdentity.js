@@ -20,12 +20,16 @@ export default function FormerIdentity({ item, setAllPromo, setSelectedPromo, se
     return (
         <div>
         <div className="identity" >
-            <div className="identity-picture" onClick={openIdentityModal}>
-                {console.log(item)}
-                <img src={item.image} alt="" />
+            <div className="identity-container-picture">
+                <div className="identity-picture" onClick={openIdentityModal}>
+                    {console.log(item)}
+                    <img src={item.image} alt="" />
+                </div>
             </div>
-            <div className="identity-name">
-            <h5>{item.firstname} {item.lastname} </h5>
+            <div className="identity-container-name">
+                <div className="identity-name">
+                <h5>{item.firstname} {item.lastname} </h5>
+                </div>            
             </div>
             {modalIsOpen && <FormerIdentityModal 
                 item={item} 
