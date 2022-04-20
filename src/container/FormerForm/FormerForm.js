@@ -38,11 +38,14 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
             setFirstname(data.firstname);
             setLastname(data.lastname);
             setColorChoice(data.color);
-            setPicture(data.image)
+            setPicture(data.image_thumbnail)
+            setUrlPicture(data.image)
             setPromo(data.promo);
             setAdress(data.address);
             setPhone(data.phone_number);
             setEmail(data.email);
+            setShowPicture(true);
+            setPermanent(data.is_permanent)
         }
         const getPromo = async () => {
             const promos = await getFormers (authentication.token)
@@ -168,7 +171,11 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
     const newColor = (item) => {
         setColorChoice(item.color);
-        setClassColor(item.name)
+        setClassColor(item.name);
+    };
+
+    const updateImage = () => {
+        setShowPicture(false)
     }
 
     return (
@@ -183,34 +190,37 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                     <button className="close" onClick={setUpdate}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
                 <form action="" onSubmit={handlerSubmit}>
-                    <div className="former-form-wrapper">
-                        <div className="former-form-left">
-                            <div className="former-form-avatar" >
-                                {!showPicture ?
-                                    <img src={`${api}/avatar/thumbnail.jpg`} classNamme="former-form-avatar-picture" alt="avatar" />
-                                    :
-                                    <img src={urlPicture} alt="avatar" />  
-                                }
-                            </div>
-                            <div className="former-form-permanent">
-                                <label htmlFor="is_permanent">Permanent : 
-                                    <input type="radio" id="is_permanent" name="is-permanent" value="permanent" onClick={changePermanent} />
-                                </label>
-                                <label htmlFor="not-permanent">Non permanent : 
-                                    <input type="radio" id="not-permanent" name="is-permanent" value="non-permanent" onClick={changePermanent} />
-                                </label>
-                            </div>
-                            <div className="former-form-color">
-                                <label htmlFor="color" >Couleur : </label>
-                                <button type="button" name="color" id="color_user" className={classColor}></button>
-                                {color && color.map((item,index)=> (
-                                    <button type="button" key={index} className={item.name} value={item.color} onClick={()=>newColor(item)}></button>
-                                ))}  
-                            </div>
-                            <div className="former-form-upload">
+                    <div className="user-form-name-container">
+                        <input type="text" value={firstname} onChange={changeFirstName} />
+                        <input type="text" value={lastname} onChange={changeLastName} />
+                    </div>
+                    <div className="user-form-main-container">
+
+                        <div className="user-form-right-content">
+                            <label htmlFor="color" >Couleur : </label>
+                            <button type="button" name="color" id="color_user" style={{background: colorChoice}} ></button>
+                            {color && color.map((item,index)=> (
+                                <button type="button" key={index} className={item.name} value={item.color} onClick={()=>newColor(item)}></button>
+                            ))}
+                            
+                        </div>
+                        <div className="user-form-right-content">
+                            <label htmlFor="adress">Adresse : </label>
+                            <input type="text" name="adress" value={adress} onChange={changeAdress} />
+                        </div>
+
+                        <div className="user-form-right-content">
+                        {!showPicture ?
+                            <>
                                 <input type="file" name="sampleFile" onChange={newPicture}/>
                                 <button type="button" onClick={uploadPicture}>Uploader</button>
-                            </div>
+                            </>
+                            :
+                            <>
+                                <img src={urlPicture} alt="avatar" />
+                                <button onClick={updateImage}>modifier</button> 
+                            </>
+                        }
                         </div>
 
                         <div className="former-form-middel">

@@ -18,3 +18,20 @@ export async function getSettings(token) {
         console.log(error)
     }
 };
+
+export async function putSettings(settings, token) {
+    try {
+        const response = await axios.put(`${api}/settings/`, settings, 
+        {
+
+            headers: {
+              authorization: `${token}`
+            },
+        }
+        )
+        return response;
+    }
+    catch (error) {
+        console.log(error)
+    }
+};

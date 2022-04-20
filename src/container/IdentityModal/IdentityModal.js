@@ -51,8 +51,8 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
     };
 
     const passwordModal = () => {
-        console.log(seePasswordModal)
-        setSeePasswordModal(modal => !modal)
+        console.log("yououhjzhjezkjzek")
+        setSeePasswordModal(!seePasswordModal)
     }
 
     return (

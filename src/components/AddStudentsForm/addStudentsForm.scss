@@ -6,6 +6,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 1;
       
 }
 
@@ -13,6 +15,18 @@
     margin-top: 0.2%;
     width: 50%;
     min-height: 50px;
-    border: 2px solid var.$second-color;
     border-radius: 5px;
+}
+
+.remove-all-students{
+    position: absolute;
+    top: 0;
+    transform: translate(800%, 0px);
+}
+
+.students-presence {
+    position: absolute;
+    font-size: 1rem;
+    top: 50px;
+    z-index: 1;
 }

@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
+import { putSettings } from '../../requests/test';
+import { uploadPic } from '../../requests/pictureRequest';
+import { AuthenticationContext } from '../../context/authenticationContext';
+
 
 export default function SettingsUpdate({isOpen, seeUpdate, data}) {
     Modal.setAppElement(document.getElementById('root'));
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
+
+    const [picture, setPicture] = useState();
+    const [showPicture, setShowPicture] = useState(false);
+    const [urlPicture, setUrlPicture] = useState();
 
     const {register, handleSubmit, formState: { errors }, reset, watch} = useForm(
         { defaultValues: { 
@@ -16,10 +25,39 @@ export default function SettingsUpdate({isOpen, seeUpdate, data}) {
             course_start_hour_pm: data.course_start_hour_pm,
             course_end_hour_pm: data.course_end_hour_pm
         }}
-    )
+    );
 
-    const onSubmit = data => {
-        console.log(data)
+    const newPicture = (e) => {
+        e.preventDefault();
+        setPicture(e.target.files[0])
+       console.log("onchange",e.target.files[0]) 
+    };
+
+
+    const uploadPicture = async () => {
+        console.log("picture",picture)
+        const fd = new FormData()
+        fd.append('sampleFile', picture);
+        const upload = await uploadPic (fd, authentication.token);
+        if(upload.status === 200){
+            console.log("ok pour l'image")
+            console.log(upload);
+            setPicture(upload.data.imageName)
+            setUrlPicture(upload.data.imageUrl);
+            // setShowPicture(true);
+        }
+    };
+
+    const onSubmit = async (data) => {
+        data.url_image= picture;
+        
+            console.log('inside',data)
+            const upload = await putSettings (data , authentication.token);
+            if(upload.status === 200){
+                console.log('youhou')
+            
+        }
+     
     }
   return (
     <Modal
@@ -44,9 +82,13 @@ export default function SettingsUpdate({isOpen, seeUpdate, data}) {
                 <input type="text" className="settings-input" {...register("phone_number", { required: true })} /> <br/>
                 {errors.phone_number && <span>Vous devez rentrer le numéro de téléphone de l'établissement</span>}
             </> 
-            {/* <>
-            gerer l'image
-            </> */}
+            <>
+                <img src={data.image_url} alt='kiiik'></img>
+                
+                <input type="file" name="sampleFile" onChange={newPicture}/>
+                <button type="button" onClick={uploadPicture}>Uploader</button>
+
+            </> 
             <>
                 <label htmlFor="address" className="settings-label">Choisissez l'adresse de l'établissement</label> <br/>
                 <input type="text" className="settings-input" {...register("address", { required: true })} /> <br/>

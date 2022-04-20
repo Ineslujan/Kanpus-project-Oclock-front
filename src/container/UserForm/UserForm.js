@@ -155,6 +155,11 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
        console.log("onchange",e.target.files[0]) 
     }
 
+    const updateImage = () => {
+        setShowPicture(false)
+    }
+
+
     return (
 
         <Modal
@@ -190,7 +195,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                             <label htmlFor="adress"><img className="user-form-icone" src={svgMarker} alt="Marker" /></label>
                             <input type="text" placeholder="Adresse" name="adress" value={adress} onChange={changeAdress} />
                         </div>
-                        
+                        <div className="user-form-right-content">
                         {!showPicture ?
                             <>
                             <div className="user-form-right-content">
@@ -205,11 +210,12 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                                 </div>
                             </>
                             :
-                            
-                            <img className="user-form-avatar" src={urlPicture} alt="avatar" /> 
-                            
-                             }
-                        
+                            <>
+                                <img src={urlPicture} alt="avatar" />
+                                <button onClick={updateImage}>modifier</button> 
+                            </>  
+                        }
+                        </div>
                
                         <div className="user-form-right-content">
                             <label htmlFor="phone"><img className="user-form-icone" src={svgPhone} alt="Téléphone" /> </label>

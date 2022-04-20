@@ -1,15 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Modal from 'react-modal';
 import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 
 import './modalPassword.scss'
+import { updatePassword } from '../../requests/connexionRequest';
+import { AuthenticationContext } from '../../context/authenticationContext';
 
-export default function ModalPassword({ openPassword, seePasswordModal }) {
+export default function ModalPassword({ passwordModal, seePasswordModal }) {
 
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
-    const [errorConfirmPassword, setErrorConfirmPassword] = useState(false)
+    const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const handleOldPassword = (e) => {
         setOldPassword(e.target.value)
@@ -31,15 +34,22 @@ export default function ModalPassword({ openPassword, seePasswordModal }) {
         }
     }, [newPassword, confirmNewPassword]);
 
-    const changePassword = () => {
-        console.log("je change de mot de passe")
+    const changePassword = async () => {
+        const update = await updatePassword({
+            old_password: oldPassword,
+            new_password: newPassword,
+            repeat_password: confirmNewPassword
+        },authentication.token);
+        if(update.status ===200){
+            console.log("youhou")
+        }
     }
     
 
 
 
   return (
-    <div>     
+      
         
         <Modal 
         isOpen={seePasswordModal}
@@ -48,7 +58,7 @@ export default function ModalPassword({ openPassword, seePasswordModal }) {
         >
             <div className="modal-button-close">
                 
-                    <button className="close" onClick={openPassword}><img src={svgCircle} alt="close-icon" /></button>
+                    <button className="close" ><img src={svgCircle} alt="close-icon" /></button>
                 
             </div>
             <div className="modal-change-password">
@@ -70,6 +80,6 @@ export default function ModalPassword({ openPassword, seePasswordModal }) {
             </div> 
             </div>
         </Modal>
-    </div>
+    
   )
 }
