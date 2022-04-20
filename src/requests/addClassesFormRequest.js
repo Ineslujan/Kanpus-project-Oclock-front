@@ -75,5 +75,3 @@ export async function requestTrainee(token) {
         return false;
     }
 }
-
-// https://kanpus-api.herokuapp.com/user/event_form

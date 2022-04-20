@@ -1,5 +1,4 @@
 @use '../../var.scss';
-@use '../../reset.scss';
 
 .text-form-container{
     margin-top: 2%;
@@ -14,10 +13,18 @@
     width: 50%;
     max-width: 70%;
     min-height: 25px;
-    border: 2px solid var.$primary-color;
+    border: 2px solid var.$second-color;
     border-radius: 5px;
 
     &:focus{
-        min-height: 150px;
+        border: 1.5px solid var.$other-color;
+        color: var.$other-color;
+    }
+
+    &:hover {
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+
     }
 }

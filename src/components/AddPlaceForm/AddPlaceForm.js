@@ -2,13 +2,11 @@ import React, {useState, useEffect} from 'react';
 
 import './addPlaceForm.scss'
 
-export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress}) {
+export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress, seeClasse, setSeeClasse}) {
 
     const [placeAvailable, setPlaceAvailable] = useState([]);
     const [placeNotAvailable, setPlaceNotAvailable] = useState([]);
     const [seePlace, setSeePlace] = useState(false);
-
-    const [seeClasse, setSeeClasse] = useState("");
 
     const [modaleInfoClasseRoom, setModaleInfoClasseRoom] = useState(false);
     const [modaleInfoItem, setModaleInfoItem] = useState();
@@ -17,7 +15,7 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress}) {
         setPlaceAvailable(tabClasseRoom.filter((item) => item.event[0] === null));
         console.log('teacherEvent1 =>', placeAvailable);
         setPlaceNotAvailable(tabClasseRoom.filter((item) => item.event[0] !== null));
-        console.log('teacherEvent2 =>', placeNotAvailable);
+        console.log('teacherEvent2 =>', placeNotAvailable, seeClasse );
     }, [tabClasseRoom]);
 
     const showAllPlaces = () => {
@@ -28,6 +26,7 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress}) {
         setClasseRoom(item.id);
         setSeePlace(false);
         setSeeClasse(item.name);
+        console.log('item',item)
     };
 
     const handleAdress = (e) => {
@@ -59,7 +58,9 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress}) {
                             {seePlace && placeNotAvailable.map((item, index) => (
                                 <button className="place-form-button disabled" key={index} value={item.id} onMouseEnter={()=> info(item)} onMouseLeave={leaveInfo}>{item.name}</button>
                             ))}
-                            {modaleInfoClasseRoom && <div className="info-classeroom">{modaleInfoItem.name}</div>}
+                            {modaleInfoClasseRoom && 
+                                <div className="info-classeroom">{modaleInfoItem.event.map((item) => `Salle prise par le cours :${item}`)}</div>
+                            }
                         </div>
                     </div>
                 </div>

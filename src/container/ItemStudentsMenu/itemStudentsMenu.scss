@@ -1,31 +1,45 @@
 @use '../../var.scss';
-@use '../../reset.scss';
-
 
 .students-menu-container{
-    background-color: var.$second-color;
+    background-color: var.$background-color;
     position: absolute;
     top: 0;
-    left: 175px;
+    // left: 175px;
+    right: -230px;
     width: 230px;
     height: auto;
     display: flex;
     flex-direction: column;
     padding: 0.3% 1.5%;
-    border-right: 2px solid var.$primary-color;
-    border-bottom: 2px solid var.$primary-color;
-    
+    border-right: 2px solid var.$other-color;
+
 }
 
 .studends-list{
-    background-color: var.$second-color;
+    background-color: var.$background-color;
+    color: var.$second-color;
+    font-weight: bold;
     border: none;
     padding: 3% 0;
+
+    &:hover{
+        color: var.$other-color;
+    }
 }
 
 .studends-list-add-all{
-    color: rgb(253, 71, 71);
-    border: none;
-    background-color: var.$second-color;
+    color: var.$second-color;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: 2px solid var.$second-color;
+    border-radius: 3px;
+    background-color: var.$background-color;
     padding: 3% 0;
+    transition: all 0.3sec;
+
+    &:hover {
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+    }
 }

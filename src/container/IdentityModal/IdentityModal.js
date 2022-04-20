@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import Modal from 'react-modal';
-import Pen from '../../public/images/pen.png';
-import Trash from '../../public/images/trash.png';
+import Pen from '../../assets/images/pen.png';
+import Trash from '../../assets/images/trash.png';
 import { deleteUser } from '../../requests/traineeRequest';
 import { requestTrainee } from '../../requests/addClassesFormRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import ModalPassword from '../ModalPassword/ModalPassword';
 
 import './identityModal.scss'
 import UserForm from '../UserForm/UserForm';
@@ -15,6 +16,7 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
     Modal.setAppElement(document.getElementById('root'));
     const [seeConfirmationModal, setSeeConfirmationModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
+    const [seePasswordModal, setSeePasswordModal] = useState(false);
 
     const setUpdate = () => {
         console.log("heyhi")
@@ -43,6 +45,11 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
             setSeeConfirmationModal(modal => !modal);
             closeIdentityModal();
         }
+    };
+
+    const passwordModal = () => {
+        console.log("yououhjzhjezkjzek")
+        setSeePasswordModal(!seePasswordModal)
     }
 
   return (
@@ -54,32 +61,32 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
                 <button className="close" onClick={closeIdentityModal}>x</button>
             </div>
             <div className="identity-modal-container">
-            <div className="modal-icones">
-    
+                <div className="modal-icones">
+        
                     <button className="modal-icone" onClick={setUpdate}><img src={Pen} alt="pen"/></button> 
 
-             {updateModal && <UserForm data={item} updateModal={updateModal} setUpdate={setUpdate} setSeeUpdateModal={setSeeUpdateModal} getStudents={getStudents} closeIdentityModal={closeIdentityModal}   /> }
+                    {updateModal && <UserForm data={item} updateModal={updateModal} setUpdate={setUpdate} setSeeUpdateModal={setSeeUpdateModal} getStudents={getStudents} closeIdentityModal={closeIdentityModal}   /> }
 
-             <button className="modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
+                    <button className="modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
 
-             <Modal isOpen={seeConfirmationModal} >
-                 <div className="modal-button-close">
-                     <div className="modal-confirmation-delete">
-                         <button className="close" onClick={confirmationModal}>x</button>
-                     </div>
-                 </div>
-                 <div className="modal-confirmation-delete-button">
-                     <div className="modal-confirmation-title">
-                         <p>Voulez-vous vraiment supprimer cet élève ?</p>
-                     </div>
-                     <div className="modal-confirmation-delete-response">
-                         <button className="modal-confirmation-response" onClick={confirmationModal}>Non</button>
-                         <button className="modal-confirmation-response" onClick={()=> deleteStudent(item.id) }>Oui</button>
-                     </div>
-                 </div>
-             </Modal>
+                    <Modal isOpen={seeConfirmationModal} >
+                        <div className="modal-button-close">
+                            <div className="modal-confirmation-delete">
+                                <button className="close" onClick={confirmationModal}>x</button>
+                            </div>
+                        </div>
+                        <div className="modal-confirmation-delete-button">
+                            <div className="modal-confirmation-title">
+                                <p>Voulez-vous vraiment supprimer cet élève ?</p>
+                            </div>
+                            <div className="modal-confirmation-delete-response">
+                                <button className="modal-confirmation-response" onClick={confirmationModal}>Non</button>
+                                <button className="modal-confirmation-response" onClick={()=> deleteStudent(item.id) }>Oui</button>
+                            </div>
+                        </div>
+                    </Modal>
 
-         </div>
+                </div>
 
                 <div className="identity-modal-container-name">
                     <span className="identity-modal-name">{item.firstname}</span> <span className="identity-modal-name">{item.lastname}</span>
@@ -98,7 +105,9 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
                     <p className="mail-title">Email :</p>
                     <p className="mail-content"> {item.email} </p>
                 </div>
-                
+                <button className="button-modal" onClick={passwordModal}>Changez le mot de passe</button>
+                <ModalPassword passwordModal={passwordModal} seePasswordModal={seePasswordModal} />
+           
             </div>
 
         </Modal>

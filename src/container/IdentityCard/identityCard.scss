@@ -1,25 +1,33 @@
 @use '../../var.scss';
-@use '../../reset.scss';
 
 .identity{
     width: 200px;
     height: 250px;
-    border: 2px solid var.$primary-color;
-    background-color: var.$primary-color;
+    // border: 2px solid var.$primary-color;
+    background-color: var.$background-color;
     color: var.$second-color;
     border-radius: 5px;;
     margin: 0 5% 10%;
     cursor: pointer;
 
+    &:hover{
+        color: var.$other-color;
+    
+    }
+
 }
 
 .identity-picture{
     width: 100%;
-    padding: 4%;
+    padding: 0%;
     height: 90%;
     overflow: hidden;
 }
 
 img {
     border-radius: 5px;
+}
+
+.identity-name{
+    font-weight: bold;
 }

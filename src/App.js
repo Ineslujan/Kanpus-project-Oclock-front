@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { AuthenticationContext } from './context/authenticationContext';
 import './App.css';
+import './app.scss';
 
 import Header from './components/Header/Header';
 
@@ -12,7 +13,7 @@ import MyCourse from './components/MyCourse/MyCourse';
 import Trainee from './components/Trainee/Trainee';
 import ClasseRoom from './components/ClasseRoom/ClasseRoom';
 import Former from './components/Former/Former';
-import Promos from './components/Promos/Promos'
+import Promos from './components/Promos/Promos';
 
 import Group from './components/Group/Group';
 
@@ -22,7 +23,8 @@ function App() {
 
     return (
         <div className="App">
-            <Header />
+            
+            {authentication.logged && <Header />}
             <Routes>
                 <Route path='/' element={<Connexion />} />
                 <Route path='/add' element={<AddClasses />} />
@@ -33,6 +35,8 @@ function App() {
                 <Route path='/places' element={<ClasseRoom />} />
                 <Route path='/former' element={<Former />} />
                 <Route path='/promos' element={<Promos />} />
+             
+                
             </Routes>
         </div>
     );

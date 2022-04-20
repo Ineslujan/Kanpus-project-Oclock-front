@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import Close from '../../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 import './classeRoomForm.scss'
 
 export default function ClasseRoomForm({data, updateToggle, updateRoom}) {
@@ -27,15 +27,15 @@ export default function ClasseRoomForm({data, updateToggle, updateRoom}) {
     }
 
   return (
-    <div className="class">
+    <div className="classeroom-update">
         <div className="classeroom-update-content">
-            <form action="" onSubmit={handleSubmit}>
-                <input className="classeroom-update-input" type="text" value={name} onChange={changeName} />
-                <input className="classeroom-update-input" type="number" value={position} onChange={changePosition} />
-                <button className="classeroom-validate">Valider</button>    
-                <div className="classeroom-button-close">
-                    <button className="classeroom-close" onClick={updateToggle}>x</button>
-                </div>        
+            <form className="classroom-form"action="" onSubmit={handleSubmit}>
+                <input className="classeroom-update-input-text" type="text" value={name} onChange={changeName} />
+                <input className="classeroom-update-input-position" type="number" value={position} onChange={changePosition} />
+                    <div className="classeroom-form-buttons">
+                        <button className="classeroom-validate">Valider</button>    
+                        <button className="classeroom-close classeroom-close-icon" onClick={updateToggle}><img src={Close} alt="close" /></button>
+                    </div>        
             </form>
         </div>
 

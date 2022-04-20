@@ -1,6 +1,5 @@
 @use '../../var.scss';
-@use '../../reset.scss';
 
 .footer-container{
-    border-top: 3px solid var.$primary-color ;
+    border-top: 3px solid var.$other-color ;
 }

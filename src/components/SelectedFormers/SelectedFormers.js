@@ -26,9 +26,9 @@ export default function SelectedFormers({selectedStatusFormer, setSelectedStatus
 
   return (
     <div className="select-promo">
-           {selectedStatusFormer && <button onClick={toggle}>{selectedStatusFormer.is_permanent}</button>}
+           {selectedStatusFormer && <button className="select-ispermanent-button" onClick={toggle}>{selectedStatusFormer.is_permanent}</button>}
             {toggleSelectPromo && allPromo && allPromo.map((item)=> (
-               selectedStatusFormer.is_permanent !== item.is_permanent && <button  key={uuid()} onClick={()=>selectPromo(item)}>{item.is_permanent}</button>
+               selectedStatusFormer.is_permanent !== item.is_permanent && <button  className="select-ispermanent-button" key={uuid()} onClick={()=>selectPromo(item)}>{item.is_permanent}</button>
             ))}
         
     </div>

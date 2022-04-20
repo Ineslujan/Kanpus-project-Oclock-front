@@ -17,7 +17,8 @@ export default function AddClassesFormPart1({
     editDatas,
     courseName,
     setCourseName,
-    eventId
+    eventId,
+    closePart1
 }) {
         const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
@@ -94,7 +95,7 @@ export default function AddClassesFormPart1({
     return (
         <>
             {closeFormPart1 ? 
-                <div className="data-open-container"onClick={()=> setCloseFormPart1(false)}>
+                <div className="data-open-container"onClick={closePart1}>
                     <button className="date-open" >{courseName}</button>
                     <button className="date-open" >{`${newStartDate.weekdayLong} ${newStartDate.day}  ${newStartDate.monthLong} ${newStartDate.year} ${startTime}`}</button>
                     <button className="date-open" >{`${newEndDate.weekdayLong} ${newEndDate.day} ${newEndDate.monthLong} ${newEndDate.year} ${endTime}`}</button>
@@ -102,14 +103,14 @@ export default function AddClassesFormPart1({
             :
                 <form className="create-date-form" onSubmit={onSubmit}>
                     <div className="create-date-form-container">
-                        <label htmlFor="create-date-name" className="create-date-name-label">nom du cours</label>
+                        <label htmlFor="create-date-name" className="create-date-name-label">Nom du cours</label>
                         <input type="text" className="create-date-form-input" value={courseName} onChange={changeName} />
+                    </div>   
+                    <label htmlFor="create-date-name" className="create-date-name-label">Choisissez une date</label>
+                    <div className="calendar-datepicker">                        
+                        <PickDate startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} />                                              
                     </div>
-
-                    <label htmlFor="create-date-name" className="create-date-name-label">choisissez une date</label>
-                    <PickDate startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} />
-                    <label htmlFor="create-date-name" className="create-date-name-label">horaires</label>
-
+                    <label htmlFor="create-date-name" className="create-date-name-label">Horaires</label>
                     <div className="create-date-form-time-container">
                         {showStartTimePicker ? <TimePicker time={startTime} setTime={setStartTime} setShowPicker={setShowStartTimePicker} /> : <button className="date-time-button" onClick={()=> setShowStartTimePicker(true)}>{startTime}</button> }
                         {showEndTimePicker ? <TimePicker  time={endTime} setTime={setEndTime} setShowPicker={setShowEndTimePicker} /> : <button className="date-time-button"  onClick={()=> setShowEndTimePicker(true)}>{endTime}</button> }

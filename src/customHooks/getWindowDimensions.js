@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
+  const width = document.getElementsByTagName("body")[0].clientWidth
+  const height = document.getElementsByTagName("body")[0].clientHeight
   return {
     width, height
   };

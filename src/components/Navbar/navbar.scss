@@ -1,11 +1,45 @@
 @use '../../var.scss';
-@use '../../reset.scss';
 
-.activeStyle{
-    text-decoration: underline;
-    color: red;
+.activeStyle {
+
+    background-color: var.$background-color;
+    color: var.$other-color;
+    text-shadow: 0.5px 0.10px 0.10px var.$shadow-color;
 }
 
-.navlink{
-    margin-right: 10px;
+.navlink-add,
+.navlink-section,
+.activeStyle {
+
+    border: none;
+    margin-right: 40px;
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+.create-event-color {
+    filter: invert(98%) sepia(1%) saturate(247%) hue-rotate(244deg) brightness(115%) contrast(90%);
+}
+
+.navbar-container-link {
+    align-items: center;
+    display: flex;
+}
+
+@media screen and (max-width : 599px) {
+    .navbar-container-link:not(.open){
+        display: none;
+    }
+    .open {
+        position: fixed;
+        z-index: 8;
+        background-color: var.$background-color;
+        width: 100%;
+        height: calc(100% - 60px);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-evenly;
+    }
 }

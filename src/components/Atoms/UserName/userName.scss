@@ -1,5 +1,23 @@
-@use '../../../reset.scss';
+@use '../../../var.scss';
 
 .navbar-user{
     margin-right: 10px;
+    position: relative;
+}
+
+.user{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 40px;
+    right: -10px;
+    background-color: var.$second-color;
+    color: var.$primary-color;
+    width: 200px;
+    height: auto;
+    z-index: 10;
+}
+
+.user-modal {
+   
 }

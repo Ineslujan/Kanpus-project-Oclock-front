@@ -1,10 +1,10 @@
 @use '../../var.scss';
-@use '../../reset.scss';
 
 .classeroom-title{
-    margin: 1% 0;
+    padding-top: 1.7%;
     font-size: 2em;
-    color: var.$primary-color;
+    color: var.$second-color;
+    font-weight: bold;
 }
 
 .classeroom-content{
