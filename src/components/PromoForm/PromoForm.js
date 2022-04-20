@@ -14,7 +14,7 @@ export default function PromoForm({data, updateToggle, updateRoom}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateRoom(data.trainee[0].promo_id, {
+        updateRoom(data.id, {
             name: name,
         })
         updateToggle()

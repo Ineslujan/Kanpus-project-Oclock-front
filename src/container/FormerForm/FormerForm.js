@@ -132,7 +132,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                     address: adress,
                     phone_number: phone,
                     email: email,
-                    is_permanent: true,
+                    is_permanent: permanent,
                     image: picture,
                 }, authentication.token);
                 if(datas.status === 200){
@@ -174,6 +174,10 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
     const updateImage = () => {
         setShowPicture(false)
+    };
+
+    const formerStatus = (value) => {
+        setPermanent(value);
     }
 
     return (
@@ -228,12 +232,8 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                             <input type="text" name="email" value={email} onChange={changeEmail} />
                         </div>
                         <div className="user-form-right-content">
-                            <label htmlFor="is_permanent">Permanent : 
-                                <input type="radio" id="is_permanent" name="is-permanent" value="permanent" onClick={changePermanent} />
-                            </label>
-                            <label htmlFor="not-permanent">Non permanent : 
-                                <input type="radio" id="not-permanent" name="is-permanent" value="non-permanent" onClick={changePermanent} />
-                            </label>
+                           <button type='button' style={{background: permanent?"#FF9700":"#152242"}} onClick={()=> formerStatus(true)} >Permanent</button>
+                           <button type='button' style={{background: permanent?"#152242":"#FF9700"}}  onClick={()=> formerStatus(false)}>Intervenant</button>
                         </div>
                
                    
