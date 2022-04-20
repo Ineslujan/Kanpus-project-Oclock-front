@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { addFormer, getFormers, updateFormer } from '../../requests/formerRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 import { uploadPic } from '../../requests/pictureRequest';
+import { api } from '../../requests/apiRoute'
 
 import './formerForm.scss'
 
@@ -173,73 +175,83 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
         <Modal
             isOpen={updateModal}
+            className='Modal'
+            overlayClassName='Overlay'
         >
             <div className="user-form">
                 <div className="modal-button-close">
-                    <button className="close" onClick={setUpdate}>x</button>
+                    <button className="close" onClick={setUpdate}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
                 <form action="" onSubmit={handlerSubmit}>
-                    <div className="user-form-name-container">
-                        <input type="text" value={firstname} onChange={changeFirstName} />
-                        <input type="text" value={lastname} onChange={changeLastName} />
-                    </div>
-                    <div className="user-form-main-container">
-
-                        <div className="user-form-right-content">
-                            <label htmlFor="color" >Couleur : </label>
-                            <button type="button" name="color" id="color_user" className={classColor}></button>
-                            {color && color.map((item,index)=> (
-                                <button type="button" key={index} className={item.name} value={item.color} onClick={()=>newColor(item)}></button>
-                            ))}
-                            
-                        </div>
-                        <div className="user-form-right-content">
-                            <label htmlFor="adress">Adresse : </label>
-                            <input type="text" name="adress" value={adress} onChange={changeAdress} />
-                        </div>
-
-                        <div className="user-form-right-content">
-                        {!showPicture ?
-                            <>
+                    <div className="former-form-wrapper">
+                        <div className="former-form-left">
+                            <div className="former-form-avatar" >
+                                {!showPicture ?
+                                    <img src={`${api}/avatar/thumbnail.jpg`} classNamme="former-form-avatar-picture" alt="avatar" />
+                                    :
+                                    <img src={urlPicture} alt="avatar" />  
+                                }
+                            </div>
+                            <div className="former-form-permanent">
+                                <label htmlFor="is_permanent">Permanent : 
+                                    <input type="radio" id="is_permanent" name="is-permanent" value="permanent" onClick={changePermanent} />
+                                </label>
+                                <label htmlFor="not-permanent">Non permanent : 
+                                    <input type="radio" id="not-permanent" name="is-permanent" value="non-permanent" onClick={changePermanent} />
+                                </label>
+                            </div>
+                            <div className="former-form-color">
+                                <label htmlFor="color" >Couleur : </label>
+                                <button type="button" name="color" id="color_user" className={classColor}></button>
+                                {color && color.map((item,index)=> (
+                                    <button type="button" key={index} className={item.name} value={item.color} onClick={()=>newColor(item)}></button>
+                                ))}  
+                            </div>
+                            <div className="former-form-upload">
                                 <input type="file" name="sampleFile" onChange={newPicture}/>
                                 <button type="button" onClick={uploadPicture}>Uploader</button>
-                            </>
-                            :
-                            <img src={urlPicture} alt="avatar" />  }
-                        </div>
-
-                        <div className="user-form-right-content">
-                            <label htmlFor="phone">Téléphone : </label>
-                            <input type="text" name="phone" value={phone} onChange={changePhone} />
-                        </div>
-                        <div className="user-form-right-content">
-                            <label htmlFor="email">Email : </label>
-                            <input type="text" name="email" value={email} onChange={changeEmail} />
-                        </div>
-                        <div className="user-form-right-content">
-                            <label htmlFor="is_permanent">Permanent : 
-                                <input type="radio" id="is_permanent" name="is-permanent" value="permanent" onClick={changePermanent} />
-                            </label>
-                            <label htmlFor="not-permanent">Non permanent : 
-                                <input type="radio" id="not-permanent" name="is-permanent" value="non-permanent" onClick={changePermanent} />
-                            </label>
-                        </div>
-               
-                   
-                      
-                        {!data &&
-                            <div className="user-form-right-content">
-                                <div className="user-form-password">
-                                    <label htmlFor="email">Mot de passe : </label>
-                                    <input type="text" name="email" value={newPassword} onChange={changeNewPassword} />
-
-                                    <label htmlFor="email">Confirmez le mot de passe : </label>
-                                    <input type="text" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
-                                </div>
                             </div>
-                        }
+                        </div>
 
-                        <button>valider</button>
+                        <div className="former-form-middel">
+
+                            <div className="former-form-firstname">
+                                <input type="text" value={firstname} onChange={changeFirstName} />
+                            </div>
+                            <div className="former-form-lastname">
+                                <input type="text" value={lastname} onChange={changeLastName} />
+                            </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="adress">Adresse : </label>
+                                <input type="text" name="adress" value={adress} onChange={changeAdress} />
+                            </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="phone">Téléphone : </label>
+                                <input type="text" name="phone" value={phone} onChange={changePhone} />
+                            </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="email">Email : </label>
+                                <input type="text" name="email" value={email} onChange={changeEmail} />
+                            </div>
+
+                        </div>
+
+                        <div className="former-form-right">
+
+                            {!data &&
+                                <div className="user-form-right-content">
+                                    <div className="user-form-password">
+                                        <label htmlFor="email">Mot de passe : </label>
+                                        <input type="text" name="email" value={newPassword} onChange={changeNewPassword} />
+
+                                        <label htmlFor="email">Confirmez le mot de passe : </label>
+                                        <input type="text" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+                                    </div>
+                                </div>
+                            }
+
+                            <button>valider</button>
+                        </div>
                     </div>
                 </form>
             

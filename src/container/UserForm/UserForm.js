@@ -169,7 +169,6 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                 <div className="form-wrapper">
                 <form className='user-form-content' action="" onSubmit={handlerSubmit}>
                     
-
                         <div className="user-form-right-content">
                             <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
                             <input type="text" placeholder="Prénom" value={firstname} onChange={changeFirstName} />
@@ -190,7 +189,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                         <div className="user-form-right-content">
                             <label htmlFor="adress"><img className="user-form-icone" src={svgMarker} alt="Marker" /></label>
                             <input type="text" placeholder="Adresse" name="adress" value={adress} onChange={changeAdress} />
-                     </div>
+                        </div>
                         
                         {!showPicture ?
                             <>
@@ -232,8 +231,6 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                                 </div>
                             </>
 
-
-                            
                         }
 
                         <button className='trainee-confirmation-validate-button'>valider</button>

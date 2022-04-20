@@ -1,3 +1,20 @@
+
+
+.former-form-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.former-form-avatar img{
+    border-radius: 100px;
+    
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+
+
 .color{
     width: 25px;
     height: 15px;
@@ -66,6 +83,7 @@
     border: none;
     border-radius: 50%;
 }
+
 
 #color_user{
     border: none;
