@@ -83,7 +83,7 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
                         <div className="identity-modal-container">
 
                             <div className="identity-modal-container-adress">
-                                <p className="identity-modal-container-title">Adress :</p>
+                                <p className="identity-modal-container-title">Adresse :</p>
                                 <p className="identity-modal-container-content"> {item.address} </p>
                             </div>
                             <div className="identity-modal-container-phone">
@@ -95,7 +95,12 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
                                 <p className="identity-modal-container-content"> {item.email} </p>
                             </div>
 
-                            <ModalPassword passwordModal={passwordModal} seePasswordModal={seePasswordModal} />
+                            <ModalPassword 
+                            passwordModal={passwordModal} 
+                            seePasswordModal={seePasswordModal}
+                            
+                            
+                            />
 
                         </div>
 
@@ -113,11 +118,12 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
                                 overlayClassName='Overlay'
                             >
                                 <div className="modal-button-close">
-                                    <div className="modal-confirmation-delete">
-                                        <button className="close" onClick={confirmationModal}>x</button>
-                                    </div>
+                                    
+                                        <button className="close" onClick={confirmationModal}><img src={svgCircle} alt="close-icon" /></button>
+                                    
                                 </div>
                                 <div className="modal-confirmation-delete-button">
+                                <div className="modal-confirmation-delete-warp">
                                     <div className="modal-confirmation-title">
                                         <p>Voulez-vous vraiment supprimer cet élève ?</p>
                                     </div>
@@ -125,6 +131,7 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
                                         <button className="modal-confirmation-response" onClick={confirmationModal}>Non</button>
                                         <button className="modal-confirmation-response" onClick={() => deleteStudent(item.id)}>Oui</button>
                                     </div>
+                                </div>
                                 </div>
                             </Modal>
 

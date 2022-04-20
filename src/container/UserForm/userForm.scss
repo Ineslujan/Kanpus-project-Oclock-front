@@ -173,13 +173,15 @@ background: transparent;
 @media (min-width: 800px) {
 
     .user-form-avatar{
-
+        border-radius: 100px;
         display: block;
-        border: 2px solid var.$other-color;
+        border: 2px solid white;
         position: fixed;
         top: 100px;
-        left: calc(15% + 30px);
-      width: 160px; 
+        left: calc(15% + 40px);
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
     }
 
     .modal-button-close button{

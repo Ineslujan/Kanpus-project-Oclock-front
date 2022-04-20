@@ -96,6 +96,58 @@
     height: 30px;
 }
 
+.modal-confirmation-delete-button{
+    display: flex;
+    
+    justify-content: center;
+    flex-direction: column;
+    
+    height: 100%;
+    width: 70%;
+}
+
+.modal-confirmation-delete-warp{
+    height: 40%;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+}
+
+.modal-confirmation-title{
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: center;
+    
+}
+
+.modal-confirmation-delete-response{
+display: flex;
+justify-content: space-evenly;
+width: 100%;
+}
+
+.modal-confirmation-response{
+    font-family: 'Lato', Verdana, sans-serif;
+  
+    background-color: var.$background-color;
+    border: 2px solid var.$second-color;
+    border-radius: 3px;
+    color: #F3F2F2;
+    font-size: 15px;
+    padding: 7px 10px;
+    font-weight: bold;
+    transition-duration: 0.3s;
+    margin: 1rem 0.5rem;
+    width: 9rem;
+
+    &:hover{
+        color: var.$other-color;
+        border: 2px solid var.$other-color;
+        background-color: var.$background-color;
+        
+    }
+}
+
 @media (min-width: 800px) {
 
     .identity-modal-main img{
@@ -122,7 +174,7 @@
         justify-content: space-around;
         align-items: center;
     }
-    
+
     .identity-modal-button-password-block{
         position: absolute;
         bottom: 60px;

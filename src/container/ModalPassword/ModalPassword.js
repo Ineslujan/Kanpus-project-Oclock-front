@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Modal from 'react-modal';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
+
+import './modalPassword.scss'
 
 export default function ModalPassword({ openPassword, seePasswordModal }) {
 
@@ -38,26 +41,34 @@ export default function ModalPassword({ openPassword, seePasswordModal }) {
   return (
     <div>     
         
-        <Modal isOpen={seePasswordModal}>
+        <Modal 
+        isOpen={seePasswordModal}
+        className='Modal'
+        overlayClassName='Overlay'
+        >
             <div className="modal-button-close">
-                <div className="modal-confirmation-delete">
-                    <button className="close" onClick={openPassword}>x</button>
-                </div>
+                
+                    <button className="close" onClick={openPassword}><img src={svgCircle} alt="close-icon" /></button>
+                
             </div>
             <div className="modal-change-password">
-                <p>Entrez votre ancien mot de passe</p>
-                <input type="text" className="old-password" onChange={handleOldPassword}/>
-                <p>Entrez votre nouveau mot de passe</p>
-                <input type="text" className="new-password" onChange={handleNewPassword} />
-                <p>Confirmez votre nouveau mot de passe</p>
-                <input type="text" className="new-password" onChange={handleConfirmNewPassword} />   
-            </div>
-            <button className="valider" onClick={changePassword}>Valider</button>
+                <div className="modal-change-password-wrapper">
+                    <p>Entrez votre ancien mot de passe</p>
+                    <input type="text" className="old-password" onChange={handleOldPassword}/>
+                    <p>Entrez votre nouveau mot de passe</p>
+                    <input type="text" className="new-password" onChange={handleNewPassword} />
+                    <p>Confirmez votre nouveau mot de passe</p>
+                    <input type="text" className="new-password" onChange={handleConfirmNewPassword} />  
+                
+            
+            <button className="modal-change-password-valider" onClick={changePassword}>Valider</button>
             { errorConfirmPassword &&
                 <div>
                     <p>Les mots de passe ne correspondent pas !</p>
                 </div>
             }
+            </div> 
+            </div>
         </Modal>
     </div>
   )
