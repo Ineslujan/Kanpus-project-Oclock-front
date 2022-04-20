@@ -6,10 +6,13 @@
 
 .place-form-container {
     width: 50%;
+    height: 30px;
     margin: auto;
     margin-top: 1%;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    z-index: 5;
 }
 
 // .place-select {
@@ -38,6 +41,8 @@
     font-size: 0.9em;
     color: var.$primary-color;
     transition: 0.3sec;
+    position: absolute;
+    right: 0;
 
     &:focus{
         border: 1.5px solid var.$other-color;
@@ -69,7 +74,6 @@
     color: var.$second-color ;
     border-radius: 0;
     transition: all 0.3sec;
-
     &:last-child{
         border-radius: 0 0 5px 5px ;
     }
@@ -95,6 +99,8 @@
 }
 .place-form-button-container{
     width: 35%;
+    position: absolute;
+    min-width: 190px;
 }
 
 .place-modale-info {
