@@ -105,7 +105,7 @@ export default function Organizer() {
 
     return (
         <>
-            <GridLayout className={"layout"} cols={11} onDragStop={onDragStopTest} onResizeStop={onResizeStopTest} rowHeight={60} compactType={null} preventCollision={true} rows={8} width={windowWidth - windowWidth * 0.0104} maxRows={places.length + 1} >
+            <GridLayout className={"layout"} cols={11} onDragStop={onDragStopTest} onResizeStop={onResizeStopTest} rowHeight={60} compactType={null} preventCollision={true} rows={8} width={windowWidth < 850 ? 850 : windowWidth - windowWidth * 0.0104} maxRows={places.length + 1} >
 
                 <div data-grid={{ x: 0, y: 0, w: 1, h: 1, static: true }} data-organizer-type="blank" key={uuid()} >
                     <div className="blank-row">
@@ -159,7 +159,7 @@ export default function Organizer() {
                             <div data-grid={{ x: 0, y: (item.position + 1), w: 1, h: 1, static: true }} data-organizer-type="row" key={uuid()}>
                                 {item.name}
                                 {console.log(windowWidth)}
-                                <div className="row" style={{ width: (((windowWidth - windowWidth * 0.0104) / 11) * 11) + "px" }}></div>
+                                <div className="row" style={{ width: windowWidth < 850 ? 850 : (((windowWidth - windowWidth * 0.0104) / 11) * 11) + "px" }}></div>
                             </div>
                         )
                     })

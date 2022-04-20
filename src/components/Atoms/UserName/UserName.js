@@ -1,4 +1,4 @@
-import React, {useState,useContext} from 'react';
+import React, {useState,useContext,useEffect} from 'react';
 import Modal from 'react-modal';
 import { AuthenticationContext } from '../../../context/authenticationContext';
 import ModalPassword from '../../../container/ModalPassword/ModalPassword';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Settings from '../../Settings/Settings';
 import './userName.scss';
 
-export default function UserName() {
+export default function UserName({ isOpen, setIsOpen }) {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
     Modal.setAppElement(document.getElementById('root'));
     const navigate = useNavigate();
@@ -15,10 +15,17 @@ export default function UserName() {
     const [passwordModal, setPasswordModal] = useState(false);
     const [seePasswordModal, setSeePasswordModal] = useState(false);
     const [seeSettings, setSeeSettings] = useState(false)
+    
+    useEffect(() => {
+        if (isOpen) {
+            setUserMenu(false)
+        }
+    }, [isOpen])
 
     const openMenu = () => {
         setSeePasswordModal(false);
         setUserMenu(modal => !modal);
+        setIsOpen(false)
     }
 
     const openPassword = () => {
@@ -37,10 +44,11 @@ export default function UserName() {
         setUserMenu(x=>!x);
     }
 
+
     return (
 
 		<div className="navbar-user">
-            <button className="user-name" onClick={openMenu}>
+            <button className="user-name" onClick={openMenu} >
                 {authentication.user.firstname}
                 </button>
             {/* {console.log("user",authentication.user.firstname)} */}

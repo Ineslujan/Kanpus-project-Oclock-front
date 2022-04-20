@@ -1,6 +1,11 @@
 @use '../../var.scss';
 @use 'sass:color';
 
+.layout {
+    overflow: auto;
+    height: 700px; //!
+}
+
 .layout div:not([data-organizer-type="blank"]) {
     position: relative;
     display: flex;
@@ -13,8 +18,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    row-gap: 5px;
-    padding-bottom: 5px;
 }
 
 .column-weekday {
@@ -25,16 +28,16 @@
 }
 
 .column-day {
-    padding: 0.8rem;
-    border-radius: 10px;
-    background-color: var.$other-color;
+    font-size: 1.8rem;
+    color: var.$other-color;
     text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
 .layout div[data-organizer-type="row"] {
     // background-color: var.$primary-color;
     color: var.$second-color;
-    text-align: right;
+    text-transform: uppercase;
+    font-size: 0.8rem;
 }
 
 .layout div .blank-row {
@@ -83,7 +86,7 @@ BORDERS
     left: -10px;
     bottom: -5px;
     z-index: -1;
-    border-bottom: 1px solid var.$primary-color;
+    border-bottom: 1px solid #2c3f6f;
 }
 
 .layout div .column {
@@ -92,7 +95,7 @@ BORDERS
     left: -5px;
     top: -5px;
     z-index: -1;
-    border-left: 1px solid var.$primary-color;
+    border-left: 1px solid #2c3f6f;
 }
 
 .layout div .column-middle {
@@ -101,5 +104,5 @@ BORDERS
     left: 50%;
     top: 65px;
     z-index: -1;
-    border-left: 1px dashed color.scale(var.$primary-color, $lightness: 70%);
+    border-left: 1px dashed #1c2d58;
 }
