@@ -80,17 +80,110 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                 <div className="modal-button-close">
                     <button className="close" onClick={openModal}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
-                <div className="modal-icones">
+
+                <div className="course-info">
+                    {/* {console.log(datas)}  */}
+                    <div className="modal-event-head">
+                        <p className="modal-event-name">{datas.name}</p>
+                        <p className="modal-event-place">{datas.place_name}</p>
+
+                    </div>
+                    <div className="modal-event-time">
+                        <div className="modal-date-time-block">
+                            <p className="modal-date-time-block-date">{DateTime.fromISO(datas.start_date).weekdayLong} {DateTime.fromISO(datas.start_date).day} {DateTime.fromISO(datas.start_date).monthLong}</p>
+                            <p className="modal-date-time-block-hour">{DateTime.fromISO(datas.start_date).setLocale("fr").toUTC().toFormat("HH:mm")}</p>
+                        </div>
+                        <div className="modal-date-time-block">
+                            <p className="modal-date-time-block-date">{DateTime.fromISO(datas.end_date).weekdayLong} {DateTime.fromISO(datas.end_date).day} {DateTime.fromISO(datas.end_date).monthLong}</p>
+                            <p className="modal-date-time-block-hour">{DateTime.fromISO(datas.end_date).setLocale("fr").toUTC().toFormat("HH:mm")}</p>
+                        </div>
+                    </div>
+                    {datas.address &&
+                            <>
+                                <p className="modal-adress-title">Adress</p>
+                                <p className="modal-adress-content">Adress</p>
+                            </>
+                        }
+                    <div className="modal-event-user-wrapper">
+                        <div className="modal-event-user">
+                            <h2 className="modal-event-user-title">Formateur</h2>
+                            <div className="modal-event-user-name-wrapper">
+                                {datas.former.map((item) => (
+                                    <p className="modal-event-user-name" key={item.id}>{item.firstname} {item.lastname}</p>
+                                ))}
+                            </div>
+                        </div>
+                        {datas.trainee.length > 0 &&
+                            <div className="modal-event-user">
+                                <h2 className="modal-event-user-title">Stagiere</h2>
+                                <div className="modal-event-user-name-wrapper">
+                                    {datas.trainee.map((item) => (
+                                        <button className="modal-event-user-name" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
+                                    ))}
+                                </div>
+                            </div>
+                        }
+                        
+                        
+                    </div>
+                    <div className="modal-event-user-wrapper">
+             
+
+
+                    {datas.role &&
+                        <div className="modal-text-event">
+                            <div className="modal-text-title-container">
+                                <p className="modal-event-user-title">Roles</p>
+                                <button className="modal-arrow"><img src={ArrowNext} alt="arrow next" className={arrow1 ? "down" : ""} onClick={() => seeContent(setArrow1)} /></button>
+                            </div>
+                            {arrow1 &&
+                                <div className="event-modal-textarea">
+                                    <p className="modal-text-content">{datas.role}</p>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    {datas.equipment &&
+                        <div className="modal-text-event">
+                            <div className="modal-text-title-container">
+                                <p className="modal-event-user-title">Matériel</p>
+                                <button className="modal-arrow"><img src={ArrowNext} alt="arrow next" className={!arrow2 ? "down" : ""} onClick={() => seeContent(setArrow2)} /></button>
+                            </div>
+                            {arrow2 &&
+                                <div className="event-modal-textarea">
+                                    <p className="modal-text-content">{datas.equipment}</p>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    {datas.note &&
+                        <div className="modal-text-event">
+                            <div className="modal-text-title-container">
+                                <p className="modal-event-user-title">Infos pratique</p>
+                                <button className="modal-arrow"><img src={ArrowNext} alt="arrow next" className={arrow3 ? "down" : ""} onClick={() => seeContent(setArrow3)} /></button>
+                            </div>
+                            {arrow3 &&
+                                <div className="event-modal-textarea">
+                                    <p className="modal-text-content">{datas.note}</p>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+                </div>
+                <div className="event-modal-icones">
 
                     <Link to="/add" state={{ myData }}>
-                        <button className="modal-icone"><img src={Pen} alt="pen" /></button>
+                        <button className="event-modal-icone"><img src={Pen} alt="pen" /></button>
                     </Link>
-                    <button className="modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
+                    <button className="event-modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
 
-                    <Modal 
-                    isOpen={seeConfirmationModal}
-                    className='Modal'
-                    overlayClassName='Overlay'
+                    <Modal
+                        isOpen={seeConfirmationModal}
+                        className='Modal'
+                        overlayClassName='Overlay'
 
                     >
                         <div className="modal-button-close">
@@ -110,82 +203,6 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                     </Modal>
 
                 </div>
-                <div className="course-info">
-                    {/* {console.log(datas)}  */}
-                    <div className="modal-name-date">
-                        <p className="modal-name">{datas.name}</p>
-                        <p className="modal-date modal-start">Début : {DateTime.fromISO(datas.start_date).weekdayLong} {DateTime.fromISO(datas.start_date).day} {DateTime.fromISO(datas.start_date).monthLong}  {DateTime.fromISO(datas.start_date).setLocale("fr").toUTC().toFormat("HH:mm")}</p>
-                        <p className="modal-date modal-end">Fin : {DateTime.fromISO(datas.end_date).weekdayLong} {DateTime.fromISO(datas.end_date).day} {DateTime.fromISO(datas.end_date).monthLong}  {DateTime.fromISO(datas.end_date).setLocale("fr").toUTC().toFormat("HH:mm")}</p>
-                    </div>
-                    <div className="modal-adress-former">
-                        <p className="modal-place">{datas.place_name}</p>
-                        {datas.address &&
-                            <>
-                                <p className="modal-adress-title">Adress</p>
-                                <p className="modal-adress-content">Adress</p>
-                            </>
-                        }
-                        {datas.former.map((item) => (
-                            <p className="modal-former" key={item.id}>{item.firstname} {item.lastname}</p>
-                        ))}
-                    </div>
-                    {datas.trainee.length > 0 &&
-                        <div className="modal-trainee">
-                            <p className="modal-trainee-title">{datas.trainee.length} Stagiaires</p>
-                            <div className="modal-all-trainee">
-                                {datas.trainee.map((item) => (
-                                    <button className="modal-trainee" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
-                                ))}
-                            </div>
-                            {/* {prof &&  */}
-                            <button className="modal-trainer-absence"> Valider les absences </button>
-                            {/* } */}
-                        </div>
-                    }
-                    {datas.role &&
-                        <div className="modal-text">
-                            <div className="modal-text-title-container">
-                                <p className="modal-text-title">Roles</p>
-                                <button className="modal-arrow"><img src={ArrowNext} alt="arrow next" className={arrow1 ? "down" : ""} onClick={() => seeContent(setArrow1)} /></button>
-                            </div>
-                            {arrow1 &&
-                                <div className="modal-textarea">
-                                    <p className="modal-text-content">{datas.role}</p>
-                                </div>
-                            }
-                        </div>
-                    }
-
-                    {datas.equipment &&
-                        <div className="modal-text">
-                            <div className="modal-text-title-container">
-                                <p className="modal-text-title">Matériel</p>
-                                <button className="modal-arrow"><img src={ArrowNext} alt="arrow next" className={!arrow2 ? "down" : ""} onClick={() => seeContent(setArrow2)} /></button>
-                            </div>
-                            {arrow2 &&
-                                <div className="modal-textarea">
-                                    <p className="modal-text-content">{datas.equipment}</p>
-                                </div>
-                            }
-                        </div>
-                    }
-
-                    {datas.note &&
-                        <div className="modal-text">
-                            <div className="modal-text-title-container">
-                                <p className="modal-text-title">Infos pratique</p>
-                                <button className="modal-arrow"><img src={ArrowNext} alt="arrow next" className={arrow3 ? "down" : ""} onClick={() => seeContent(setArrow3)} /></button>
-                            </div>
-                            {arrow3 &&
-                                <div className="modal-textarea">
-                                    <p className="modal-text-content">{datas.note}</p>
-                                </div>
-                            }
-                        </div>
-                    }
-
-                </div>
-
 
             </div>
 

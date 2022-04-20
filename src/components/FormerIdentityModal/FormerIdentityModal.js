@@ -49,6 +49,8 @@ export default function FormerIdentityModal({item, modalIsOpen, closeIdentityMod
     <div>
         <Modal
             isOpen={modalIsOpen}
+            className='Modal'
+            overlayClassName='Overlay'
         >
             <div className="modal-button-close">
                 <button className="close" onClick={closeIdentityModal}>x</button>

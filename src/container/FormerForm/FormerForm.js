@@ -217,7 +217,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                             </>
                             :
                             <>
-                                <img src={urlPicture} alt="avatar" />
+                                <img className="user-form-right-image" src={urlPicture} alt="avatar" />
                                 <button onClick={updateImage}>modifier</button> 
                             </>
                         }
