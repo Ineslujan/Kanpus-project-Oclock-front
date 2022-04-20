@@ -42,19 +42,19 @@ export default function Trainee() {
                 </div>
 
             <div className="trainee-container">
-                <div className="trainee-content">
+                {/* <div className="trainee-content"> */}
                    
-                    <div className="trainee-content-promo">
-                        <div className="trainee-content-promo-title">
+                    {/* <div className="trainee-content-promo"> */}
+                        {/* <div className="trainee-content-promo-title">
 
-                        </div>
+                        </div> */}
                         <div className="trainee-content-promo-students">
                             {selectedPromo && selectedPromo.trainee.map((item)=> (
                                 <IdentityCard key={item.id} item={item}  setStudent={setStudent} setSelectedPromo={setSelectedPromo} setAllPromo={setAllPromo} setSeeUpdateModal={setSeeUpdateModal} getStudents={getStudents}/>
                             ))}
                         </div>
-                    </div>
-                </div>
+                    {/* </div> */}
+                {/* </div> */}
                 
             </div>
 

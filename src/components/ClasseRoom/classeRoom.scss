@@ -7,13 +7,17 @@
     font-weight: bold;
 }
 
+.classeroom{
+    width: 90%;
+    margin: auto;
+}
+
 .classeroom-content{
-    // display: flex;
-    // justify-content: space-around;
-    // flex-wrap: wrap;
+
     display: flex;
     justify-content:flex-start;
     flex-wrap: wrap;
     margin-top: 3%;
-    gap: 1rem;
+    gap: 4rem;
+    
 }

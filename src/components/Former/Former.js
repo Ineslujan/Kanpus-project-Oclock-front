@@ -40,26 +40,21 @@ export default function Former() {
                 getStudents={getStudents} 
             />
 
-                <div className="former-create">
+                {/* <div className="former-create">
                     <button className="former-create-button" onClick={setUpdate}>Créer un professeur</button>
                     {seeUpdateModal && <FormerForm updateModal={seeUpdateModal} setUpdateModal={setSeeUpdateModal}  setUpdate={setUpdate} allPromo={allPromo} getStudents={getStudents} /> }
-                </div>
+                </div> */}
 
-            <div className="trainee-container">
-                <div className="trainee-content">
-                   
-                    <div className="trainee-content-promo">
-                        <div className="trainee-content-promo-title">
-
-                        </div>
-                        <div className="trainee-content-promo-students">
-                            {selectedStatusFormer && selectedStatusFormer.former.map((item)=> (
-                                <FormerIdentity key={item.id} item={item}  setStudent={setStudent} setSelectedPromo={setSelectedStatusFormer} setAllPromo={setAllPromo} setSeeUpdateModal={setSeeUpdateModal} getStudents={getStudents}/>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                
+            <div className="trainee-container">                 
+                <div className="trainee-content-promo-students">
+                    {selectedStatusFormer && selectedStatusFormer.former.map((item)=> (
+                        <FormerIdentity key={item.id} item={item}  setStudent={setStudent} setSelectedPromo={setSelectedStatusFormer} setAllPromo={setAllPromo} setSeeUpdateModal={setSeeUpdateModal} getStudents={getStudents}/>
+                    ))}
+                </div>               
+            </div>
+            <div className="former-create">
+                    <button className="former-create-button" onClick={setUpdate}>Créer un professeur</button>
+                    {seeUpdateModal && <FormerForm updateModal={seeUpdateModal} setUpdateModal={setSeeUpdateModal}  setUpdate={setUpdate} allPromo={allPromo} getStudents={getStudents} /> }
             </div>
 
         </div>
