@@ -1,7 +1,7 @@
 import React, {useState,useContext} from 'react';
 import Modal from 'react-modal';
 import { AuthenticationContext } from '../../../context/authenticationContext';
-import ModalPassword from '../../../container/ModalPassword/ModalPassword';
+import UserModalPassword from '../../UserModalPassword/UserModalPassword';
 import { useNavigate } from 'react-router-dom';
 import Settings from '../../Settings/Settings';
 import './userName.scss';
@@ -21,7 +21,7 @@ export default function UserName() {
         setUserMenu(modal => !modal);
     }
 
-    const openPassword = () => {
+    const openClose = () => {
         setSeePasswordModal(x=>!x);
         setUserMenu(x=>!x);
         console.log("coucou")
@@ -47,11 +47,11 @@ export default function UserName() {
             <div className="user">
             {userMenu && 
                 <div className="user-modal">
-                    <button onClick={openPassword}>Gestion mot de passe</button>
+                    <button onClick={openClose}>Gestion mot de passe</button>
                 </div>
             }
             {seePasswordModal &&
-                 <ModalPassword openPassword={openPassword} seePasswordModal={seePasswordModal} />
+                 <UserModalPassword openClose={openClose} seePasswordModal={seePasswordModal} />
             }
              {userMenu && 
                 <div className="user-modal">

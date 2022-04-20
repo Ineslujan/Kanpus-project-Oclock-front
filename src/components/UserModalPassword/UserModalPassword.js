@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react';
 import Modal from 'react-modal';
-import { updateAdminPassword } from '../../requests/passwordAdmin';
+import { updatePassword } from '../../requests/connexionRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
 
-export default function ModalPassword({ passwordModal, seePasswordModal, item }) {
+export default function UserModalPassword({openClose, seePasswordModal}) {
 
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -32,13 +32,14 @@ export default function ModalPassword({ passwordModal, seePasswordModal, item })
     }, [newPassword, confirmNewPassword]);
 
     const changePassword = async () => {
-        console.log(item)
-        const update = await updateAdminPassword({
+        const update = await updatePassword({
+            old_password: oldPassword,
             new_password: newPassword,
             repeat_password: confirmNewPassword
-        }, authentication.token, item.id);
-        if(update.status ===200){
-            console.log("youhou")
+        },authentication.token);
+        if(update.status === 200){
+            console.log("youhou");
+            openClose()
         }
     }
     
@@ -53,13 +54,15 @@ export default function ModalPassword({ passwordModal, seePasswordModal, item })
         >
             <div className="modal-button-close">
                 <div className="modal-confirmation-delete">
-                    <button className="close" onClick={passwordModal}>x</button>
+                    <button className="close" onClick={openClose}>x</button>
                 </div>
             </div>
             <div className="modal-change-password">
-                <p>Entrez le nouveau mot de passe</p>
+                <p>Entrez votre ancien mot de passe</p>
+                <input type="text" className="old-password" onChange={handleOldPassword}/>
+                <p>Entrez votre nouveau mot de passe</p>
                 <input type="text" className="new-password" onChange={handleNewPassword} />
-                <p>Confirmez le nouveau mot de passe</p>
+                <p>Confirmez votre nouveau mot de passe</p>
                 <input type="text" className="new-password" onChange={handleConfirmNewPassword} />   
             </div>
             <button className="valider" onClick={changePassword}>Valider</button>

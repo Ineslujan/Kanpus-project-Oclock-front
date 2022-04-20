@@ -5,6 +5,7 @@ import Trash from '../../assets/images/trash.png';
 import { getFormers, deleteFormer } from '../../requests/formerRequest';
 import FormerForm from '../../container/FormerForm/FormerForm';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import ModalPassword from '../../container/ModalPassword/ModalPassword';
 
 import './formerIdentityModal.scss'
 
@@ -15,6 +16,7 @@ export default function FormerIdentityModal({item, modalIsOpen, closeIdentityMod
     Modal.setAppElement(document.getElementById('root'));
     const [seeConfirmationModal, setSeeConfirmationModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
+    const [seePasswordModal, setSeePasswordModal] = useState(false);
 
     const setUpdate = () => {
         console.log("heyhi")
@@ -43,6 +45,11 @@ export default function FormerIdentityModal({item, modalIsOpen, closeIdentityMod
             setSeeConfirmationModal(modal => !modal);
             closeIdentityModal();
         }
+    }
+
+    const passwordModal = () => {
+        console.log("yououhjzhjezkjzek")
+        setSeePasswordModal(!seePasswordModal)
     }
 
   return (
@@ -98,7 +105,9 @@ export default function FormerIdentityModal({item, modalIsOpen, closeIdentityMod
                     <p className="mail-title">Email :</p>
                     <p className="mail-content"> {item.email} </p>
                 </div>
-                
+
+                <button className="button-modal" onClick={passwordModal}>Changez le mot de passe</button>
+                <ModalPassword passwordModal={passwordModal} seePasswordModal={seePasswordModal} item={item} />
             </div>
 
         </Modal>

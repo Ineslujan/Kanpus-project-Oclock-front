@@ -106,7 +106,7 @@ export default function IdentityModal({item, modalIsOpen, closeIdentityModal, se
                     <p className="mail-content"> {item.email} </p>
                 </div>
                 <button className="button-modal" onClick={passwordModal}>Changez le mot de passe</button>
-                <ModalPassword passwordModal={passwordModal} seePasswordModal={seePasswordModal} />
+                <ModalPassword passwordModal={passwordModal} seePasswordModal={seePasswordModal} item={item} />
            
             </div>
 
