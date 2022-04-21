@@ -1,6 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { updateAdminPassword } from '../../requests/passwordAdmin';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
+
+import './modalPassword.scss'
 import { AuthenticationContext } from '../../context/authenticationContext';
 
 export default function ModalPassword({ passwordModal, seePasswordModal, item }) {
@@ -24,7 +27,7 @@ export default function ModalPassword({ passwordModal, seePasswordModal, item })
     }
 
     useEffect(() => {
-        if(newPassword !== confirmNewPassword) {
+        if (newPassword !== confirmNewPassword) {
             setErrorConfirmPassword(true);
         } else {
             setErrorConfirmPassword(false);
@@ -37,38 +40,41 @@ export default function ModalPassword({ passwordModal, seePasswordModal, item })
             new_password: newPassword,
             repeat_password: confirmNewPassword
         }, authentication.token, item.id);
-        if(update.status ===200){
+        if (update.status === 200) {
             console.log("youhou")
         }
     }
-    
 
 
 
-  return (
-      
-        
-        <Modal 
+
+    return (
+
+
+        <Modal
             isOpen={seePasswordModal}
+            className='Modal'
+            overlayClassName='Overlay'
         >
             <div className="modal-button-close">
-                <div className="modal-confirmation-delete">
-                    <button className="close" onClick={passwordModal}>x</button>
-                </div>
+
+                <button className="close" onClick={passwordModal}><img src={svgCircle} alt="close-icon" /></button>
+
             </div>
-            <div className="modal-change-password">
+            <div className="modal-change-password-wrapper">
                 <p>Entrez le nouveau mot de passe</p>
                 <input type="text" className="new-password" onChange={handleNewPassword} />
                 <p>Confirmez le nouveau mot de passe</p>
-                <input type="text" className="new-password" onChange={handleConfirmNewPassword} />   
+                <input type="text" className="new-password" onChange={handleConfirmNewPassword} />
             </div>
-            <button className="valider" onClick={changePassword}>Valider</button>
-            { errorConfirmPassword &&
+            <button className="modal-change-password-valider" onClick={changePassword}>Valider</button>
+            {errorConfirmPassword &&
                 <div>
                     <p>Les mots de passe ne correspondent pas !</p>
                 </div>
             }
+
         </Modal>
-    
-  )
+
+    )
 }

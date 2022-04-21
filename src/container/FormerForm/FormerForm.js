@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import Modal from 'react-modal';
 import { addFormer, getFormers, updateFormer } from '../../requests/formerRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 import { uploadPic } from '../../requests/pictureRequest';
+import { api } from '../../requests/apiRoute'
 
 import './formerForm.scss'
 
@@ -184,10 +186,12 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
         <Modal
             isOpen={updateModal}
+            className='Modal'
+            overlayClassName='Overlay'
         >
             <div className="user-form">
                 <div className="modal-button-close">
-                    <button className="close" onClick={setUpdate}>x</button>
+                    <button className="close" onClick={setUpdate}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
                 <form action="" onSubmit={handlerSubmit}>
                     <div className="user-form-name-container">
@@ -217,7 +221,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                             </>
                             :
                             <>
-                                <img src={urlPicture} alt="avatar" />
+                                <img className="user-form-right-image" src={urlPicture} alt="avatar" />
                                 <button onClick={updateImage}>modifier</button> 
                             </>
                         }
@@ -235,22 +239,24 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                            <button type='button' style={{background: permanent?"#FF9700":"#152242"}} onClick={()=> formerStatus(true)} >Permanent</button>
                            <button type='button' style={{background: permanent?"#152242":"#FF9700"}}  onClick={()=> formerStatus(false)}>Intervenant</button>
                         </div>
-               
-                   
-                      
-                        {!data &&
-                            <div className="user-form-right-content">
-                                <div className="user-form-password">
-                                    <label htmlFor="email">Mot de passe : </label>
-                                    <input type="text" name="email" value={newPassword} onChange={changeNewPassword} />
 
-                                    <label htmlFor="email">Confirmez le mot de passe : </label>
-                                    <input type="text" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+
+                        <div className="former-form-right">
+
+                            {!data &&
+                                <div className="user-form-right-content">
+                                    <div className="user-form-password">
+                                        <label htmlFor="email">Mot de passe : </label>
+                                        <input type="text" name="email" value={newPassword} onChange={changeNewPassword} />
+
+                                        <label htmlFor="email">Confirmez le mot de passe : </label>
+                                        <input type="text" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
 
-                        <button>valider</button>
+                            <button>valider</button>
+                        </div>
                     </div>
                 </form>
             

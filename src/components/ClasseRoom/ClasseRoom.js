@@ -7,7 +7,9 @@ import { AuthenticationContext } from '../../context/authenticationContext';
 import './classeRoom.scss'
 
 export default function ClasseRoom() {
+
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
+    
 
     const [allPlaces, setAllPlaces] = useState(null);
     const [createModal, setCreateModal] = useState(false);
@@ -15,7 +17,7 @@ export default function ClasseRoom() {
     const getDatas = async () => {
         const datas = await getPlacesOrganizer(authentication.token);
             setAllPlaces(datas);
-            console.log(allPlaces)
+            console.log(allPlaces);
     }
  
     useEffect(() => {
@@ -23,7 +25,7 @@ export default function ClasseRoom() {
     }, [])
 
     const toggleCreateModal = () => {
-        setCreateModal(modal => !modal)
+        setCreateModal(modal => !modal);
     }
 
  

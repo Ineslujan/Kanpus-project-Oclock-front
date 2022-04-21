@@ -8,22 +8,31 @@
     right: 0px; // mobil 40px
     bottom: 0px; // mobil 40px
     padding: 2rem;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: var.$background-color;
 }
 
 
-  .form-wrapper{
+  .user-form-wrapper{
       display: flex;
+      flex-direction: column;
       
       align-items: center;
       
-      justify-content: flex-start;
+      justify-content: center;
       
   }
 
+ .user-form-avatar{
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
+ }
+
   .user-form-content{
+      margin-top: 20px;
     width: 100%; 
+    height: 100%;
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -33,27 +42,65 @@
   
 
   .modal-button-close button{
-   background-color: transparent;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    filter: invert(11%) sepia(92%) saturate(3810%) hue-rotate(331deg) brightness(88%) contrast(98%);
   }
+.user-form-edit-img{
+  font-family: 'Lato', Verdana, sans-serif;
+  
+  background-color: var.$background-color;
+  border: 2px solid var.$second-color;
+  border-radius: 3px;
+  color: #F3F2F2;
+  font-size: 15px;
+  padding: 7px 10px;
+  font-weight: bold;
+  transition-duration: 0.3s;
+ 
+  width: 100%;
 
-  .modal-button-close img{
-    
-    filter: invert(11%) sepia(92%) saturate(3810%) hue-rotate(349deg) brightness(124%) contrast(98%)
-   }
+  &:hover{
+      color: var.$other-color;
+      border: 2px solid var.$other-color;
+      background-color: var.$background-color;
+      
+  }
+}
+ 
 
 
   .user-form-right-content{
-    margin: 0.5rem; 
+    margin-bottom: 0.5rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       flex-direction: row; 
   }
+.user-form-upload-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+}
 
 
-  .user-form-right-content img{
-    width: 100px;
+  .user-form-icone{
+    width: 30px;
     filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
+   }
+   
+.user-from-file{
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+   .user-form-upload{
+    
+   // margin-left: 0.5rem;
+     filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
    }
 
 .trainee-confirmation-validate-button{
@@ -69,6 +116,7 @@
     font-weight: bold;
     transition-duration: 0.3s;
     margin: 1rem auto;
+    width: 9rem;
 
     &:hover{
         color: var.$other-color;
@@ -89,10 +137,17 @@
     color: var.$second-color;
     display: flex;
     align-items: center;
-    
-
-
 }
+
+.user-form-right-content label button{
+background: transparent;
+}
+
+.user-form-right-content label button img{
+
+    filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
+}
+
 
 .user-form-right-content input{
 
@@ -111,8 +166,6 @@
     font-size: 1.3rem;
     width: 85%;
     
-    
-
     &:focus{
         border: 1.5px solid var.$other-color;
         color: var.$other-color;
@@ -128,21 +181,61 @@
     font-weight: bold;
     font-size: 1.3rem;
     width: 85%;
-    
-    
-    
 
     &:focus{
         border: 1.5px solid var.$other-color;
         color: var.$other-color;
     }
 }
-
+.user-form-avatar img{
+  border-radius: 100px;
+  display: block;
+  border: 2px solid white;
+ 
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
 
 @media (min-width: 800px) {
 
+  .user-form-avatar img{
+    border-radius: 150px;
+    display: block;
+    border: 2px solid white;
+   
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+  }
+
+ .user-form-wrapper{
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+   height: 100%;
+   width: 100%;
+ }
+ .user-form-wrapper-block{
+  width: 40%;
+ }
+
+    .modal-button-close button{
+     position: fixed;
+     top: 60px;
+     right: calc(15% + 20px);
+     background-color: transparent;
+     filter: invert(11%) sepia(92%) saturate(3810%) hue-rotate(331deg) brightness(88%) contrast(98%);
+  
+    }
+    .user-form{
+      width: 100%;
+      height: 100%;
+    
+     }
     .user-form-right-content{
-        margin: 0.8rem; 
+       width: 100%;
+       
      
       }
 
@@ -159,15 +252,16 @@
 
 
     .user-form-content{
-        width: 30%; // mobil
+      
         display: flex;
         justify-content: center;
+        height: 100%;
         flex-direction: column;
     }
     .Modal{
-    top: 100px; // mobil 100px
-    left: 40px; // mobil 40px
-    right: 40px; // mobil 40px
+    top: 40px; // mobil 100px
+    left: 15%; // mobil 40px
+    right: 15%; // mobil 40px
     bottom: 40px; // mobil 40px
     }
 
@@ -177,13 +271,16 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var.$second-color;
+    background-color: rgba(122, 122, 122, 0.781);
+    z-index: 10;
   }
+
+
 }
 
-@media (min-width: 1310px) {
-    .user-form-right-content{
-       margin: 0rem;
+// @media (min-width: 1310px) {
+//     .user-form-right-content{
+//        margin: 0rem;
      
-      }
-}
+//       }
+//}
