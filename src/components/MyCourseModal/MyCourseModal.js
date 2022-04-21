@@ -128,7 +128,14 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
         
     </div>
     <div className="modal-event-user-wrapper">
-
+    <div className="modal-event-user">
+                    {datas.address &&
+                            <>
+                                <h2 className="modal-event-user-title">Address</h2>
+                                <p className="modal-adress-content">{datas.address}</p>
+                            </>
+                        }
+                    </div>
 
 
     {datas.role &&

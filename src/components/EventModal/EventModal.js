@@ -98,12 +98,6 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                             <p className="modal-date-time-block-hour">{DateTime.fromISO(datas.end_date).setLocale("fr").toUTC().toFormat("HH:mm")}</p>
                         </div>
                     </div>
-                    {datas.address &&
-                            <>
-                                <p className="modal-adress-title">Adress</p>
-                                <p className="modal-adress-content">Adress</p>
-                            </>
-                        }
                     <div className="modal-event-user-wrapper">
                         <div className="modal-event-user">
                             <h2 className="modal-event-user-title">Formateur</h2>
@@ -127,8 +121,14 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                         
                     </div>
                     <div className="modal-event-user-wrapper">
-             
-
+                    <div className="modal-event-user">
+                    {datas.address &&
+                            <>
+                                <h2 className="modal-event-user-title">Address</h2>
+                                <p className="modal-adress-content">{datas.address}</p>
+                            </>
+                        }
+                    </div>
 
                     {datas.role &&
                         <div className="modal-text-event">
