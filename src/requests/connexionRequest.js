@@ -13,7 +13,7 @@ export async function postConnexion(event) {
 
 export async function updatePassword( password, token) {
     try {
-        const response = await axios.patch(`${api}user/password`, password,{
+        const response = await axios.patch(`${api}/user/password`, password,{
 
             headers: {
                 authorization: `${token}`

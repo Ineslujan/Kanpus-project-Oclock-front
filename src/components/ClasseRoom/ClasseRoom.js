@@ -16,7 +16,7 @@ export default function ClasseRoom() {
 
     const getDatas = async () => {
         const datas = await getPlacesOrganizer(authentication.token);
-            setAllPlaces(datas);
+            setAllPlaces(datas.data);
             console.log(allPlaces);
     }
  

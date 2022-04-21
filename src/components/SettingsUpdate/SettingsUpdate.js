@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
-import { putSettings } from '../../requests/test';
+import { putSettings } from '../../requests/aboutSettings';
 import { uploadPic } from '../../requests/pictureRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
 

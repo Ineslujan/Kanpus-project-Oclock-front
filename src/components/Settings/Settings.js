@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import Modal from 'react-modal';
 import SettingsUpdate from '../SettingsUpdate/SettingsUpdate';
-import { getSettings } from '../../requests/test';
+import { getSettings } from '../../requests/aboutSettings';
 import { AuthenticationContext } from '../../context/authenticationContext';
 
 export default function Settings({modalIsOpen, setModalIsOpen}) {
@@ -15,7 +15,6 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
         const get = async() => {
             const data = await getSettings(authentication.token);
             if(data.status ===200){
-                console.log('allo',data);
                 setSettingsData(data.data)
             }
             console.log(data)

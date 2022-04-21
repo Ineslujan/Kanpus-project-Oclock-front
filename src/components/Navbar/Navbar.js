@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { NavLink, useLocation } from "react-router-dom";
 import useWindowDimensionsWithScrollbar from '../../customHooks/getWindowDimensionsWithScrollbar';
 
 import Calendar from '../../assets/images/icones-bags-svg/bi-calendar-plus-fill.svg';
@@ -7,11 +7,16 @@ import './navbar.scss';
 
 export default function Navbar({ isOpen, setIsOpen }) {
     const { height, width } = useWindowDimensionsWithScrollbar();
+    const location = useLocation();
 
     let activeClassName = "navlink activeStyle"
     const handleOpeningMenu = () => {
         width <= 599 && setIsOpen(!isOpen)
     }
+
+    useEffect(() => {
+        window.scroll(0, 0);
+      }, [location.pathname]);
 
     return (
         <div className={isOpen ? "navbar-container-link open" : "navbar-container-link"}>
