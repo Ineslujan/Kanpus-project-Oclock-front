@@ -1,10 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react';
-import Pen from '../../assets/images/icones-bags-svg/bi-pen-fill.svg';
+import Pencil from '../../assets/images/icones-bags-svg/bi-pencil-fill.svg';
 import Trash from '../../assets/images/icones-bags-svg/bi-trash3-fill.svg';
 import { DateTime } from "luxon";
 import { updatePromo, deletePromo } from '../../requests/promoRequest';
 import PromoForm from '../PromoForm/PromoForm';
 import { AuthenticationContext } from '../../context/authenticationContext';
+
+import './promoCard.scss';
 
 export default function PromoCard({ data , getDatas}) {
 
@@ -41,26 +43,26 @@ export default function PromoCard({ data , getDatas}) {
     }
 
   return (
-    <div className="classeroom-card">
+    <div className="promo-card">
         {!updateView ?
-            <div className="classeroom-info">
+            <div className="promo-info">
                 {!deleteModal &&
-                    <div className="classeroom-button">
-                        <button className="modal-icone" onClick={updateToggle}><img className="white-img" src={Pen} alt="pen"/></button> 
-                        <button className="modal-icone" onClick={deleteToggle}><img className="white-img" src={Trash} alt="trash" /></button>
+                    <div className="promo-button">
+                        <button className="modal-icone-pencil" onClick={updateToggle}><img className="img-pencil" src={Pencil} alt="pen"/></button> 
+                        <button className="modal-icone-trash" onClick={deleteToggle}><img className="img-trash" src={Trash} alt="trash" /></button>
                     </div>
                 }
                 {!deleteModal?
                     <>
-                        <p className="classeroom-name">{data.name}</p>
-                        <p className="classeroom-position">  {DateTime.fromISO(data.created_at).year}</p>
+                        <p className="promo-name">{data.name}</p>
+                        <p className="promo-position">  {DateTime.fromISO(data.created_at).year}</p>
                     </>
                 :
                     <>
-                        <p className="classeroom-confirmation">Voulez-vous vraiment supprimer cette salle ?</p>
-                        <div className="classeroom-button-container">
-                        <button className="classeroom-confirmation-button" onClick={ () => deleteThisPromo(data.id) }>oui</button>
-                        <button className="classeroom-confirmation-button"  onClick={deleteToggle}>non</button></div>
+                        <p className="promo-confirmation">Voulez-vous vraiment supprimer cette salle ?</p>
+                        <div className="promo-button-container">
+                        <button className="promo-confirmation-button" onClick={ () => deleteThisPromo(data.id) }>oui</button>
+                        <button className="promo-confirmation-button"  onClick={deleteToggle}>non</button></div>
                     </>
                 }
             </div>

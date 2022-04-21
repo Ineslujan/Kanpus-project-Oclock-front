@@ -10,8 +10,8 @@ import './header.scss';
 
 export default function Header() {
     const { height, width } = useWindowDimensionsWithScrollbar();
-    const [isOpen, setIsOpen] = useState(false)
-
+    const [isOpen, setIsOpen] = useState(false);
+    console.log(width);
 
     return (
         <>

@@ -29,12 +29,12 @@ export default function ClasseRoomForm({data, updateToggle, updateRoom}) {
   return (
     <div className="classeroom-update">
         <div className="classeroom-update-content">
-            <form className="classroom-form"action="" onSubmit={handleSubmit}>
+            <form className="classroom-form" action="" onSubmit={handleSubmit}>
                 <input className="classeroom-update-input-text" type="text" value={name} onChange={changeName} />
                 <input className="classeroom-update-input-position" type="number" value={position} onChange={changePosition} />
                     <div className="classeroom-form-buttons">
                         <button className="classeroom-validate">Valider</button>    
-                        <button className="classeroom-close classeroom-close-icon" onClick={updateToggle}><img src={Close} alt="close" /></button>
+                        <button className="classeroom-close" onClick={updateToggle}><img src={Close} alt="close" className="classeroom-close-icon" /></button>
                     </div>        
             </form>
         </div>

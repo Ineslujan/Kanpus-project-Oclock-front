@@ -1,7 +1,43 @@
 @use '../../var.scss';
 
-.former-create-button{
 
+.trainee {
+    width: 90%;
+    margin: auto;
+
+}
+
+.trainee-container {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    // width: 100%;
+    // border-radius: 3px;
+
+}
+
+.trainee-content {
+
+
+
+}
+
+.trainee-content-promo-students {
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+    margin-top: 3%;
+    gap: 1rem;
+}
+
+.trainee-create {
+    padding-top: 0.3%;
+
+
+}
+
+.former-create-button{
     font-family: "Lato", Verdana, sans-serif;
     width: 140px;
     margin-top: 7px;

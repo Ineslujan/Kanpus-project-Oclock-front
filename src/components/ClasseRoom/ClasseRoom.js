@@ -33,19 +33,18 @@ export default function ClasseRoom() {
     
     return (
         <div className="classeroom">
+            <p className="classeroom-title">Lieux</p>
             <div className="classeroom-container">
                 {createModal && <ClasseRoomAdd createModal={createModal}  toggleCreateModal={toggleCreateModal} getDatas={getDatas} allPlaces={allPlaces} setAllPlaces={setAllPlaces} />}
-                
-                <div className="classeroom-create">
-                    <p className="classeroom-title">Lieux</p>
-                    <button className="classeroom-create-button" onClick={toggleCreateModal} >Créer une salle</button>
-                </div>
                 <div className="classeroom-content">
                     {allPlaces &&  allPlaces.map((item) => (
                             <ClasseRoomCard key={item.id} data={item} getDatas={getDatas} />
                     ))}
                 </div>
-
+                <div className="classeroom-create">
+                    {/* <p className="classeroom-title">Lieux</p> */}
+                    <button className="classeroom-create-button" onClick={toggleCreateModal} >Créer une salle</button>
+                </div>
             </div>
         </div>
   )
