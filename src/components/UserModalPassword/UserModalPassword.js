@@ -38,7 +38,7 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
             repeat_password: confirmNewPassword
         },authentication.token);
         if(update.status === 200){
-            console.log("youhou");
+            // console.log("youhou");
             openClose()
         }
     }
@@ -59,11 +59,11 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
             </div>
             <div className="modal-change-password">
                 <p>Entrez votre ancien mot de passe</p>
-                <input type="text" className="old-password" onChange={handleOldPassword}/>
+                <input type="passsword" className="old-password" onChange={handleOldPassword}/>
                 <p>Entrez votre nouveau mot de passe</p>
-                <input type="text" className="new-password" onChange={handleNewPassword} />
+                <input type="passsword" className="new-password" onChange={handleNewPassword} />
                 <p>Confirmez votre nouveau mot de passe</p>
-                <input type="text" className="new-password" onChange={handleConfirmNewPassword} />   
+                <input type="passsword" className="new-password" onChange={handleConfirmNewPassword} />   
             </div>
             <button className="valider" onClick={changePassword}>Valider</button>
             { errorConfirmPassword &&

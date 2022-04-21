@@ -49,7 +49,7 @@ export default function PromoCreate({ createModal, toggleCreateModal, getDatas, 
                 <form className="promo-add-form" onSubmit={onSubmit}>
                     <div className="promo-form">
                         <label htmlFor="promo-name" className="promo-form-label">Nom :</label>
-                        <input type="text" className="promo-form-input" value={name} onChange={changeName} /> 
+                        <input type="text" className="promo-form-input" value={name} onChange={changeName} required /> 
                         {nameError && <p className="promo-form-error">Ce nom est déjà attribué à une autre salle</p>}
                     </div>
                           <button>valider</button>

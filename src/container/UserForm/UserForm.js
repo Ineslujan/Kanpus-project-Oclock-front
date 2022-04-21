@@ -102,7 +102,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     address: adress,
                     phone_number: phone,
                     email: email,
-                    image: picture,
+                    image: picture ? picture: "thumbnail.jpg",
                     new_password: newPassword,
                     confirm_new_password: confirmNewPassword,
                 }, authentication.token);
@@ -121,7 +121,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     address: adress,
                     phone_number: phone,
                     email: email,
-                    image: picture,
+                    image: picture ? picture: "thumbnail.jpg",
                 }, authentication.token);
                 if (datas.status === 200) {
                     getStudents();
@@ -191,15 +191,15 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                             </div>
                             <div className="user-form-right-content">
                                 <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
-                                <input type="text" placeholder="Prénom" value={firstname} onChange={changeFirstName} />
+                                <input type="text" placeholder="Prénom" value={firstname} onChange={changeFirstName} required/>
                             </div>
                             <div className="user-form-right-content">
                                 <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
-                                <input type="text" placeholder="Nom" value={lastname} onChange={changeLastName} />
+                                <input type="text" placeholder="Nom" value={lastname} onChange={changeLastName} required/>
                             </div>
                             <div className="user-form-right-content">
                                 <label htmlFor="promo" ><img className="user-form-icone" src={svgMortarboard} alt="Mortarboard" /></label>
-                                <select name="promo" id="promo_user" onChange={changePromo}>
+                                <select name="promo" id="promo_user" onChange={changePromo} required>
                                     <option key={'promo_option'} className="studends-list" value={promoId}>{promo}</option>
                                     {getPromos && getPromos.map((item, index) => (
                                         <option key={index} className="studends-list" value={item.id}>{item.name}</option>
@@ -211,14 +211,14 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
 
                         <div className="user-form-right-content">
                             <label htmlFor="adress"><img className="user-form-icone" src={svgMarker} alt="Marker" /></label>
-                            <input type="text" placeholder="Adresse" name="adress" value={adress} onChange={changeAdress} />
+                            <input type="text" placeholder="Adresse" name="adress" value={adress} onChange={changeAdress} required />
                         </div>
                         <div className="user-form-right-content">
                             <label htmlFor="adress"><img className="user-form-icone" src={svgImage} alt="Marker" /></label>
                             <div className="user-form-upload-wrapper">
                             {!showPicture ?
                                     <>
-                                        <input className="user-from-file" type="file" name="sampleFile" onChange={newPicture} />
+                                        <input className="user-from-file" type="file" name="sampleFile" onChange={newPicture}/>
                                         <button className="user-form-upload" type="button" onClick={uploadPicture}>
                                         <img src={svgUpload} alt="upload" />
                                         </button>
@@ -236,21 +236,21 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
 
                         <div className="user-form-right-content">
                             <label htmlFor="phone"><img className="user-form-icone" src={svgPhone} alt="Téléphone" /> </label>
-                            <input type="text" name="phone" value={phone} onChange={changePhone} />
+                            <input type="text" name="phone" value={phone} onChange={changePhone} required/>
                         </div>
                         <div className="user-form-right-content">
                             <label htmlFor="email"><img className="user-form-icone" src={svgEnvelope} alt="Envelope" /></label>
-                            <input type="text" placeholder="Email" name="email" value={email} onChange={changeEmail} />
+                            <input type="email" placeholder="Email" name="email" value={email} onChange={changeEmail} required/>
                         </div>
                         {!data &&
                             <>
                                 <div className="user-form-right-content">
-                                    <label htmlFor="email"><img className="user-form-icone" src={svgPassword} alt="password" /></label>
-                                    <input type="text" placeholder="Mot de pass" name="email" value={newPassword} onChange={changeNewPassword} />
+                                    <label htmlFor="password"><img className="user-form-icone" src={svgPassword} alt="password" /></label>
+                                    <input type="text" placeholder="Mot de pass" name="password" value={newPassword} onChange={changeNewPassword} />
                                 </div>
                                 <div className="user-form-right-content">
-                                    <label htmlFor="email"></label>
-                                    <input type="text" placeholder="Confirmez le mot de passe" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+                                    <label htmlFor="password"></label>
+                                    <input type="text" placeholder="Confirmez le mot de passe" name="password" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
                                 </div>
                             </>
 
