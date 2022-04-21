@@ -34,10 +34,12 @@ export default function Navbar({ isOpen, setIsOpen }) {
             ><button onClick={handleOpeningMenu}>Organiseur</button></NavLink>
             </>
             }
+            {(authentication.role === "admin" || authentication.role === "former" ||uthentication.role === "trainee" ) &&
             <NavLink
                 to="/mycourse"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-section"}
             ><button onClick={handleOpeningMenu}>Mes cours</button></NavLink>
+        }
             {(authentication.role === "admin" || authentication.role === "former") &&
             <>
             <NavLink
