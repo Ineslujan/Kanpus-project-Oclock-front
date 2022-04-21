@@ -26,6 +26,11 @@
     display: flex;
 }
 
+.navbar-container-link button {
+    background: none;
+    color: inherit;
+}
+
 @media screen and (max-width : 599px) {
     .navbar-container-link:not(.open){
         display: none;

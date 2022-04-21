@@ -1,9 +1,10 @@
 @use '../../var.scss';
-
 .navbar {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+    left: 0;
+    right: 0;
+    width: 100vw; /* Full width */
     display: flex;
     border-bottom: 3px solid var.$other-color ;
     height: 60px;
@@ -12,14 +13,9 @@
     z-index: 9;
 
     &-container{
-        width: 100%;
+        width: 100vw;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-}
-
-.connexion-container {
-    border-top: 3px solid var.$other-color;
-
 }

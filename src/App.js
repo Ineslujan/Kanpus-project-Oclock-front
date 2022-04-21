@@ -35,8 +35,6 @@ function App() {
                 <Route path='/places' element={<ClasseRoom />} />
                 <Route path='/former' element={<Former />} />
                 <Route path='/promos' element={<Promos />} />
-             
-                
             </Routes>
         </div>
     );

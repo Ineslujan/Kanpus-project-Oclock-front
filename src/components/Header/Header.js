@@ -11,7 +11,6 @@ import './header.scss';
 export default function Header() {
     const { height, width } = useWindowDimensionsWithScrollbar();
     const [isOpen, setIsOpen] = useState(false);
-    console.log(width);
 
     return (
         <>
@@ -19,11 +18,11 @@ export default function Header() {
             <div className="navbar-container">
                 <Logo />
                 {width < 599 ? "" : <Navbar />}
-                <UserName />
+                <UserName isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
             {width <= 599 && <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />}
         </div>
-        {width <= 599 && <Navbar isOpen={isOpen} />}
+        {width <= 599 && <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />}
         </>
     )
 }
