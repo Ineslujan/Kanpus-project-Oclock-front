@@ -14,6 +14,7 @@ import Trainee from './components/Trainee/Trainee';
 import ClasseRoom from './components/ClasseRoom/ClasseRoom';
 import Former from './components/Former/Former';
 import Promos from './components/Promos/Promos';
+import WrongRoute from './components/WrongRoute/WrongRoute';
 
 import Group from './components/Group/Group';
 
@@ -27,14 +28,14 @@ function App() {
             {authentication.logged && <Header />}
             <Routes>
                 <Route path='/' element={<Connexion />} />
-                <Route path='/add' element={<AddClasses />} />
-                <Route path='/organizer' element={<Organizer />} />
-                <Route path='/mycourse' element={<MyCourse />} />
+                <Route path='/add' element={(authentication.role === "admin" || authentication.role === "former" )? <AddClasses /> : <WrongRoute />} />
+                <Route path='/organizer' element={(authentication.role === "admin" || authentication.role === "former" )? <Organizer /> : <WrongRoute />} />
+                <Route path='/mycourse' element={(authentication.role === "admin" || authentication.role === "former" || authentication.role === "trainee" )? <MyCourse /> : <WrongRoute />} />
                 {/* <Route path='/mycourse' element={authentication.role === 'trainee' ? <MyCourse />: "vous n'avez pas acces a cette page"} /> */}
-                <Route path='/trainee' element={<Trainee />} />
-                <Route path='/places' element={<ClasseRoom />} />
-                <Route path='/former' element={<Former />} />
-                <Route path='/promos' element={<Promos />} />
+                <Route path='/trainee' element={(authentication.role === "admin" || authentication.role === "former" )? <Trainee /> : <WrongRoute />} />
+                <Route path='/places' element={(authentication.role === "admin" || authentication.role === "former" )? <ClasseRoom /> : <WrongRoute />} />
+                <Route path='/former' element={authentication.role === "admin" ? <Former />: <WrongRoute />} />
+                <Route path='/promos' element={(authentication.role === "admin" || authentication.role === "former" )? <Promos /> : <WrongRoute />} />
             </Routes>
         </div>
     );

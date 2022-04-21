@@ -1,18 +1,19 @@
 import React, {useState, useContext} from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
-import { putSettings } from '../../requests/test';
+import { putSettings } from '../../requests/aboutSettings';
 import { uploadPic } from '../../requests/pictureRequest';
 import { AuthenticationContext } from '../../context/authenticationContext';
 
 
-export default function SettingsUpdate({isOpen, seeUpdate, data}) {
+export default function SettingsUpdate({isOpen, setIsOpen, seeUpdate, data, setUpdateScreen}) {
     Modal.setAppElement(document.getElementById('root'));
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const [picture, setPicture] = useState();
     const [showPicture, setShowPicture] = useState(false);
     const [urlPicture, setUrlPicture] = useState();
+
 
     const {register, handleSubmit, formState: { errors }, reset, watch} = useForm(
         { defaultValues: { 
@@ -54,7 +55,8 @@ export default function SettingsUpdate({isOpen, seeUpdate, data}) {
             console.log('inside',data)
             const upload = await putSettings (data , authentication.token);
             if(upload.status === 200){
-                console.log('youhou')
+                setIsOpen(false);
+                setUpdateScreen(true);
             
         }
      

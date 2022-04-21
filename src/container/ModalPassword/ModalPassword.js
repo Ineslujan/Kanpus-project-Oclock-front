@@ -6,17 +6,17 @@ import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg'
 import './modalPassword.scss'
 import { AuthenticationContext } from '../../context/authenticationContext';
 
-export default function ModalPassword({ passwordModal, seePasswordModal, item }) {
+export default function ModalPassword({ passwordModal, seePasswordModal, setSeePasswordModal, item }) {
 
-    const [oldPassword, setOldPassword] = useState("");
+    // const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
-    const handleOldPassword = (e) => {
-        setOldPassword(e.target.value)
-    }
+    // const handleOldPassword = (e) => {
+    //     setOldPassword(e.target.value)
+    // }
 
     const handleNewPassword = (e) => {
         setNewPassword(e.target.value)
@@ -41,7 +41,7 @@ export default function ModalPassword({ passwordModal, seePasswordModal, item })
             repeat_password: confirmNewPassword
         }, authentication.token, item.id);
         if (update.status === 200) {
-            console.log("youhou")
+            setSeePasswordModal(false);
         }
     }
 
@@ -63,9 +63,9 @@ export default function ModalPassword({ passwordModal, seePasswordModal, item })
             </div>
             <div className="modal-change-password-wrapper">
                 <p>Entrez le nouveau mot de passe</p>
-                <input type="text" className="new-password" onChange={handleNewPassword} />
+                <input type="passsword" className="new-password" onChange={handleNewPassword} />
                 <p>Confirmez le nouveau mot de passe</p>
-                <input type="text" className="new-password" onChange={handleConfirmNewPassword} />
+                <input type="passsword" className="new-password" onChange={handleConfirmNewPassword} />
             </div>
             <button className="modal-change-password-valider" onClick={changePassword}>Valider</button>
             {errorConfirmPassword &&

@@ -135,7 +135,7 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
                 </div>
                 </div>
                 {/* <button className="button-modal" onClick={passwordModal}>Changez le mot de passe</button> */}
-                <ModalPassword passwordModal={passwordModal} seePasswordModal={seePasswordModal} item={item} />
+                <ModalPassword passwordModal={passwordModal} seePasswordModal={seePasswordModal} setSeePasswordModal={setSeePasswordModal} item={item} />
            
             
         </Modal>

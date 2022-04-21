@@ -16,7 +16,7 @@ export default function ConnexionForm() {
     const onSubmit = data =>  {
         const getDatas = async () => {
             const datas = await postConnexion(data);
-            if(datas.status === 200){
+            if(datas.status === 200){ 
                 setState2(datas);
                 console.log(datas)
                 setAuthentication({
@@ -46,7 +46,7 @@ export default function ConnexionForm() {
         </div>
         <div className="connexion-form-container">
             <label htmlFor="connexion-password" className="connexion-form-label">Mot de passe :</label> <br/>
-            <input type="text" className="connexion-form-input"  {...register("password", { required: true })} /> <br/>
+            <input type="password" className="connexion-form-input"  {...register("password", { required: true })} /> <br/>
             {errors.password && <span>Vous devez rentrer votre mot de passe pour vous connecter</span>}
         </div>
         <button className="connexion-form-button">Valider</button>

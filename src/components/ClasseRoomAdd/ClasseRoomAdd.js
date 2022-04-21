@@ -67,7 +67,7 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
             const postPlace = async () => {
                 const datas = await createPlace({
                   name: name,
-                  position: newPosition
+                  position: Number(newPosition)
                 }, authentication.token);
                 if(datas.status === 200){
                     toggleCreateModal();
