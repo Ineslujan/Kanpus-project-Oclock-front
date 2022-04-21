@@ -36,13 +36,13 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
     const addAbsenceTrainee = (e, item) => {
         if (traineeAbsence.includes(item)) {
             setTraineeAbsence(traineeAbsence.filter(trainee => trainee !== item));
-            e.target.style.color = "black";
+            e.target.style.color = "#F3F2F2";
         } else {
             setTraineeAbsence([
                 ...traineeAbsence,
                 item
             ])
-            e.target.style.color = "red";
+            e.target.style.color = "#FF9700";
         }
     }
 
@@ -123,7 +123,7 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                                 </div>
                             </div>
                         }
-                        
+                        <button className="event-button-abssense"> Valider les absences </button>
                         
                     </div>
                     <div className="modal-event-user-wrapper">

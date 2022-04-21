@@ -62,6 +62,8 @@ export default function SettingsUpdate({isOpen, seeUpdate, data}) {
   return (
     <Modal
         isOpen={isOpen}
+        className='Modal'
+        overlayClassName='Overlay'
     >
         <div className="modal-confirmation-delete">
             <button className="close" onClick={seeUpdate}>x</button>

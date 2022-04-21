@@ -31,10 +31,12 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
     return (
         <Modal
             isOpen={modalIsOpen}
+            className='Modal'
+            overlayClassName='Overlay'
         >
             <div className="modal-button-close">
                 <div className="modal-confirmation-delete">
-                    <button className="close" onClick={()=>setModalIsOpen(false)}>x</button>
+                    <button className="close" onClick={()=>setModalIsOpen(false)}>------x</button>
                 </div>
                 <div className="modal-confirmation-update">
                     <button className="update" onClick={seeUpdate}>x</button>
