@@ -28,14 +28,14 @@ function App() {
             {authentication.logged && <Header />}
             <Routes>
                 <Route path='/' element={<Connexion />} />
-                <Route path='/add' element={authentication.role === "admin" || authentication.role === "former" ? <AddClasses /> : <WrongRoute />} />
-                <Route path='/organizer' element={authentication.role === "admin" || authentication.role === "former" ? <Organizer /> : <WrongRoute />} />
-                <Route path='/mycourse' element={authentication.role === "admin" || authentication.role === "former" || authentication.role === "trainee" ? <MyCourse /> : <WrongRoute />} />
+                <Route path='/add' element={(authentication.role === "admin" || authentication.role === "former") ? <AddClasses /> : <WrongRoute />} />
+                <Route path='/organizer' element={(authentication.role === "admin" || authentication.role === "former") ? <Organizer /> : <WrongRoute />} />
+                <Route path='/mycourse' element={(authentication.role === "admin" || authentication.role === "former" || authentication.role === "trainee") ? <MyCourse /> : <WrongRoute />} />
                 {/* <Route path='/mycourse' element={authentication.role === 'trainee' ? <MyCourse />: "vous n'avez pas acces a cette page"} /> */}
-                <Route path='/trainee' element={authentication.role === "admin" || authentication.role === "former" ? <Trainee /> : <WrongRoute />} />
-                <Route path='/places' element={authentication.role === "admin" || authentication.role === "former" ? <ClasseRoom /> : <WrongRoute />} />
+                <Route path='/trainee' element={(authentication.role === "admin" || authentication.role === "former") ? <Trainee /> : <WrongRoute />} />
+                <Route path='/places' element={(authentication.role === "admin" || authentication.role === "former") ? <ClasseRoom /> : <WrongRoute />} />
                 <Route path='/former' element={authentication.role === "admin" ? <Former />: <WrongRoute />} />
-                <Route path='/promos' element={authentication.role === "admin" || authentication.role === "former" ? <Promos /> : <WrongRoute />} />
+                <Route path='/promos' element={(authentication.role === "admin" || authentication.role === "former") ? <Promos /> : <WrongRoute />} />
             </Routes>
         </div>
     );

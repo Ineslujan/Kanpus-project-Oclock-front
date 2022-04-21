@@ -22,7 +22,7 @@ export default function Navbar({ isOpen, setIsOpen }) {
 
     return (
         <div className={isOpen ? "navbar-container-link open" : "navbar-container-link"}>
-            {authentication.role === "admin" || authentication.role === "former" &&
+            {(authentication.role === "admin" || authentication.role === "former") &&
             <>
             <NavLink
                 to="/add"
@@ -38,7 +38,7 @@ export default function Navbar({ isOpen, setIsOpen }) {
                 to="/mycourse"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-section"}
             ><button onClick={handleOpeningMenu}>Mes cours</button></NavLink>
-            {authentication.role === "admin" || authentication.role === "former" &&
+            {(authentication.role === "admin" || authentication.role === "former") &&
             <>
             <NavLink
                 to="/trainee"
@@ -52,7 +52,7 @@ export default function Navbar({ isOpen, setIsOpen }) {
                     className={({ isActive }) => isActive ? activeClassName : "navlink-section"}
                 ><button onClick={handleOpeningMenu}>Formateurs</button></NavLink>
             }
-            {authentication.role === "admin" || authentication.role === "former" &&
+            {(authentication.role === "admin" || authentication.role === "former") &&
             <>
             <NavLink
                 to="/places"
