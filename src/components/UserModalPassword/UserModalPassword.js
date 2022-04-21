@@ -51,6 +51,8 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
         
         <Modal 
             isOpen={seePasswordModal}
+            className='Modal'
+            overlayClassName='Overlay'
         >
             <div className="modal-button-close">
                 <div className="modal-confirmation-delete">

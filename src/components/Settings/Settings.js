@@ -53,7 +53,7 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
                     <button className="close" onClick={()=>setModalIsOpen(false)}>------x</button>
                 </div>
                 <div className="modal-confirmation-update">
-                    <button className="update" onClick={seeUpdate}>update-------</button>
+                    <button className="update" onClick={seeUpdate}>*</button>
                 </div>
                 {updateModal && <SettingsUpdate isOpen={updateModal} setIsOpen={setUpdateModal} seeUpdate={seeUpdate} data={settingsData} setUpdateScreen={setUpdateScreen} /> }
             </div>
