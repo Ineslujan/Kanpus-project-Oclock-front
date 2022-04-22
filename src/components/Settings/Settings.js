@@ -17,7 +17,6 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
         const get = async() => {
             const data = await getSettings(authentication.token);
             if(data.status ===200){
-                console.log('allo',data);
                 setSettingsData(data.data)
             }
             console.log(data)

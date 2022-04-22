@@ -1,5 +1,5 @@
 import React, {useEffect, useContext} from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import useWindowDimensionsWithScrollbar from '../../customHooks/getWindowDimensionsWithScrollbar';
 import { AuthenticationContext } from '../../context/authenticationContext';
 
@@ -8,6 +8,7 @@ import './navbar.scss';
 
 export default function Navbar({ isOpen, setIsOpen }) {
     const { height, width } = useWindowDimensionsWithScrollbar();
+    const location = useLocation();
 
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
     let activeClassName = "navlink activeStyle"
@@ -16,9 +17,8 @@ export default function Navbar({ isOpen, setIsOpen }) {
     }
 
     useEffect(() => {
-      console.log(authentication)
-    }, [])
-    
+        window.scroll(0, 0);
+        }, [location.pathname]);
 
     return (
         <div className={isOpen ? "navbar-container-link open" : "navbar-container-link"}>

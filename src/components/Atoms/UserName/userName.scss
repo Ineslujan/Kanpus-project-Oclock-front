@@ -10,7 +10,7 @@
     flex-direction: column;
     position: absolute;
     top: 40px;
-    right: -10px;
+    right: 0px;
     background-color: var.$second-color;
     color: var.$primary-color;
     width: 200px;
@@ -19,7 +19,26 @@
 }
 
 .user-modal {
-   
+    padding-right: 5px;
+    background-color: #2c3f6f;
+    box-shadow: -10px 10px 20px 0px rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.user-modal button {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    background: none;
+    color: var.$second-color;
+}
+
+.icologout{
+    height: 100%;
+    padding-left: 5px;
+    filter: invert(11%) sepia(75%) saturate(6669%) hue-rotate(350deg) brightness(105%) contrast(94%);
+
 }
 
 .user-name {

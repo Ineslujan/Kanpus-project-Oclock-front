@@ -14,7 +14,7 @@ import Pen from '../../assets/images/pen.png'
 
 import './eventModal.scss';
 
-export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend, setPureEvents, firstDayOfWeek }) {
+export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend, setEvents, settings, setPureEvents, firstDayOfWeek }) {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     Modal.setAppElement(document.getElementById('root'));
@@ -58,10 +58,13 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
         await deleteCourse(id, authentication.token);
         const getDatas = async () => {
             const datas = await getEventsOrganizer(firstDayOfWeek.toFormat("yyyy-MM-dd"), authentication.token);
+            console.log("iciii la !!!", firstDayOfWeek.toFormat("yyyy-MM-dd"),datas.data);
             if (datas.status === 200) {
+                console.log("iciii ???");
                 setPureEvents(datas.data)
-                checkWeekend(datas.data, firstDayOfWeek)
-                console.log(datas.data)
+                const datasEvents = checkWeekend(datas.data, firstDayOfWeek, settings)
+                setEvents(datasEvents)
+                console.log(datas.data, firstDayOfWeek, settings)
             }
         }
         getDatas();

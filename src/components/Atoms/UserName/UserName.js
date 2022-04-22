@@ -4,6 +4,8 @@ import { AuthenticationContext } from '../../../context/authenticationContext';
 import UserModalPassword from '../../UserModalPassword/UserModalPassword';
 import { useNavigate } from 'react-router-dom';
 import Settings from '../../Settings/Settings';
+
+import deconnexionico from '../../../assets/images/icones-bags-svg/wpf-shutdown.svg'
 import './userName.scss';
 
 export default function UserName({ isOpen, setIsOpen }) {
@@ -62,7 +64,7 @@ export default function UserName({ isOpen, setIsOpen }) {
             }
              {userMenu && 
                 <div className="user-modal">
-                    <button onClick={deconnexion}>Déconnexion</button>
+                    <button onClick={deconnexion}>Déconnexion <div><img src={deconnexionico} alt="icone deconnexion" className='icologout' /></div></button>
                 </div>
             }
                     
