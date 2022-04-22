@@ -7,6 +7,7 @@ import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg'
 
 import { deleteCourse } from '../../requests/myCourseRequests';
 import { requestMyCourse } from '../../requests/myCourseRequests';
+import { addAbsences } from '../../requests/absenceRequest';
 
 import ArrowNext from '../../assets/images/arrow-next.png';
 import Trash from '../../assets/images/trash.png';
@@ -68,6 +69,16 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
         getDatas();
         setSeeConfirmationModal(modal => !modal)
         openModal()
+    };
+
+    const handleAbsence = async () => {
+        
+        const abs = await addAbsences(datas.event_id,
+            {users:traineeAbsence}
+            , authentication.token);
+            if(abs.status === 200){
+                console.log("addAbsence");
+            }
     }
 
   return (
@@ -131,15 +142,15 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
                 </div>
                 {datas.trainee.length > 0 &&
                 <div className="modal-trainee">
-                    <p className="modal-trainee-title">{datas.trainee.length} Stagiaires</p>
+                    <p className="modal-trainee-title">{datas.trainee.length} Stagiaire{datas.trainee.length > 1 && "s"}</p>
                     <div className="modal-all-trainee">
                         {datas.trainee.map((item) => (
                             <button className="modal-trainee" key={item.id} onClick={(e)=>addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
                         ))}
                     </div>
-                     {/* {prof &&  */}
-                     <button className="modal-trainer-absence"> Valider les absences </button>
-                        {/* } */}
+                    {traineeAbsence.length > 0 &&  
+                         <button className="modal-trainer-absence" onClick={handleAbsence}> Valider les absences </button>
+                    } 
                 </div>
                 }
                 {datas.role &&

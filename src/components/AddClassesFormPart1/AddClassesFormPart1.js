@@ -14,11 +14,12 @@ export default function AddClassesFormPart1({
     endDate, setEndDate,
     startTime, setStartTime,
     endTime, setEndTime,
-    editDatas,
     courseName,
     setCourseName,
     eventId,
-    closePart1
+    closePart1,
+    setSeeClasse,
+    setAdress
 }) {
         const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
@@ -32,7 +33,7 @@ export default function AddClassesFormPart1({
     let newStartDate = DateTime.fromJSDate(startDate);
     let newEndDate = DateTime.fromJSDate(endDate);
 
-    useEffect(() => {
+    // useEffect(() => {
     //     if(courseEditName && startEditCourse && endEditCourse){
     //         setStartDate(startEditCourse);
     //         setEndDat
@@ -46,10 +47,10 @@ export default function AddClassesFormPart1({
     //     setDataMod(editDatas)
     //     console.log("edition mod", dataMod)
     //     console.log("edition", editDatas)
-        console.log("datamod",dataMod)
-    //}
+    //     console.log("datamod",dataMod)
+    // }
   
-    }, [editDatas])
+    // }, [editDatas])
     
 
     useEffect(() => {
@@ -86,6 +87,8 @@ export default function AddClassesFormPart1({
             if(datas.status === 200){
                 setTabTeachers(datas.data.former);
                 setTabClasseRoom(datas.data.place);
+                setSeeClasse(null);
+                setAdress("");
                 setCloseFormPart1(true);
             }
         } 
