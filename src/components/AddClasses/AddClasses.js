@@ -63,7 +63,7 @@ export default function AddClasses() {
             setCourseName(myData.name);
             setStartDate(new Date(myData.start_date));
             setEndDate(new Date(myData.end_date));
-            setStartTime(`${DateTime.fromJSDate(new Date(myData.start_date)).toUTC().hour}:${DateTime.fromJSDate(new Date(myData.start_date)).minute}${DateTime.fromJSDate(new Date(myData.start_date)).minute === 0 &&"0"}`);
+            setStartTime(`${DateTime.fromJSDate(new Date(myData.start_date)).toUTC().hour}:${DateTime.fromJSDate(new Date(myData.start_date)).minute}${DateTime.fromJSDate(new Date(myData.start_date)).minute === 0 ? "0" : ""}`);
             setEndTime(`${DateTime.fromJSDate(new Date(myData.end_date)).toUTC().hour}:${DateTime.fromJSDate(new Date(myData.end_date)).minute}`);
             setRole(myData.role);
             setNote(myData.note);

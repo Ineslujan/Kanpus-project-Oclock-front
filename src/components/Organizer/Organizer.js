@@ -17,6 +17,7 @@ import './cards.scss'
 
 import leftArrow from '../../assets/images/icones-bags-svg/bi-arrow-left-square-fill.svg';
 import rightArrow from '../../assets/images/icones-bags-svg/bi-arrow-right-square-fill.svg';
+import { log } from 'react-modal/lib/helpers/ariaAppHider';
 
 export default function Organizer() {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
@@ -44,16 +45,16 @@ export default function Organizer() {
         console.log("-----changement de semaine-----");
         setFirstDayOfWeek(firstDayOfWeek => DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }));
     };
-    
+
     const changeToNextWeek = () => {
         console.log("-----changement de semaine-----");
         setFirstDayOfWeek(firstDayOfWeek => DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }));
     };
-    
+
     const UTCDate = (date, format) => {
         return DateTime.fromISO(date).setLocale("fr").toUTC().toFormat(format);
     }
-    
+
     useEffect(() => {
         const getDatasSettings = async () => {
             const datas = await getSettings(authentication.token);
@@ -61,7 +62,7 @@ export default function Organizer() {
         }
         getDatasSettings();
     }, [])
-    
+
     useEffect(() => {
         setNextWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }))
         setPreviousWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }))
@@ -77,7 +78,7 @@ export default function Organizer() {
         }
         prepareDataEvents()
     }, [firstDayOfWeek, settings])
-    
+
     useEffect(() => {
         const getDatas = async () => {
             const datas = await getPlacesOrganizer(authentication.token);
@@ -85,14 +86,14 @@ export default function Organizer() {
         }
         getDatas();
     }, [])
-    
+
     /**
      * TESTS pour Drag actions
      */
-    
+
     const onDragStopTest = () => {
     }
-    
+
     const onResizeStopTest = () => {
     }
 
@@ -101,17 +102,22 @@ export default function Organizer() {
             <GridLayout className={"layout"} cols={11} onDragStop={onDragStopTest} onResizeStop={onResizeStopTest} rowHeight={60} compactType={null} preventCollision={true} rows={8} width={windowWidth < 850 ? 850 : windowWidth - windowWidth * 0.0104} maxRows={places.length + 1} >
                 {/* box : month year and week arrows */}
                 <div data-grid={{ x: 0, y: 0, w: 1, h: 1, static: true }} data-organizer-type="blank" key={uuid()} >
-                    <div className="blank-row">
-                        <div className="month-year">
-                            <div className="month">{firstDayOfWeek.monthLong}</div>
-                            <div className="year">{firstDayOfWeek.year}</div>
-                        </div>
-                        <div className="changeWeek">
-                            <button className="weeks-button-left" onClick={changeToPreviousWeek}><img src={leftArrow} alt="left arrow" /></button>
-                            <button className="weeks-button-right" onClick={changeToNextWeek}><img src={rightArrow} alt="right arrow" /></button>
-                        </div>
+                    {console.log(firstDayOfWeek.toFormat("yy"))}
+                    <div className="month-year">
+                        {windowWidth < 850 ?
+                            <>
+                                <span className="month">{firstDayOfWeek.toFormat("LL")}</span>
+                                <span className="year">{firstDayOfWeek.toFormat("yyyy")}</span>
+                            </> : <>
+                                <span className="month">{firstDayOfWeek.monthShort}</span>
+                                <span className="year">{firstDayOfWeek.year}</span>
+                            </>}
                     </div>
-                    <div className="row" style={{ width: (((windowWidth - windowWidth * 0.0104) / 11) * 11) + "px" }}></div>
+                    <div className="changeWeek">
+                        <button className="weeks-button-left" onClick={changeToPreviousWeek}><img src={leftArrow} alt="left arrow" /></button>
+                        <button className="weeks-button-right" onClick={changeToNextWeek}><img src={rightArrow} alt="right arrow" /></button>
+                    </div>
+                    <div className="row" style={{ width: windowWidth < 850 ? 850 : (((windowWidth - windowWidth * 0.0104) / 11) * 11) + "px" }}></div>
                 </div>
 
                 {/* first line with the 5 days */}
@@ -184,17 +190,26 @@ export default function Organizer() {
                                 static: true
                             }}
                                 data-organizer-type="card"
-                                style={{ backgroundColor: event.former[0].color }}
+                                style={{ 
+                                    backgroundColor: event.former[0].color,
+                                    borderLeft: startDayHourSec === courseStartHourAm && `3px solid #FF9700`,
+                                    borderRight: endDayHourSec === courseEndHourPm && `3px solid #FF9700`,
+                                    }}
                                 key={uuid()}
                                 onClick={() => openModal(event.event_id)}
                             >
+                                {startDayHourSec === courseStartHourAm && <div className="continue previous">&lt;</div>}
                                 <div className="card-content">
-                                    {event.name}
-                                    <div className="card-content-time">
-                                        <span>{startDayHourSec === courseStartHourAm ? `<< ${startDayHour}` : startDayHour}</span>
-                                        <span>{endDayHourSec === courseEndHourPm ? `${endDayHour} >>` : endDayHour}</span>
+                                    <div className={"card-content-name"}>
+                                        {windowWidth < 1050 && w === 1 ?
+                                            <span>{event.name.slice(0, 10)}</span> : <span>{event.name}</span>}
+                                    </div>
+                                    <div className={windowWidth < 1050 && w === 1 ? "card-content-time-w" : "card-content-time"}>
+                                        <span>{startDayHour}</span>
+                                        <span>{endDayHour}</span>
                                     </div>
                                 </div>
+                                {endDayHourSec === courseEndHourPm && <div className="continue next">&gt;</div>}
                             </div>
                         )
                     })

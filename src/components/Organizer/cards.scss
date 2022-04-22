@@ -7,9 +7,50 @@ div[data-organizer-type="card"]{
 }
 
 div[data-organizer-type="card"] .card-content{
+    padding: 3px;
+    height: inherit;
+    width: inherit;
     flex-direction: column;
+    justify-content: space-between;
+    
 }
 
 div[data-organizer-type="card"] .card-content-time{
-    justify-content: flex-end;
+    width: 90%;
+    height: 13px;
+    justify-content: space-between;
+}
+
+div[data-organizer-type="card"] .card-content-name{
+    height: calc(100% - 13px);
+    max-height: calc(100% - 13px);
+}
+
+.continue{
+    position: absolute;
+}
+
+.previous {
+    left: 2px;
+}
+
+.next {
+    right: 2px;
+}
+
+@media screen and (max-width : 1050px) {
+    div[data-organizer-type="card"] .card-content-time-w{
+        flex-direction: column;
+    }
+
+    div[data-organizer-type="card"] .card-content-time-w{
+        width: 90%;
+        height: 26px;
+        justify-content: space-between;
+    }
+    
+    div[data-organizer-type="card"] .card-content-name{
+        height: calc(100% - 26px);
+        max-height: calc(100% - 26px);
+    }
 }
