@@ -15,7 +15,7 @@ export default function AbsenceModal({ absenceModal, seeAbsenceModal, setSeeAbse
         const setAbsences = async () => {
             const absences = await getAbsences(item.id, authentication.token);
             if(absences.status === 200){
-                console.log("settings up", absences);
+                // console.log("settings up", absences);
                 
                 setAllAbsences(absences.data);
             }

@@ -11,15 +11,15 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
 
     const [settingsData, setSettingsData] = useState();
     const [updateModal, setUpdateModal] = useState();
-    const [updateScreen, setUpdateScreen] = useState();
+    const [updateScreen, setUpdateScreen] = useState(false);
 
+    console.log(updateScreen);
     useEffect(() => {
         const get = async() => {
             const data = await getSettings(authentication.token);
-            if(data.status ===200){
-                setSettingsData(data.data)
+            if(data.status === 200){
+                setSettingsData(data.data);
             }
-            console.log(data)
         }
         get()
     }, []);
@@ -28,18 +28,17 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
     useEffect(() => {
         const get = async() => {
             const data = await getSettings(authentication.token);
-            if(data.status ===200){
-                console.log('allo',data);
-                setSettingsData(data.data)
+            if(data.status === 200){
+                setSettingsData(data.data);
+                setUpdateScreen(false);
             }
-            console.log(data)
         }
         get()
     }, [updateScreen]);
 
     const seeUpdate = () => {
-        setUpdateModal(x => !x)
-        console.log("update")
+        setUpdateModal(x => !x);
+        console.log("update");
     }
  
     return (
@@ -53,7 +52,7 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
                     <button className="close" onClick={()=>setModalIsOpen(false)}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
              </div>
-            {settingsData&&
+            {settingsData &&
                 <div className="settings">
                     <div className="settings-container">
                         <p className="settings-address">{settingsData.name}</p>
@@ -88,7 +87,7 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
                 </div>
             }
                 <div className="identity-modal-footer">
-                    <button className="update" onClick={seeUpdate}>*fdghdfdfgdfsgdfgfdgdfgdfsgdfgdfsgdfgdfsg</button>
+                    <button className="update" onClick={seeUpdate}>Modifier</button>
                 </div>
                 {updateModal && <SettingsUpdate isOpen={updateModal} setIsOpen={setUpdateModal} seeUpdate={seeUpdate} data={settingsData} setUpdateScreen={setUpdateScreen} /> }
  

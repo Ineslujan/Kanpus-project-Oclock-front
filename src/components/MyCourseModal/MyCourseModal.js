@@ -23,6 +23,7 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
     Modal.setAppElement(document.getElementById('root'));
 
     const [traineeAbsence, setTraineeAbsence] = useState([]);
+    const [absenceValidate, setAbsenceValidate] = useState(false)
     const [arrow1, setArrow1] = useState(false);
     const [arrow2, setArrow2] = useState(false);
     const [arrow3, setArrow3] = useState(false);
@@ -78,7 +79,13 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
             , authentication.token);
             if(abs.status === 200){
                 console.log("addAbsence");
+                setAbsenceValidate(true);
+
             }
+    };
+
+    const modifyAbsence = () => {
+        setAbsenceValidate(false);
     }
 
     return (
@@ -151,7 +158,8 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
                 </div>
             </div>
         }
-        <button className="event-button-abssense" onClick={handleAbsence}> Valider les absences </button>
+        {!absenceValidate? <button className="event-button-abssense" onClick={handleAbsence}> Valider les absences </button> : "Vous avez validé les absences pour ce cours" } 
+        {absenceValidate && <button className="event-button-abssense" onClick={modifyAbsence} >Modifier les absences</button> }   
         
     </div>
     <div className="modal-event-user-wrapper">

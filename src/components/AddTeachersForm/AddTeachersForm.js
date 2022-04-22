@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './addTeachersForm.scss';
 
 export default function AddTeachersForm({ tabTeachers, teacher, setTeacher, tabTeachersAdded, setTabTeachersAdded }) {
@@ -77,9 +77,9 @@ export default function AddTeachersForm({ tabTeachers, teacher, setTeacher, tabT
     
 
     const root = teachersRef.current;
-    const marginItem = 140 + (46 * index)
+    const marginItem = 345 + (60 * index)
     const totalMarginItem = `${marginItem}px`
-    root.style.setProperty('top:', totalMarginItem)
+    root.style.marginTop = totalMarginItem
 
     console.log(totalMarginItem)
 
@@ -99,12 +99,11 @@ const leaveInfo = () => {
             {seeTeachers && teacherAvailable.map((item, index) => (
                 <button className="teacher-form-select" key={index} value={item.user_id} onClick={() => addTeacher(item)}>{item.firstname}  {item.lastname}</button>
             ))}
-            {seeTeachers && teacherNotAvailable.map((item, index) => (
-                <div className='teacher-disabled'  key={index+item}>
-                    <button ref={teachersRef} className="teacher-form-select-disabled" key={index} value={item.user_id} onMouseEnter={()=> info(item, index)} onMouseLeave={leaveInfo}>{item.firstname} {item.lastname}</button>
-                </div>
-            ))}
-            {modaleInfoTeacher && <div className="info-teacher">{modaleInfo.event.map((item) => item)}</div>}
+             {seeTeachers && teacherNotAvailable.map((item, index) => (
+               <div key={index+item}>
+                <button ref={teachersRef} className="teacher-form-select-disabled" key={index} value={item.user_id} onMouseEnter={()=> info(item, index)} onMouseLeave={leaveInfo}>{item.firstname} {item.lastname}</button>
+                </div>))}
+                {modaleInfoTeacher && <div className="info-teacher">{modaleInfo.event.map((item) => item)}</div>}
                 
         </div>
       
