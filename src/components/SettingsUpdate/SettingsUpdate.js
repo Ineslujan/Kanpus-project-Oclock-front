@@ -91,12 +91,16 @@ export default function SettingsUpdate({isOpen, setIsOpen, seeUpdate, data, setU
                         <input type="text" className="settings-input" {...register("phone_number", { required: true })} /> <br/>
                         {errors.phone_number && <span>Vous devez rentrer le numéro de téléphone de l'établissement</span>}
                     </div>
-                    <div className="user-form-upload-wrapper">
-                        <img src={data.image_url} alt='kiiik'></img>
-                        <input className="user-from-file" type="file" name="sampleFile" onChange={newPicture}/>
-                        <button className="user-form-upload" type="button" onClick={uploadPicture}>
-                            <img src={svgUpload} alt="upload" />
-                        </button>
+                    <div className="modal-change-settings-block">
+                    <label htmlFor="phone" className="user-settings-label">Photos de couverture</label>
+                        <div className="modal-change-settings-block-update">
+                            {/* <img src={data.image_url} alt='kiiik'></img> */}
+                            
+                            <input className="user-from-file" type="file" name="sampleFile" onChange={newPicture}/>
+                            <button className="modal-change-settings-block-upload" type="button" onClick={uploadPicture}>
+                                <img className="modal-change-settings-block-img-upload" src={svgUpload} alt="upload" />
+                            </button>
+                        </div>
                     </div>
                     <div className="modal-change-settings-block">
                         <label htmlFor="address" className="user-settings-label">Adresse de l'établissement</label> <br/>

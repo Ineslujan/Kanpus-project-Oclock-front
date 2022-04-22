@@ -69,7 +69,7 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
                         <p className="settings-address">{settingsData.phone_number}</p>
                     </div>
                     <div className="settings-container">
-                        <img src={settingsData.url_image} alt="image de l'entreprise" />
+                       {settingsData.url_image &&  <img src={settingsData.url_image} alt="image de l'entreprise" />}
                     </div>
                     <div className="settings-container">
                         <p className="settings-address">{settingsData.course_start_hour_am}</p>
@@ -88,7 +88,7 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
                     </div>
                 </div>
             }
-                          <div className="identity-modal-footer">
+                <div className="identity-modal-footer">
                     <button className="update" onClick={seeUpdate}>*fdghdfdfgdfsgdfgfdgdfgdfsgdfgdfsgdfgdfsg</button>
                 </div>
                 {updateModal && <SettingsUpdate isOpen={updateModal} setIsOpen={setUpdateModal} seeUpdate={seeUpdate} data={settingsData} setUpdateScreen={setUpdateScreen} /> }
