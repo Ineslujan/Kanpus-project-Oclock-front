@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import { DateTime } from "luxon";
-import MycourseModal from '../../components/MyCourseModal/MyCourseModal'
+import MycourseModal from '../../components/MyCourseModal/MyCourseModal';
+import useWindowDimensions from '../../customHooks/getWindowDimensions';
 
 import './courseCard.scss'
 
 export default function CourseCard({ datas, setAllCourses }) {
+    
+    const windowWidth = useWindowDimensions().width;
 
     const startDate = DateTime.fromJSDate(new Date(datas.start_date)).setLocale('fr');
     const endDate = DateTime.fromJSDate(new Date(datas.end_date)).setLocale('fr');
@@ -33,11 +36,19 @@ export default function CourseCard({ datas, setAllCourses }) {
                 
                 </div>
                 <div className="duration">
-                    <span className="duration-course start">début</span><span className="duration-course end">fin</span>
+                    <span className="duration-course start">début</span>
+                    <span className="duration-course end">fin</span>
                 </div>
                 <div className="mycourse-card-date">
-                    <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${startDate.weekdayLong}  ${startDate.day} à`}  {startDate.setLocale("fr").toUTC().hour} h {startDate.minute}</p>
-                    <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${endDate.weekdayLong}  ${endDate.day} à`}  {endDate.setLocale("fr").toUTC().hour} h {endDate.minute}</p>
+                    <p className="date">
+                        {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? startDate.weekdayLong : startDate.weekdayShort}  ${startDate.day} à `}  
+                        {startDate.setLocale("fr").toUTC().hour < 10 ? "0": ""}{startDate.setLocale("fr").toUTC().hour}:
+                        {startDate.minute}{startDate.minute=== 0 ? "0":""} 
+                    </p>
+                    <p className="date">
+                        {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? endDate.weekdayLong : endDate.weekdayShort }  ${endDate.day} à `}  
+                        {endDate.setLocale("fr").toUTC().hour < 10 ? "0": ""}{endDate.setLocale("fr").toUTC().hour}:
+                        {endDate.minute}{endDate.minute === 0 ? "0":""}</p>
                 </div>
             </div>
             {modalIsOpen &&

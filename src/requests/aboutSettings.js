@@ -35,3 +35,14 @@ export async function putSettings(settings, token) {
         console.log(error)
     }
 };
+
+//display only, all users authorized
+export async function allUsersSettings() {
+    try {
+        const response = await axios.get(`${api}/signin/`)
+        return response;
+    }
+    catch (error) {
+        console.log(error)
+    }
+};

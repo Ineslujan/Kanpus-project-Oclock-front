@@ -73,6 +73,7 @@
         color: var.$background-color;
         border: 2px solid var.$other-color;
         background-color: lightgrey;
+        font-weight: bold;
     }
 
 }
@@ -128,4 +129,11 @@
     font-size: 0.9em;
     top: var(--marginTop);
     right: -200px;
+}
+
+.teacher-disabled{
+    position: relative;
+}
+.test {
+    position: relative;
 }
