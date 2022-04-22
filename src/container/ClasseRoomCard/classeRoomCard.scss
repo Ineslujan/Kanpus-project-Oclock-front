@@ -8,7 +8,7 @@
     color: var.$second-color;
     border-radius: 5px;
     margin: 2% 1%;
-    padding: 1.5%;
+    padding: 8.5%;
     font-size: 1.5em;
     position: relative;
 }
@@ -20,8 +20,8 @@
 }
 
 .classeroom-name{
-    margin-top: 13%;
-    margin-bottom: 20px;
+    margin-top: 12%;
+    margin-bottom: 13px;
 }
 
 .classeroom-confirmation{
@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: space-between;
+    justify-content:space-around;
     margin-top: 12%;
 }
 

@@ -8,17 +8,13 @@
     color: var.$second-color;
     border-radius: 5px;
     margin: 2% 1%;
-    padding: 1.5%;
+    padding: 7.5%;
     font-size: 1.5em;
     position: relative;
 
 }
 
-.promo-form{
-    margin-top: 8%;
 
-    
-}
 
 .promo-button{
     position: absolute;
@@ -28,7 +24,7 @@
 
 .promo-name{
     margin-bottom: 8%;
-    margin-top: 10%;
+    margin-top: 11%;
 }
 
 .promo-confirmation{
@@ -41,7 +37,7 @@
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: space-between;
+    justify-content:space-around;
     margin-top: 12%;
 }   
 
@@ -53,7 +49,7 @@
     border-radius: 3px;
     margin: 3px;
     padding: 3%;
-    width: 100%;
+    width: 65px;
     font-size: 20px;
 }
 
