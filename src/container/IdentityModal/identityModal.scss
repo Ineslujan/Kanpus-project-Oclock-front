@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
    align-items: center;
-   margin-bottom: 2.5rem;
+  // margin-bottom: 2.5rem;
    
 }
 .identity-modal-main img{
@@ -20,11 +20,11 @@
     object-fit: cover;
     border: 3px solid white;
 }
-
 .identity-modal-name{
     font-size: 1.5rem;
     font-weight: bold;
 }
+
 .identity-modal-promo{
     font-size: 1.2rem;
     margin-top: 0.5rem;
@@ -44,13 +44,13 @@
 .identity-modal-container-title{
     font-size: 1.3rem;
     font-weight: bold;
-    margin-top: 1.2rem;
-    margin-bottom: 0.5rem;
+    margin-top: 5%;
+    margin-bottom: 2%;
 }
 
 
 .identity-modal-button-password{
-    margin-top: 2rem;
+    
     font-family: 'Lato', Verdana, sans-serif;
   
     background-color: var.$background-color;
@@ -61,7 +61,8 @@
     padding: 7px 10px;
     font-weight: bold;
     transition-duration: 0.3s;
-    margin: 3rem auto;
+    width: 40%;
+   
    
 
     &:hover{
@@ -149,12 +150,26 @@ width: 100%;
 }
 
 .identity-modal-button-password-block{
+    margin-top: 5%;
     display: flex;
-    justify-content: center;
-    width: 92%;
+    
+    justify-content: space-around;
+    width: 100%;
+   
  }
 @media (min-width: 800px) {
 
+    .identity-modal-main{
+
+    margin-bottom: 2.5rem;
+       
+    }
+
+    .identity-modal-button-password-block{
+    
+        flex-direction: row;
+   
+     }
     .identity-modal-main img{
         width: 200px;
         height: 200px;
