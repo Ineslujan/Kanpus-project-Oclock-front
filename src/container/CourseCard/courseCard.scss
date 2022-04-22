@@ -1,8 +1,14 @@
 @use '../../var.scss';
 
 .mycourse-card{
-    margin-top: 5%;
-    width: 65%;
+    
+    margin-top: 3%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+
 
     &-day {
         color: var.$second-color;
@@ -14,17 +20,16 @@
 
     &-course {
         padding: 2%;
-        padding-bottom: 4%;
+        // padding-bottom: 4%;
         background-color: var.$background-color;
         color: var.$second-color;
         border-radius: 5px;
         border: 2px solid var.$second-color;
         border-radius: 3px;
         transition-duration: 0.3s;
-        
+        width:60%;
     }
 
-    
     &-course:hover{
         color: var.$other-color;
         border-color: var.$other-color;
@@ -32,7 +37,8 @@
     }
 }
 
-.mycourse-card-former, .mycourse-card-date{
+.mycourse-card-former,
+.mycourse-card-date{
     display: flex;
     justify-content: space-around;
 }
@@ -45,27 +51,59 @@
 
 .duration{
     display: flex;
-    justify-content: space-around;
-    margin: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 2rem;
+
     &-course{
         font-style: italic;
         font-weight: 0.3em;
         padding-bottom: 0.5%;
     }
 }
-.end{
-    // padding-right: 2%;
-}
+
 
 .mycourse-card-name{
     min-height: 30px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items:center;
 }
 
 
-.name{
+.name {
     font-weight: bold;
     font-size: 2rem;
+}
+
+
+.date{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.former,
+.place {
+    width: 60%;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.start-date-container {
+    max-height: 10%; 
+}
+
+.label {
+    margin-bottom: 1%;
+}
+
+#Start,
+#End{
+    // font-size: 1.5rem;
+    margin-top: 5%;
+}
+
+.place{
+   margin-top: 1%; 
 }

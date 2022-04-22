@@ -4,6 +4,7 @@ import PromoCard from '../PromoCard/PromoCard';
 import PromoCreate from '../PromoCreate/PromoCreate';
 import { updatePromo, deletePromo } from '../../requests/promoRequest';
 
+import addItem from '../../assets/images/icones-bags-svg/BiPlusCircle.svg'
 import Pen from '../../assets/images/icones-bags-svg/bi-pen-fill.svg';
 
 import './promos.scss';
@@ -57,7 +58,7 @@ export default function Promos() {
                 
                 <div className="promo-create">
                     <p className="promos-title">Promos</p>
-                    <button className="promo-create-button" onClick={toggleCreateModal} >Créer une promo</button>
+                    <button className="promo-create-button" onClick={toggleCreateModal} ><img className="add-item-icon" src={addItem} alt="addItem" /></button>
                 </div>
                 <div className="promo-content">
                     {allPromo &&  allPromo.map((item, index) => (

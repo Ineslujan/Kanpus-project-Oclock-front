@@ -59,10 +59,10 @@ export default function PromoCard({ data , getDatas}) {
                     </>
                 :
                     <>
-                        <p className="promo-confirmation">Voulez-vous vraiment supprimer cette salle ?</p>
+                        <p className="promo-confirmation">Voulez-vous supprimer cette promo ?</p>
                         <div className="promo-button-container">
-                        <button className="promo-confirmation-button" onClick={ () => deleteThisPromo(data.id) }>oui</button>
-                        <button className="promo-confirmation-button"  onClick={deleteToggle}>non</button></div>
+                        <button className="promo-confirmation-validate-button" onClick={ () => deleteThisPromo(data.id) }>Oui</button>
+                        <button className="promo-confirmation-cancel-button"  onClick={deleteToggle}>Non</button></div>
                     </>
                 }
             </div>

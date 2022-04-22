@@ -1,13 +1,15 @@
 @use '../../var.scss';
 
 .groupe {
-    width: 100%;
+    width: 90%;
     border: none;
     color: var.$second-color;
     font-weight: bold;
     background-color: var.$background-color;
     border-bottom: 2px solid var.$other-color;
     border-left: 2px solid var.$other-color;
+    border-right: 2px solid var.$other-color;
+    border-radius: 3px;
     padding: 4% 0 4%;
     font-size: 1em;
     transition: all 0.3sec;
@@ -16,6 +18,11 @@
         color: var.$other-color;
         background-color: var.$background-color;
     }
+
+    &:last-child {
+       
+    }
+    
 }
 
 .groupe-title{

@@ -13,11 +13,36 @@
 }
 
 .classeroom-content{
+    max-width: 90%;
+    width: 80%;
+    height: auto;
+    margin:30px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,200px);
+    justify-content: center;
+    grid-gap: 6%; 
+}
 
-    display: flex;
-    justify-content:flex-start;
-    flex-wrap: wrap;
-    margin-top: 3%;
-    gap: 4rem;
-    
+.classeroom-create-button{
+    background-color: var.$other-color;
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+    position: fixed;
+    right: 2%;
+    bottom: 4%;
+    overflow: hidden;
+    transition-duration: 0.5s;
+
+    &:hover {
+        background-color: var.$second-color;
+    }
+}
+
+.add-item-icon {
+    filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
+    transition-duration: 0.5s;
+    &:hover{
+        filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(101%) contrast(106%);
+    }
 }

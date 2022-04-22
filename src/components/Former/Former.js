@@ -4,6 +4,7 @@ import { getFormers } from '../../requests/formerRequest';
 import SelectedFormers from '../SelectedFormers/SelectedFormers';
 import FormerIdentity from '../FormerIdentity/FormerIdentity';
 import FormerForm from '../../container/FormerForm/FormerForm';
+import addItem from '../../assets/images/icones-bags-svg/BiPlusCircle.svg'
 
 import './former.scss'
 
@@ -53,7 +54,7 @@ export default function Former() {
                 </div>               
             </div>
             <div className="former-create">
-                    <button className="former-create-button" onClick={setUpdate}>Créer un professeur</button>
+                    <button className="former-create-button" onClick={setUpdate}><img className="add-item-icon" src={addItem} alt="addItem" /></button>
                     {seeUpdateModal && <FormerForm updateModal={seeUpdateModal} setUpdateModal={setSeeUpdateModal}  setUpdate={setUpdate} allPromo={allPromo} getStudents={getStudents} /> }
             </div>
 

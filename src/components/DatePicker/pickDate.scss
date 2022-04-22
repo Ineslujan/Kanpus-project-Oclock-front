@@ -25,6 +25,7 @@
 
 }
 
+
 .react-datepicker__day--range-end {
     background-color: var.$other-color;
     font-size: bold;
@@ -116,3 +117,15 @@
   text-align: center;
   margin: 0.166rem; 
 }
+
+
+// .react-datepicker__navigation-icon::before{
+//     border-color: var.$second-color;
+    
+// }
+
+
+// .react-datepicker__navigation-icon::after{
+//     border-color: var.$other-color;
+     
+// }

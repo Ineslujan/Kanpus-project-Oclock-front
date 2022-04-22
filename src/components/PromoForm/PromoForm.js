@@ -25,7 +25,7 @@ export default function PromoForm({data, updateToggle, updateRoom}) {
     <div className="promo">
         <div className="promo-update-content">
             <form className="promo-form" action="" onSubmit={handleSubmit}>
-                <input className="promo-update-input" type="text" value={name} onChange={changeName} />
+                <input className="promo-update-input" placeholder="Nom" type="text" value={name} onChange={changeName} />
                     <div className="promo-form-buttons">
                         <button className="promo-validate">Valider</button>                    
                         <button className="promo-close" onClick={updateToggle}><img src={Close} alt="close" className="promo-close-icon" /></button>

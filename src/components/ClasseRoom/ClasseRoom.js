@@ -3,6 +3,7 @@ import { getPlacesOrganizer } from '../../requests/aboutOrganizer';
 import ClasseRoomCard from '../../container/ClasseRoomCard/ClasseRoomCard';
 import ClasseRoomAdd from '../ClasseRoomAdd/ClasseRoomAdd';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import addItem from '../../assets/images/icones-bags-svg/BiPlusCircle.svg'
 
 import './classeRoom.scss'
 
@@ -42,8 +43,8 @@ export default function ClasseRoom() {
                     ))}
                 </div>
                 <div className="classeroom-create">
-                    {/* <p className="classeroom-title">Lieux</p> */}
-                    <button className="classeroom-create-button" onClick={toggleCreateModal} >Créer une salle</button>
+                   
+                    <button className="classeroom-create-button" onClick={toggleCreateModal} ><img className="add-item-icon" src={addItem} alt="addItem" /></button>
                 </div>
             </div>
         </div>

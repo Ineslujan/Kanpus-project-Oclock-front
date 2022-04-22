@@ -31,8 +31,8 @@
 
   .user-form-content{
       margin-top: 20px;
-    width: 100%; 
-    height: 100%;
+      width: 100%; 
+      height: 100%;
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -79,6 +79,7 @@
       align-items: center;
       flex-direction: row; 
   }
+
 .user-form-upload-wrapper{
     width: 100%;
     display: flex;
@@ -131,7 +132,6 @@
     width: 15%;
     font-family: 'Lato', Verdana, sans-serif;
     font-weight: bold;
-
     margin-right: 1rem;
     margin-bottom: 0.1rem; //mobil
     color: var.$second-color;
@@ -140,7 +140,7 @@
 }
 
 .user-form-right-content label button{
-background: transparent;
+  background: transparent;
 }
 
 .user-form-right-content label button img{

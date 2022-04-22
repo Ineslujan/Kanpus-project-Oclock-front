@@ -1,5 +1,11 @@
 @use '../../../var.scss';
 
+.classroom-form {
+    margin-top: 6%;
+    padding-left: 7%;
+    padding-right: 7%;
+}
+
 .classeroom-update-input {
     margin-bottom: 1em;
     border-radius: 3px;
@@ -37,6 +43,7 @@
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
+    margin-top: 6%;
 
 }
 
@@ -70,14 +77,11 @@
     border-radius: 3px;
     font-weight: bold;
     width: 100%;
+    margin-top: 4%;
     &:focus{
         border: 1.5px solid var.$other-color;
         color: var.$other-color;
     }
 }
 
-.classeroom-form-buttons{
-    margin-top: 2px;
-    padding: 3px;
-}
 

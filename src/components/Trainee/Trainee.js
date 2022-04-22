@@ -3,6 +3,7 @@ import { AuthenticationContext } from '../../context/authenticationContext';
 import { requestTrainee } from '../../requests/addClassesFormRequest';
 import SelectedPromo from '../../container/SelectedPromo/SelectedPromo';
 import IdentityCard from '../../container/IdentityCard/IdentityCard';
+import addItem from '../../assets/images/icones-bags-svg/BiPlusCircle.svg'
 
 import './trainee.scss'
 import UserForm from '../../container/UserForm/UserForm';
@@ -35,12 +36,13 @@ export default function Trainee() {
             <SelectedPromo selectedPromo={selectedPromo} setSelectedPromo={setSelectedPromo} allPromo={allPromo} setAllPromo={setAllPromo} getStudents={getStudents} />
             </div>
             
-
+            <div className="trainee-create-container">
                 <div className="trainee-create">
-                    <button className="trainee-create-button" onClick={setUpdate}>Créer un Stagiaire</button>
+                    <button className="trainee-create-button" onClick={setUpdate}><img className="add-item-icon" src={addItem} alt="addItem" /></button>
                     {seeUpdateModal && <UserForm updateModal={seeUpdateModal} setUpdateModal={setSeeUpdateModal}  setUpdate={setUpdate} allPromo={allPromo} getStudents={getStudents} /> }
                 </div>
-
+            </div>
+                
             <div className="trainee-container">
                 {/* <div className="trainee-content"> */}
                    

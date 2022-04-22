@@ -26,19 +26,31 @@ export default function CourseCard({ datas, setAllCourses }) {
             <div className="mycourse-card-course" onClick={openModal}>
                 <div className="mycourse-card-name">
                     <p className="name">{datas.name}</p>
+                    <p className="place">{datas.place_name}</p>
                 </div>
                 <div className="mycourse-card-former">
-                    <p className="former">{datas.place_name}</p>
+                   
                     <p className="former">{datas.former[0].firstname} {datas.former[0].lastname}</p>
-                
                 </div>
                 <div className="duration">
-                    <span className="duration-course start">début</span><span className="duration-course end">fin</span>
+                    {/* <span className="duration-course start">début</span><span className="duration-course end">fin</span> */}
+                    <div className="mycourse-card-date">
+                        <div className="start-date-container">
+                            <label for="Start">Début</label>
+                            <p className="date" id="Start">{startDate.weekdayLong !== endDate.weekdayLong && `${startDate.weekdayLong}  ${startDate.day} à`}  {startDate.setLocale("fr").toUTC().hour} h {startDate.minute}</p>
+                        </div>
+                        <div className="end-date-container">
+                            <label for="End">Fin</label>
+                            <p className="date" id="End">{startDate.weekdayLong !== endDate.weekdayLong && `${endDate.weekdayLong}  ${endDate.day} à`}  {endDate.setLocale("fr").toUTC().hour} h {endDate.minute}</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="mycourse-card-date">
-                    <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${startDate.weekdayLong}  ${startDate.day} à`}  {startDate.setLocale("fr").toUTC().hour} h {startDate.minute}</p>
-                    <p className="date">{startDate.weekdayLong !== endDate.weekdayLong && `${endDate.weekdayLong}  ${endDate.day} à`}  {endDate.setLocale("fr").toUTC().hour} h {endDate.minute}</p>
-                </div>
+                {/* <div className="mycourse-card-date">
+                    <label for="Start">Début</label>
+                    <label for="End">Fin</label>
+                    <p className="date" id="Start">{startDate.weekdayLong !== endDate.weekdayLong && `${startDate.weekdayLong}  ${startDate.day} à`}  {startDate.setLocale("fr").toUTC().hour} h {startDate.minute}</p>
+                    <p className="date" id="End">{startDate.weekdayLong !== endDate.weekdayLong && `${endDate.weekdayLong}  ${endDate.day} à`}  {endDate.setLocale("fr").toUTC().hour} h {endDate.minute}</p>
+                </div> */}
             </div>
             {modalIsOpen &&
                 <MycourseModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} openModal={openModal} datas={datas} setAllCourses={setAllCourses} />
