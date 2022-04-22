@@ -9,16 +9,12 @@
     cursor: pointer;
     transition: all 0.4s;
 
-    &::after {
+    &:hover {
         color: var.$other-color;
         border: 3px solid var.$other-color;
         background-color: var.$background-color;
         border-radius: 8px;
-    }
-    
-    &:hover::after{
-        opacity: 1;
-
+        
     }
 
 }
@@ -51,6 +47,22 @@ img {
 
 .identity-name{
     font-weight: bold;
-    // padding-top: 4px;
     font-size: 1.04rem;
+}
+
+@media screen and (max-width: 540px) {
+    .identity{
+       width: 200px;
+       height: 210px;
+       background-color: var.$background-color;
+       color: var.$second-color;
+       border-radius: 8px;   
+       cursor: pointer;
+    }
+
+    .identity-container-name{
+        padding: 0; 
+
+    }
+
 }
