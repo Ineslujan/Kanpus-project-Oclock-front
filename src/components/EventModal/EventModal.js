@@ -115,14 +115,17 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                         </div>
                         {datas.trainee.length > 0 &&
                             <div className="modal-event-user">
-                                <h2 className="modal-event-user-title">Stagiere</h2>
+                                <h2 className="modal-event-user-title">{datas.trainee.length} Stagiaire{datas.trainee.length > 1 && "s"}</h2>
                                 <div className="modal-event-user-name-wrapper">
                                     {datas.trainee.map((item) => (
                                         <button className="modal-event-user-name" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
                                     ))}
                                 </div>
+                                {traineeAbsence.length > 0 &&  
+                                    <button className="modal-trainer-absence"> Valider les absences </button>
+                                } 
                             </div>
-                        }
+}
                         
                         
                     </div>

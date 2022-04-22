@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthenticationContext } from '../../context/authenticationContext';
 import { DateTime } from "luxon";
+import { getSettings } from '../../requests/aboutSettings';
 import AddClassesFormPart1 from '../AddClassesFormPart1/AddClassesFormPart1';
 import AddClassesMenu from '../AddClassesMenu/AddClassesMenu';
 import AddPlaceForm from '../AddPlaceForm/AddPlaceForm';
@@ -51,19 +52,31 @@ export default function AddClasses() {
     const navigate = useNavigate();
 
     useEffect(() => {
+
+        const setSettings = async () => {
+            const settings = await getSettings(authentication.token);
+            if(settings.status ===200){
+                console.log("settings up", settings)
+                setStartTime(settings.data.course_start_hour_am.slice(0,5));
+                setEndTime(settings.data.course_end_hour_pm.slice(0,5));
+            }
+        }
+        setSettings()
+
         if(location.state){
             const {myData} = location.state
-            // console.log("addclasse=>",myData);
+            console.log("addclasse=>",myData);
             console.log("date=>", DateTime.fromJSDate(new Date(myData.start_date)).hour);
             console.log("date=>", DateTime.fromJSDate(new Date(myData.start_date)).minute);
             // console.log("addclasseTrainee",myData.trainee);
             
             setEventId(myData.event_id);
             setEquipment(myData.equipment);
+            setAdress(myData.address)
             setCourseName(myData.name);
             setStartDate(new Date(myData.start_date));
             setEndDate(new Date(myData.end_date));
-            setStartTime(`${DateTime.fromJSDate(new Date(myData.start_date)).toUTC().hour}:${DateTime.fromJSDate(new Date(myData.start_date)).minute}${DateTime.fromJSDate(new Date(myData.start_date)).minute === 0 &&"0"}`);
+            setStartTime(`${DateTime.fromJSDate(new Date(myData.start_date)).toUTC().hour}:${DateTime.fromJSDate(new Date(myData.start_date)).minute}${DateTime.fromJSDate(new Date(myData.start_date)).minute === 0 ? "0" : ""}`);
             setEndTime(`${DateTime.fromJSDate(new Date(myData.end_date)).toUTC().hour}:${DateTime.fromJSDate(new Date(myData.end_date)).minute}`);
             setRole(myData.role);
             setNote(myData.note);
@@ -202,11 +215,13 @@ export default function AddClasses() {
             setCourseName = {setCourseName}
             eventId = {eventId}
             closePart1={closePart1}
+            setSeeClasse={setSeeClasse}
+            setAdress={setAdress}
         />
         {!closeFormPart2 && 
             <div className="container-form-part2">
                 <AddClassesMenu tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents} />
-                <AddPlaceForm  tabClasseRoom={tabClasseRoom} classeRoom={classeRoom} setClasseRoom={setClasseRoom} setAdress={setAdress} seeClasse={seeClasse} setSeeClasse={setSeeClasse} />
+                <AddPlaceForm  tabClasseRoom={tabClasseRoom} classeRoom={classeRoom} setClasseRoom={setClasseRoom} adress={adress} setAdress={setAdress} seeClasse={seeClasse} setSeeClasse={setSeeClasse} />
                 <AddTeachersForm tabTeachers={tabTeachers} teacher={teacher} setTeacher={setTeacher} tabTeachersAdded={tabTeachersAdded} setTabTeachersAdded={setTabTeachersAdded} />
                 <AddStudentsForm tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents} />
                 <AddTextForm text={"Rôles"} set={setRole} value={role} />

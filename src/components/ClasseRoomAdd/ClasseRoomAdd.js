@@ -66,7 +66,7 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
             const postPlace = async () => {
                 const datas = await createPlace({
                   name: name,
-                  position: newPosition
+                  position: Number(newPosition)
                 }, authentication.token);
                 if(datas.status === 200){
                     toggleCreateModal();
@@ -89,12 +89,12 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
                 <form className="classeroom-add-form" onSubmit={onSubmit}>
                     <div className="classeroom-form">
                         <label htmlFor="classeroom-name" className="classeroom-form-label">Nom :</label>
-                        <input type="text" className="classeroom-form-input" value={name} onChange={changeName} /> 
+                        <input type="text" className="classeroom-form-input" value={name} onChange={changeName} required/> 
                         {nameError && <p className="classeroom-form-error">Ce nom est déjà attribué à une autre salle</p>}
                     </div>
                     <div className="classeroom-form">
                         <label htmlFor="classeroom-name" className="classeroom-form-label"  >Position :</label>
-                        <input type="number" className="classeroom-form-input" value={newPosition} onChange={changePosition} /> 
+                        <input type="number" className="classeroom-form-input" value={newPosition} onChange={changePosition} required/> 
                         {positionError && <p className="classeroom-form-error">Cette position est déjà occupé par une autre salle</p>}
                         
                         <button>valider</button>

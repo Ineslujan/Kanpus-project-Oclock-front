@@ -2,9 +2,9 @@ import axios from 'axios';
 import { api } from './apiRoute';
 
 
-export async function getSettings(token) {
+export async function getAbsences(id,token) {
     try {
-        const response = await axios.get(`${api}/settings/`, 
+        const response = await axios.get(`${api}/absence/${id}`, 
         {
 
             headers: {
@@ -19,9 +19,10 @@ export async function getSettings(token) {
     }
 };
 
-export async function putSettings(settings, token) {
+
+export async function addAbsences(id, absence, token) {
     try {
-        const response = await axios.put(`${api}/settings/`, settings, 
+        const response = await axios.patch(`${api}/absence/${id}`, absence, 
         {
 
             headers: {

@@ -22,11 +22,11 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
     const [adress, setAdress] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
-    const [permanent, setPermanent] = useState(true)
+    const [permanent, setPermanent] = useState(false)
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
-    const [picture, setPicture] = useState();
+    const [picture, setPicture] = useState("thumbnail.jpg");
     const [showPicture, setShowPicture] = useState(false);
     const [urlPicture, setUrlPicture] = useState();
 
@@ -64,8 +64,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
         {name:'color4', color:"#FF8CC6"},
         {name:'color5', color:"#540D6E"},
         {name:'color6', color:"#EDD83D"},
-        {name:'color7', color:"#7C7C7C"},
-        {name:'color8', color:"#023618"}
+        {name:'color7', color:"#023618"},
     ]
 
     const changeFirstName = (e) => {
@@ -88,10 +87,10 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
         setEmail(e.target.value);
     }
 
-    const changePermanent = (e) => {
-        setPermanent(e.target.value);
-        console.log(e.target.value)
-    }
+    // const changePermanent = (e) => {
+    //     setPermanent(e.target.value);
+    //     console.log(e.target.value)
+    // }
 
     const changeNewPassword = (e) => {
         setNewPassword(e.target.value);
@@ -106,16 +105,17 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
         if(!data){
             const postDatas = async () => { 
-                console.log(firstname, lastname, colorChoice, adress, phone, email, newPassword, confirmNewPassword)
+                console.log(firstname, lastname, picture,colorChoice, adress, phone, email, newPassword, confirmNewPassword)
+
                 const datas = await addFormer({
                     firstname: firstname,
                     lastname: lastname,
-                    color: colorChoice,  
+                    color: permanent? colorChoice : "#7C7C7C",  
                     address: adress,
                     phone_number: phone,
                     email: email,
                     image: picture,
-                    is_permanent: true,
+                    is_permanent: permanent,
                     new_password: newPassword,
                     confirm_new_password: confirmNewPassword ,
                 }, authentication.token);
@@ -130,7 +130,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                 const datas = await updateFormer(data.id, {
                     firstname: firstname,
                     lastname: lastname,
-                    color:  colorChoice,
+                    color: permanent? colorChoice : "#7C7C7C",
                     address: adress,
                     phone_number: phone,
                     email: email,
@@ -195,22 +195,28 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                 </div>
                 <form action="" onSubmit={handlerSubmit}>
                     <div className="user-form-name-container">
-                        <input type="text" value={firstname} onChange={changeFirstName} />
-                        <input type="text" value={lastname} onChange={changeLastName} />
+                        <input type="text" value={firstname} onChange={changeFirstName} required />
+                        <input type="text" value={lastname} onChange={changeLastName} required />
                     </div>
                     <div className="user-form-main-container">
 
                         <div className="user-form-right-content">
+                           <button type='button' style={{background: permanent?"#FF9700":"#152242"}} onClick={()=> formerStatus(true)} >Permanent</button>
+                           <button type='button' style={{background: permanent?"#152242":"#FF9700"}}  onClick={()=> formerStatus(false)}>Intervenant</button>
+                        </div>
+                        {permanent &&
+                        <div className="user-form-right-content">
                             <label htmlFor="color" >Couleur : </label>
                             <button type="button" name="color" id="color_user" style={{background: colorChoice}} ></button>
-                            {color && color.map((item,index)=> (
+                            { color && color.map((item,index)=> (
                                 <button type="button" key={index} className={item.name} value={item.color} onClick={()=>newColor(item)}></button>
                             ))}
-                            
-                        </div>
+                        </div> 
+                        }
+
                         <div className="user-form-right-content">
                             <label htmlFor="adress">Adresse : </label>
-                            <input type="text" name="adress" value={adress} onChange={changeAdress} />
+                            <input type="text" name="adress" value={adress} onChange={changeAdress} required/>
                         </div>
 
                         <div className="user-form-right-content">
@@ -229,17 +235,13 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
                         <div className="user-form-right-content">
                             <label htmlFor="phone">Téléphone : </label>
-                            <input type="text" name="phone" value={phone} onChange={changePhone} />
+                            <input type="text" name="phone" value={phone} onChange={changePhone} required/>
                         </div>
                         <div className="user-form-right-content">
                             <label htmlFor="email">Email : </label>
-                            <input type="text" name="email" value={email} onChange={changeEmail} />
+                            <input type="email" name="email" value={email} onChange={changeEmail} required minLength={3} maxLength={30} />
                         </div>
-                        <div className="user-form-right-content">
-                           <button type='button' style={{background: permanent?"#FF9700":"#152242"}} onClick={()=> formerStatus(true)} >Permanent</button>
-                           <button type='button' style={{background: permanent?"#152242":"#FF9700"}}  onClick={()=> formerStatus(false)}>Intervenant</button>
-                        </div>
-
+                 
 
                         <div className="former-form-right">
 
