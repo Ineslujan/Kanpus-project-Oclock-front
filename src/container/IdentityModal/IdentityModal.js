@@ -137,9 +137,9 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
 
                         </div>
                     </div>
-                    <div className="identity-modal-button-password-block">
-                <button className="identity-modal-button-password" onClick={passwordModal}>Changez le mot de passe</button>
                 </div>
+                <div className="identity-modal-button-password-block">
+                        <button className="identity-modal-button-password" onClick={passwordModal}>Changez le mot de passe</button>
                 </div>
 
                 {/* <button className="button-modal" onClick={passwordModal}>Changez le mot de passe</button> */}

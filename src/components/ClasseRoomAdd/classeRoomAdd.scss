@@ -4,3 +4,68 @@
     color: red;
     font-size: 0.8em;
 }
+
+.classeroom-add-container{
+    height: 100%;
+}
+.classeroom-add-form{
+    height: 100%;
+}
+
+.classeroom-form-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.classeroom-form{
+    width: 85%; //55%
+    display: flex;
+    flex-direction: column;
+}
+
+.classeroom-form-label{
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem
+}
+
+.classeroom-form-input{
+
+    background-color: var.$background-color;
+    color: var.$second-color;
+    border: 1.5px solid var.$second-color;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 1.3rem;
+  
+    
+    &:focus{
+        border: 1.5px solid var.$other-color;
+        color: var.$other-color;
+    }
+}
+
+.modal-confirmation-response-block{
+    
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.classeroom-form-error{
+    font-weight: bold;
+    color: var.$other-color;
+    margin-top: 0.2rem;
+}
+
+
+@media (min-width: 800px) {
+.classeroom-form{
+    width: 55%;
+  
+}
+
+}

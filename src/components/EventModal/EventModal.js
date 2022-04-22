@@ -36,13 +36,13 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
     const addAbsenceTrainee = (e, item) => {
         if (traineeAbsence.includes(item)) {
             setTraineeAbsence(traineeAbsence.filter(trainee => trainee !== item));
-            e.target.style.color = "black";
+            e.target.style.color = "#F3F2F2";
         } else {
             setTraineeAbsence([
                 ...traineeAbsence,
                 item
             ])
-            e.target.style.color = "red";
+            e.target.style.color = "#FF9700";
         }
     }
 
@@ -98,12 +98,6 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                             <p className="modal-date-time-block-hour">{DateTime.fromISO(datas.end_date).setLocale("fr").toUTC().toFormat("HH:mm")}</p>
                         </div>
                     </div>
-                    {datas.address &&
-                            <>
-                                <p className="modal-adress-title">Adress</p>
-                                <p className="modal-adress-content">Adress</p>
-                            </>
-                        }
                     <div className="modal-event-user-wrapper">
                         <div className="modal-event-user">
                             <h2 className="modal-event-user-title">Formateur</h2>
@@ -125,13 +119,19 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                                     <button className="modal-trainer-absence"> Valider les absences </button>
                                 } 
                             </div>
-}
-                        
+                        }
+                        <button className="event-button-abssense"> Valider les absences </button>
                         
                     </div>
                     <div className="modal-event-user-wrapper">
-             
-
+                    <div className="modal-event-user">
+                    {datas.address &&
+                            <>
+                                <h2 className="modal-event-user-title">Address</h2>
+                                <p className="modal-adress-content">{datas.address}</p>
+                            </>
+                        }
+                    </div>
 
                     {datas.role &&
                         <div className="modal-text-event">
