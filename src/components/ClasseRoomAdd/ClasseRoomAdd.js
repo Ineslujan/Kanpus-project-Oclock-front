@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import './classeRoomAdd.scss';
 import { createPlace } from '../../requests/placeRequest'
 import { AuthenticationContext } from '../../context/authenticationContext';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 
 export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas, allPlaces }) {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
@@ -66,7 +67,7 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
             const postPlace = async () => {
                 const datas = await createPlace({
                   name: name,
-                  position: newPosition
+                  position: Number(newPosition)
                 }, authentication.token);
                 if(datas.status === 200){
                     toggleCreateModal();
@@ -80,24 +81,33 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
     }
 
     return (
-        <Modal isOpen={createModal}> 
+        <Modal 
+        isOpen={createModal}
+        className='Modal'
+        overlayClassName='Overlay'
+        > 
       
             <div className="modal-button-close">
-                <button className="close" onClick={toggleCreateModal}>x</button>
+                <button className="close" onClick={toggleCreateModal}><img src={svgCircle} alt="close-icon" /></button>
             </div>
             <div className="classeroom-add-container">
                 <form className="classeroom-add-form" onSubmit={onSubmit}>
-                    <div className="classeroom-form">
-                        <label htmlFor="classeroom-name" className="classeroom-form-label">Nom :</label>
-                        <input type="text" className="classeroom-form-input" value={name} onChange={changeName} /> 
-                        {nameError && <p className="classeroom-form-error">Ce nom est déjà attribué à une autre salle</p>}
-                    </div>
-                    <div className="classeroom-form">
-                        <label htmlFor="classeroom-name" className="classeroom-form-label"  >Position :</label>
-                        <input type="number" className="classeroom-form-input" value={newPosition} onChange={changePosition} /> 
-                        {positionError && <p className="classeroom-form-error">Cette position est déjà occupé par une autre salle</p>}
-                        
-                        <button>valider</button>
+                    <div className="classeroom-form-wrapper">
+                        <div className="classeroom-form">
+                            <label htmlFor="classeroom-name" className="classeroom-form-label">Nom :</label>
+
+                            <input type="text" className="classeroom-form-input" value={name} onChange={changeName} /> 
+                            {nameError && <p className="classeroom-form-error">Ce nom est déjà attribué à une autre salle</p>}
+                    
+                            <label htmlFor="classeroom-name" className="classeroom-form-label"  >Position :</label>
+                            <input type="number" className="classeroom-form-input" value={newPosition} onChange={changePosition} /> 
+                            {positionError && <p className="classeroom-form-error">Cette position est déjà occupé par une autre salle</p>}
+                            
+                            
+                            <div className="modal-confirmation-response-block">
+                            <button className="modal-confirmation-response">valider</button>
+                            </div>
+                        </div>
                     </div>
                 </form>
                 

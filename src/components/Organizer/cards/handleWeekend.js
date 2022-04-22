@@ -1,11 +1,11 @@
 import { DateTime } from "luxon";
 
-export const handleWeekend = (dataEvents, date, settings, firstDayOfWeek) => {
+export const handleWeekend = (dataEvents, firstDayOfWeek, settings) => {
     const dataReal = dataEvents.map(event => {
         return { ...event }
     });
-    const firstWeekDay = date; // monday 18th march
-    const firstWeekDayWeekNumber = firstWeekDay.toFormat('WW'); // 23rd week
+
+    const firstWeekDayWeekNumber = firstDayOfWeek.toFormat('WW'); // 23rd week
     const courseStartHourAm = DateTime.fromFormat(settings.course_start_hour_am, "TT").toFormat("T")+":01" // 09:00:01 change with settings
     const courseEndHourPm = DateTime.fromFormat(settings.course_end_hour_pm, "TT").toFormat("T")+":01" // 18:00:01 change with settings
 
@@ -69,22 +69,26 @@ export const handleWeekend = (dataEvents, date, settings, firstDayOfWeek) => {
         }
         // events less than a week
         else if (startWeekdayNumber > endWeekdayNumber) { // 4 > 3 => Week from thursday to the next wednesday 
-            if (firstWeekDay < startDate) {
+            if (firstDayOfWeek < startDate) {
                 // monday 18 < thursday 21
+                console.log("< 1 un");
                 newEndDate(startWeekdayNumber, startDate)
             }
-            if (startDate < firstWeekDay) {
+            if (startDate < firstDayOfWeek) {
                 // wednesday 13 < monday 18
+                console.log("< 1 deux");
                 newStartDate(endWeekdayNumber, endDate)
             }
         }
         else {
             if (Number(startWeekdayNumber) === 6 || Number(startWeekdayNumber) === 7) {
                 // if it's a saturday or sunday for the start date
+                console.log("< 1 neuf, ne passera jamais je pense");
                 d.start_date = `${firstDayOfWeek.plus({ days: 7 }).toFormat("yyyy-MM-dd")}T${courseStartHourAm}.000Z`;
             }
             else if (Number(endWeekdayNumber) === 6 || Number(endWeekdayNumber) === 7) {
                 // if it's a saturday or sunday for the end date
+                console.log("< 1 dix");
                 d.end_date = `${firstDayOfWeek.plus({ days: 4 }).toFormat("yyyy-MM-dd")}T${courseEndHourPm}.000Z`;
 
             }

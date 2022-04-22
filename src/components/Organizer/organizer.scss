@@ -1,17 +1,17 @@
 @use '../../var.scss';
 @use 'sass:color';
 
-.layout {
-    overflow: auto;
-    height: 700px; //!
-}
+// .layout {
+//     overflow: auto;
+//     height: 700px; //!
+// }
 
-.layout div:not([data-organizer-type="blank"]) {
-    position: relative;
+.layout div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .layout div[data-organizer-type="column"] {
     color: var.$second-color;
     display: flex;
@@ -39,36 +39,49 @@
 }
 
 .layout div .blank-row {
+    position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: inherit;
     height: inherit;
     padding: 0 8%;
 }
+
 .month-year {
-    display: flex;
-    flex-direction: column;
-    row-gap: 6px;
+    // display: flex;
+    // flex-direction: column;
+    column-gap: 6px;
 }
+
 .month {
     color: var.$other-color;
     text-transform: uppercase;
 }
+
 .year {
     color: var.$second-color;
 }
-.changeWeek {
-    display: flex;
+
+.layout div[data-organizer-type="blank"] {
     flex-direction: column;
 }
+
+.changeWeek {
+    bottom: -66px;
+    top: 5px;
+    column-gap: 17px;
+    padding-top: 8px;
+}
+
 .weeks-button-left,
 .weeks-button-right {
+    width: 24px;
     border: none;
     background: none;
     filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(101%) contrast(106%);
     padding-top: 1px;
 }
+
 /*
 BORDERS
 */
@@ -97,4 +110,4 @@ BORDERS
     top: 65px;
     z-index: -1;
     border-left: 1px dashed #1c2d58;
-} 
+}

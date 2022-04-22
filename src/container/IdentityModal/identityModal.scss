@@ -148,6 +148,11 @@ width: 100%;
     }
 }
 
+.identity-modal-button-password-block{
+    display: flex;
+    justify-content: center;
+    width: 92%;
+ }
 @media (min-width: 800px) {
 
     .identity-modal-main img{
@@ -163,9 +168,7 @@ width: 100%;
         
     }
 
-    .identity-modal-button-password{
-       
-    }
+
 
     .identity-modal-warpper{
         display: flex;
@@ -178,6 +181,7 @@ width: 100%;
     .identity-modal-button-password-block{
         position: absolute;
         bottom: 60px;
+        
         
     }
     .identity-modal-button-password{

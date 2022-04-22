@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 import './addPlaceForm.scss'
 
-export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress, seeClasse, setSeeClasse}) {
+export default function PlaceForm({tabClasseRoom,setClasseRoom,adress, setAdress, seeClasse, setSeeClasse}) {
 
     const [placeAvailable, setPlaceAvailable] = useState([]);
     const [placeNotAvailable, setPlaceNotAvailable] = useState([]);
@@ -64,7 +64,7 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom, setAdress, seeCl
                         </div>
                     </div>
                 </div>
-                <input type="text" className="place-adress" onChange={handleAdress} />
+                <input type="text" className="place-adress" onChange={handleAdress} value={adress} />
             </div>
         </div>
     )

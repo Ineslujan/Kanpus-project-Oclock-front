@@ -16,7 +16,7 @@ export default function ConnexionForm() {
     const onSubmit = data =>  {
         const getDatas = async () => {
             const datas = await postConnexion(data);
-            if(datas.status === 200){
+            if(datas.status === 200){ 
                 setState2(datas);
                 console.log(datas)
                 setAuthentication({

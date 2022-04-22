@@ -5,6 +5,15 @@ import { AuthenticationContext } from '../../context/authenticationContext';
 import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 import { uploadPic } from '../../requests/pictureRequest';
 import { api } from '../../requests/apiRoute'
+import svgPepole from '../../assets/images/icones-bags-svg/bi-people-fill.svg';
+import svgEnvelope from '../../assets/images/icones-bags-svg/bi-envelope-fill.svg';
+import svgMarker from '../../assets/images/icones-bags-svg/majesticons-map-marker-area.svg';
+import svgPhone from '../../assets/images/icones-bags-svg/bi-telephone-fill.svg';
+import svgMortarboard from '../../assets/images/icones-bags-svg/bi-mortarboard-fill.svg';
+import svgPalette from '../../assets/images/icones-bags-svg/bi-palette-fill.svg';
+import svgPassword from '../../assets/images/icones-bags-svg/RiLockPasswordFill.svg';
+import svgImage from '../../assets/images/icones-bags-svg/bi-person-bounding-box.svg';
+import svgUpload from '../../assets/images/icones-bags-svg/IcRoundFileUpload.svg';
 
 import './formerForm.scss'
 
@@ -22,11 +31,11 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
     const [adress, setAdress] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
-    const [permanent, setPermanent] = useState(true)
+    const [permanent, setPermanent] = useState(false)
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
-    const [picture, setPicture] = useState();
+    const [picture, setPicture] = useState("thumbnail.jpg");
     const [showPicture, setShowPicture] = useState(false);
     const [urlPicture, setUrlPicture] = useState();
 
@@ -64,8 +73,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
         {name:'color4', color:"#FF8CC6"},
         {name:'color5', color:"#540D6E"},
         {name:'color6', color:"#EDD83D"},
-        {name:'color7', color:"#7C7C7C"},
-        {name:'color8', color:"#023618"}
+        {name:'color7', color:"#023618"},
     ]
 
     const changeFirstName = (e) => {
@@ -88,10 +96,10 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
         setEmail(e.target.value);
     }
 
-    const changePermanent = (e) => {
-        setPermanent(e.target.value);
-        console.log(e.target.value)
-    }
+    // const changePermanent = (e) => {
+    //     setPermanent(e.target.value);
+    //     console.log(e.target.value)
+    // }
 
     const changeNewPassword = (e) => {
         setNewPassword(e.target.value);
@@ -106,16 +114,17 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
         if(!data){
             const postDatas = async () => { 
-                console.log(firstname, lastname, colorChoice, adress, phone, email, newPassword, confirmNewPassword)
+                console.log(firstname, lastname, picture,colorChoice, adress, phone, email, newPassword, confirmNewPassword)
+
                 const datas = await addFormer({
                     firstname: firstname,
                     lastname: lastname,
-                    color: colorChoice,  
+                    color: permanent? colorChoice : "#7C7C7C",  
                     address: adress,
                     phone_number: phone,
                     email: email,
                     image: picture,
-                    is_permanent: true,
+                    is_permanent: permanent,
                     new_password: newPassword,
                     confirm_new_password: confirmNewPassword ,
                 }, authentication.token);
@@ -130,7 +139,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                 const datas = await updateFormer(data.id, {
                     firstname: firstname,
                     lastname: lastname,
-                    color:  colorChoice,
+                    color: permanent? colorChoice : "#7C7C7C",
                     address: adress,
                     phone_number: phone,
                     email: email,
@@ -193,71 +202,102 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                 <div className="modal-button-close">
                     <button className="close" onClick={setUpdate}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
-                <form action="" onSubmit={handlerSubmit}>
-                    <div className="user-form-name-container">
-                        <input type="text" value={firstname} onChange={changeFirstName} />
-                        <input type="text" value={lastname} onChange={changeLastName} />
-                    </div>
-                    <div className="user-form-main-container">
+                <form className='user-form-content' action="" onSubmit={handlerSubmit}>
+                <div className="user-form-wrapper">
+                        <div className="user-form-wrapper-block">
+                            <div className="user-form-avatar">
+                                {!showPicture ?
+                                <>
+                                <img  className="user-form-right-image" style={{border: `5px solid ${permanent? colorChoice : "#7C7C7C"}`}} src={`${api}/avatar/thumbnail.jpg`} alt="avatar" />
 
+                                </>
+                                :
+                                <>
+                                <img className="user-form-right-image" style={{border: `5px solid ${permanent? colorChoice : "#7C7C7C"}`}} src={urlPicture} alt="avatar" />
+                                    
+                                </>
+                                }
+                            </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
+                                <input type="text" placeholder="Prénom" value={firstname} onChange={changeFirstName} required/>
+                            </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="promo" ><img className="user-form-icone" src={svgPepole} alt="Pepole" /></label>
+                                <input type="text" placeholder="Nom" value={lastname} onChange={changeLastName} required/>
+                            </div>
+
+
+                        </div>
+                        <div className="user-form-wrapper-block">
                         <div className="user-form-right-content">
-                            <label htmlFor="color" >Couleur : </label>
-                            <button type="button" name="color" id="color_user" style={{background: colorChoice}} ></button>
-                            {color && color.map((item,index)=> (
+                            <label htmlFor="promo" ><img className="user-form-icone" src={svgMortarboard} alt="Pepole" /></label>
+                            <div className="user-form-color-wrapper">
+                                <button className='former-is-permanent-button' type='button' style={{border: `2px solid ${permanent?"#FF9700":"#F3F2F2"}`,color: permanent?"#FF9700":"#F3F2F2"}} onClick={()=> formerStatus(true)} >Permanent</button>
+                                <button className='former-is-permanent-button' type='button' style={{border: `2px solid ${permanent?"#F3F2F2":"#FF9700"}`, color: permanent?"#F3F2F2":"#FF9700"}}  onClick={()=> formerStatus(false)}>Intervenant</button>
+                            </div>
+                            </div>
+                        {permanent &&
+                            <div className="user-form-right-content">
+                                <label htmlFor="promo" ><img className="user-form-icone" src={svgPalette} alt="Pepole" /></label>
+                                <div className="user-form-color-wrapper">
+                                { color && color.map((item,index)=> (
                                 <button type="button" key={index} className={item.name} value={item.color} onClick={()=>newColor(item)}></button>
-                            ))}
-                            
+                                ))}
+                                </div>
+                            </div> 
+                            }
+                            <div className="user-form-right-content">
+                                <label htmlFor="adress"><img className="user-form-icone" src={svgMarker} alt="Marker" /></label>
+                                <input type="text" placeholder="Adresse" name="adress" value={adress} onChange={changeAdress} required />
+                            </div>
+                            <div className="user-form-right-content">
+                            <label htmlFor="adress"><img className="user-form-icone" src={svgImage} alt="Marker" /></label>
+                            <div className="user-form-upload-wrapper">
+                            {!showPicture ?
+                                    <>
+                                        <input className="user-from-file" type="file" name="sampleFile" onChange={newPicture}/>
+                                        <button className="user-form-upload" type="button" onClick={uploadPicture}>
+                                        <img src={svgUpload} alt="upload" />
+                                        </button>
+                                    </>
+                                    :
+                                    <>
+     
+                                        <button className="user-form-edit-img" onClick={updateImage}>Modifier</button>
+                                    </>
+                                }
+                          
+                            </div>
                         </div>
-                        <div className="user-form-right-content">
-                            <label htmlFor="adress">Adresse : </label>
-                            <input type="text" name="adress" value={adress} onChange={changeAdress} />
-                        </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="phone"><img className="user-form-icone" src={svgPhone} alt="Téléphone" /> </label>
+                                <input type="text" name="phone" value={phone} onChange={changePhone} required/>
+                            </div>
+                            <div className="user-form-right-content">
+                                <label htmlFor="email"><img className="user-form-icone" src={svgEnvelope} alt="Envelope" /></label>
+                                <input type="email" placeholder="Email" name="email" value={email} onChange={changeEmail} required/>
+                            </div>
 
-                        <div className="user-form-right-content">
-                        {!showPicture ?
+                        {!data &&
                             <>
-                                <input type="file" name="sampleFile" onChange={newPicture}/>
-                                <button type="button" onClick={uploadPicture}>Uploader</button>
+                                <div className="user-form-right-content">
+                                    <label htmlFor="password"><img className="user-form-icone" src={svgPassword} alt="password" /></label>
+                                    <input type="text" placeholder="Mot de pass" name="password" value={newPassword} onChange={changeNewPassword} />
+                                </div>
+                                <div className="user-form-right-content">
+                                    <label htmlFor="password"></label>
+                                    <input type="text" placeholder="Confirmez le mot de passe" name="password" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+                                </div>
                             </>
-                            :
-                            <>
-                                <img className="user-form-right-image" src={urlPicture} alt="avatar" />
-                                <button onClick={updateImage}>modifier</button> 
-                            </>
+
                         }
                         </div>
+                
+                </div>
 
-                        <div className="user-form-right-content">
-                            <label htmlFor="phone">Téléphone : </label>
-                            <input type="text" name="phone" value={phone} onChange={changePhone} />
-                        </div>
-                        <div className="user-form-right-content">
-                            <label htmlFor="email">Email : </label>
-                            <input type="text" name="email" value={email} onChange={changeEmail} />
-                        </div>
-                        <div className="user-form-right-content">
-                           <button type='button' style={{background: permanent?"#FF9700":"#152242"}} onClick={()=> formerStatus(true)} >Permanent</button>
-                           <button type='button' style={{background: permanent?"#152242":"#FF9700"}}  onClick={()=> formerStatus(false)}>Intervenant</button>
-                        </div>
-
-
-                        <div className="former-form-right">
-
-                            {!data &&
-                                <div className="user-form-right-content">
-                                    <div className="user-form-password">
-                                        <label htmlFor="email">Mot de passe : </label>
-                                        <input type="text" name="email" value={newPassword} onChange={changeNewPassword} />
-
-                                        <label htmlFor="email">Confirmez le mot de passe : </label>
-                                        <input type="text" name="email" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
-                                    </div>
-                                </div>
-                            }
-
-                            <button>valider</button>
-                        </div>
-                    </div>
+                {/* -- */}
+                    <button className='trainee-confirmation-validate-button'>valider</button>
                 </form>
             
             </div>
