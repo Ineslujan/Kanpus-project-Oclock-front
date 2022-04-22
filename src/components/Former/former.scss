@@ -1,13 +1,13 @@
 @use '../../var.scss';
 
 
-.trainee {
+.former {
     width: 100%;
     margin: auto;
 
 }
 
-.trainee-content-promo-students {
+.former-content-promo-students {
     height: auto;
     margin:30px auto;
     display: grid;
@@ -16,7 +16,7 @@
     grid-gap: 1%;
 }
 
-.trainee-create {
+.former-create {
     padding-top: 0.3%;
 
 
@@ -47,7 +47,21 @@
     }
 }
 
+@media screen and (max-width: 540px) {
 
+    .former-create-button{
+        background-color: var.$other-color;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        position: fixed;
+        right: 3%;
+        bottom: 3%;
+        overflow: hidden;
+      
+    }
+
+}
 
 
 

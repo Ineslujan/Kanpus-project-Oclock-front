@@ -7,6 +7,10 @@
     font-weight: bold;
 }
 
+.classeroom-container {
+width: 100%;
+}
+
 .classeroom{
     width: 90%;
     margin: auto;
@@ -18,9 +22,9 @@
     height: auto;
     margin:30px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill,200px);
+    grid-template-columns: repeat(auto-fill,250px);
     justify-content: center;
-    grid-gap: 6%; 
+    grid-gap: 2%; 
 }
 
 .classeroom-create-button{
