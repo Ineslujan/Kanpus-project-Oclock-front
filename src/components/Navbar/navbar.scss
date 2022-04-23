@@ -13,12 +13,10 @@
     margin-right: 40px;
     font-size: 1.125rem;
     font-weight: bold;
-
 }
 
 .button-add-event:focus {
     filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(130%) contrast(106%);
-
 }
 
 .navbar-container-link {
@@ -34,7 +32,7 @@
 @media screen and (max-width : 599px) {
     .navbar-container-link:not(.open){
         display: none;
-    }
+    }   
     .open {
         position: fixed;
         z-index: 8;

@@ -55,16 +55,13 @@
     color: var.$trash-color;
     border: 1px solid var.$trash-color;
     background-color: var.$background-color;
-
 }
 
 .classeroom-confirmation-cancel-button:hover{
     color: var.$other-color;
     border: 1px solid var.$other-color;
     background-color: var.$background-color;
-
 }
-
 
 .modal-icone-pencil,.modal-icone-trash{
     background-color: transparent;
@@ -74,7 +71,6 @@
     transform-box: fill-box;
     margin-right: 0.5rem;
 }
-
 
 .modal-icone-pencil:hover{
     filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(101%) contrast(106%);

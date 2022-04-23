@@ -16,13 +16,11 @@
         border-radius: 8px;
         
     }
-
 }
 
 .identity-container-picture{
     width: 194px;
     height: 204px;
-
 }
 
 .identity-picture{
@@ -38,7 +36,6 @@ img {
     height: 100%;
     border-radius: 5px;
     object-fit: cover;
-
 }
 
 .identity-container-name{
@@ -53,17 +50,15 @@ img {
 
 @media screen and (max-width: 540px) {
     .identity{
-       width: 200px;
-       height: 210px;
-       background-color: var.$background-color;
-       color: var.$second-color;
-       border-radius: 8px;   
-       cursor: pointer;
+        width: 200px;
+        height: 210px;
+        background-color: var.$background-color;
+        color: var.$second-color;
+        border-radius: 8px;   
+        cursor: pointer;
     }
 
     .identity-container-name{
         padding: 0; 
-
     }
-
 }

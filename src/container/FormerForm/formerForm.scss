@@ -14,9 +14,7 @@
 }
 
 .former-is-permanent-button{
-  
     font-family: 'Lato', Verdana, sans-serif;
-  
     background-color: var.$background-color;
     border: 2px solid var.$second-color;
     border-radius: 3px;
@@ -26,8 +24,7 @@
     width: 45%;
     font-weight: bold;
     transition-duration: 0.3s;
-    
-   
+
 
     &:hover{
         color: var.$other-color;
@@ -35,12 +32,8 @@
         background-color: var.$background-color;
         
     }
-  
+
 }
-
-
-
-
 
 // ludo
 .user-form-right-image{
@@ -60,8 +53,6 @@
     object-fit: cover;
 }
 
-
-
 .color{
     width: 25px;
     height: 15px;
@@ -73,7 +64,7 @@
     width: 30px;
     border: none;
     border-radius: 50%;
-  
+
 }
 
 .color2 {
@@ -131,7 +122,6 @@
 //     border: none;
 //     border-radius: 50%;
 // }
-
 
 #color_user{
     border: none;
