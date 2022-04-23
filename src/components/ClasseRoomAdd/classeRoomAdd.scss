@@ -8,6 +8,7 @@
 .classeroom-add-container{
     height: 100%;
 }
+
 .classeroom-add-form{
     height: 100%;
 }
@@ -33,14 +34,12 @@
 }
 
 .classeroom-form-input{
-
     background-color: var.$background-color;
     color: var.$second-color;
     border: 1.5px solid var.$second-color;
     border-radius: 3px;
     font-weight: bold;
     font-size: 1.3rem;
-  
     
     &:focus{
         border: 1.5px solid var.$other-color;
@@ -63,9 +62,7 @@
 
 
 @media (min-width: 800px) {
-.classeroom-form{
-    width: 55%;
-  
-}
-
+    .classeroom-form{
+        width: 55%;  
+    }
 }

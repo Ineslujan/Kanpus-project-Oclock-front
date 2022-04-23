@@ -7,6 +7,10 @@
     font-weight: bold;
 }
 
+.classeroom-container {
+    width: 100%;
+}
+
 .classeroom{
     width: 90%;
     margin: auto;
@@ -14,13 +18,13 @@
 
 .classeroom-content{
     max-width: 90%;
-    width: 80%;
+    width: 82%;
     height: auto;
     margin:30px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill,200px);
+    grid-template-columns: repeat(auto-fill,250px);
     justify-content: center;
-    grid-gap: 6%; 
+    grid-gap: 2%; 
 }
 
 .classeroom-create-button{
@@ -44,5 +48,26 @@
     transition-duration: 0.5s;
     &:hover{
         filter: invert(67%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(101%) contrast(106%);
+    }
+}
+
+@media screen and (max-width: 540px) {
+
+    .classeroom-create-button{
+        background-color: var.$other-color;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        position: fixed;
+        right: 3%;
+        bottom: 3%;
+        overflow: hidden;       
+    }
+
+    .classeroom-title {
+        padding-top: 5.7%;
+        font-size: 2em;
+        color: #F3F2F2;
+        font-weight: bold;
     }
 }

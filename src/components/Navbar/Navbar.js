@@ -27,7 +27,7 @@ export default function Navbar({ isOpen, setIsOpen }) {
             <NavLink
                 to="/add"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-add"}
-            ><button onClick={handleOpeningMenu}>{isOpen ? "Créer un cours" : <img src={Calendar} alt="calendar" className="create-event-color" />}</button></NavLink>
+            ><button className="button-add-event" onClick={handleOpeningMenu}>{isOpen ? "Créer un cours" : <img src={Calendar} fill="#F3F2F2" alt="calendar" className="button-add-event-color" />}</button></NavLink>
             <NavLink
                 to="/organizer"
                 className={({ isActive }) => isActive ? activeClassName : "navlink-section"}

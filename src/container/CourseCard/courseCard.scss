@@ -28,6 +28,7 @@
         border-radius: 3px;
         transition-duration: 0.3s;
         width:60%;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
     }
 
     &-course:hover{
@@ -83,7 +84,7 @@
     font-weight: 600;
 }
 
-.former,
+.former-mycourse,
 .place {
     width: 60%;
     font-weight: 600;
@@ -106,4 +107,97 @@
 
 .place{
    margin-top: 1%; 
+}
+
+@media screen and (max-width: 540px) {
+    .mycourse-card{
+    
+        margin-top: 3%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: nowrap;
+        align-items: center;
+    
+        &-day {
+            color: var.$second-color;
+            margin-bottom: 3%;
+            font-size: 1.5em;
+            text-align: center;
+            font-weight: bold;
+            
+        }
+    
+        &-course {
+            width:250px;
+            min-height: 145px;
+            padding: 2% 1%;
+            background-color: var.$background-color;
+            color: var.$second-color;
+            border-radius: 5px;
+            border: 2px solid var.$second-color;
+            border-radius: 3px;
+            margin-bottom:5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    
+    }
+    
+    .mycourse-card-former,
+    .mycourse-card-date{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .name {
+        font-weight: 800;
+        font-size: 1.5rem;
+    }
+
+    .former-mycourse,
+    .place {
+    width: 70%;
+    font-weight: 500;
+    font-size: 1.5rem;
+    }
+
+    .start-date-container
+    .end-date-container {
+        max-height: 10%; 
+        font-size: 0.7em;
+    }
+
+    .place{
+        font-weight: 500;
+        font-size: 1.2em;
+    }
+
+    .date{
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .duration{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 1.3rem;
+    
+        &-course{
+            font-style: italic;
+            font-weight: 0.3em;
+            padding-bottom: 0.5%;
+        }
+    }
+
+    .mycourse-card-former{
+        margin-top: 0%;
+        margin-bottom: 0%;
+    
+    }
+
+
 }

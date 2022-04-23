@@ -11,8 +11,8 @@
     border: 1.5px solid var.$second-color;
     border-radius: 3px;
     font-weight: bold;
-    margin-top: 9%;
-    margin-bottom: 1em;
+    margin-top: 4%;
+    margin-bottom: 13%;
     width: 100%;
 
     &:focus{
@@ -56,7 +56,6 @@
     transition: all 0.3s;
     transform-origin: 50% 50%;
     transform-box: fill-box;
-
 }
 
 .promo-close-icon {
@@ -67,9 +66,4 @@
     &:hover{
         transform: scale(1.2);  
     }
-}
-
-.promo-form-buttons{
-    margin-top: 2px;
-    padding: 3px;
 }

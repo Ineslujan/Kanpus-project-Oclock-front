@@ -31,7 +31,7 @@ export default function Former() {
     }
   
     return (
-        <div className='trainee'> 
+        <div className='former'> 
             <SelectedFormers 
                 selectedStatusFormer = {selectedStatusFormer} 
                 setSelectedStatusFormer = {setSelectedStatusFormer} 
@@ -45,8 +45,8 @@ export default function Former() {
                     {seeUpdateModal && <FormerForm updateModal={seeUpdateModal} setUpdateModal={setSeeUpdateModal}  setUpdate={setUpdate} allPromo={allPromo} getStudents={getStudents} /> }
                 </div> */}
 
-            <div className="trainee-container">                 
-                <div className="trainee-content-promo-students">
+            <div className="former-container">                 
+                <div className="former-content-promo-students">
                     {selectedStatusFormer && selectedStatusFormer.former.map((item)=> (
                         <FormerIdentity key={item.id} item={item}  setStudent={setStudent} setSelectedPromo={setSelectedStatusFormer} setAllPromo={setAllPromo} setSeeUpdateModal={setSeeUpdateModal} getStudents={getStudents}/>
                     ))}

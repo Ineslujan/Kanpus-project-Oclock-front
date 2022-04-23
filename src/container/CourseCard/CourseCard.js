@@ -30,7 +30,7 @@ export default function CourseCard({ datas, setAllCourses }) {
                 </div>
                 <div className="mycourse-card-former">
                    
-                    <p className="former">{datas.former[0].firstname} {datas.former[0].lastname}</p>
+                    <p className="former-mycourse">{datas.former[0].firstname} {datas.former[0].lastname}</p>
                 </div>
                 <div className="duration">
 

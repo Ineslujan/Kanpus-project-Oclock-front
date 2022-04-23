@@ -3,33 +3,24 @@
 .identity{
     width: 200px;
     height: 250px;
-    // border: 2px solid var.$primary-color;
     background-color: var.$background-color;
-    // border: 1px solid var.$second-color;
     color: var.$second-color;
     border-radius: 8px;   
-    margin: 0 5% 10%;
     cursor: pointer;
     transition: all 0.4s;
 
-    &::after {
+    &:hover {
         color: var.$other-color;
         border: 3px solid var.$other-color;
         background-color: var.$background-color;
         border-radius: 8px;
+        
     }
-    
-    &:hover::after{
-        opacity: 1;
-
-    }
-
 }
 
 .identity-container-picture{
     width: 194px;
     height: 204px;
-
 }
 
 .identity-picture{
@@ -45,7 +36,6 @@ img {
     height: 100%;
     border-radius: 5px;
     object-fit: cover;
-
 }
 
 .identity-container-name{
@@ -54,6 +44,21 @@ img {
 
 .identity-name{
     font-weight: bold;
-    // padding-top: 4px;
     font-size: 1.04rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+@media screen and (max-width: 540px) {
+    .identity{
+        width: 200px;
+        height: 210px;
+        background-color: var.$background-color;
+        color: var.$second-color;
+        border-radius: 8px;   
+        cursor: pointer;
+    }
+
+    .identity-container-name{
+        padding: 0; 
+    }
 }
