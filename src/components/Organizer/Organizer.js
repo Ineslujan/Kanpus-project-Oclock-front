@@ -187,7 +187,7 @@ export default function Organizer() {
                                 w,
                                 h: 1,
                                 maxH: 1,
-                                static: true
+                                // static: true
                             }}
                                 data-organizer-type="card"
                                 style={{ 
@@ -196,7 +196,7 @@ export default function Organizer() {
                                     borderRight: endDayHourSec === courseEndHourPm && `3px solid #FF9700`,
                                     }}
                                 key={uuid()}
-                                onClick={() => openModal(event.event_id)}
+                                onDoubleClick={() => openModal(event.event_id)}
                             >
                                 {startDayHourSec === courseStartHourAm && <div className="continue previous">&lt;</div>}
                                 <div className="card-content">

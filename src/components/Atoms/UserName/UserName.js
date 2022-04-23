@@ -1,4 +1,4 @@
-import React, {useState,useContext,useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Modal from 'react-modal';
 import { AuthenticationContext } from '../../../context/authenticationContext';
 import UserModalPassword from '../../UserModalPassword/UserModalPassword';
@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import Settings from '../../Settings/Settings';
 
 import deconnexionico from '../../../assets/images/icones-bags-svg/wpf-shutdown.svg'
+import lockico from '../../../assets/images/icones-bags-svg/ic-baseline-lock.svg'
+import settingsico from '../../../assets/images/icones-bags-svg/ci-settings-filled.svg'
+import profileico from '../../../assets/images/icones-bags-svg/bi-person-fill.svg'
 import './userName.scss';
 
 export default function UserName({ isOpen, setIsOpen }) {
@@ -31,8 +34,8 @@ export default function UserName({ isOpen, setIsOpen }) {
     }
 
     const openClose = () => {
-        setSeePasswordModal(x=>!x);
-        setUserMenu(x=>!x);
+        setSeePasswordModal(x => !x);
+        setUserMenu(x => !x);
         console.log("coucou")
     }
 
@@ -42,46 +45,46 @@ export default function UserName({ isOpen, setIsOpen }) {
     }
 
     const settings = () => {
-        setSeeSettings(x=> !x);
-        setUserMenu(x=>!x);
+        setSeeSettings(x => !x);
+        setUserMenu(x => !x);
     }
 
     return (
 
-		<div className="navbar-user">
+        <div className="navbar-user">
             <button className="user-name" onClick={openMenu}>
-                {authentication.user.firstname}
-                </button>
+                {authentication.user.firstname}<div><img src={profileico} alt="icone profil" className='ico icoprofil' /></div>
+            </button>
             {/* {console.log("user",authentication.user.firstname)} */}
             <div className="user">
-            {userMenu && 
-                <div className="user-modal">
-                    <button onClick={openClose}>Gestion mot de passe</button>
-                </div>
-            }
-            {seePasswordModal &&
-                 <UserModalPassword openClose={openClose} seePasswordModal={seePasswordModal} />
-            }
-             {userMenu && 
-                <div className="user-modal">
-                    <button onClick={deconnexion}>Déconnexion <div><img src={deconnexionico} alt="icone deconnexion" className='icologout' /></div></button>
-                </div>
-            }
-                    
-                    {authentication.role === "admin" &&       
-                        <>  
-                        {userMenu && 
+                {userMenu &&
+                    <div className="user-modal">
+                        <button onClick={openClose}>Gestion mot de passe <div><img src={lockico} alt="icone mot de passe" className='ico icolock' /></div></button>
+                    </div>
+                }
+                {seePasswordModal &&
+                    <UserModalPassword openClose={openClose} seePasswordModal={seePasswordModal} />
+                }
+
+                {authentication.role === "admin" &&
+                    <>
+                        {userMenu &&
                             <div className="user-modal">
-                            <button onClick={settings}>Settings</button>
+                                <button onClick={settings}>Settings <div><img src={settingsico} alt="icone parametres" className='ico icosettings' /></div></button>
                             </div>
                         }
-                        
-                        <Settings  modalIsOpen={seeSettings} setModalIsOpen={setSeeSettings}/>
-                        </> 
-                    
-                    
-            }
-        </div>
+
+                        <Settings modalIsOpen={seeSettings} setModalIsOpen={setSeeSettings} />
+                    </>
+
+
+                }
+                {userMenu &&
+                    <div className="user-modal">
+                        <button onClick={deconnexion}>Déconnexion <div><img src={deconnexionico} alt="icone deconnexion" className='icologout' /></div></button>
+                    </div>
+                }
+            </div>
 
         </div>
 
