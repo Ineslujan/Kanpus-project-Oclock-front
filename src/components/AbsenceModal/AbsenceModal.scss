@@ -1,0 +1,38 @@
+.modal-absence{
+    font-weight: bold;
+    display: flex;
+    
+    justify-content: center;
+}
+
+.modal-absence-content{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+}
+
+.modal-absence-content-date{
+font-size: 1.2rem;
+margin-bottom: 0.2rem;
+}
+.modal-absence-content-title{
+    font-size: 0.8rem;  
+}
+
+@media (min-width: 800px) {
+
+    .modal-absence-content{
+ 
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 0.2rem;
+       
+    
+    }
+    .modal-absence-block{
+        margin-top: 2rem;
+        width: 85%;
+    }
+ 
+}
