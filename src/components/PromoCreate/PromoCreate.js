@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import './promoCreate.scss';
 import { AuthenticationContext } from '../../context/authenticationContext';
 import { addPromo } from '../../requests/promoRequest';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 
 export default function PromoCreate({ createModal, toggleCreateModal, getDatas, allPromo }) {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
@@ -40,19 +41,30 @@ export default function PromoCreate({ createModal, toggleCreateModal, getDatas, 
 
 
     return (
-        <Modal isOpen={createModal}> 
+        <Modal 
+        isOpen={createModal}
+        className='Modal'
+        overlayClassName='Overlay'
+        > 
       
             <div className="modal-button-close">
-                <button className="close" onClick={toggleCreateModal}>x</button>
+                <button className="close" onClick={toggleCreateModal}><img src={svgCircle} alt="close-icon" /></button>
             </div>
-            <div className="promo-add-container">
-                <form className="promo-add-form" onSubmit={onSubmit}>
-                    <div className="promo-form">
-                        <label htmlFor="promo-name" className="promo-form-label">Nom :</label>
-                        <input type="text" className="promo-form-input" value={name} onChange={changeName} required /> 
-                        {nameError && <p className="promo-form-error">Ce nom est déjà attribué à une autre salle</p>}
+            <div className="classeroom-add-container">
+                <form className="classeroom-add-form" onSubmit={onSubmit}>
+                    <div className="classeroom-form-wrapper">
+                    <div className="classeroom-form">
+                        <label htmlFor="promo-name" className="classeroom-form-label">Nom :</label>
+                        <input type="text" className="classeroom-form-input" value={name} onChange={changeName} /> 
+                        {nameError && <p className="classeroom-form-error">Ce nom est déjà attribué à une autre salle</p>}
+                        <div className="modal-confirmation-response-block">
+                            <button className="modal-confirmation-response">valider</button>
+                            </div>
+
+                        </div>
                     </div>
-                          <button>valider</button>
+
+                         
                 </form>
             </div>
         </Modal>

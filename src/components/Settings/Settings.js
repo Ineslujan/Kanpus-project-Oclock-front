@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import SettingsUpdate from '../SettingsUpdate/SettingsUpdate';
 import { getSettings } from '../../requests/aboutSettings';
 import { AuthenticationContext } from '../../context/authenticationContext';
+import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 
 export default function Settings({modalIsOpen, setModalIsOpen}) {
     Modal.setAppElement(document.getElementById('root'));
@@ -16,7 +17,6 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
         const get = async() => {
             const data = await getSettings(authentication.token);
             if(data.status ===200){
-                console.log('allo',data);
                 setSettingsData(data.data)
             }
             console.log(data)
@@ -50,13 +50,9 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
         >
             <div className="modal-button-close">
                 <div className="modal-confirmation-delete">
-                    <button className="close" onClick={()=>setModalIsOpen(false)}>x</button>
+                    <button className="close" onClick={()=>setModalIsOpen(false)}><img src={svgCircle} alt="close-icon" /></button>
                 </div>
-                <div className="modal-confirmation-update">
-                    <button className="update" onClick={seeUpdate}>update-------</button>
-                </div>
-                {updateModal && <SettingsUpdate isOpen={updateModal} setIsOpen={setUpdateModal} seeUpdate={seeUpdate} data={settingsData} setUpdateScreen={setUpdateScreen} /> }
-            </div>
+             </div>
             {settingsData&&
                 <div className="settings">
                     <div className="settings-container">
@@ -91,6 +87,11 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
                     </div>
                 </div>
             }
+                <div className="identity-modal-footer">
+                    <button className="update" onClick={seeUpdate}>*fdghdfdfgdfsgdfgfdgdfgdfsgdfgdfsgdfgdfsg</button>
+                </div>
+                {updateModal && <SettingsUpdate isOpen={updateModal} setIsOpen={setUpdateModal} seeUpdate={seeUpdate} data={settingsData} setUpdateScreen={setUpdateScreen} /> }
+ 
         </Modal>
    
   )
