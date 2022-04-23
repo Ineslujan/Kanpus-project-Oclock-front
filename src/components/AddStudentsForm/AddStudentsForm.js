@@ -17,7 +17,7 @@ export default function AddStudentsForm({tabSelectedStudents, setTabSelectedStud
         <div className="students-form-container">
             <p className="form-label">Choisir un ou des éléves</p>
             {tabSelectedStudents.length > 0 ?
-                <button className="remove-all-students" onClick={removeAllStudents}><img src={Remove} alt="delete" /></button>
+                <button className="remove-all-students" onClick={removeAllStudents}><img className="students-form-remove-button" src={Remove} alt="delete" /></button>
             :   
                 <p className="students-presence">Aucun élève n'est présent dans ce cours pour l'instant</p>
             }

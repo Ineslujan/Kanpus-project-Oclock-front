@@ -52,7 +52,6 @@ export default function UserName({ isOpen, setIsOpen }) {
             <button className="user-name" onClick={openMenu}>
                 {authentication.user.firstname}
                 </button>
-            {/* {console.log("user",authentication.user.firstname)} */}
             <div className="user">
             {userMenu && 
                 <div className="user-modal">

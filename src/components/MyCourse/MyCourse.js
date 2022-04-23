@@ -17,7 +17,6 @@ export default function MyCourse() {
 
     const openModal = () => {
         setModalIsOpen(!modalIsOpen);
-        // console.log("modalOpen");
     }
 
 
@@ -27,7 +26,6 @@ export default function MyCourse() {
             const datas = await requestMyCourse(paging, authentication.token);
             if(datas.status === 200){
                 setAllCourses(datas.data)
-                // console.log(datas.data)
             }
         } 
         getDatas();
@@ -49,12 +47,9 @@ export default function MyCourse() {
             if(datas.status === 200){
                 setAllCourses([...allCourses,
                     ...datas.data])
-                // console.log(datas.data)
             }
         } 
         getDatas();
-
-        // console.log(paging)
     }
 
     

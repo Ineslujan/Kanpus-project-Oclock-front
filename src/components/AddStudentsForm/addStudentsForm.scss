@@ -19,6 +19,7 @@
 }
 
 .remove-all-students{
+    background: transparent;
     position: absolute;
     top: 0;
     transform: translate(800%, 0px);
@@ -29,4 +30,11 @@
     font-size: 1rem;
     top: 50px;
     z-index: 1;
+}
+
+.students-form-remove-button{
+     height: 100%;
+     filter: invert(58%) sepia(43%) saturate(3973%) hue-rotate(359deg) brightness(100%) contrast(106%);
+  
+    
 }
