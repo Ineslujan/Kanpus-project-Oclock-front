@@ -133,7 +133,13 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                                 <h2 className="modal-event-user-title">{datas.trainee.length} Stagiaire{datas.trainee.length > 1 && "s"}</h2>
                                 <div className="modal-event-user-name-wrapper">
                                     {datas.trainee.map((item) => (
-                                        <button className="modal-event-user-name" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
+                                        <>
+                                            {(authentication.role === "former" || authentication.role === "admin") ?
+                                                <button className="modal-event-user-name" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
+                                            :
+                                                <p className="modal-event-user-name"> {item.firstname} {item.lastname}</p>
+                                            }
+                                        </>
                                     ))}
                                 </div>
                                 {traineeAbsence.length > 0 && 
@@ -201,12 +207,14 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                 </div>
                 </div>
                 <div className="event-modal-icones">
-
-                    <Link to="/add" state={{ myData }}>
-                        <button className="event-modal-icone"><img src={Pen} alt="pen" /></button>
-                    </Link>
-                    <button className="event-modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
-
+                {(authentication.role === "former" || authentication.role === "admin") &&
+                    <>
+                        <Link to="/add" state={{ myData }}>
+                            <button className="event-modal-icone"><img src={Pen} alt="pen" /></button>
+                        </Link>
+                        <button className="event-modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
+                    </>
+                }
                     <Modal
                         isOpen={seeConfirmationModal}
                         className='Modal'
