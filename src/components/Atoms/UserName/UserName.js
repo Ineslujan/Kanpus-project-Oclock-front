@@ -13,7 +13,6 @@ export default function UserName({ isOpen, setIsOpen }) {
     Modal.setAppElement(document.getElementById('root'));
     const navigate = useNavigate();
 
-    const [buttonOpenClose, setButtonOpenClose ]=useState(true)
     const [userMenu, setUserMenu] = useState(false);
     const [passwordModal, setPasswordModal] = useState(false);
     const [seePasswordModal, setSeePasswordModal] = useState(false);
@@ -51,14 +50,6 @@ export default function UserName({ isOpen, setIsOpen }) {
         setSeePasswordModal(false);
         setUserMenu(true);
         setIsOpen(false);
-        setButtonOpenClose(false);
-    }
-
-    const closeMenu = () => {
-        setSeePasswordModal(false);
-        setUserMenu(false);
-        setIsOpen(true);
-        setButtonOpenClose(true);
     }
 
     const openClose = () => {
@@ -81,15 +72,10 @@ export default function UserName({ isOpen, setIsOpen }) {
     return (
 
 		<div className="navbar-user">
-            {buttonOpenClose ?
              <button className="user-name" onClick={openMenu}>
                 {authentication.user.firstname}
             </button>
-            :
-            <button className="user-name" onClick={closeMenu}>
-                {authentication.user.firstname} test
-            </button>
-            }
+        
             <div  className="user">
                 <div ref={refMyMenu}>
                     {userMenu && 
