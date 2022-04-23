@@ -40,17 +40,17 @@ export default function CourseCard({ datas, setAllCourses }) {
 
                     <div className="mycourse-card-date">
                         <div className="start-date-container">
-                            <label for="Start">Début</label>
+                            <label className="label-start"for="Start">Début</label>
                             <p className="date" id="Start">
-                                {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? startDate.weekdayLong : startDate.weekdayShort}  ${startDate.day} à `}  
+                                {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? startDate.weekdayLong : startDate.weekdayShort}  ${startDate.day} `}  
                                 {startDate.setLocale("fr").toUTC().hour < 10 ? "0": ""}{startDate.setLocale("fr").toUTC().hour}:
                                 {startDate.minute}{startDate.minute=== 0 ? "0":""} 
                             </p>
                         </div>
                         <div className="end-date-container">
-                            <label for="End">Fin</label>
+                            <label className="label-end" for="End">Fin</label>
                             <p className="date" id="End">
-                                {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? endDate.weekdayLong : endDate.weekdayShort }  ${endDate.day} à `}  
+                                {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? endDate.weekdayLong : endDate.weekdayShort }  ${endDate.day} `}  
                                 {endDate.setLocale("fr").toUTC().hour < 10 ? "0": ""}{endDate.setLocale("fr").toUTC().hour}:
                                 {endDate.minute}{endDate.minute === 0 ? "0":""}
                             </p>

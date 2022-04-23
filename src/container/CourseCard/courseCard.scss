@@ -130,15 +130,18 @@
         }
     
         &-course {
-            padding: 2%;
+            width:250px;
+            min-height: 145px;
+            padding: 2% 1%;
             background-color: var.$background-color;
             color: var.$second-color;
             border-radius: 5px;
             border: 2px solid var.$second-color;
             border-radius: 3px;
-            transition-duration: 0.3s;
-            width:90%;
             margin-bottom:5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
     
     }
@@ -168,7 +171,8 @@
     }
 
     .place{
-        font-weight: 600; 
+        font-weight: 500;
+        font-size: 1.2em;
      }
 
     .date{
@@ -188,4 +192,12 @@
             padding-bottom: 0.5%;
         }
     }
+
+    .mycourse-card-former{
+        margin-top: 0%;
+        margin-bottom: 0%;
+    
+    }
+
+
 }
