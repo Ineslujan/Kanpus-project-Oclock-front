@@ -7,6 +7,7 @@ import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg'
 
 import { deleteCourse } from '../../requests/myCourseRequests';
 import { getEventsOrganizer } from '../../requests/aboutOrganizer';
+import { addAbsences } from '../../requests/absenceRequest';
 
 import ArrowNext from '../../assets/images/arrow-next.png';
 import Trash from '../../assets/images/trash.png';
@@ -20,6 +21,7 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
     Modal.setAppElement(document.getElementById('root'));
 
     const [traineeAbsence, setTraineeAbsence] = useState([]);
+    const [absenceValidate, setAbsenceValidate] = useState(false);
     const [arrow1, setArrow1] = useState(false);
     const [arrow2, setArrow2] = useState(false);
     const [arrow3, setArrow3] = useState(false);
@@ -45,6 +47,22 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
             e.target.style.color = "#FF9700";
         }
     }
+
+    const modifyAbsence = () => {
+        setAbsenceValidate(false);
+    }
+
+    const handleAbsence = async () => {
+        
+        const abs = await addAbsences(datas.event_id,
+            {users:traineeAbsence}
+            , authentication.token);
+            if(abs.status === 200){
+                console.log("addAbsence");
+                setAbsenceValidate(true);
+
+            }
+    };
 
     const seeContent = (value) => {
         value(arrow => !arrow)
@@ -118,12 +136,15 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                                         <button className="modal-event-user-name" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
                                     ))}
                                 </div>
-                                {traineeAbsence.length > 0 &&  
-                                    <button className="modal-trainer-absence"> Valider les absences </button>
+                                {traineeAbsence.length > 0 && 
+                                    <>
+                                    {!absenceValidate? <button className="event-button-abssense" onClick={handleAbsence}> Valider les absences </button> : "Vous avez validé les absences pour ce cours" } 
+                                    {absenceValidate && <button className="event-button-abssense" onClick={modifyAbsence} >Modifier les absences</button> }  
+                                    </> 
                                 } 
                             </div>
                         }
-                        <button className="event-button-abssense"> Valider les absences </button>
+                        {/* <button className="event-button-abssense"> Valider les absences </button> */}
                         
                     </div>
                     <div className="modal-event-user-wrapper">
