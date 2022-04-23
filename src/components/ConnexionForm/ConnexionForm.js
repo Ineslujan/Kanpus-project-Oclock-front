@@ -39,6 +39,7 @@ export default function ConnexionForm() {
 
   return (
     <form className="connexion-form" onSubmit={handleSubmit(onSubmit)}>
+        <p className="connexion-container-title">IMCA Provence</p>
         <div className="connexion-form-container">
             <label htmlFor="connexion-email" className="connexion-form-label">Email :</label> <br/>
             <input type="text" className="connexion-form-input"  value="admin2@gmail.com" {...register("email", { required: true })} /> <br/>
@@ -50,6 +51,7 @@ export default function ConnexionForm() {
             {errors.password && <span>Vous devez rentrer votre mot de passe pour vous connecter</span>}
         </div>
         <button className="connexion-form-button">Valider</button>
+        
     </form>
   )
 }

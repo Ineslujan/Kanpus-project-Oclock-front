@@ -1,5 +1,8 @@
 @use '../../var.scss';
 
 .footer-container{
-    border-top: 3px solid var.$other-color ;
+    //border-top: 3px solid var.$other-color ;
+    font-weight: bold;
+    font-size: 0.7rem;
+    margin-top: 1rem;
 }
