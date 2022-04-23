@@ -38,8 +38,8 @@ export default function ConnexionForm() {
 
 
   return (
-    <form className="connexion-form" onSubmit={handleSubmit(onSubmit)}>
-        <p className="connexion-container-title">IMCA Provence</p>
+    <form className="connexion-form-" onSubmit={handleSubmit(onSubmit)}>
+        
         <div className="connexion-form-container">
             <label htmlFor="connexion-email" className="connexion-form-label">Email :</label> <br/>
             <input type="text" className="connexion-form-input"  value="admin2@gmail.com" {...register("email", { required: true })} /> <br/>
