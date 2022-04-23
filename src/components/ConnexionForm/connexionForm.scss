@@ -1,16 +1,10 @@
 @use '../../var.scss';
 
-.connexion-form{
 
-    font-weight: bold;
-    position: absolute;
-    top: 24%;
-    right: 40%;
-
-}
 
 .connexion-form-container {
     margin-bottom: 2rem;
+    
 }
 
 .connexion-form-label{
@@ -28,6 +22,7 @@
     font-size: 1rem;
     margin-top: 0.8em;
     transition: 0.3s;
+    width: 100%;
 
     &:focus{
         border: 1.5px solid var.$other-color;

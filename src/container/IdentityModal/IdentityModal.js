@@ -137,19 +137,27 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
 
                         </div>
                     </div>
+                    <div className="identity-modal-button-password-block">
+                    <button className="identity-modal-button-password" onClick={passwordModal}>Changez le mot de passe</button>
+                        
+                    <button className="identity-modal-button-password" onClick={absenceModal}>Voir les absences</button>
+                
                 </div>
-                <div className="identity-modal-button-password-block">
-                        <button className="identity-modal-button-password" onClick={passwordModal}>Changez le mot de passe</button>
                 </div>
+
 
                 {/* <button className="button-modal" onClick={passwordModal}>Changez le mot de passe</button> */}
                 <ModalPassword passwordModal={passwordModal} seePasswordModal={seePasswordModal} setSeePasswordModal={setSeePasswordModal} item={item} />
-                <div className="identity-modal-absence">
-                    <button className="identity-modal-button-password" onClick={absenceModal}>Voir les absences</button>
-                </div>
+          
                 <AbsenceModal absenceModal={absenceModal} seeAbsenceModal={seeAbsenceModal} setSeeAbsenceModal={setSeeAbsenceModal} item={item} />
         </Modal>
-       
+        <div className="identity-modal-button-password-block">
+                        <button className="identity-modal-button-password" onClick={passwordModal}>Changez le mot de passe</button>
+                        
+                    <button className="identity-modal-button-password" onClick={absenceModal}>Voir les absences</button>
+                
+                </div>
+
     </div>
   )
 }

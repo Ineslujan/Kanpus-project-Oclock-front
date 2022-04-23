@@ -1,0 +1,73 @@
+.settings-wrapper-block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+
+}
+
+.settings-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+.identity-modal-button-edit{
+    width: 40px;
+    background: transparent;
+    filter: invert(100%) sepia(4%) saturate(407%) hue-rotate(297deg) brightness(114%) contrast(90%);
+
+
+}
+.settings-container-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.settings-container{
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+ 
+}
+
+.settings-container-image{
+
+    margin: 1rem 0;
+    width: 100%;
+
+}
+.settings-block-hour{
+    margin: 1rem 0;
+   
+    
+}
+
+.settings-block-hour-block{
+    
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+@media (min-width: 800px) {
+    .settings-wrapper{
+       
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        
+    }
+.settings-block-head{
+    width: 40%;
+}
+
+
+    .settings-container-main{
+
+        width: 40%;
+        padding-right: 2rem;
+        
+    
+    }
+
+}

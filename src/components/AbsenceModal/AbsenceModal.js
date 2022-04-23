@@ -5,6 +5,7 @@ import { AuthenticationContext } from '../../context/authenticationContext';
 import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg';
 import { getAbsences } from '../../requests/absenceRequest';
 import { v4 as uuid } from 'uuid';
+import './AbsenceModal.scss';
 
 export default function AbsenceModal({ absenceModal, seeAbsenceModal, setSeeAbsenceModal, item }) {
 
@@ -38,15 +39,21 @@ export default function AbsenceModal({ absenceModal, seeAbsenceModal, setSeeAbse
 
                 </div>
                 <div className="modal-absence">
+                    <div className="modal-absence-block">
                     {allAbsences && allAbsences.length > 0 ? 
-                        <div className="modal-absence-content">
+                    <div className="modal-absence-contentd">
                             {allAbsences.map((item) => (
-                                <p key={uuid()}>{DateTime.fromISO(item.start_date).weekdayLong} {DateTime.fromISO(item.start_date).day} {DateTime.fromISO(item.start_date).monthLong} {DateTime.fromISO(item.start_date).year}  : {item.event_name} </p>
-                    ))}
-                </div> 
+                                <div className="modal-absence-content">
+                                <p className="modal-absence-content-date" >{item.event_name}</p>
+                                <p className="modal-absence-content-title" key={uuid()}>{DateTime.fromISO(item.start_date).weekdayLong} {DateTime.fromISO(item.start_date).day} {DateTime.fromISO(item.start_date).monthLong} {DateTime.fromISO(item.start_date).year}</p>
+                                
+                                </div>
+                   ))}
+                    </div> 
                 :
                     "Aucune absence" 
                 }
+                </div>
                 </div>
 
             

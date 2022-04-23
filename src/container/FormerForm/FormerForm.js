@@ -72,7 +72,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
         {name:'color3', color:"#406E8E"},
         {name:'color4', color:"#FF8CC6"},
         {name:'color5', color:"#540D6E"},
-        {name:'color6', color:"#EDD83D"},
+        {name:'color6', color:"#CBB300"},//
         {name:'color7', color:"#023618"},
     ]
 
