@@ -15,9 +15,7 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom,adress, setAdress
 
     useEffect(() => {
         setPlaceAvailable(tabClasseRoom.filter((item) => item.event[0] === null));
-        console.log('teacherEvent1 =>', placeAvailable);
         setPlaceNotAvailable(tabClasseRoom.filter((item) => item.event[0] !== null));
-        console.log('teacherEvent2 =>', placeNotAvailable, seeClasse );
     }, [tabClasseRoom]);
 
     const showAllPlaces = () => {
@@ -28,7 +26,6 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom,adress, setAdress
         setClasseRoom(item.id);
         setSeePlace(false);
         setSeeClasse(item.name);
-        console.log('item',item)
     };
 
     const handleAdress = (e) => {
@@ -38,14 +35,11 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom,adress, setAdress
     const info = (item, index) => {
         setModaleInfoClasseRoom(true);
         setModaleInfoItem(item);
-        console.log(item);
-        console.log(placeRef.current);
         if(placeRef.current){
             const root = placeRef.current;
             const marginItem = 0 + (30 * index);
             const totalMarginItem = `${marginItem}px`;
             root.style.marginTop = totalMarginItem;
-            console.log(totalMarginItem);
         }
     }
 

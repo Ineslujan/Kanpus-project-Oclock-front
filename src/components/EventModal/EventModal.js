@@ -31,7 +31,6 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
 
     useEffect(() => {
         setMyData(datas);
-        // console.log("set")
     }, [datas])
 
 
@@ -58,7 +57,6 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
             {users:traineeAbsence}
             , authentication.token);
             if(abs.status === 200){
-                console.log("addAbsence");
                 setAbsenceValidate(true);
 
             }
@@ -76,13 +74,10 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
         await deleteCourse(id, authentication.token);
         const getDatas = async () => {
             const datas = await getEventsOrganizer(firstDayOfWeek.toFormat("yyyy-MM-dd"), authentication.token);
-            console.log("iciii la !!!", firstDayOfWeek.toFormat("yyyy-MM-dd"),datas.data);
             if (datas.status === 200) {
-                console.log("iciii ???");
                 setPureEvents(datas.data)
                 const datasEvents = checkWeekend(datas.data, firstDayOfWeek, settings)
                 setEvents(datasEvents)
-                console.log(datas.data, firstDayOfWeek, settings)
             }
         }
         getDatas();
@@ -103,7 +98,6 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                 </div>
 
                 <div className="course-info">
-                    {/* {console.log(datas)}  */}
                     <div className="modal-event-head">
                         <p className="modal-event-name">{datas.name}</p>
                         <p className="modal-event-place">{datas.place_name}</p>
@@ -124,7 +118,7 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                             <h2 className="modal-event-user-title">Formateur</h2>
                             <div className="modal-event-user-name-wrapper">
                                 {datas.former.map((item) => (
-                                    <p className="modal-event-user-name" key={item.id}>{item.firstname} {item.lastname}</p>
+                                    <p className="modal-event-user-name" key={item.firstname+item.id}>{item.firstname} {item.lastname}</p>
                                 ))}
                             </div>
                         </div>
@@ -135,7 +129,7 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                                     {datas.trainee.map((item) => (
                                         <>
                                             {(authentication.role === "former" || authentication.role === "admin") ?
-                                                <button className="modal-event-user-name" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
+                                                <button className="modal-event-user-name" key={item.firstname+item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
                                             :
                                                 <p className="modal-event-user-name"> {item.firstname} {item.lastname}</p>
                                             }
@@ -150,7 +144,6 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                                 } 
                             </div>
                         }
-                        {/* <button className="event-button-abssense"> Valider les absences </button> */}
                         
                     </div>
                     <div className="modal-event-user-wrapper">

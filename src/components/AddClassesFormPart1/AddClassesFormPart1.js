@@ -31,30 +31,9 @@ export default function AddClassesFormPart1({
     const [dataMod, setDataMod] = useState(null)
     
     let newStartDate = DateTime.fromJSDate(startDate);
-    let newEndDate = DateTime.fromJSDate(endDate);
-
-    // useEffect(() => {
-    //     if(courseEditName && startEditCourse && endEditCourse){
-    //         setStartDate(startEditCourse);
-    //         setEndDat
-    //     }
-    //    setStartDate(DateTime.fromISO(startEditCourse).toUTC())
-    //    setEndDate(DateTime.fromISO(endEditCourse).toUTC())
-    //  console.log(DateTime.fromISO(editDatas.start_date).toUTC())
-
-    // setEndDate(editDatas.end_date)
-    // if(editDatas.length > 0){  
-    //     setDataMod(editDatas)
-    //     console.log("edition mod", dataMod)
-    //     console.log("edition", editDatas)
-    //     console.log("datamod",dataMod)
-    // }
-  
-    // }, [editDatas])
-    
+    let newEndDate = DateTime.fromJSDate(endDate);   
 
     useEffect(() => {
-        // console.log(startDate)
         if(!newStartDate.day || !newEndDate.day || !courseName ){
             setValidateButton(false);
         } else {
@@ -64,7 +43,6 @@ export default function AddClassesFormPart1({
 
     const changeName = (e) => {
         setCourseName(e.target.value);
-        console.log(e.target.value)
     }
 
     const onSubmit = (e) =>  {
@@ -113,7 +91,7 @@ export default function AddClassesFormPart1({
                     <div className="calendar-datepicker">                        
                         <PickDate startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} />                                              
                     </div>
-                    <label for="hours" className="create-date-name-label">Horaires</label>
+                    <label htmlFor="hours" className="create-date-name-label">Horaires</label>
                     <div className="create-date-form-time-container" id="hours">
                         {showStartTimePicker ? <TimePicker time={startTime} setTime={setStartTime} setShowPicker={setShowStartTimePicker} /> : <button className="date-time-button" onClick={()=> setShowStartTimePicker(true)}>{startTime}</button> }
                         {showEndTimePicker ? <TimePicker  time={endTime} setTime={setEndTime} setShowPicker={setShowEndTimePicker} /> : <button className="date-time-button"  onClick={()=> setShowEndTimePicker(true)}>{endTime}</button> }

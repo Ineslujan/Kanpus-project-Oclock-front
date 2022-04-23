@@ -7,8 +7,6 @@ import './itemMenu.scss'
 export default function ItemMenu({text, classN, tab, toggle, show, setSelectedStudents, selectedStudents, setShowStudents, showStudents }) {
 
   const selectStudents = (item) => {
-    // setShowStudents(false);
-    console.log(item.trainee);
     setSelectedStudents(item.trainee);
 
     if(selectedStudents === item.trainee){

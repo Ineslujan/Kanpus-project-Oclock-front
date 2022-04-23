@@ -5,7 +5,6 @@ import './addStudentsForm.scss'
 export default function AddStudentsForm({tabSelectedStudents, setTabSelectedStudents}) {
 
     const removeStudent = (value) => {
-        console.log('removeStudent',value);
         const teacherFiltered = tabSelectedStudents.filter(item => value.id !== item.id);
         setTabSelectedStudents(teacherFiltered);
     }

@@ -11,10 +11,10 @@ export default function Footer({address, phoneNumber, email}) {
     // const [phoneNumber, setPhoneNumber] = useState("04-90-86-15-37");
     // const [email, setEmail] = useState("Mail: info@imca-provence.com");
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        console.log('test=>', address)
-    }, [])
+    //     console.log('test=>', address)
+    // }, [])
   
 
 

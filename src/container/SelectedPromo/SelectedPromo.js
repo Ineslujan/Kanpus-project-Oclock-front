@@ -15,7 +15,6 @@ export default function SelectedPromo({setSelectedPromo, selectedPromo, allPromo
     const selectPromo = (item) => {
         setSelectedPromo(item);
         setToggleSelectPromo(toggle =>!toggle)
-        // console.log("selectedPromo=>",item)
     }
 
     const toggle= ()=> {

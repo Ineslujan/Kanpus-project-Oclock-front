@@ -24,9 +24,7 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
     const [seeAbsenceModal, setSeeAbsenceModal] = useState(false);
 
     const setUpdate = () => {
-        console.log("heyhi")
         setUpdateModal(x => !x);
-        console.log(updateModal)
     }
 
     const confirmationModal = () => {
@@ -36,14 +34,11 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
     const deleteStudent = async (id) => {
         const deleteOneStudent = await deleteUser(id, authentication.token);
         if (deleteOneStudent.status === 200) {
-            // console.log("id",id);
             const getStudents = async () => {
                 const trainees = await requestTrainee(authentication.token);
-                // console.log('trainee=>',trainees.data)
                 if (trainees.status === 200) {
                     setAllPromo(trainees.data);
                     setSelectedPromo(trainees.data[0]);
-                    // console.log('trainee=>',trainees.data)
                 }
             }
             getStudents();
@@ -53,12 +48,10 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
     };
 
     const passwordModal = () => {
-        console.log("yououhjzhjezkjzek")
         setSeePasswordModal(!seePasswordModal)
     };
 
     const absenceModal = () => {
-        console.log("absence")
         setSeeAbsenceModal(!seeAbsenceModal)
     }
 
@@ -144,8 +137,6 @@ export default function IdentityModal({ item, modalIsOpen, closeIdentityModal, s
                     </div>
                 }
           
-
-                {/* <button className="button-modal" onClick={passwordModal}>Changez le mot de passe</button> */}
                 <ModalPassword passwordModal={passwordModal} seePasswordModal={seePasswordModal} setSeePasswordModal={setSeePasswordModal} item={item} />
                 <div className="identity-modal-absence">
                     <button className="identity-modal-button-password" onClick={absenceModal}>Voir les absences</button>

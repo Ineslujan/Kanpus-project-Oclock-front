@@ -18,9 +18,7 @@ export default function SettingsUpdate({isOpen, setIsOpen, seeUpdate, data, setU
     const [urlPicture, setUrlPicture] = useState();
 
     useEffect(() => {
-        console.log(data);
-        const test = data.url_image.split(`${api}/avatar/`,500)
-        console.log(test[1]);
+        const test = data.url_image.split(`${api}/avatar/`,500);
     }, [])
     
 
@@ -40,21 +38,17 @@ export default function SettingsUpdate({isOpen, setIsOpen, seeUpdate, data, setU
     const newPicture = (e) => {
         e.preventDefault();
         setPicture(e.target.files[0])
-        console.log("onchange",e.target.files[0]) 
     };
 
 
     const uploadPicture = async () => {
-        console.log("picture",picture)
         const fd = new FormData()
         fd.append('sampleFile', picture);
         const upload = await uploadPic (fd, authentication.token);
         if(upload.status === 200){
-            console.log("ok pour l'image")
-            console.log(upload);
             setPicture(upload.data.imageName)
             setUrlPicture(upload.data.imageUrl);
-            // setShowPicture(true);
+
         }
     };
 
@@ -66,7 +60,6 @@ export default function SettingsUpdate({isOpen, setIsOpen, seeUpdate, data, setU
             form.url_image = oldPicture[1];
         }
         
-        console.log('inside',form)
         const upload = await putSettings (form , authentication.token);
         if(upload.status === 200){
             setIsOpen(false);
@@ -105,7 +98,6 @@ export default function SettingsUpdate({isOpen, setIsOpen, seeUpdate, data, setU
                         <div className="modal-change-settings-block">
                         <label htmlFor="phone" className="user-settings-label">Photos de couverture</label>
                             <div className="modal-change-settings-block-update">
-                                {/* <img src={data.image_url} alt='kiiik'></img> */}
                                 
                                 <input className="user-from-file" type="file" name="sampleFile" onChange={newPicture}/>
                                 <button className="modal-change-settings-block-upload" type="button" onClick={uploadPicture}>

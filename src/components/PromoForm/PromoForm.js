@@ -10,7 +10,6 @@ export default function PromoForm({data, updateToggle, updateRoom}) {
 
     const changeName = (e) => {
         setName(e.target.value);
-        // console.log(data)
     }
 
     const handleSubmit = (e) => {

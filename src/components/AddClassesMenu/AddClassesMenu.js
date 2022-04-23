@@ -34,8 +34,6 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
         if(showStudents){
             setShowStudents(false);
         }
-        
-
     };
 
 

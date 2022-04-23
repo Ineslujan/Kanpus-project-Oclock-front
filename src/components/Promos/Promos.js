@@ -19,12 +19,6 @@ export default function Promos() {
     const [createModal, setCreateModal] = useState(false);
 
         const getDatas = async () => {
-        // const trainees = await requestTrainee(authentication.token);
-        // if(trainees.status === 200){
-        //     setAllPromo(trainees.data)
-        //     // setSelectedPromo(trainees.data[0])
-
-        // }
         const allProm = await getAllPromo (authentication.token);
         if(allProm.status ===200){
             setAllPromo(allProm.data);
@@ -32,11 +26,6 @@ export default function Promos() {
  
     }
 
-    // const getDatas = async () => {
-    //     const datas = await getPlacesOrganizer(authentication.token);
-    //         setAllPlaces(datas.data);
-    //         console.log(allPlaces)
-    // }
  
     useEffect(() => {
         getDatas();
@@ -44,8 +33,7 @@ export default function Promos() {
     }, [])
 
     const toggleCreateModal = () => {
-        setCreateModal(modal => !modal)
-        console.log("allpromo",allPromo)
+        setCreateModal(modal => !modal);
     }
 
  

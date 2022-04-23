@@ -51,7 +51,6 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
             const promos = await getAllPromo(authentication.token)
             if (promos.status === 200) {
                 setGetPromos(promos.data);
-                console.log(promos.data);
             }
         }
         getPromo();
@@ -92,7 +91,6 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-        console.log(firstname, lastname, Number(promoId), adress, phone, email, newPassword, confirmNewPassword, "picture", picture)
         if (!data) {
             const postDatas = async () => {
                 const datas = await addTrainee({
@@ -132,17 +130,13 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
             }
             update();
         }
-        // console.log("test=>", firstname, lastname, promoId, adress, phone, email)
     }
 
     const uploadPicture = async () => {
-        console.log("picture", picture)
         const fd = new FormData()
         fd.append('sampleFile', picture);
         const upload = await uploadPic(fd, authentication.token);
         if (upload.status === 200) {
-            console.log("ok pour l'image")
-            console.log(upload);
             setPicture(upload.data.imageName)
             setUrlPicture(upload.data.imageUrl);
             setShowPicture(true);
@@ -152,7 +146,6 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
     const newPicture = (e) => {
         e.preventDefault();
         setPicture(e.target.files[0])
-        console.log("onchange", e.target.files[0])
     }
 
     const updateImage = () => {

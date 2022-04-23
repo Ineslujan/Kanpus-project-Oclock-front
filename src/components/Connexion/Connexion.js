@@ -17,7 +17,6 @@ export default function Connexion() {
         const handleSettings = async () => {
             const allSettings = await allUsersSettings();
             if (allSettings.status === 200) {
-                console.log("settings footer", allSettings);
                 setAddress(allSettings.data.address);
                 setPhoneNumber(allSettings.data.phone_number);
                 setEmail(allSettings.data.email);

@@ -15,34 +15,18 @@ export default function AddTeachersForm({ tabTeachers, teacher, setTeacher, tabT
 
   useEffect(() => {
     setTeacherNoEvent(tabTeachers.filter((item) => item.event[0] === null));
-    console.log('teacherEvent1=>');
     setTeacherNotAvailable(tabTeachers.filter((item) => item.event[0] !== null));
-    console.log('teacherEvent2=>');
   }, [tabTeachers]);
 
-  useEffect(() => {
-//     if(tabTeachersAdded.length > 0) {
 
-//         tabTeachersAdded.array.forEach(element => {
-//             setTeacher([
-//                 ...teacher,
-//                 element.user_id,
-//                 ]);
-//         });
-        
-//     }
-  console.log('useEffect', tabTeachersAdded, teacher);
-  }, [])
   
 
   const showAllTeachers = () => {
     setSeeTeachers(( seeTeachers ) => !seeTeachers);
-    // console.log(tabTeachers);
   };
 
   const addTeacher = (item) => {
 
-    console.log("tabAdded", tabTeachersAdded, item, teacher);
     if (tabTeachersAdded.find((el) => el.user_id === item.user_id)) {
 
     } else {
@@ -56,13 +40,11 @@ export default function AddTeachersForm({ tabTeachers, teacher, setTeacher, tabT
         item,
 
       ]);
-      console.log('teacherAdd2=>',tabTeachersAdded);
     }
     setSeeTeachers(false);
   };
 
   const removeTeacher = (value) => {
-    // console.log('removeTeacher');
     const teacherFiltered = tabTeachersAdded.filter((item) => value.user_id !== item.user_id);
     setTabTeachersAdded(teacherFiltered);
     const idFiltered = teacher.filter((item) => value.user_id !== item);
@@ -72,16 +54,11 @@ export default function AddTeachersForm({ tabTeachers, teacher, setTeacher, tabT
   const info = (item, index) => {
     setModaleInfoTeacher(true);
     setModaleInfo(item);
-    // console.log(item)
-    console.log(teachersRef.current)
     
-
     const root = teachersRef.current;
     const marginItem = 345 + (60 * index)
     const totalMarginItem = `${marginItem}px`
     root.style.marginTop = totalMarginItem
-
-    console.log(totalMarginItem)
 
   }
 

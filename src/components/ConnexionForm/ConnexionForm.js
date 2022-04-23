@@ -18,7 +18,6 @@ export default function ConnexionForm() {
             const datas = await postConnexion(data);
             if(datas.status === 200){ 
                 setState2(datas);
-                console.log(datas)
                 setAuthentication({
                     role: datas.data.user.role,
                     token: datas.headers.authorization,
@@ -32,7 +31,6 @@ export default function ConnexionForm() {
             }
         } 
         getDatas();
-        console.log(authentication);
     }
 
 

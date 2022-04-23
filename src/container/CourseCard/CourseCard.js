@@ -15,15 +15,12 @@ export default function CourseCard({ datas, setAllCourses }) {
 
     const openModal = () => {
         setModalIsOpen(!modalIsOpen);
-        console.log("modalOpen");
-        console.log(endDate);
     }
 
     return (
         <div className="mycourse-card">
             <div className="mycourse-card-day">
             {startDate.weekdayLong} {startDate.day} {startDate.monthLong} {startDate.year} 
-            {/* {console.log("date=>", startDate )} */}
             </div>
             
             <div className="mycourse-card-course" onClick={openModal}>
@@ -36,11 +33,10 @@ export default function CourseCard({ datas, setAllCourses }) {
                     <p className="former">{datas.former[0].firstname} {datas.former[0].lastname}</p>
                 </div>
                 <div className="duration">
-                    {/* <span className="duration-course start">début</span><span className="duration-course end">fin</span> */}
 
                     <div className="mycourse-card-date">
                         <div className="start-date-container">
-                            <label for="Start">Début</label>
+                            <label htmlFor="Start">Début</label>
                             <p className="date" id="Start">
                                 {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? startDate.weekdayLong : startDate.weekdayShort}  ${startDate.day}`}  
                                 {startDate.setLocale("fr").toUTC().hour < 10 ? "0": ""}{startDate.setLocale("fr").toUTC().hour}:
@@ -48,7 +44,7 @@ export default function CourseCard({ datas, setAllCourses }) {
                             </p>
                         </div>
                         <div className="end-date-container">
-                            <label for="End">Fin</label>
+                            <label htmlFor="End">Fin</label>
                             <p className="date" id="End">
                                 {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? endDate.weekdayLong : endDate.weekdayShort }  ${endDate.day}`}  
                                 {endDate.setLocale("fr").toUTC().hour < 10 ? "0": ""}{endDate.setLocale("fr").toUTC().hour}:

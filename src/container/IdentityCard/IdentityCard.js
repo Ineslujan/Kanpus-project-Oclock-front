@@ -21,7 +21,6 @@ export default function IdentityCard({item, setAllPromo, setSelectedPromo, setSe
         <div className="identity" >
             <div className="identity-container-picture">
                 <div className="identity-picture" onClick={openIdentityModal}>
-                    {console.log(item)}
                     <img src={item.image} alt="" />
                 </div>
             </div>
