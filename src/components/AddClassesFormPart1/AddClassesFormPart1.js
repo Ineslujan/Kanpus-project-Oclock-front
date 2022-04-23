@@ -113,7 +113,7 @@ export default function AddClassesFormPart1({
                     <div className="calendar-datepicker">                        
                         <PickDate startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} />                                              
                     </div>
-                    <label for="hours" className="create-date-name-label">Horaires</label>
+                    <label htmlFor="hours" className="create-date-name-label">Horaires</label>
                     <div className="create-date-form-time-container" id="hours">
                         {showStartTimePicker ? <TimePicker time={startTime} setTime={setStartTime} setShowPicker={setShowStartTimePicker} /> : <button className="date-time-button" onClick={()=> setShowStartTimePicker(true)}>{startTime}</button> }
                         {showEndTimePicker ? <TimePicker  time={endTime} setTime={setEndTime} setShowPicker={setShowEndTimePicker} /> : <button className="date-time-button"  onClick={()=> setShowEndTimePicker(true)}>{endTime}</button> }
