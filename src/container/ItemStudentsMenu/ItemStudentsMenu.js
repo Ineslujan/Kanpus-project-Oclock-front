@@ -1,26 +1,28 @@
-import React from 'react';
+import React, {useEffect ,useRef} from 'react';
 import './itemStudentsMenu.scss'
 
-export default function ItemStudentsMenu({ showStudents, selectedStudents, tabSelectedStudents, setTabSelectedStudents }) {
+export default function ItemStudentsMenu({ showStudents, selectedStudents, tabSelectedStudents, setTabSelectedStudents, onClickOutside }) {
 
+    const ref = useRef(null);
 
-    // const addAllStudent = () => {
-    //     for(let i = 0; i < selectedStudents.length; i++){
-    //         if(tabSelectedStudents.length > 0 ){
-    //             // console.log(selectedStudents[i].id)
-    //             if (tabSelectedStudents.forEach(item => item.id === selectedStudents[i].id) ){
-    //                 console.log("if youhouhou")
-    //                 setTabSelectedStudents([]);
-    //             }
-    //         }
-    //     }
-    //     setTabSelectedStudents([...tabSelectedStudents,
-    //         ...selectedStudents])
-    // }
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (ref.current && !ref.current.contains(event.target)) {
+            onClickOutside && onClickOutside();
+            console.log("clic")
+          }
+        };
+            document.addEventListener('click', handleClickOutside, true);
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true);
+        };
+      }, [ onClickOutside ]);
+    
+      if(!showStudents)
+        return null;
 
     const addStudent = (item) => {
         if(tabSelectedStudents.find(el => el.id === item.id)){
-            console.log('if')
      
         } else {
             console.log(item)
@@ -28,7 +30,6 @@ export default function ItemStudentsMenu({ showStudents, selectedStudents, tabSe
                 ...tabSelectedStudents, 
                 item
             ])
-            console.log(tabSelectedStudents);
         }
     }
 
@@ -38,7 +39,7 @@ export default function ItemStudentsMenu({ showStudents, selectedStudents, tabSe
 
     
   return (
-    <div className="students-menu-container">
+    <div ref={ref} className="students-menu-container">
         <button  className="studends-list-add-all" onClick={addAllStudents}>Ajoutez tous</button>
         {selectedStudents.map((item,index)=> ( 
         

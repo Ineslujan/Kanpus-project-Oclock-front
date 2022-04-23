@@ -23,12 +23,10 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
         allPlaces.forEach(element => {
             newArrayPosition.push(element.position);
             allName.push(element.name)
-            console.log(allPositionNotAvailable);
         });
         setNewPosition(Math.max(...newArrayPosition ) + 1);
         setAllPositionNotAvailable(newArrayPosition);
         setAllNameNotAvailable(allName);
-        console.log("newPos=>",newPosition, allName);
     }
 
     useEffect(() => {
@@ -52,7 +50,6 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
     
     const onSubmit = e =>  {
         e.preventDefault();
-        // console.log("submit",allPositionNotAvailable, "new=>", newPosition);
         if(allPositionNotAvailable.includes(Number(newPosition))){
             setPositionError(true);
             setTimeout(() => {
@@ -72,7 +69,6 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
                 if(datas.status === 200){
                     toggleCreateModal();
                     getDatas();
-                    console.log("place", name, newPosition );
                 }
             }
             postPlace();

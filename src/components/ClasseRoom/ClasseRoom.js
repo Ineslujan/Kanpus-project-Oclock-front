@@ -18,7 +18,6 @@ export default function ClasseRoom() {
     const getDatas = async () => {
         const datas = await getPlacesOrganizer(authentication.token);
             setAllPlaces(datas.data);
-            console.log(allPlaces);
     }
  
     useEffect(() => {
@@ -28,9 +27,6 @@ export default function ClasseRoom() {
     const toggleCreateModal = () => {
         setCreateModal(modal => !modal);
     }
-
- 
-    
     
     return (
         <div className="classeroom">

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 import './addPlaceForm.scss'
 
@@ -11,11 +11,11 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom,adress, setAdress
     const [modaleInfoClasseRoom, setModaleInfoClasseRoom] = useState(false);
     const [modaleInfoItem, setModaleInfoItem] = useState();
 
+    let placeRef = useRef()
+
     useEffect(() => {
         setPlaceAvailable(tabClasseRoom.filter((item) => item.event[0] === null));
-        console.log('teacherEvent1 =>', placeAvailable);
         setPlaceNotAvailable(tabClasseRoom.filter((item) => item.event[0] !== null));
-        console.log('teacherEvent2 =>', placeNotAvailable, seeClasse );
     }, [tabClasseRoom]);
 
     const showAllPlaces = () => {
@@ -26,22 +26,29 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom,adress, setAdress
         setClasseRoom(item.id);
         setSeePlace(false);
         setSeeClasse(item.name);
-        console.log('item',item)
     };
 
     const handleAdress = (e) => {
         setAdress(e.target.value);
     }
 
-    const info = (item) => {
+    const info = (item, index) => {
         setModaleInfoClasseRoom(true);
         setModaleInfoItem(item);
-        console.log(item)
+        if(placeRef.current){
+            const root = placeRef.current;
+            const marginItem = 0 + (30 * index);
+            const totalMarginItem = `${marginItem}px`;
+            root.style.marginTop = totalMarginItem;
+        }
     }
 
     const leaveInfo = () => {
         setModaleInfoClasseRoom(false);
-    }
+    };
+
+
+
     return (
         <div className="place-form">
             <p className="form-label">Choisir un lieu</p>
@@ -56,10 +63,10 @@ export default function PlaceForm({tabClasseRoom,setClasseRoom,adress, setAdress
                         ))}
                         <div className="place-modale-info">
                             {seePlace && placeNotAvailable.map((item, index) => (
-                                <button className="place-form-button disabled" key={index} value={item.id} onMouseEnter={()=> info(item)} onMouseLeave={leaveInfo}>{item.name}</button>
+                                <button className="place-form-button-disabled" key={index} value={item.id} onMouseEnter={()=> info(item,index)} onMouseLeave={leaveInfo}>{item.name}</button>
                             ))}
                             {modaleInfoClasseRoom && 
-                                <div className="info-classeroom">{modaleInfoItem.event.map((item) => `Salle prise par le cours :${item}`)}</div>
+                                <div ref={placeRef} className="info-classeroom">{modaleInfoItem.event.map((item) => `${item}`)}</div>
                             }
                         </div>
                     </div>

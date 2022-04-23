@@ -12,8 +12,6 @@ import ArrowNext from '../../assets/images/arrow-next.png';
 import Trash from '../../assets/images/trash.png';
 import Pen from '../../assets/images/pen.png'
 
-
-//import './myCourseModal.scss';
 import '../EventModal/eventModal.scss';
 
 export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCourses }) {
@@ -22,6 +20,7 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
     Modal.setAppElement(document.getElementById('root'));
 
     const [traineeAbsence, setTraineeAbsence] = useState([]);
+    const [absenceValidate, setAbsenceValidate] = useState(false);
     const [arrow1, setArrow1] = useState(false);
     const [arrow2, setArrow2] = useState(false);
     const [arrow3, setArrow3] = useState(false);
@@ -31,7 +30,6 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
 
     useEffect(() => {
         setMyData(datas);
-        // console.log("set")
     }, [datas])
 
 
@@ -62,12 +60,26 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
             const datas = await requestMyCourse(1, authentication.token);
             if (datas.status === 200) {
                 setAllCourses(datas.data)
-                console.log(datas.data)
             }
         }
         getDatas();
         setSeeConfirmationModal(modal => !modal)
         openModal()
+    };
+
+    const handleAbsence = async () => {
+        
+        const abs = await addAbsences(datas.event_id,
+            {users:traineeAbsence}
+            , authentication.token);
+            if(abs.status === 200){
+                setAbsenceValidate(true);
+
+            }
+    };
+
+    const modifyAbsence = () => {
+        setAbsenceValidate(false);
     }
 
     return (
@@ -83,7 +95,6 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
 </div>
 
 <div className="course-info">
-    {/* {console.log(datas)}  */}
     <div className="modal-event-head">
         <p className="modal-event-name">{datas.name}</p>
         <p className="modal-event-place">{datas.place_name}</p>
@@ -115,32 +126,29 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
             </div>
         </div>
 
-
-             {/* {datas.trainee.length > 0 &&
-                <div className="modal-event-trainee">
-                    <p className="modal-trainee-title">{datas.trainee.length} Stagiaire{datas.trainee.length > 1 && "s"}</p>
-                    <div className="modal-all-trainee">
-                        {datas.trainee.map((item) => (
-                            <button className="modal-trainee" key={item.id} onClick={(e)=>addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
-                        ))}
-                    </div>
-                    {traineeAbsence.length > 0 &&  
-                         <button className="modal-trainer-absence" onClick={handleAbsence}> Valider les absences </button>
-                    } 
-                </div> */}
-
-
         {datas.trainee.length > 0 &&
             <div className="modal-event-user">
                 <h2 className="modal-event-user-title">Stagiere</h2>
                 <div className="modal-event-user-name-wrapper">
                     {datas.trainee.map((item) => (
-                        <button className="modal-event-user-name" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
+                        <>
+                            { (authentication.role === "former" || authentication.role === "admin") ?
+                            <button className="modal-event-user-name" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
+                            :
+                            <p className="modal-event-user-name"> {item.firstname} {item.lastname}</p>
+                            }
+                            
+                        </>
                     ))}
                 </div>
             </div>
         }
-        <button className="event-button-abssense" onClick={handleAbsence}> Valider les absences </button>
+        {traineeAbsence.length > 0 && 
+            <>
+                {!absenceValidate? <button className="event-button-abssense" onClick={handleAbsence}> Valider les absences </button> : "Vous avez validé les absences pour ce cours" } 
+                {absenceValidate && <button className="event-button-abssense" onClick={modifyAbsence} >Modifier les absences</button> }  
+            </> 
+        }   
         
     </div>
     <div className="modal-event-user-wrapper">
@@ -199,11 +207,15 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
 </div>
 <div className="event-modal-icones">
 
-    <Link to="/add" state={{ myData }}>
-        <button className="event-modal-icone"><img src={Pen} alt="pen" /></button>
-    </Link>
-    <button className="event-modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
-
+    {(authentication.role === "former" || authentication.role === "admin") &&
+        <>
+            <Link to="/add" state={{ myData }}>
+                <button className="event-modal-icone"><img src={Pen} alt="pen" /></button>
+            </Link>
+            
+            <button className="event-modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
+        </>
+    }
     <Modal
         isOpen={seeConfirmationModal}
         className='Modal'

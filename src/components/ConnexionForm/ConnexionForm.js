@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './connexionForm.scss'
 
-export default function ConnexionForm() {
+export default function ConnexionForm({ name }) {
     const {register, handleSubmit, formState: { errors }, reset, watch} = useForm({});
     const [state2, setState2]= useState();
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
@@ -18,7 +18,6 @@ export default function ConnexionForm() {
             const datas = await postConnexion(data);
             if(datas.status === 200){ 
                 setState2(datas);
-                console.log(datas)
                 setAuthentication({
                     role: datas.data.user.role,
                     token: datas.headers.authorization,
@@ -32,7 +31,6 @@ export default function ConnexionForm() {
             }
         } 
         getDatas();
-        console.log(authentication);
     }
 
 
@@ -42,12 +40,12 @@ export default function ConnexionForm() {
         
         <div className="connexion-form-container">
             <label htmlFor="connexion-email" className="connexion-form-label">Email :</label> <br/>
-            <input type="text" className="connexion-form-input"  value="admin2@gmail.com" {...register("email", { required: true })} /> <br/>
+            <input type="text" className="connexion-form-input"  {...register("email", { required: true })} /> <br/>
             {errors.email && <span>Vous devez rentrer un email pour vous connecter</span>}
         </div>
         <div className="connexion-form-container">
             <label htmlFor="connexion-password" className="connexion-form-label">Mot de passe :</label> <br/>
-            <input type="text" className="connexion-form-input" value="kanpus" {...register("password", { required: true })} /> <br/>
+            <input type="text" className="connexion-form-input"  {...register("password", { required: true })} /> <br/>
             {errors.password && <span>Vous devez rentrer votre mot de passe pour vous connecter</span>}
         </div>
         <button className="connexion-form-button">Valider</button>

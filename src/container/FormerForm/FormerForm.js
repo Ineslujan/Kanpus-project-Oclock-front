@@ -60,7 +60,6 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
             const promos = await getFormers (authentication.token)
             if(promos.status === 200) {
                 setGetPromos(promos.data);
-                console.log(promos.data);
             }
         }
         getPromo();
@@ -96,11 +95,6 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
         setEmail(e.target.value);
     }
 
-    // const changePermanent = (e) => {
-    //     setPermanent(e.target.value);
-    //     console.log(e.target.value)
-    // }
-
     const changeNewPassword = (e) => {
         setNewPassword(e.target.value);
     }
@@ -114,8 +108,6 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
 
         if(!data){
             const postDatas = async () => { 
-                console.log(firstname, lastname, picture,colorChoice, adress, phone, email, newPassword, confirmNewPassword)
-
                 const datas = await addFormer({
                     firstname: firstname,
                     lastname: lastname,
@@ -155,17 +147,13 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
             }
             update();
         }
-        // console.log("test=>", firstname, lastname, promoId, adress, phone, email)
     }
 
     const uploadPicture = async () => {
-        console.log("picture",picture)
         const fd = new FormData()
         fd.append('sampleFile', picture);
         const upload = await uploadPic (fd, authentication.token);
         if(upload.status === 200){
-            console.log("ok pour l'image")
-            console.log(upload);
             setPicture(upload.data.imageName)
             setUrlPicture(upload.data.imageUrl);
             setShowPicture(true);
@@ -175,7 +163,6 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
     const newPicture = (e) => {
         e.preventDefault();
         setPicture(e.target.files[0])
-       console.log("onchange",e.target.files[0]) 
     }
 
     const newColor = (item) => {

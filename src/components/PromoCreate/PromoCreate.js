@@ -13,14 +13,9 @@ export default function PromoCreate({ createModal, toggleCreateModal, getDatas, 
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
 
-
-    // const changePosition = (e) => {
-    //     setNewPosition(e.target.value);
-    // }
-
     const changeName = (e) => {
         setName(e.target.value);
-        console.log(e.target.value)
+
     }
     
     const onSubmit = (e) => {
@@ -33,7 +28,6 @@ export default function PromoCreate({ createModal, toggleCreateModal, getDatas, 
             if(datas.status === 200){
                 toggleCreateModal();
                 getDatas();
-                console.log("promo", name );
             }
         }
         postPlace();

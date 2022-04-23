@@ -18,6 +18,8 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
 
     const [selectedStudents, setSelectedStudents] = useState(false);
 
+    console.log(showStudents);
+
     useEffect(() => {
         const getStudents = async () => {
             const students = await requestStudents(authentication.token);
@@ -34,9 +36,11 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
         if(showStudents){
             setShowStudents(false);
         }
-        
-
     };
+
+    const onClickOutside = () => {
+        setShowStudents(false);
+    }
 
 
 
@@ -60,7 +64,12 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
             
         
                 {selectedStudents && showStudents &&
-                    <ItemStudentsMenu showStudents={showStudents} selectedStudents={selectedStudents} tabSelectedStudents={tabSelectedStudents} setTabSelectedStudents={setTabSelectedStudents}/>
+                    <ItemStudentsMenu 
+                        showStudents={showStudents} 
+                        selectedStudents={selectedStudents} 
+                        tabSelectedStudents={tabSelectedStudents} 
+                        setTabSelectedStudents={setTabSelectedStudents} 
+                        onClickOutside={onClickOutside}  />
                 } 
             </div>
         </div>

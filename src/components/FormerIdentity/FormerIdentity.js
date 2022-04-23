@@ -22,7 +22,6 @@ export default function FormerIdentity({ item, setAllPromo, setSelectedPromo, se
         <div className="identity" >
             <div className="identity-container-picture">
                 <div className="identity-picture" onClick={openIdentityModal}>
-                    {console.log(item)}
                     <img src={item.image} alt="" />
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import Pencil from '../../assets/images/icones-bags-svg/bi-pencil-fill.svg';
 import Trash from '../../assets/images/icones-bags-svg/bi-trash3-fill.svg';
 import { DateTime } from "luxon";
@@ -11,11 +11,6 @@ import './promoCard.scss';
 export default function PromoCard({ data , getDatas}) {
 
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
-    useEffect(() => {
-        console.log(data);
-    }, []);
-
-    
     const [updateView, setUpdateView] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
 

@@ -20,9 +20,7 @@ export default function FormerIdentityModal({item, modalIsOpen, closeIdentityMod
     const [seePasswordModal, setSeePasswordModal] = useState(false);
 
     const setUpdate = () => {
-        console.log("heyhi")
         setUpdateModal(x=>!x);
-        console.log(updateModal)
     }
 
     const confirmationModal = () => {
@@ -32,14 +30,11 @@ export default function FormerIdentityModal({item, modalIsOpen, closeIdentityMod
     const deleteStudent = async (id) => {
         const deleteOneStudent = await deleteFormer(id, authentication.token);
             if(deleteOneStudent.status===200){
-                // console.log("id",id);
                 const getStudents = async () => {
                     const trainees = await getFormers(authentication.token);
-                    // console.log('trainee=>',trainees.data)
                     if(trainees.status === 200){
                         setAllPromo(trainees.data);
                         setSelectedPromo(trainees.data[0]);
-                        // console.log('trainee=>',trainees.data)
                     }
                 }
             getStudents();
@@ -49,7 +44,6 @@ export default function FormerIdentityModal({item, modalIsOpen, closeIdentityMod
     }
 
     const passwordModal = () => {
-        console.log("yououhjzhjezkjzek")
         setSeePasswordModal(!seePasswordModal)
     }
 
@@ -130,7 +124,6 @@ export default function FormerIdentityModal({item, modalIsOpen, closeIdentityMod
             </div>
 
         </Modal>
-        {console.log(item)}
     </div>
   )
 }

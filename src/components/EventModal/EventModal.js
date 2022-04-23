@@ -7,6 +7,7 @@ import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg'
 
 import { deleteCourse } from '../../requests/myCourseRequests';
 import { getEventsOrganizer } from '../../requests/aboutOrganizer';
+import { addAbsences } from '../../requests/absenceRequest';
 
 import ArrowNext from '../../assets/images/arrow-next.png';
 import Trash from '../../assets/images/trash.png';
@@ -20,6 +21,7 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
     Modal.setAppElement(document.getElementById('root'));
 
     const [traineeAbsence, setTraineeAbsence] = useState([]);
+    const [absenceValidate, setAbsenceValidate] = useState(false);
     const [arrow1, setArrow1] = useState(false);
     const [arrow2, setArrow2] = useState(false);
     const [arrow3, setArrow3] = useState(false);
@@ -29,7 +31,6 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
 
     useEffect(() => {
         setMyData(datas);
-        // console.log("set")
     }, [datas])
 
 
@@ -46,6 +47,21 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
         }
     }
 
+    const modifyAbsence = () => {
+        setAbsenceValidate(false);
+    }
+
+    const handleAbsence = async () => {
+        
+        const abs = await addAbsences(datas.event_id,
+            {users:traineeAbsence}
+            , authentication.token);
+            if(abs.status === 200){
+                setAbsenceValidate(true);
+
+            }
+    };
+
     const seeContent = (value) => {
         value(arrow => !arrow)
     }
@@ -58,13 +74,10 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
         await deleteCourse(id, authentication.token);
         const getDatas = async () => {
             const datas = await getEventsOrganizer(firstDayOfWeek.toFormat("yyyy-MM-dd"), authentication.token);
-            console.log("iciii la !!!", firstDayOfWeek.toFormat("yyyy-MM-dd"),datas.data);
             if (datas.status === 200) {
-                console.log("iciii ???");
                 setPureEvents(datas.data)
                 const datasEvents = checkWeekend(datas.data, firstDayOfWeek, settings)
                 setEvents(datasEvents)
-                console.log(datas.data, firstDayOfWeek, settings)
             }
         }
         getDatas();
@@ -85,7 +98,6 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                 </div>
 
                 <div className="course-info">
-                    {/* {console.log(datas)}  */}
                     <div className="modal-event-head">
                         <p className="modal-event-name">{datas.name}</p>
                         <p className="modal-event-place">{datas.place_name}</p>
@@ -106,7 +118,7 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                             <h2 className="modal-event-user-title">Formateur</h2>
                             <div className="modal-event-user-name-wrapper">
                                 {datas.former.map((item) => (
-                                    <p className="modal-event-user-name" key={item.id}>{item.firstname} {item.lastname}</p>
+                                    <p className="modal-event-user-name" key={item.firstname+item.id}>{item.firstname} {item.lastname}</p>
                                 ))}
                             </div>
                         </div>
@@ -115,15 +127,23 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                                 <h2 className="modal-event-user-title">{datas.trainee.length} Stagiaire{datas.trainee.length > 1 && "s"}</h2>
                                 <div className="modal-event-user-name-wrapper">
                                     {datas.trainee.map((item) => (
-                                        <button className="modal-event-user-name" key={item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
+                                        <>
+                                            {(authentication.role === "former" || authentication.role === "admin") ?
+                                                <button className="modal-event-user-name" key={item.firstname+item.id} onClick={(e) => addAbsenceTrainee(e, item.id)}> {item.firstname} {item.lastname} </button>
+                                            :
+                                                <p className="modal-event-user-name"> {item.firstname} {item.lastname}</p>
+                                            }
+                                        </>
                                     ))}
                                 </div>
-                                {traineeAbsence.length > 0 &&  
-                                    <button className="modal-trainer-absence"> Valider les absences </button>
+                                {traineeAbsence.length > 0 && 
+                                    <>
+                                    {!absenceValidate? <button className="event-button-abssense" onClick={handleAbsence}> Valider les absences </button> : "Vous avez validé les absences pour ce cours" } 
+                                    {absenceValidate && <button className="event-button-abssense" onClick={modifyAbsence} >Modifier les absences</button> }  
+                                    </> 
                                 } 
                             </div>
                         }
-                        <button className="event-button-abssense"> Valider les absences </button>
                         
                     </div>
                     <div className="modal-event-user-wrapper">
@@ -180,12 +200,14 @@ export default function EventModal({ modalIsOpen, openModal, datas, checkWeekend
                 </div>
                 </div>
                 <div className="event-modal-icones">
-
-                    <Link to="/add" state={{ myData }}>
-                        <button className="event-modal-icone"><img src={Pen} alt="pen" /></button>
-                    </Link>
-                    <button className="event-modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
-
+                {(authentication.role === "former" || authentication.role === "admin") &&
+                    <>
+                        <Link to="/add" state={{ myData }}>
+                            <button className="event-modal-icone"><img src={Pen} alt="pen" /></button>
+                        </Link>
+                        <button className="event-modal-icone" onClick={confirmationModal}><img src={Trash} alt="trash" /></button>
+                    </>
+                }
                     <Modal
                         isOpen={seeConfirmationModal}
                         className='Modal'

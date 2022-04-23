@@ -40,7 +40,6 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
             repeat_password: confirmNewPassword
         },authentication.token);
         if(update.status === 200){
-            // console.log("youhou");
             openClose()
         }
     }

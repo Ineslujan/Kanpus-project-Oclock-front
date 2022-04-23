@@ -19,10 +19,9 @@ export default function Former() {
     const getStudents = async () => {
         const formers = await getFormers(authentication.token);
         if(formers.status === 200){
-            console.log(formers.data)
             setAllPromo(formers.data)
             setSelectedStatusFormer(formers.data[0])
-            console.log('former=>', formers.data[0])
+
         }
     }
     

@@ -20,7 +20,6 @@ export default function PromoAndGroupMenu({ setSelectedStudents, tabPromos, setT
                 // setTabPromos(students.data.promos);
                 // setPromoName(students.data.promos[0].name)
                 // setSelectedStudents(students.data.promos[0].trainee)
-                console.log
             }
         }
         getStudents()

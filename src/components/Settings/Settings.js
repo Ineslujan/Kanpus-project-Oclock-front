@@ -14,15 +14,14 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
 
     const [settingsData, setSettingsData] = useState();
     const [updateModal, setUpdateModal] = useState();
-    const [updateScreen, setUpdateScreen] = useState();
-
+    const [updateScreen, setUpdateScreen] = useState(false);
+    
     useEffect(() => {
         const get = async() => {
             const data = await getSettings(authentication.token);
-            if(data.status ===200){
-                setSettingsData(data.data)
+            if(data.status === 200){
+                setSettingsData(data.data);
             }
-            console.log(data)
         }
         get()
     }, []);
@@ -31,18 +30,16 @@ export default function Settings({modalIsOpen, setModalIsOpen}) {
     useEffect(() => {
         const get = async() => {
             const data = await getSettings(authentication.token);
-            if(data.status ===200){
-                console.log('allo',data);
-                setSettingsData(data.data)
+            if(data.status === 200){
+                setSettingsData(data.data);
+                setUpdateScreen(false);
             }
-            console.log(data)
         }
         get()
     }, [updateScreen]);
 
     const seeUpdate = () => {
-        setUpdateModal(x => !x)
-        console.log("update")
+        setUpdateModal(x => !x);
     }
  
     return (

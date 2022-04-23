@@ -8,15 +8,10 @@ import { AuthenticationContext } from '../../context/authenticationContext';
 
 export default function ModalPassword({ passwordModal, seePasswordModal, setSeePasswordModal, item }) {
 
-    // const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
-
-    // const handleOldPassword = (e) => {
-    //     setOldPassword(e.target.value)
-    // }
 
     const handleNewPassword = (e) => {
         setNewPassword(e.target.value)
@@ -35,7 +30,6 @@ export default function ModalPassword({ passwordModal, seePasswordModal, setSeeP
     }, [newPassword, confirmNewPassword]);
 
     const changePassword = async () => {
-        console.log(item)
         const update = await updateAdminPassword({
             new_password: newPassword,
             repeat_password: confirmNewPassword

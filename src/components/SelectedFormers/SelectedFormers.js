@@ -10,13 +10,11 @@ export default function SelectedFormers({selectedStatusFormer, setSelectedStatus
 
     useEffect(() => {
         getStudents();
-        console.log("formoers!!!", selectedStatusFormer)
     }, [])
 
     const selectPromo = (item) => {
         setSelectedStatusFormer(item);
         setToggleSelectPromo(toggle =>!toggle)
-        // console.log("selectedPromo=>",item)
     }
 
     const toggle= ()=> {

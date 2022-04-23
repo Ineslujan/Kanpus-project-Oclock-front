@@ -56,7 +56,6 @@ export default function AddClasses() {
         const setSettings = async () => {
             const settings = await getSettings(authentication.token);
             if(settings.status ===200){
-                console.log("settings up", settings)
                 setStartTime(settings.data.course_start_hour_am.slice(0,5));
                 setEndTime(settings.data.course_end_hour_pm.slice(0,5));
             }
@@ -65,11 +64,7 @@ export default function AddClasses() {
 
         if(location.state){
             const {myData} = location.state
-            console.log("addclasse=>",myData);
-            console.log("date=>", DateTime.fromJSDate(new Date(myData.start_date)).hour);
-            console.log("date=>", DateTime.fromJSDate(new Date(myData.start_date)).minute);
-            // console.log("addclasseTrainee",myData.trainee);
-            
+
             setEventId(myData.event_id);
             setEquipment(myData.equipment);
             setAdress(myData.address)
@@ -82,12 +77,12 @@ export default function AddClasses() {
             setNote(myData.note);
 
             const getDatas = async () => {
-                // console.log('je passe ici', myData.former);
                 const datas = await requestEvent(myData.event_id, {
                     name: myData.name,
                     start_date: new Date(myData.start_date),
                     end_date: new Date(myData.end_date),
                 }, authentication.token);
+
                 if(datas.status === 200){
                     setTabTeachers(datas.data.former);
                     setTabClasseRoom(datas.data.place);
@@ -122,7 +117,6 @@ export default function AddClasses() {
 
     useEffect(() => {
         if(!closeFormPart1){
-            // console.log("classeroom",classeRoom);
             setCloseFormPart2(true);
             // reset teacher and place state when we back in first page form
             setTeacher([]);
@@ -154,7 +148,6 @@ export default function AddClasses() {
         
         const tabTrainee= [];
         tabSelectedStudents.forEach(item=> {tabTrainee.push(item.id)});
-        // console.log("submit form =>", tabSelectedStudents)
         if(!eventId) {
             const getDatas = async () => {
                 const datas = await postEvent({
@@ -174,7 +167,6 @@ export default function AddClasses() {
             getDatas();  
         }  else {
             const getDatas = async () => {
-                // console.log('POOOOOSSSST',classeRoom, "postTeacher=>", teacher, "postTabTrainne=>",tabTrainee, "postAllform=>" ,allDatasForm)
                 const datas = await updateEvent(eventId,{
                     ...allDatasForm,
                     place_id: classeRoom, 
@@ -190,9 +182,7 @@ export default function AddClasses() {
                 }
             } 
             getDatas();  
-        } 
-        console.log(allDatasForm);
-        
+        }        
     }
 
   return (

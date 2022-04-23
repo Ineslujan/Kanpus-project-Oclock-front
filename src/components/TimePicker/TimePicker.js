@@ -4,8 +4,7 @@ import TimeKeeper from 'react-timekeeper';
 export default function TimePicker({ time, setTime, setShowPicker }) {
 
     const closeTimePicker = () => {
-        setShowPicker(false)
-        console.log("youhou")
+        setShowPicker(false);
     }
 
     return (
