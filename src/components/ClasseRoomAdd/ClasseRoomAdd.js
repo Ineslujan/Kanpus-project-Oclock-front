@@ -90,18 +90,18 @@ export default function ClasseRoomAdd({ createModal, toggleCreateModal, getDatas
                 <form className="classeroom-add-form" onSubmit={onSubmit}>
                     <div className="classeroom-form-wrapper">
                         <div className="classeroom-form">
+                            
                             <label htmlFor="classeroom-name" className="classeroom-form-label">Nom :</label>
-
                             <input type="text" className="classeroom-form-input" value={name} onChange={changeName} /> 
                             {nameError && <p className="classeroom-form-error">Ce nom est déjà attribué à une autre salle</p>}
-                    
+                      
+                        
                             <label htmlFor="classeroom-name" className="classeroom-form-label"  >Position :</label>
                             <input type="number" className="classeroom-form-input" value={newPosition} onChange={changePosition} /> 
                             {positionError && <p className="classeroom-form-error">Cette position est déjà occupé par une autre salle</p>}
-                            
-                            
+                       
                             <div className="modal-confirmation-response-block">
-                            <button className="modal-confirmation-response">valider</button>
+                                <button className="modal-confirmation-response">valider</button>
                             </div>
                         </div>
                     </div>

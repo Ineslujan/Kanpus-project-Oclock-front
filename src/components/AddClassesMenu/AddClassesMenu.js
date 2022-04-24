@@ -18,7 +18,7 @@ export default function AddClassesMenu({tabSelectedStudents, setTabSelectedStude
 
     const [selectedStudents, setSelectedStudents] = useState(false);
 
-    console.log(showStudents);
+    // console.log(showStudents);
 
     useEffect(() => {
         const getStudents = async () => {
