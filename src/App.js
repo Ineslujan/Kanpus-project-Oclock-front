@@ -36,6 +36,7 @@ function App() {
                 <Route path='/places' element={(authentication.role === "admin" || authentication.role === "former" )? <ClasseRoom /> : <WrongRoute />} />
                 <Route path='/former' element={authentication.role === "admin" ? <Former />: <WrongRoute />} />
                 <Route path='/promos' element={(authentication.role === "admin" || authentication.role === "former" )? <Promos /> : <WrongRoute />} />
+                <Route path='/*' element={<WrongRoute />} />
             </Routes>
         </div>
     );

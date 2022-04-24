@@ -58,7 +58,6 @@ export default function UserName({ isOpen, setIsOpen }) {
     const openClose = () => {
         setSeePasswordModal(x => !x);
         setUserMenu(x => !x);
-        console.log("coucou")
     }
 
     const deconnexion = () => {

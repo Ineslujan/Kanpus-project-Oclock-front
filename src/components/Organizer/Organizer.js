@@ -17,7 +17,6 @@ import './cards.scss'
 
 import leftArrow from '../../assets/images/icones-bags-svg/bi-arrow-left-square-fill.svg';
 import rightArrow from '../../assets/images/icones-bags-svg/bi-arrow-right-square-fill.svg';
-import { log } from 'react-modal/lib/helpers/ariaAppHider';
 
 export default function Organizer() {
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
@@ -190,11 +189,11 @@ export default function Organizer() {
                                 // static: true
                             }}
                                 data-organizer-type="card"
-                                style={{ 
+                                style={{
                                     backgroundColor: event.former[0].color,
                                     borderLeft: startDayHourSec === courseStartHourAm && `3px solid #FF9700`,
                                     borderRight: endDayHourSec === courseEndHourPm && `3px solid #FF9700`,
-                                    }}
+                                }}
                                 key={uuid()}
                                 onDoubleClick={() => openModal(event.event_id)}
                             >

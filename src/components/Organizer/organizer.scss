@@ -106,3 +106,10 @@ BORDERS
     z-index: -1;
     border-left: 1px dashed #1c2d58;
 }
+
+@media screen and (max-width : 850px) {
+.layout{
+    overflow: auto;
+}
+
+}
