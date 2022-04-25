@@ -38,7 +38,7 @@ export default function CourseCard({ datas, setAllCourses }) {
                         <div className="start-date-container">
                             <label htmlFor="Start">Début</label>
                             <p className="date" id="Start">
-                                {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? startDate.weekdayLong : startDate.weekdayShort}  ${startDate.day}`}  
+                                {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? startDate.weekdayLong : startDate.weekdayShort}  ${startDate.day} `}  
                                 {startDate.setLocale("fr").toUTC().hour < 10 ? "0": ""}{startDate.setLocale("fr").toUTC().hour}:
                                 {startDate.minute}{startDate.minute=== 0 ? "0":""} 
                             </p>
@@ -46,7 +46,7 @@ export default function CourseCard({ datas, setAllCourses }) {
                         <div className="end-date-container">
                             <label htmlFor="End">Fin</label>
                             <p className="date" id="End">
-                                {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? endDate.weekdayLong : endDate.weekdayShort }  ${endDate.day}`}  
+                                {startDate.weekdayLong !== endDate.weekdayLong && `${windowWidth > 500 ? endDate.weekdayLong : endDate.weekdayShort }  ${endDate.day} `}  
                                 {endDate.setLocale("fr").toUTC().hour < 10 ? "0": ""}{endDate.setLocale("fr").toUTC().hour}:
                                 {endDate.minute}{endDate.minute === 0 ? "0":""}
                             </p>

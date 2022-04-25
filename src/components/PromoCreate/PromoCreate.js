@@ -21,16 +21,19 @@ export default function PromoCreate({ createModal, toggleCreateModal, getDatas, 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        const postPlace = async () => {
-            const datas = await addPromo({
-              name: name
-            }, authentication.token);
-            if(datas.status === 200){
-                toggleCreateModal();
-                getDatas();
-            }
+        const postProm = async () => {
+                const datas = await addPromo({
+                name: name
+                }, authentication.token);
+                if(datas.status === 200){
+                    toggleCreateModal();
+                    getDatas();
+                } else if (datas === 'status.500'){
+                    setNameError(true);
+                }
+           
         }
-        postPlace();
+        postProm();
     }
 
 
@@ -53,7 +56,7 @@ export default function PromoCreate({ createModal, toggleCreateModal, getDatas, 
                         {nameError && <p className="classeroom-form-error">Ce nom est déjà attribué à une autre salle</p>}
                         <div className="modal-confirmation-response-block">
                             <button className="modal-confirmation-response">valider</button>
-                            </div>
+                        </div>
 
                         </div>
                     </div>

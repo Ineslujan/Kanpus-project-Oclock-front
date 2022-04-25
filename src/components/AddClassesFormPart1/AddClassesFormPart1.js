@@ -76,10 +76,12 @@ export default function AddClassesFormPart1({
     return (
         <>
             {closeFormPart1 ? 
-                <div className="data-open-container"onClick={closePart1}>
-                    <button className="date-open" >{courseName}</button>
-                    <button className="date-open" >{`${newStartDate.weekdayLong} ${newStartDate.day}  ${newStartDate.monthLong} ${newStartDate.year} ${startTime}`}</button>
-                    <button className="date-open" >{`${newEndDate.weekdayLong} ${newEndDate.day} ${newEndDate.monthLong} ${newEndDate.year} ${endTime}`}</button>
+                <div className="data-open-container" >
+                    <div className="data-back-container" onClick={closePart1}>
+                        <button className="date-open" >{courseName}</button>
+                        <button className="date-open" >{`${newStartDate.weekdayLong} ${newStartDate.day}  ${newStartDate.monthLong} ${newStartDate.year} ${startTime}`}</button>
+                        <button className="date-open" >{`${newEndDate.weekdayLong} ${newEndDate.day} ${newEndDate.monthLong} ${newEndDate.year} ${endTime}`}</button>
+                    </div>
                 </div>
             :
                 <form className="create-date-form" onSubmit={onSubmit}>

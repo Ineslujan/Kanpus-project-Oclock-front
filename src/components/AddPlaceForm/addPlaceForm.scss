@@ -113,3 +113,57 @@
     top: 0;
     right: -200px;
 }
+
+@media (max-width: 950px) {
+    .place-form-container {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 50%;
+        height: 70px;
+        margin: auto;
+        margin-top: 1%;
+    }
+    .place-adress{
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -0%);
+        margin: auto;
+    }
+    .place-form-button-container{
+        margin: auto;
+        top: 0px;
+        left:28%;
+        right: 28%;
+        z-index: 7;
+    }
+
+}
+
+@media (max-width: 400px) {
+    .place-form-container {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 50%;
+        height: 70px;
+        margin: auto;
+        margin-top: 1%;
+    }
+    .place-adress{
+        width: 190%;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -0%);
+        margin: auto;
+    }
+    .place-form-button-container{
+        margin: auto;
+        top: 0px;
+        left:-25px;
+        z-index: 7;
+    }
+
+    .info-classeroom{
+      display: none;
+    }
+
+}

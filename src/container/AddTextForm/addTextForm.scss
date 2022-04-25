@@ -28,3 +28,19 @@
         background-color: var.$background-color;
     }
 }
+
+
+@media (max-width: 400px) {
+ 
+    .text-form{
+        margin-top: 0.2%;
+        width: 90%;
+        max-width: 100%;
+        min-height: 25px;
+    }
+
+    .text-form-container{
+        margin-top: 10%;
+
+    }
+}
