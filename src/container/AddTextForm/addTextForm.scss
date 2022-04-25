@@ -15,16 +15,16 @@
     min-height: 25px;
     border: 2px solid var.$second-color;
     border-radius: 5px;
+    color: var.$second-color;
 
     &:focus{
         border: 1.5px solid var.$other-color;
-        color: var.$other-color;
+        color: var.$second-color;
     }
 
     &:hover {
         color: var.$other-color;
         border: 2px solid var.$other-color;
         background-color: var.$background-color;
-
     }
 }
