@@ -22,6 +22,6 @@ export async function updatePassword( password, token) {
         return response;
     }
     catch (err) {
-        return false;
+        return "status500";
     }
 };

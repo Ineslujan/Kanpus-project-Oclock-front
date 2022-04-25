@@ -4,7 +4,7 @@
 
 .connexion-form-container {
     margin-bottom: 2rem;
-    
+    position: relative;
 }
 
 .connexion-form-label{
@@ -52,6 +52,21 @@
         background-color: var.$background-color;
         border-radius: 3px;
     }
+}
+
+.connexion-error {
+    margin-top: 20px;
+    font-size: 0.65rem;
+    color: red;
+}
+
+.connexion-input-error{
+    font-size: 0.65rem;
+    color: red;
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
 }
 
 @media (max-width: 300px) {

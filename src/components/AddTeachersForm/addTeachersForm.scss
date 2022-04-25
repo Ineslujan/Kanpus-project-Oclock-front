@@ -130,3 +130,20 @@
 .test {
     position: relative;
 }
+
+
+@media (max-width: 400px) {
+   
+    .teacher-label {
+        width: 100%;
+    }
+
+    .teacher-form-container{
+        margin-top: 10%;
+   
+    }
+
+    .info-teacher{
+        display: none;
+    }
+}

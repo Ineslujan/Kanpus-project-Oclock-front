@@ -11,6 +11,9 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
+    const [passwordIsToShort, setpasswordIsToShort] = useState(false);
+    const [badOldPassword, setBadOldPassword] = useState(false);
+
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
 
     const handleOldPassword = (e) => {
@@ -31,6 +34,16 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
         } else {
             setErrorConfirmPassword(false);
         }
+
+        if(confirmNewPassword.length > 0) {
+            if(confirmNewPassword.length  > 2 && newPassword.length > 2){
+                setpasswordIsToShort(false);
+            } else {
+                setpasswordIsToShort(true);
+            }
+        } else {
+            setpasswordIsToShort(false);
+        }
     }, [newPassword, confirmNewPassword]);
 
     const changePassword = async () => {
@@ -40,7 +53,10 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
             repeat_password: confirmNewPassword
         },authentication.token);
         if(update.status === 200){
+            setBadOldPassword(false);
             openClose()
+        } else if (update === 'status500') {
+            setBadOldPassword(true);
         }
     }
     
@@ -62,27 +78,40 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
             </div>
             <div className="modal-change-my-password-wrapper">
                 <div className="modal-change-my-password-block">
-                    <div className="modal-change-my-password">
-                        <p className="modal-change-my-password-title">Entrez votre ancien mot de passe</p>
-                        <input type="password" className="old-password" onChange={handleOldPassword}/>
-                    </div>
-                    <div className="modal-change-my-password">
-                        <p className="modal-change-my-password-title">Entrez votre nouveau mot de passe</p>
-                        <input type="password" className="new-password" onChange={handleNewPassword} />
-                    </div>
-                    <div className="modal-change-my-password">
-                        <p className="modal-change-my-password-title">Confirmez votre nouveau mot de passe</p>
-                        <input type="password" className="new-password" onChange={handleConfirmNewPassword} />   
-                    </div>
-                    <div className="modal-change-my-password">
-                        <button className="my-password-confirmation-validate-button" onClick={changePassword}>Valider</button>
-                        { errorConfirmPassword &&
-                        <div>
-                            <p>Les mots de passe ne correspondent pas !</p>
+                    <form>
+                        <div className="modal-change-my-password">
+                            <p className="modal-change-my-password-title">Entrez votre ancien mot de passe</p>
+                            <input type="password" className="old-password" onChange={handleOldPassword} required minLength={3} />
                         </div>
-                        }
-                    </div>
+                        <div className="modal-change-my-password">
+                            <p className="modal-change-my-password-title">Entrez votre nouveau mot de passe</p>
+                            <input type="password" className="new-password" onChange={handleNewPassword} required minLength={3}/>
+                        </div>
+                        <div className="modal-change-my-password">
+                            <p className="modal-change-my-password-title">Confirmez votre nouveau mot de passe</p>
+                            <input type="password" className="new-password" onChange={handleConfirmNewPassword} required minLength={3}/>   
+                        </div>
+                        <div className="modal-change-my-password">
+                            <button className="my-password-confirmation-validate-button" onClick={changePassword}>Valider</button>
+                            { errorConfirmPassword &&
+                            <div>
+                                <p>Les mots de passe ne correspondent pas !</p>
+                            </div>
+                            }
+                            {/* { passwordIsToShort &&
+                            <div>
+                                <p>le mot de passe doit faire minimum 3 caractères</p>
+                            </div>
+                            } */}
+                            {badOldPassword &&
+                            <div>
+                                <p>L'ancien mot de passe que vous avez rentré n'existe pas</p>
+                            </div>
+                            }
+                        </div>
+                    </form>
                 </div>
+                
             </div>
         </Modal>
     

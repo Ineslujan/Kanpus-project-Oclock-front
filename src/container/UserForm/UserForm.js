@@ -33,6 +33,7 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
     const [picture, setPicture] = useState();
     const [showPicture, setShowPicture] = useState(false);
     const [urlPicture, setUrlPicture] = useState();
+    const [errorPassword, setErrorPassword] = useState(false);
 
     useEffect(() => {
         if (data) {
@@ -55,6 +56,13 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
         }
         getPromo();
     }, [])
+
+    useEffect(() => {
+        if(confirmNewPassword === newPassword){
+            setErrorPassword(false);
+        }
+    }, [confirmNewPassword, newPassword])
+    
 
 
     const changeFirstName = (e) => {
@@ -109,7 +117,12 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                     setUpdate();
                 }
             }
-            postDatas();
+            if(newPassword !== confirmNewPassword ) {
+                setErrorPassword(true);
+            } else {
+                postDatas();
+            }
+            
         } else {
             const update = async () => {
                 const datas = await updateTrainee(data.id, {
@@ -239,25 +252,26 @@ export default function UserForm({ data, updateModal, setUpdateModal, setUpdate,
                             <>
                                 <div className="user-form-right-content">
                                     <label htmlFor="password"><img className="user-form-icone" src={svgPassword} alt="password" /></label>
-                                    <input type="text" placeholder="Mot de pass" name="password" value={newPassword} onChange={changeNewPassword} />
+                                    <input type="text" placeholder="Mot de pass" name="password" value={newPassword} onChange={changeNewPassword} minLength={3} />
                                 </div>
                                 <div className="user-form-right-content">
                                     <label htmlFor="password"></label>
-                                    <input type="text" placeholder="Confirmez le mot de passe" name="password" value={confirmNewPassword} onChange={changeConfirmNewPassword} />
+                                    <input type="text" placeholder="Confirmez le mot de passe" name="password" value={confirmNewPassword} onChange={changeConfirmNewPassword} minLength={3}/>
                                 </div>
                             </>
 
                         }
-
+                            {errorPassword && <p className="trainee-password-error">Vos mots de passe ne correspondent pas</p> }
                         </div>
 
 
                         
                     </div>
                     <button className='trainee-confirmation-validate-button'>valider</button>
+                  
                 </form>
 
-
+               
             </div>
         </Modal>
     )

@@ -7,6 +7,7 @@ import svgCircle from '../../assets/images/icones-bags-svg/bi-x-square-fill.svg'
 
 import { deleteCourse } from '../../requests/myCourseRequests';
 import { requestMyCourse } from '../../requests/myCourseRequests';
+import { addAbsences } from '../../requests/absenceRequest';
 
 import ArrowNext from '../../assets/images/arrow-next.png';
 import Trash from '../../assets/images/trash.png';

@@ -15,16 +15,32 @@
     min-height: 25px;
     border: 2px solid var.$second-color;
     border-radius: 5px;
+    color: var.$second-color;
 
     &:focus{
         border: 1.5px solid var.$other-color;
-        color: var.$other-color;
+        color: var.$second-color;
     }
 
     &:hover {
         color: var.$other-color;
         border: 2px solid var.$other-color;
         background-color: var.$background-color;
+    }
+}
+
+
+@media (max-width: 400px) {
+ 
+    .text-form{
+        margin-top: 0.2%;
+        width: 90%;
+        max-width: 100%;
+        min-height: 25px;
+    }
+
+    .text-form-container{
+        margin-top: 10%;
 
     }
 }

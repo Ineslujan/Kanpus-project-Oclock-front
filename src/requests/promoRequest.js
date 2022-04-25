@@ -12,7 +12,7 @@ export async function addPromo(form, token) {
         return response;
     }
     catch (err) {
-        return false;
+        return 'status.500';
     }
 };
 
