@@ -67,6 +67,7 @@ export default function Organizer() {
         setPreviousWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }))
         const getEvents = async (date) => {
             const datas = await getEventsOrganizer(date.toFormat("yyyy-MM-dd"), authentication.token);
+            console.log(datas);
             setPureEvents(datas.data)
             return datas.data;
         };

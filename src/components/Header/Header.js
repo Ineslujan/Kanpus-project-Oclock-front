@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import useWindowDimensionsWithScrollbar from '../../customHooks/getWindowDimensionsWithScrollbar';
+import { AuthenticationContext } from '../../context/authenticationContext';
+
 
 import Logo from '../Atoms/Logo/Logo'
 import UserName from '../Atoms/UserName/UserName'
@@ -9,6 +11,7 @@ import BurgerMenu from '../Atoms/BurgerMenu/BurgerMenu'
 import './header.scss';
 
 export default function Header() {
+    const { authentication, setAuthentication } = useContext(AuthenticationContext);
     const { height, width } = useWindowDimensionsWithScrollbar();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -17,12 +20,12 @@ export default function Header() {
         <div className="navbar">
             <div className="navbar-container">
                 <Logo />
-                {width < 599 ? "" : <Navbar />}
+                {(authentication.role === "admin" || authentication.role === "former" ) && width > 599 && <Navbar />}
                 <UserName isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
-            {width <= 599 && <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />}
+            {(authentication.role === "admin" || authentication.role === "former" ) && width <= 599 && <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />}
         </div>
-        {width <= 599 && <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />}
+        {(authentication.role === "admin" || authentication.role === "former" ) && width <= 599 && <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />}
         </>
     )
 }

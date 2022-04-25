@@ -272,7 +272,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                         </div>
                             <div className="user-form-right-content">
                                 <label htmlFor="phone"><img className="user-form-icone" src={svgPhone} alt="Téléphone" /> </label>
-                                <input type="text" name="phone" value={phone} onChange={changePhone} required/>
+                                <input type="text" name="phone" placeholder="Numéro de téléphone" value={phone} onChange={changePhone} required/>
                             </div>
                             <div className="user-form-right-content">
                                 <label htmlFor="email"><img className="user-form-icone" src={svgEnvelope} alt="Envelope" /></label>
@@ -283,7 +283,7 @@ export default function FormerForm({ data, updateModal, setUpdateModal, setUpdat
                             <>
                                 <div className="user-form-right-content">
                                     <label htmlFor="password"><img className="user-form-icone" src={svgPassword} alt="password" /></label>
-                                    <input type="text" placeholder="Mot de pass" name="password" value={newPassword} onChange={changeNewPassword} minLength={3}/>
+                                    <input type="text" placeholder="Mot de passe" name="password" value={newPassword} onChange={changeNewPassword} minLength={3}/>
                                 </div>
                                 <div className="user-form-right-content">
                                     <label htmlFor="password"></label>
