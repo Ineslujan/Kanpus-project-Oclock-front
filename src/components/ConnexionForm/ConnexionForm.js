@@ -50,7 +50,7 @@ export default function ConnexionForm({ name }) {
         </div>
         <div className="connexion-form-container">
             <label htmlFor="connexion-password" className="connexion-form-label">Mot de passe :</label> <br/>
-            <input type="text" className="connexion-form-input"  {...register("password", { required: true })} /> <br/>
+            <input type="password" className="connexion-form-input"  {...register("password", { required: true })} /> <br/>
             {errors.password && <span className="connexion-input-error">Vous devez rentrer votre mot de passe pour vous connecter</span>}
         </div>
         <button className="connexion-form-button">Valider</button>
