@@ -47,16 +47,18 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
     }, [newPassword, confirmNewPassword]);
 
     const changePassword = async () => {
-        const update = await updatePassword({
-            old_password: oldPassword,
-            new_password: newPassword,
-            repeat_password: confirmNewPassword
-        },authentication.token);
-        if(update.status === 200){
-            setBadOldPassword(false);
-            openClose()
-        } else if (update === 'status500') {
-            setBadOldPassword(true);
+        if(!passwordIsToShort){
+            const update = await updatePassword({
+                old_password: oldPassword,
+                new_password: newPassword,
+                repeat_password: confirmNewPassword
+            },authentication.token);
+            if(update.status === 200){
+                setBadOldPassword(false);
+                openClose()
+            } else if (update === 'status500') {
+                setBadOldPassword(true);
+            }
         }
     }
     
@@ -98,11 +100,11 @@ export default function UserModalPassword({openClose, seePasswordModal}) {
                                 <p>Les mots de passe ne correspondent pas !</p>
                             </div>
                             }
-                            {/* { passwordIsToShort &&
+                            { passwordIsToShort &&
                             <div>
                                 <p>le mot de passe doit faire minimum 3 caractères</p>
                             </div>
-                            } */}
+                            }
                             {badOldPassword &&
                             <div>
                                 <p>L'ancien mot de passe que vous avez rentré n'existe pas</p>

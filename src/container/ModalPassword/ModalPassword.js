@@ -12,6 +12,7 @@ export default function ModalPassword({ passwordModal, seePasswordModal, setSeeP
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
     const { authentication, setAuthentication } = useContext(AuthenticationContext);
+    const [passwordIsToShort, setpasswordIsToShort] = useState(false);
 
     const handleNewPassword = (e) => {
         setNewPassword(e.target.value)
@@ -22,20 +23,32 @@ export default function ModalPassword({ passwordModal, seePasswordModal, setSeeP
     }
 
     useEffect(() => {
-        if (newPassword !== confirmNewPassword) {
+        if(newPassword !== confirmNewPassword) {
             setErrorConfirmPassword(true);
         } else {
             setErrorConfirmPassword(false);
         }
+
+        if(confirmNewPassword.length > 0) {
+            if(confirmNewPassword.length  > 2 && newPassword.length > 2){
+                setpasswordIsToShort(false);
+            } else {
+                setpasswordIsToShort(true);
+            }
+        } else {
+            setpasswordIsToShort(false);
+        }
     }, [newPassword, confirmNewPassword]);
 
     const changePassword = async () => {
-        const update = await updateAdminPassword({
-            new_password: newPassword,
-            repeat_password: confirmNewPassword
-        }, authentication.token, item.id);
-        if (update.status === 200) {
-            setSeePasswordModal(false);
+        if(!passwordIsToShort) {
+            const update = await updateAdminPassword({
+                new_password: newPassword,
+                repeat_password: confirmNewPassword
+            }, authentication.token, item.id);
+            if (update.status === 200) {
+                setSeePasswordModal(false);
+            }
         }
     }
 
@@ -66,6 +79,11 @@ export default function ModalPassword({ passwordModal, seePasswordModal, setSeeP
                 <div>
                     <p>Les mots de passe ne correspondent pas !</p>
                 </div>
+            }
+            { passwordIsToShort &&
+                    <div>
+                        <p>le mot de passe doit faire minimum 3 caractères</p>
+                    </div>
             }
 
         </Modal>
