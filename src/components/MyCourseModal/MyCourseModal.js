@@ -129,7 +129,7 @@ export default function MyCourseModal({ modalIsOpen, openModal, datas, setAllCou
 
         {datas.trainee.length > 0 &&
             <div className="modal-event-user">
-                <h2 className="modal-event-user-title">Stagiere</h2>
+                <h2 className="modal-event-user-title">Stagiaire</h2>
                 <div className="modal-event-user-name-wrapper">
                     {datas.trainee.map((item) => (
                         <>

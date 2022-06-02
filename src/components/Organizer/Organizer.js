@@ -25,8 +25,8 @@ export default function Organizer() {
 
     const [today, setToday] = useState(new Date());
     const [firstDayOfWeek, setFirstDayOfWeek] = useState(DateTime.fromJSDate(today).minus({ days: DateTime.fromJSDate(today).weekday - 1 }));
-    const [nextWeek, setNextWeek] = useState(DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }));
-    const [previousWeek, setPreviousWeek] = useState(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }));
+    // const [nextWeek, setNextWeek] = useState(DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }));
+    // const [previousWeek, setPreviousWeek] = useState(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }));
     const [places, setPlaces] = useState([]);
     const [pureEvents, setPureEvents] = useState([]);
     const [events, setEvents] = useState([]);
@@ -63,8 +63,8 @@ export default function Organizer() {
     }, [])
 
     useEffect(() => {
-        setNextWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }))
-        setPreviousWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }))
+        // setNextWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).plus({ days: 7 }))
+        // setPreviousWeek(DateTime.fromJSDate(new Date(firstDayOfWeek)).minus({ days: 7 }))
         const getEvents = async (date) => {
             const datas = await getEventsOrganizer(date.toFormat("yyyy-MM-dd"), authentication.token);
             console.log(datas);
@@ -167,16 +167,16 @@ export default function Organizer() {
                 {/* Events in the grid */}
                 {
                     Object.keys(settings).length > 0 && places.length > 0 && events.length > 0 && events.map((event) => {
-                        const startDayNumber = Number(UTCDate(event.start_date, "E"));
-                        const startDayHour = UTCDate(event.start_date, "HH:mm");
-                        const endDayHour = UTCDate(event.end_date, "HH:mm");
-                        const startDayHourSec = UTCDate(event.start_date, "TT");
-                        const endDayHourSec = UTCDate(event.end_date, "TT");
-                        const formatedStartDate = UTCDate(event.start_date, "yyyy-MM-dd");
-                        const formatedEndDate = UTCDate(event.end_date, "yyyy-MM-dd");
-                        const courseStartHourAm = DateTime.fromFormat(settings.course_start_hour_am, "TT").toFormat("T") + ":01"
-                        const courseEndHourPm = DateTime.fromFormat(settings.course_end_hour_pm, "TT").toFormat("T") + ":01"
-                        const verticalEventPos = Number(places[event.place_position].position + 1);
+                        const startDayNumber = Number(UTCDate(event.start_date, "E")); // 3 (wednesday)
+                        const startDayHour = UTCDate(event.start_date, "HH:mm"); // 13:07
+                        const endDayHour = UTCDate(event.end_date, "HH:mm"); // 18:11
+                        const startDayHourSec = UTCDate(event.start_date, "TT"); // 13:07:00
+                        const endDayHourSec = UTCDate(event.end_date, "TT"); // 18:11:00
+                        const formatedStartDate = UTCDate(event.start_date, "yyyy-MM-dd"); // 2022-04-02
+                        const formatedEndDate = UTCDate(event.end_date, "yyyy-MM-dd"); // 2022-04-03
+                        const courseStartHourAm = DateTime.fromFormat(settings.course_start_hour_am, "TT").toFormat("T") + ":01"; // 09:02:01
+                        const courseEndHourPm = DateTime.fromFormat(settings.course_end_hour_pm, "TT").toFormat("T") + ":01"; // 18:15:01
+                        const verticalEventPos = Number(places[event.place_position].position + 1); // 2
                         const x = calculateXPos(startDayNumber, startDayHour, settings);
                         const w = defineCardWidth(formatedStartDate, startDayHour, formatedEndDate, endDayHour, settings);
 
@@ -187,7 +187,7 @@ export default function Organizer() {
                                 w,
                                 h: 1,
                                 maxH: 1,
-                                // static: true
+                                static: true
                             }}
                                 data-organizer-type="card"
                                 style={{
