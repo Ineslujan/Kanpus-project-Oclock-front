@@ -1,1 +1,3 @@
-export const api = `http://217.160.9.208`;
+const apiUrl = process.env.REACT_APP_API_URL;
+
+export const api = `${apiUrl}`;
